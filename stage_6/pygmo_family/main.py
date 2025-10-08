@@ -2,8 +2,8 @@
 Stage 6.4 PyGMO Solver Family - Main Pipeline Orchestrator
 ==========================================================
 
-Enterprise-grade pipeline orchestrator for PyGMO multi-objective optimization
-with master data pipeline integration, comprehensive validation, and audit logging.
+Pipeline orchestrator for PyGMO multi-objective optimization
+with master data pipeline integration, complete validation, and audit logging.
 
 Mathematical Foundation:
     - PyGMO Foundational Framework v2.3 compliance with convergence guarantees
@@ -11,12 +11,12 @@ Mathematical Foundation:
     - NSGA-II algorithm implementation per Theorem 3.2
     - Bijective representation with zero information loss guarantees
 
-Enterprise Architecture:
+System Design:
     - Master pipeline integration with exposable APIs and webhooks
-    - Comprehensive error handling with fail-fast validation
+    - complete error handling with fail-fast validation
     - Memory management with deterministic resource patterns
     - Structured logging with enterprise audit trails
-    - Configuration-driven deployment with environment support
+    - Configuration-driven usage with environment support
 
 Integration Points:
     - Input: Stage 3 compilation outputs (L_raw, L_rel, L_idx)
@@ -24,9 +24,9 @@ Integration Points:
     - Output: Optimized schedules with Stage 7 validation compliance
     - API: RESTful endpoints for master pipeline orchestration
 
-Authors: Perplexity Labs AI Development Team
-Version: 1.0.0 (Production Ready)
-Compliance: PyGMO Foundational Framework v2.3, Enterprise Standards
+Author: Student Team
+Version: 1.0.0 (Ready)
+Compliance: PyGMO Foundational Framework v2.3, Standards
 """
 
 import sys
@@ -100,7 +100,7 @@ class PipelineState:
         generation: int = 0,
         fitness: Optional[List[float]] = None
     ) -> None:
-        """Update optimization progress with comprehensive tracking."""
+        """Update optimization progress with complete tracking."""
         if request_id in self.active_optimizations:
             self.active_optimizations[request_id].update({
                 "status": status,
@@ -141,7 +141,7 @@ class PipelineState:
             return 0.0
 
     def get_system_health(self) -> Dict[str, Any]:
-        """Comprehensive system health assessment."""
+        """complete system health assessment."""
         try:
             process = psutil.Process()
             memory_info = process.memory_info()
@@ -170,7 +170,7 @@ pipeline_state = PipelineState()
 class OptimizationRequest(BaseModel):
     """
     Optimization request model for master pipeline integration.
-    Provides comprehensive configuration and validation for optimization tasks.
+    Provides complete configuration and validation for optimization tasks.
     """
     model_config = {"extra": "forbid"}
 
@@ -230,7 +230,7 @@ class OptimizationRequest(BaseModel):
 
 class OptimizationResponse(BaseModel):
     """
-    Optimization response model with comprehensive result information.
+    Optimization response model with complete result information.
     """
     request_id: str = Field(description="Unique request identifier")
     status: str = Field(description="Optimization status")
@@ -260,7 +260,7 @@ class OptimizationResult(BaseModel):
     )
     optimization_metadata: Dict[str, Any] = Field(
         default_factory=dict,
-        description="Comprehensive optimization statistics"
+        description="complete optimization statistics"
     )
     file_paths: Dict[str, str] = Field(
         default_factory=dict,
@@ -352,7 +352,7 @@ async def run_optimization_pipeline(
     config: PyGMOConfiguration
 ) -> OptimizationResult:
     """
-    Execute complete optimization pipeline with comprehensive error handling.
+    Execute complete optimization pipeline with complete error handling.
 
     This function orchestrates the entire PyGMO optimization process:
     1. Input modeling from Stage 3 outputs
@@ -604,7 +604,7 @@ async def run_optimization_pipeline(
 
         return error_result
 
-# FastAPI application with enterprise-grade configuration
+# FastAPI application with configuration
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     """Application lifespan management with proper startup and shutdown."""
@@ -638,7 +638,7 @@ async def lifespan(app: FastAPI):
 # Create FastAPI application
 app = FastAPI(
     title="PyGMO Solver Family API",
-    description="Enterprise-grade multi-objective optimization API for educational scheduling",
+    description="Multi-objective optimization API for educational scheduling",
     version="1.0.0",
     lifespan=lifespan
 )
@@ -662,7 +662,7 @@ app.add_middleware(
 @app.get("/health", response_model=SystemHealth)
 async def health_check():
     """
-    Comprehensive health check for system monitoring.
+    complete health check for system monitoring.
     Returns detailed system status for master pipeline integration.
     """
     try:
@@ -951,7 +951,7 @@ async def update_optimization_config(
             detail=f"Configuration update failed: {str(e)}"
         )
 
-# Exception handlers for comprehensive error management
+# Exception handlers for complete error management
 @app.exception_handler(ValidationError)
 async def validation_exception_handler(request, exc):
     """Handle Pydantic validation errors with detailed feedback."""
@@ -970,7 +970,7 @@ async def validation_exception_handler(request, exc):
 
 @app.exception_handler(500)
 async def internal_server_error_handler(request, exc):
-    """Handle internal server errors with comprehensive logging."""
+    """Handle internal server errors with complete logging."""
     logger.error(
         "Internal server error",
         error=str(exc),

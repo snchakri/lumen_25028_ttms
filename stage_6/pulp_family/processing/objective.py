@@ -2,7 +2,7 @@
 """
 PuLP Solver Family - Stage 6 Processing Layer: Objective Function Construction Module
 
-This module implements the enterprise-grade objective function construction functionality for Stage 6.1
+This module implements the complete objective function construction functionality for Stage 6.1
 processing, transforming coefficient vectors and penalty structures into PuLP-compatible linear 
 objective expressions with mathematical rigor and theoretical compliance. Critical component implementing 
 the MILP objective formulation per Stage 6 foundational framework with guaranteed optimality characteristics.
@@ -18,12 +18,12 @@ Theoretical Foundation:
 Architecture Compliance:
     - Implements Processing Layer Stage 3 per foundational design rules
     - Maintains O(n) objective construction complexity for sparse coefficient vectors
-    - Provides fail-fast error handling with comprehensive mathematical validation
+    - Provides fail-fast error handling with complete mathematical validation
     - Supports all objective types: linear, penalty-based, multi-objective
     - Ensures numerical stability and solver compatibility across PuLP backends
 
 Dependencies: pulp, numpy, scipy.sparse, logging, typing, dataclasses  
-Authors: Team LUMEN (SIH 2025)
+Author: Student Team
 Version: 1.0.0 (Production)
 """
 
@@ -61,7 +61,6 @@ except ImportError:
 # Configure structured logging for objective construction operations
 logger = logging.getLogger(__name__)
 
-
 class ObjectiveType(Enum):
     """
     Enumeration of objective function types per Stage 6.1 MILP formulation.
@@ -75,7 +74,6 @@ class ObjectiveType(Enum):
     PENALTY_BASED = "penalty_based"      # Soft constraint penalty optimization
     PREFERENCE_WEIGHTED = "preference_weighted"  # Preference satisfaction optimization
 
-
 class CoefficientType(Enum):
     """Coefficient type classification for objective construction."""
     PRIMARY = "primary"             # Primary optimization coefficients
@@ -84,11 +82,10 @@ class CoefficientType(Enum):
     AUXILIARY = "auxiliary"         # Auxiliary variable coefficients
     DYNAMIC = "dynamic"             # EAV dynamic parameter coefficients
 
-
 @dataclass
 class ObjectiveMetrics:
     """
-    Comprehensive metrics for objective function construction and analysis.
+    complete metrics for objective function construction and analysis.
 
     Mathematical Foundation: Captures objective construction statistics for
     optimization analysis and theoretical validation compliance.
@@ -113,7 +110,7 @@ class ObjectiveMetrics:
     metadata: Dict[str, Any] = field(default_factory=dict)
 
     def get_summary(self) -> Dict[str, Any]:
-        """Generate comprehensive summary for logging and validation."""
+        """Generate complete summary for logging and validation."""
         return {
             'objective_type': self.objective_type,
             'coefficient_count': self.coefficient_count,
@@ -127,7 +124,6 @@ class ObjectiveMetrics:
             'validation_passed': all(self.mathematical_validation.values()),
             'solver_compatibility': self.solver_compatibility
         }
-
 
 @dataclass
 class ObjectiveConstructionConfig:
@@ -172,7 +168,6 @@ class ObjectiveConstructionConfig:
         if self.scaling_strategy not in ["auto", "manual", "none"]:
             raise ValueError("Scaling strategy must be 'auto', 'manual', or 'none'")
 
-
 class ObjectiveBuilder(ABC):
     """
     Abstract base class for objective function construction strategies.
@@ -192,7 +187,6 @@ class ObjectiveBuilder(ABC):
     def validate_objective(self, objective: pulp.LpAffineExpression) -> bool:
         """Validate constructed objective for mathematical correctness."""
         pass
-
 
 class LinearObjectiveBuilder(ObjectiveBuilder):
     """
@@ -381,7 +375,7 @@ class LinearObjectiveBuilder(ObjectiveBuilder):
         """
         Validate linear objective expression for mathematical correctness.
 
-        Performs comprehensive validation to ensure objective construction correctness:
+        Performs complete validation to ensure objective construction correctness:
         - Expression validity and structure
         - Coefficient numerical properties
         - Variable reference integrity
@@ -429,7 +423,6 @@ class LinearObjectiveBuilder(ObjectiveBuilder):
         except Exception as e:
             logger.error(f"Objective validation failed: {str(e)}")
             return False
-
 
 class MultiObjectiveBuilder(ObjectiveBuilder):
     """
@@ -502,7 +495,6 @@ class MultiObjectiveBuilder(ObjectiveBuilder):
         """Validate multi-objective expression."""
         return self.linear_builder.validate_objective(objective)
 
-
 class PenaltyObjectiveBuilder(ObjectiveBuilder):
     """
     Penalty-based objective builder for soft constraint integration.
@@ -569,12 +561,11 @@ class PenaltyObjectiveBuilder(ObjectiveBuilder):
         """Validate penalty-based objective expression."""
         return self.linear_builder.validate_objective(objective)
 
-
 class PuLPObjectiveManager:
     """
-    Enterprise-grade objective function manager for PuLP optimization problems.
+    complete objective function manager for PuLP optimization problems.
 
-    Implements comprehensive objective construction, validation, and management
+    Implements complete objective construction, validation, and management
     functionality following Stage 6.1 theoretical framework. Provides mathematical
     guarantees for MILP objective correctness while maintaining optimal performance.
 
@@ -583,7 +574,7 @@ class PuLPObjectiveManager:
         - Maintains numerical stability and optimal coefficient representation
         - Ensures objective mathematical correctness and PuLP compatibility
         - Supports all objective types per scheduling optimization requirements
-        - Provides comprehensive validation and numerical analysis
+        - Provides complete validation and numerical analysis
     """
 
     def __init__(self, execution_id: str, config: ObjectiveConstructionConfig = ObjectiveConstructionConfig()):
@@ -621,7 +612,7 @@ class PuLPObjectiveManager:
             parameter_mappings: Optional EAV parameter mappings
 
         Returns:
-            ObjectiveMetrics with comprehensive objective statistics
+            ObjectiveMetrics with complete objective statistics
 
         Raises:
             ValueError: If input data is invalid
@@ -853,7 +844,7 @@ class PuLPObjectiveManager:
 
     def _validate_objective_complete(self, objective_expr: pulp.LpAffineExpression,
                                    objective_vectors: Dict[str, Union[np.ndarray, sp.spmatrix]]) -> Dict[str, bool]:
-        """Comprehensive objective validation."""
+        """complete objective validation."""
         validation_results = {}
 
         # Basic expression validation
@@ -914,7 +905,7 @@ class PuLPObjectiveManager:
         return self.objective_metrics
 
     def get_objective_summary(self) -> Dict[str, Any]:
-        """Get comprehensive objective summary."""
+        """Get complete objective summary."""
         if not self.is_built:
             return {'status': 'objective_not_built'}
 
@@ -927,7 +918,6 @@ class PuLPObjectiveManager:
             'construction_stats': getattr(self.linear_builder, 'construction_stats', {})
         }
 
-
 def build_pulp_objective(objective_vectors: Dict[str, Union[np.ndarray, sp.spmatrix]],
                         variables: Dict[int, pulp.LpVariable],
                         execution_id: str,
@@ -937,7 +927,7 @@ def build_pulp_objective(objective_vectors: Dict[str, Union[np.ndarray, sp.spmat
     """
     High-level function to build PuLP objective from coefficient vectors and variables.
 
-    Provides simplified interface for objective construction with comprehensive validation
+    Provides simplified interface for objective construction with complete validation
     and performance analysis for processing pipeline integration.
 
     Args:
@@ -976,7 +966,6 @@ def build_pulp_objective(objective_vectors: Dict[str, Union[np.ndarray, sp.spmat
     logger.info(f"Successfully built PuLP objective for execution {execution_id}")
 
     return objective_expression, metrics
-
 
 if __name__ == "__main__":
     # Example usage and testing

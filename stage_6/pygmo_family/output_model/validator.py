@@ -2,7 +2,7 @@
 """output_model.validator
 Implements Stage-7 twelve-threshold validation framework ensuring that any
 decoded schedule meets all mandatory quality & correctness criteria before
-deployment.
+usage.
 """
 from __future__ import annotations
 
@@ -22,10 +22,8 @@ __all__ = [
     'ValidationReport',
 ]
 
-
 class ValidationError(RuntimeError):
     """Raised when schedule fails hard validation checks."""
-
 
 class ValidationReport(dict):
     """Dictionary subclass capturing per-threshold validation outcomes."""
@@ -33,7 +31,6 @@ class ValidationReport(dict):
     def is_acceptable(self) -> bool:  # noqa: D401
         """Return *True* iff all thresholds pass and global quality acceptable."""
         return all(self.values())
-
 
 class OutputValidator:
     """Validate schedules against Stage-7 twelve-threshold framework."""

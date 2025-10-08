@@ -3,7 +3,7 @@
 Stage 4 Feasibility Check - Layer 3: Capacity Validator
 =======================================================
 
-Production-grade resource capacity bounds validator for HEI timetabling systems.
+complete resource capacity bounds validator for HEI timetabling systems.
 
 This module implements Layer 3 of the seven-layer feasibility framework:
 - Aggregates demand vs. supply analysis for all resource types (rooms, faculty, equipment)
@@ -37,7 +37,7 @@ Integration Points:
 - Output: Capacity bounds validation with pigeonhole principle analysis
 - Error Reporting: Detailed capacity violation proofs with mathematical bounds
 
-Author: Perplexity AI (SIH 2025 - Team Lumen)
+Author: Student Team
 Theoretical Framework: Stage 4 Seven-Layer Feasibility Validation
 HEI Data Model Compliance: Full resource capacity validation per hei_timetabling_datamodel.sql
 """
@@ -58,9 +58,8 @@ from datetime import datetime, timezone
 from pydantic import BaseModel, Field, validator
 import structlog
 
-# Configure structured logging for production environment
+# Configure structured logging for environment
 logger = structlog.get_logger("stage_4.capacity_validator")
-
 
 class CapacityViolationType(Enum):
     """
@@ -75,7 +74,6 @@ class CapacityViolationType(Enum):
     TIMESLOT_SHORTAGE = "timeslot_shortage"                      # Available time insufficient
     BATCH_CAPACITY_MISMATCH = "batch_capacity_mismatch"          # Student batch exceeds room limits
     OVERALL_RESOURCE_SHORTAGE = "overall_resource_shortage"       # Aggregate capacity violation
-
 
 @dataclass
 class ResourceDemand:
@@ -101,7 +99,6 @@ class ResourceDemand:
             raise ValueError("Total demand cannot be negative")
         if self.peak_demand < 0:
             raise ValueError("Peak demand cannot be negative")
-
 
 @dataclass
 class ResourceSupply:
@@ -129,7 +126,6 @@ class ResourceSupply:
             raise ValueError("Available supply cannot be negative")
         if not 0.0 <= self.utilization_efficiency <= 1.0:
             raise ValueError("Utilization efficiency must be between 0.0 and 1.0")
-
 
 @dataclass
 class CapacityViolation:
@@ -172,7 +168,6 @@ class CapacityViolation:
             "supply_analysis": self.supply_analysis
         }
 
-
 @dataclass
 class CapacityValidationResult:
     """
@@ -213,10 +208,9 @@ class CapacityValidationResult:
         proofs = [v.mathematical_proof for v in critical_violations]
         return f"Resource Capacity Infeasibility Proof: {'; '.join(proofs)}"
 
-
 class ResourceCapacityValidator:
     """
-    Production-grade resource capacity validator for HEI timetabling systems.
+    complete resource capacity validator for HEI timetabling systems.
     
     Implements Layer 3 of Stage 4 feasibility checking with mathematical rigor.
     Validates compiled Stage 3 data structures against resource capacity bounds.
@@ -238,7 +232,7 @@ class ResourceCapacityValidator:
                  max_processing_time_ms: int = 300000,
                  utilization_efficiency_threshold: float = 0.85):
         """
-        Initialize resource capacity validator with production-grade configuration.
+        Initialize resource capacity validator with complete configuration.
         
         Args:
             enable_performance_monitoring: Enable detailed performance tracking
@@ -269,7 +263,7 @@ class ResourceCapacityValidator:
         
         Based on hei_timetabling_datamodel.sql with complete resource specifications.
         Defines all resource types, capacity constraints, and demand calculation rules
-        for comprehensive capacity validation across the scheduling system.
+        for complete capacity validation across the scheduling system.
         """
         # Resource types requiring capacity validation
         self.resource_types = {
@@ -350,7 +344,7 @@ class ResourceCapacityValidator:
            b. Calculate total supply Sr from infrastructure data
            c. Apply pigeonhole principle: check Dr ≤ Sr
         3. Generate mathematical proofs for any violations
-        4. Return comprehensive capacity analysis
+        4. Return complete capacity analysis
         """
         self._start_performance_monitoring()
         
@@ -365,7 +359,7 @@ class ResourceCapacityValidator:
             # Load table data from parquet files
             table_data = self._load_resource_table_data(l_raw_path)
             
-            # Perform comprehensive capacity validation
+            # Perform complete capacity validation
             violations = []
             resource_analysis = {}
             total_demand = 0.0
@@ -396,7 +390,7 @@ class ResourceCapacityValidator:
                 total_demand += analysis.get('total_demand', 0)
                 total_supply += analysis.get('total_supply', 0)
             
-            # Generate comprehensive validation result
+            # Generate complete validation result
             result = self._generate_capacity_validation_result(
                 resource_analysis, violations, total_demand, total_supply
             )
@@ -978,7 +972,7 @@ class ResourceCapacityValidator:
                                            total_demand: float,
                                            total_supply: float) -> CapacityValidationResult:
         """
-        Generate comprehensive capacity validation result with mathematical analysis.
+        Generate complete capacity validation result with mathematical analysis.
         
         Computes overall utilization rates, efficiency scores, and performance metrics
         for Stage 4 integration requirements.
@@ -1057,7 +1051,6 @@ class ResourceCapacityValidator:
         """Get peak memory usage in MB (simplified implementation)."""
         return self._peak_memory_mb
 
-
 class CapacityValidationError(Exception):
     """
     Exception raised when critical resource capacity violations are detected.
@@ -1087,7 +1080,6 @@ class CapacityValidationError(Exception):
             "failure_layer": 3,
             "failure_reason": "Resource capacity violations detected"
         }
-
 
 def validate_resource_capacity_bounds(l_raw_directory: Union[str, Path],
                                     enable_performance_monitoring: bool = True) -> CapacityValidationResult:
@@ -1124,7 +1116,6 @@ def validate_resource_capacity_bounds(l_raw_directory: Union[str, Path],
         )
     
     return result
-
 
 if __name__ == "__main__":
     """

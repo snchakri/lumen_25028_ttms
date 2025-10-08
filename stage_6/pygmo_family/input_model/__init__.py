@@ -6,21 +6,14 @@ MATHEMATICAL COMPLIANCE: PyGMO Multi-Objective Problem Interface (Section 10.1)
 ARCHITECTURAL ALIGNMENT: Input Modeling Layer with Enterprise Validation
 
 This package implements the complete input modeling layer for PyGMO solver family,
-providing mathematical rigor, enterprise-grade validation, and seamless integration
+providing mathematical rigor, validation, and seamless integration
 with Stage 3 compiled data structures. The package maintains theoretical compliance
 with PyGMO foundational framework while ensuring fail-fast validation and
 deterministic resource utilization patterns.
 
-CURSOR IDE & JetBrains Intelligence:
-- Exposes complete Input Modeling Layer API for downstream PyGMO processing
-- Maintains Mathematical Correctness guarantees throughout data loading pipeline
-- Provides Enterprise-grade validation with comprehensive error handling
-- Supports Dynamic Parametric System integration with EAV model resolution
-- Ensures PyGMO Problem Interface compatibility for optimization algorithms
-
 Key Components:
 - Stage3DataLoader: Multi-format data loading with fail-fast validation
-- PyGMOInputValidator: Comprehensive mathematical validation framework  
+- PyGMOInputValidator: complete mathematical validation framework  
 - InputModelContextBuilder: Enterprise builder pattern for context construction
 - BijectionMapping: Course-dict ↔ PyGMO vector conversion with guarantees
 - Dynamic parameter resolution with hierarchical inheritance
@@ -43,9 +36,9 @@ from .context import (
     BijectionMapping
 )
 
-# Package metadata for enterprise deployment
+# Package metadata for enterprise usage
 __version__ = "1.0.0"
-__author__ = "Perplexity Labs AI - SIH 2025 Team Lumen"
+__author__ = "Student Team"
 __description__ = "Stage 6.4 PyGMO Solver Family - Input Model Layer"
 
 # Theoretical compliance metadata

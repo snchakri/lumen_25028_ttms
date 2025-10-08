@@ -2,9 +2,9 @@
 config.py
 Stage 5 Configuration Management System
 
-This module provides enterprise-grade configuration management for Stage 5 processing,
+This module provides configuration management for Stage 5 processing,
 handling environment-aware settings, validation, and runtime configuration with
-comprehensive defaults and override capabilities.
+complete defaults and override capabilities.
 
 Configuration Architecture:
 - Hierarchical configuration with environment-based overrides
@@ -30,7 +30,7 @@ Configuration Sources (in order of precedence):
 
 For detailed configuration specifications and parameter descriptions, see:
 - Stage5-FOUNDATIONAL-DESIGN-IMPLEMENTATION-PLAN.md Section 3 (Configuration)
-- Environment variable documentation in deployment guides
+- Environment variable documentation in usage guides
 - Performance tuning guidelines for production optimization
 """
 
@@ -109,7 +109,6 @@ STAGE_5_2_DEFAULTS = {
     "confidence_threshold": 0.01
 }
 
-
 @dataclass(frozen=True)
 class LoggingConfig:
     """
@@ -145,7 +144,6 @@ class LoggingConfig:
         
         if self.max_log_size_mb < 1 or self.max_log_size_mb > 100:
             raise ValueError(f"max_log_size_mb must be between 1 and 100, got {self.max_log_size_mb}")
-
 
 @dataclass(frozen=True)
 class PerformanceConfig:
@@ -190,11 +188,10 @@ class PerformanceConfig:
                 f"{MAX_WORKERS}, got {self.max_workers}"
             )
 
-
 @dataclass(frozen=True)
 class APIConfig:
     """
-    API server configuration for REST service deployment.
+    API server configuration for REST service usage.
     
     Attributes:
         host: Server host address for API binding
@@ -232,7 +229,6 @@ class APIConfig:
                 f"max_request_size_mb must be between 1 and 100, "
                 f"got {self.max_request_size_mb}"
             )
-
 
 @dataclass(frozen=True)
 class Stage51Config:
@@ -283,7 +279,6 @@ class Stage51Config:
                 raise ValueError(
                     f"parameter_weights must sum to 1.0, got {weight_sum:.6f}"
                 )
-
 
 @dataclass(frozen=True)
 class Stage52Config:
@@ -340,7 +335,6 @@ class Stage52Config:
                 f"got {self.confidence_threshold}"
             )
 
-
 @dataclass(frozen=True)
 class DirectoryConfig:
     """
@@ -371,14 +365,13 @@ class DirectoryConfig:
                 except Exception as e:
                     warnings.warn(f"Could not create directory {dir_path}: {e}")
 
-
 @dataclass(frozen=True)
 class Stage5Config:
     """
     Complete Stage 5 configuration with all subsystem settings.
     
     This is the main configuration class that aggregates all Stage 5
-    configuration settings with comprehensive validation and defaults.
+    configuration settings with complete validation and defaults.
     
     Attributes:
         logging: Logging configuration with structured output
@@ -445,7 +438,7 @@ class Stage5Config:
     
     def validate_configuration(self) -> bool:
         """
-        Perform comprehensive configuration validation.
+        Perform complete configuration validation.
         
         Returns:
             bool: True if configuration is valid
@@ -538,7 +531,6 @@ class Stage5Config:
         
         return overrides
 
-
 def load_configuration_file(config_path: Union[str, Path]) -> Dict[str, Any]:
     """
     Load configuration from JSON or YAML file.
@@ -569,7 +561,6 @@ def load_configuration_file(config_path: Union[str, Path]) -> Dict[str, Any]:
     
     except (json.JSONDecodeError, yaml.YAMLError) as e:
         raise ValueError(f"Invalid configuration file format: {e}") from e
-
 
 def apply_nested_overrides(config_dict: Dict[str, Any], overrides: Dict[str, Any]) -> Dict[str, Any]:
     """
@@ -604,10 +595,9 @@ def apply_nested_overrides(config_dict: Dict[str, Any], overrides: Dict[str, Any
     
     return result
 
-
 def create_config_from_dict(config_dict: Dict[str, Any]) -> Stage5Config:
     """
-    Create Stage5Config from dictionary with comprehensive validation.
+    Create Stage5Config from dictionary with complete validation.
     
     Args:
         config_dict: Configuration dictionary
@@ -647,7 +637,6 @@ def create_config_from_dict(config_dict: Dict[str, Any]) -> Stage5Config:
         
     except (TypeError, ValueError) as e:
         raise ValueError(f"Configuration validation failed: {e}") from e
-
 
 def load_stage5_configuration(
     config_file: Optional[Union[str, Path]] = None,
@@ -698,10 +687,9 @@ def load_stage5_configuration(
     # Create final configuration object
     return create_config_from_dict(config_dict)
 
-
 def validate_environment() -> bool:
     """
-    Validate system environment for Stage 5 deployment.
+    Validate system environment for Stage 5 usage.
     
     Checks system resources, dependencies, and environment variables
     to ensure Stage 5 can run successfully in the current environment.
@@ -753,7 +741,7 @@ def validate_environment() -> bool:
         
         for var in required_prod_vars:
             if var not in os.environ:
-                validation_errors.append(f"Required production environment variable missing: {var}")
+                validation_errors.append(f"Required environment variable missing: {var}")
     
     # Log validation results
     if validation_errors:
@@ -763,7 +751,6 @@ def validate_environment() -> bool:
     
     return True
 
-
 def get_default_config() -> Stage5Config:
     """
     Get default Stage 5 configuration with foundational design defaults.
@@ -772,7 +759,6 @@ def get_default_config() -> Stage5Config:
         Stage5Config: Default configuration object
     """
     return Stage5Config()
-
 
 def save_configuration(config: Stage5Config, output_path: Union[str, Path]) -> None:
     """
@@ -792,7 +778,6 @@ def save_configuration(config: Stage5Config, output_path: Union[str, Path]) -> N
             json.dump(config.to_dict(), f, indent=2, default=str)
     except Exception as e:
         raise IOError(f"Cannot save configuration to {output_path}: {e}") from e
-
 
 # Export key configuration classes and functions
 __all__ = [

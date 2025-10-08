@@ -2,8 +2,8 @@
 """
 PuLP Solver Family - Stage 6 API Layer: FastAPI Application & REST Endpoints
 
-This module implements the enterprise-grade FastAPI application layer for Stage 6.1
-PuLP solver family, providing comprehensive REST API endpoints for scheduling pipeline
+This module implements the complete FastAPI application layer for Stage 6.1
+PuLP solver family, providing complete REST API endpoints for scheduling pipeline
 with mathematical rigor and theoretical compliance. Critical component implementing
 complete API integration per Stage 6 foundational framework with guaranteed performance.
 
@@ -11,19 +11,19 @@ Theoretical Foundation:
     Based on Stage 6.1 PuLP Framework API integration requirements:
     - Implements complete REST API per foundational design rules
     - Maintains O(1) request processing complexity for optimal performance
-    - Ensures comprehensive input validation and error handling capabilities
+    - Ensures complete input validation and error handling capabilities
     - Provides asynchronous processing with real-time status monitoring
     - Supports multi-format output generation with integrity guarantees
 
 Architecture Compliance:
     - Implements API Layer per foundational design architecture
-    - Maintains fail-safe error handling with comprehensive diagnostic capabilities
+    - Maintains fail-safe error handling with complete diagnostic capabilities
     - Provides distributed request coordination with centralized quality management
     - Ensures memory-efficient operations through optimized request processing
-    - Supports production-ready scalability with enterprise-grade reliability
+    - Supports production-ready scalability with complete reliability
 
 Dependencies: fastapi, uvicorn, pydantic, pathlib, asyncio, datetime, typing, logging
-Authors: Team LUMEN (SIH 2025)
+Author: Student Team
 Version: 1.0.0 (Production)
 """
 
@@ -45,7 +45,7 @@ from fastapi.responses import JSONResponse, FileResponse
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, Field, ValidationError
 
-# Import local modules with comprehensive error handling
+# Import local modules with complete error handling
 try:
     # Import API schemas
     from .schemas import (
@@ -105,7 +105,7 @@ logger = logging.getLogger(__name__)
 # Application metadata and configuration
 APP_METADATA = {
     "title": "LUMEN Scheduling Engine - PuLP Solver Family API",
-    "description": "Enterprise-grade scheduling optimization API using PuLP solver family with mathematical rigor",
+    "description": "complete scheduling optimization API using PuLP solver family with mathematical rigor",
     "version": "1.0.0",
     "stage": "6.1",
     "component": "api_layer",
@@ -134,14 +134,13 @@ API_CONFIG = {
     "debug_mode": False
 }
 
-
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     """
-    Application lifespan management with comprehensive initialization.
+    Application lifespan management with complete initialization.
 
-    Handles application startup and shutdown with enterprise-grade resource
-    management and comprehensive state initialization.
+    Handles application startup and shutdown with complete resource
+    management and complete state initialization.
     """
     # Startup
     logger.info("Initializing LUMEN Scheduling Engine API")
@@ -187,7 +186,6 @@ async def lifespan(app: FastAPI):
 
         logger.info("LUMEN Scheduling Engine API shutdown complete")
 
-
 # Initialize FastAPI application
 app = FastAPI(
     lifespan=lifespan,
@@ -212,14 +210,13 @@ if API_CONFIG["cors_enabled"]:
 # Mount static files for serving output files
 app.mount("/static", StaticFiles(directory="outputs"), name="static")
 
-
 class ExecutionManager:
     """
-    Comprehensive execution manager for scheduling pipeline orchestration.
+    complete execution manager for scheduling pipeline orchestration.
 
     Mathematical Foundation: Implements complete execution lifecycle management
     per API integration requirements ensuring optimal resource utilization and
-    comprehensive status monitoring with mathematical performance guarantees.
+    complete status monitoring with mathematical performance guarantees.
     """
 
     def __init__(self):
@@ -237,7 +234,7 @@ class ExecutionManager:
 
     def create_execution(self, request: SchedulingRequest) -> str:
         """
-        Create new execution with comprehensive initialization.
+        Create new execution with complete initialization.
 
         Args:
             request: Scheduling request with complete configuration
@@ -276,7 +273,7 @@ class ExecutionManager:
         return execution_id
 
     def update_execution(self, execution_id: str, **updates) -> None:
-        """Update execution status with comprehensive logging."""
+        """Update execution status with complete logging."""
         if execution_id in self.active_executions:
             execution_info = self.active_executions[execution_id]
             execution_info.update(updates)
@@ -287,7 +284,7 @@ class ExecutionManager:
             logger.debug(f"Updated execution {execution_id}: {updates}")
 
     def complete_execution(self, execution_id: str, results: Dict[str, Any], error: Optional[str] = None) -> None:
-        """Complete execution with comprehensive result recording."""
+        """Complete execution with complete result recording."""
         if execution_id not in self.active_executions:
             return
 
@@ -322,7 +319,7 @@ class ExecutionManager:
         logger.info(f"Completed execution {execution_id}: {'ERROR' if error else 'SUCCESS'}")
 
     def get_execution_status(self, execution_id: str) -> Optional[Dict[str, Any]]:
-        """Get comprehensive execution status."""
+        """Get complete execution status."""
         # Check active executions
         if execution_id in self.active_executions:
             execution_info = self.active_executions[execution_id].copy()
@@ -339,14 +336,12 @@ class ExecutionManager:
 
         return None
 
-
 # Initialize execution manager
 execution_manager = ExecutionManager()
 
-
 async def execute_scheduling_pipeline(execution_id: str, request: SchedulingRequest) -> None:
     """
-    Execute complete scheduling pipeline with comprehensive error handling.
+    Execute complete scheduling pipeline with complete error handling.
 
     Orchestrates end-to-end scheduling pipeline execution following Stage 6.1
     theoretical framework with mathematical guarantees for correctness and
@@ -357,7 +352,7 @@ async def execute_scheduling_pipeline(execution_id: str, request: SchedulingRequ
         request: Complete scheduling request with configuration
 
     Raises:
-        Exception: Re-raises execution errors after comprehensive logging
+        Exception: Re-raises execution errors after complete logging
     """
     logger.info(f"Starting scheduling pipeline execution: {execution_id}")
 
@@ -506,17 +501,16 @@ async def execute_scheduling_pipeline(execution_id: str, request: SchedulingRequ
         execution_manager.complete_execution(execution_id, {}, error_message)
         raise
 
-
 @app.get("/health", response_model=HealthCheckResponse)
 async def health_check():
     """
-    Comprehensive health check endpoint with system status verification.
+    complete health check endpoint with system status verification.
 
     Provides detailed system health information including component status,
     resource utilization, and operational metrics for monitoring and diagnostics.
 
     Returns:
-        HealthCheckResponse with comprehensive health information
+        HealthCheckResponse with complete health information
     """
     APP_STATE["request_count"] += 1
 
@@ -550,14 +544,13 @@ async def health_check():
         logger.error(f"Health check failed: {str(e)}")
         raise HTTPException(status_code=500, detail="Health check failed")
 
-
 @app.post("/schedule", response_model=SchedulingResponse)
 async def schedule_optimization(
     request: SchedulingRequest,
     background_tasks: BackgroundTasks
 ):
     """
-    Primary scheduling optimization endpoint with comprehensive pipeline orchestration.
+    Primary scheduling optimization endpoint with complete pipeline orchestration.
 
     Initiates complete scheduling optimization pipeline following Stage 6.1 theoretical
     framework with mathematical guarantees for correctness and optimal performance.
@@ -617,11 +610,10 @@ async def schedule_optimization(
             detail=f"Failed to initiate scheduling optimization: {str(e)}"
         )
 
-
 @app.get("/schedule/{execution_id}/status", response_model=PipelineStatus)
 async def get_execution_status(execution_id: str):
     """
-    Retrieve comprehensive execution status with detailed progress information.
+    Retrieve complete execution status with detailed progress information.
 
     Provides real-time status information for scheduling pipeline execution
     including progress metrics, current stage, and performance analysis.
@@ -630,7 +622,7 @@ async def get_execution_status(execution_id: str):
         execution_id: Unique execution identifier
 
     Returns:
-        PipelineStatus with comprehensive execution information
+        PipelineStatus with complete execution information
 
     Raises:
         HTTPException: If execution not found
@@ -672,11 +664,10 @@ async def get_execution_status(execution_id: str):
             detail=f"Failed to retrieve execution status: {str(e)}"
         )
 
-
 @app.get("/schedule/{execution_id}/results")
 async def get_execution_results(execution_id: str):
     """
-    Retrieve complete execution results with comprehensive output information.
+    Retrieve complete execution results with complete output information.
 
     Provides complete results from scheduling pipeline execution including
     generated assignments, performance metrics, and quality assessment.
@@ -725,14 +716,13 @@ async def get_execution_results(execution_id: str):
             detail=f"Failed to retrieve execution results: {str(e)}"
         )
 
-
 @app.get("/schedule/{execution_id}/download/{file_type}")
 async def download_output_file(execution_id: str, file_type: str):
     """
-    Download generated output files with comprehensive file serving.
+    Download generated output files with complete file serving.
 
     Provides secure file download functionality for generated scheduling
-    outputs including CSV files, metadata, and comprehensive reports.
+    outputs including CSV files, metadata, and complete reports.
 
     Args:
         execution_id: Unique execution identifier
@@ -813,7 +803,6 @@ async def download_output_file(execution_id: str, file_type: str):
             detail=f"Failed to download file: {str(e)}"
         )
 
-
 @app.post("/upload", response_model=FileUploadResponse)
 async def upload_input_files(
     l_raw_file: UploadFile = File(..., description="L_raw.parquet file"),
@@ -821,7 +810,7 @@ async def upload_input_files(
     l_idx_file: UploadFile = File(..., description="L_idx file (various formats)")
 ):
     """
-    Upload input files for scheduling pipeline with comprehensive validation.
+    Upload input files for scheduling pipeline with complete validation.
 
     Provides secure file upload functionality for Stage 3 artifacts including
     validation, storage, and preparation for scheduling pipeline execution.
@@ -919,11 +908,10 @@ async def upload_input_files(
             detail=f"File upload failed: {str(e)}"
         )
 
-
 @app.get("/executions")
 async def list_executions(limit: int = 10, offset: int = 0):
     """
-    List recent executions with pagination and comprehensive information.
+    List recent executions with pagination and complete information.
 
     Provides paginated list of recent scheduling executions including status,
     performance metrics, and summary information for monitoring and analysis.
@@ -984,14 +972,13 @@ async def list_executions(limit: int = 10, offset: int = 0):
             detail=f"Failed to list executions: {str(e)}"
         )
 
-
 @app.delete("/schedule/{execution_id}")
 async def cancel_execution(execution_id: str):
     """
-    Cancel active execution with comprehensive cleanup.
+    Cancel active execution with complete cleanup.
 
     Provides execution cancellation functionality with proper resource cleanup
-    and comprehensive status reporting for cancelled executions.
+    and complete status reporting for cancelled executions.
 
     Args:
         execution_id: Unique execution identifier
@@ -1045,14 +1032,13 @@ async def cancel_execution(execution_id: str):
             detail=f"Failed to cancel execution: {str(e)}"
         )
 
-
 @app.get("/")
 async def root():
     """
-    Root endpoint with comprehensive API information.
+    Root endpoint with complete API information.
 
     Provides API overview, status information, and available endpoints
-    for comprehensive system documentation and health verification.
+    for complete system documentation and health verification.
 
     Returns:
         JSON response with API information
@@ -1080,11 +1066,10 @@ async def root():
         "total_requests": APP_STATE["request_count"]
     })
 
-
 # Custom exception handlers
 @app.exception_handler(ValidationError)
 async def validation_exception_handler(request, exc):
-    """Handle Pydantic validation errors with comprehensive error information."""
+    """Handle Pydantic validation errors with complete error information."""
     logger.error(f"Validation error: {str(exc)}")
 
     return JSONResponse(
@@ -1097,10 +1082,9 @@ async def validation_exception_handler(request, exc):
         ).dict()
     )
 
-
 @app.exception_handler(Exception)
 async def general_exception_handler(request, exc):
-    """Handle general exceptions with comprehensive error logging."""
+    """Handle general exceptions with complete error logging."""
     logger.error(f"Unhandled exception: {str(exc)}")
     logger.error(traceback.format_exc())
 
@@ -1113,7 +1097,6 @@ async def general_exception_handler(request, exc):
             timestamp=datetime.now(timezone.utc).isoformat()
         ).dict()
     )
-
 
 if __name__ == "__main__":
     import uvicorn

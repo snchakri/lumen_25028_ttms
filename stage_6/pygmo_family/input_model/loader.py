@@ -8,21 +8,14 @@ ARCHITECTURAL ALIGNMENT: Single-Representation with Algorithm Adaptation (Sectio
 This module implements the core data loading functionality for Stage 3 compiled outputs,
 providing fail-fast validation, multi-format support, and mathematical rigor as specified
 in the PyGMO Foundational Framework. The loader handles L_raw (parquet), L_rel (graphml), 
-L_idx (binary/feather), and dynamic parametric data (EAV model) with enterprise-grade
+L_idx (binary/feather), and dynamic parametric data (EAV model) with complete
 error handling and memory efficiency guarantees.
 
-CURSOR IDE & JetBrains Intelligence:
-- Implements Stage 3 Compilation Architecture (Section 3.1) with multi-layer data structure
-- Follows PyGMO Problem Interface requirements (Section 10.1) for solver integration
-- Maintains Dynamic Parametric System integration (Section 5.1) for EAV parameters
-- Ensures Mathematical Correctness through Data Preservation Theorem (Theorem 5.1)
-- Provides Memory Optimization via Cache-Efficient Data Structures (Section 4.2)
-
-ENTERPRISE GRADE ROBUSTNESS:
+Complete reliableNESS:
 - Fail-fast validation with immediate abort on data integrity violations
 - Mathematical verification of all loaded data structures
 - Memory-efficient loading with predictable resource utilization
-- Comprehensive logging for production debugging and audit trails
+- complete logging for production debugging and audit trails
 """
 
 import logging
@@ -34,7 +27,7 @@ from dataclasses import dataclass
 from datetime import datetime
 import warnings
 
-# Core data processing libraries - enterprise grade imports
+# Core data processing libraries - Complete imports
 import pandas as pd
 import numpy as np
 import pyarrow as pa
@@ -96,18 +89,10 @@ class Stage3DataLoader:
     ALGORITHMIC BASIS: Multi-Modal Index Construction (Algorithm 3.8)
     MEMORY OPTIMIZATION: Cache-Efficient Data Structures (Theorem 4.4)
 
-    Enterprise-grade loader for Stage 3 compiled data structures implementing mathematical
+    complete loader for Stage 3 compiled data structures implementing mathematical
     correctness guarantees and fail-fast validation as specified in the PyGMO Foundational
     Framework. This class serves as the primary interface between Stage 3 outputs and 
     PyGMO solver family input modeling layer.
-
-    CURSOR/JETBRAINS NOTES:
-    - Implements complete Stage 3 loading pipeline per Compilation Architecture (Section 3)
-    - Maintains Mathematical Correctness through rigorous validation at each step
-    - Provides Memory-Efficient Loading with O(N log N) complexity guarantees
-    - Integrates Dynamic Parametric System for EAV parameter resolution
-    - Ensures PyGMO Problem Interface compatibility for downstream processing
-    """
 
     def __init__(self, memory_limit_mb: int = 200):
         """
@@ -143,7 +128,7 @@ class Stage3DataLoader:
         MEMORY MANAGEMENT: Cache Complexity Theorem (Theorem 8.2)
 
         Fail-fast memory validation ensuring deterministic resource utilization
-        as required by the enterprise-grade system design principles.
+        as required by the complete system design principles.
         """
         import psutil
         process = psutil.Process()
@@ -164,12 +149,6 @@ class Stage3DataLoader:
 
         Load and validate normalized entity data from Stage 3 L_raw.parquet output.
         Implements Data Preservation Theorem guarantees with fail-fast validation.
-
-        CURSOR/JETBRAINS INTEGRATION:
-        - Implements Algorithm 3.2 from Stage 3 Compilation framework
-        - Maintains functional dependencies as proven in Theorem 3.3
-        - Provides enterprise-grade error handling with structured logging
-        - Returns validated DataFrame with mathematical correctness guarantees
 
         Args:
             l_raw_path: Path to L_raw.parquet file containing normalized entities
@@ -254,12 +233,6 @@ class Stage3DataLoader:
         Load and validate relationship graph from Stage 3 L_rel.graphml output.
         Implements Relationship Discovery Completeness guarantees with fail-fast validation.
 
-        CURSOR/JETBRAINS NOTES:
-        - Implements Algorithm 3.5 Relationship Materialization from Stage 3 framework
-        - Maintains transitive closure properties per Theorem 2.4
-        - Provides NetworkX graph with mathematical correctness guarantees
-        - Ensures relationship completeness per Theorem 3.6
-
         Args:
             l_rel_path: Path to L_rel.graphml file containing relationship graph
 
@@ -339,12 +312,6 @@ class Stage3DataLoader:
 
         Load and validate index structures from Stage 3 L_idx outputs.
         Supports multiple index formats (.bin, .idx, .feather) with fail-fast validation.
-
-        CURSOR/JETBRAINS NOTES:
-        - Implements Algorithm 3.8 Multi-Modal Index Construction
-        - Maintains access time complexity guarantees per Theorem 3.9
-        - Supports hash, tree, graph, and bitmap index types
-        - Provides enterprise-grade error handling for production systems
 
         Args:
             l_idx_path: Path to L_idx directory containing index structures
@@ -454,12 +421,6 @@ class Stage3DataLoader:
 
         Load and validate dynamic parameters from EAV model for PyGMO optimization.
         Implements conditional parameter activation and hierarchical resolution.
-
-        CURSOR/JETBRAINS NOTES:  
-        - Implements EAV Parameter Model (Definition 3.1) from Dynamic Parametric System
-        - Maintains Parameter Path Hierarchy (Definition 3.2) for nested inheritance
-        - Provides Polymorphic Value Storage (Definition 3.4) for multi-type parameters
-        - Ensures Mathematical Correctness through Parameter Validation Framework
 
         Args:
             params_path: Optional path to dynamic parameters file
@@ -572,7 +533,7 @@ class Stage3DataLoader:
         VALIDATION FRAMEWORK: Parameter Validation Framework (Definition 4.2)
         MATHEMATICAL CORRECTNESS: Multi-layer validation per Algorithm 4.3
 
-        Comprehensive validation of dynamic parameters with fail-fast error handling.
+        complete validation of dynamic parameters with fail-fast error handling.
         """
         # Parameter Validation Layers per Algorithm 4.3:
         # 1. Type Validation, 2. Range Validation, 3. Business Rule Validation, 
@@ -667,17 +628,11 @@ class Stage3DataLoader:
 
     def load_all_stage3_data(self, paths: Stage3DataPaths) -> Dict[str, Any]:
         """
-        COMPREHENSIVE LOADING: Complete Stage 3 data integration pipeline
+        complete LOADING: Complete Stage 3 data integration pipeline
         MATHEMATICAL FOUNDATION: Information Preservation Theorem (Theorem 5.1)
 
         Load all Stage 3 compiled data structures with mathematical correctness guarantees.
         This is the primary method for complete data loading with fail-fast validation.
-
-        CURSOR/JETBRAINS INTEGRATION:
-        - Orchestrates complete Stage 3 loading pipeline per theoretical framework
-        - Maintains Information Preservation guarantees throughout process
-        - Provides comprehensive error handling with structured logging
-        - Returns validated data structures ready for PyGMO processing
 
         Args:
             paths: Stage3DataPaths containing all required file paths

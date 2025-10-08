@@ -1,7 +1,7 @@
 
 """
 Stage 3, Layer 1 - CSV Data Ingestion Engine
-Enterprise-grade implementation of CSV file ingestion per Stage-3 DATA COMPILATION
+Implementation of CSV file ingestion per Stage-3 DATA COMPILATION
 Theoretical Foundations & Mathematical Framework. 
 
 Critical Integration Points:
@@ -16,7 +16,7 @@ Mathematical Foundation:
 - Statistical Dialect Detection: Chi-square analysis with confidence scoring
 - Error-Free Ingestion: Bijective mapping preserves all source information
 
-Author: Perplexity AI - Enterprise-grade implementation
+Author: Student Team
 Compliance: Stage-3 Theoretical Framework, HEI Data Model, 512MB memory constraint
 """
 
@@ -33,7 +33,7 @@ import numpy as np
 import structlog
 from datetime import datetime
 
-# Configure structured logging for production deployment
+# Configure structured logging for production usage
 logger = structlog.get_logger(__name__)
 
 @dataclass
@@ -85,7 +85,7 @@ class IngestionResult:
         dataframes: Dictionary mapping CSV filenames to loaded DataFrames
         file_checksums: SHA-256 checksums for integrity validation
         ingestion_metrics: Performance and quality metrics
-        error_details: Comprehensive error information for debugging
+        error_details: complete error information for debugging
         processing_time_ms: Total ingestion time in milliseconds
         memory_usage_mb: Peak memory usage during ingestion process
     """
@@ -99,7 +99,7 @@ class IngestionResult:
 
 class CSVIngestor:
     """
-    Production-grade CSV ingestion engine implementing Stage-3 theoretical foundations.
+    complete CSV ingestion engine implementing Stage-3 theoretical foundations.
 
     Implements complete CSV file discovery, integrity validation, statistical dialect
     detection, and memory-efficient DataFrame creation with mathematical guarantees

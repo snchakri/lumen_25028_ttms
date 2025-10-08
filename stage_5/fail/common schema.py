@@ -1,10 +1,10 @@
 # STAGE 5 - COMMON/SCHEMA.PY
-# Enterprise-Grade JSON Schema Definitions & Pydantic V2 Models
+# complete JSON Schema Definitions & Pydantic V2 Models
 """
 STAGE 5 COMMON SCHEMA DEFINITIONS
-Enterprise-Grade Data Contracts for Input-Complexity Analysis & Solver Selection
+complete Data Contracts for Input-Complexity Analysis & Solver Selection
 
-This module provides comprehensive Pydantic V2 models and JSON schema definitions for Stage 5's
+This module provides complete Pydantic V2 models and JSON schema definitions for Stage 5's
 rigorous mathematical framework implementation. Every schema enforces the exact theoretical
 specifications defined in the foundational papers with enterprise-level validation.
 

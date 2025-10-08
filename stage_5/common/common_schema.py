@@ -1,8 +1,8 @@
 """
 STAGE 5 - COMMON/SCHEMA.PY
-Enterprise-Grade JSON Schema Definitions & Pydantic Models
+complete JSON Schema Definitions & Pydantic Models
 
-This module defines comprehensive data contracts for Stage 5's input/output specifications
+This module defines complete data contracts for Stage 5's input/output specifications
 based on the rigorous theoretical frameworks and mathematical foundations. Every schema 
 is validated against the formal models defined in the Stage 5.1 and 5.2 theoretical papers.
 
@@ -25,11 +25,6 @@ Cross-Module Dependencies:
 - common.utils: validate_file_path, load_json_schema
 - common.logging: get_logger for schema validation events
 
-IDE Integration Notes:
-- All classes have comprehensive docstrings for IntelliSense/autocomplete
-- Type annotations provide full IDE support for method chaining
-- Field descriptions enable context-sensitive help in Cursor/PyCharm
-
 Module Exports:
 - Enum Types: SolverParadigmEnum, LPConvergenceStatusEnum, FileFormatEnum
 - Stage 5.1 Schemas: ComplexityMetricsSchema, ComplexityParameterVector, ExecutionMetadata
@@ -46,7 +41,7 @@ from pathlib import Path
 import json
 import re
 
-# Pydantic V2 imports - enterprise-grade validation framework
+# Pydantic V2 imports - complete validation framework
 from pydantic import BaseModel, Field, field_validator, model_validator, ConfigDict
 from pydantic.types import PositiveInt, PositiveFloat
 
@@ -55,7 +50,7 @@ from pydantic.types import PositiveInt, PositiveFloat
 # =============================================================================
 
 __version__ = "1.0.0"
-__author__ = "LUMEN Team (Team ID: 93912)"
+__author__ = "Student Team"
 __description__ = "Stage 5 JSON Schema Definitions & Pydantic Models"
 __theoretical_compliance__ = "Stage-5.1 & Stage-5.2 Mathematical Frameworks"
 
@@ -156,18 +151,6 @@ class ExecutionMetadata(BaseModel):
     - computation_time_ms: ≤600,000ms (10 minute prototype time limit)  
     - software_version: Must follow semantic versioning (major.minor.patch)
     - random_seed: Integer for NumPy/SciPy deterministic computations
-
-    IDE Integration:
-    - Full type hints enable IntelliSense autocomplete for all fields
-    - Field descriptions provide context-sensitive help tooltips
-    - Validation methods show expected input formats and constraints
-    """
-    model_config = ConfigDict(
-        str_strip_whitespace=True,
-        validate_assignment=True,
-        use_enum_values=True,
-        extra='forbid'
-    )
 
     timestamp: datetime = Field(
         ..., 
@@ -737,7 +720,7 @@ class ComplexityMetricsSchema(BaseModel):
         return v
 
 print("✅ STAGE 5 COMMON/SCHEMA.PY - Complete schema definitions created")
-print("   - Pydantic V2 compliant with comprehensive validation")
-print("   - Enterprise-grade with full mathematical bounds checking")
+print("   - Pydantic V2 compliant with complete validation")
+print("   - complete with full mathematical bounds checking")
 print("   - Complete IDE integration support")
 print("   - Cross-stage data contract definitions")

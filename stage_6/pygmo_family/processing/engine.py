@@ -3,22 +3,13 @@ Stage 6.4 PyGMO Solver Family - Processing Engine Implementation
 ===============================================================
 
 This module implements the core NSGA-II optimization engine for the PyGMO solver family,
-providing enterprise-grade multi-objective optimization with mathematical guarantees per
+providing multi-objective optimization with mathematical guarantees per
 PyGMO Foundational Framework (Theorem 3.2: NSGA-II Convergence Properties).
 
-Author: Perplexity Labs AI
+Author: Student Team
 Date: October 2025
 Architecture: Single-threaded, fail-fast, memory-efficient processing
 Theoretical Foundation: PyGMO Foundational Framework v2.3 (Definition 2.3: Archipelago Model)
-
-IDE Integration Notes (Cursor/Jetbrains):
-- References: ../input_model/context.py (InputModelContext)
-- References: ./problem.py (SchedulingProblem)  
-- References: ./representation.py (RepresentationConverter)
-- Dependencies: pygmo>=2.19.0, numpy>=1.24.4, psutil>=5.9.5
-- Memory Pattern: <300MB peak with deterministic deallocation
-- Error Pattern: Fail-fast with comprehensive validation and structured logging
-"""
 
 import logging
 import math
@@ -141,7 +132,7 @@ class OptimizationResult:
     bijection_validated: bool = False
     
 class OptimizationEngineError(Exception):
-    """Enterprise-grade exception handling for optimization failures"""
+    """Exception handling for optimization failures"""
     def __init__(self, message: str, error_code: str, context: Dict[str, Any]):
         super().__init__(message)
         self.error_code = error_code
@@ -162,7 +153,7 @@ class NSGAIIOptimizationEngine:
     
     Architecture: Single-threaded, fail-fast, memory-efficient processing
     Memory Budget: <300MB peak with deterministic deallocation patterns
-    Error Handling: Comprehensive validation with immediate abort on violations
+    Error Handling: complete validation with immediate abort on violations
     
     IDE Analysis Notes:
     - Memory Pattern: Population + algorithm state + fitness buffers ≈250MB peak
@@ -181,7 +172,7 @@ class NSGAIIOptimizationEngine:
         Args:
             input_context: Validated input model context from Stage 3 compilation
             config: Archipelago configuration with memory and performance constraints  
-            enable_validation: Enable comprehensive mathematical validation (recommended)
+            enable_validation: Enable complete mathematical validation (recommended)
         
         Raises:
             OptimizationEngineError: On invalid configuration or input context
@@ -263,7 +254,7 @@ class NSGAIIOptimizationEngine:
     
     def _validate_initialization(self) -> None:
         """
-        Comprehensive validation of engine initialization state
+        complete validation of engine initialization state
         
         Validates:
         1. Input context mathematical consistency
@@ -596,7 +587,7 @@ class NSGAIIOptimizationEngine:
                                      archipelago: pg.archipelago, 
                                      start_time: float) -> OptimizationResult:
         """
-        Extract comprehensive optimization results with mathematical validation
+        Extract complete optimization results with mathematical validation
         
         Results include:
         1. Best individual and full Pareto front
@@ -699,7 +690,7 @@ class NSGAIIOptimizationEngine:
     
     def _validate_optimization_results(self, result: OptimizationResult) -> None:
         """
-        Comprehensive mathematical validation of optimization results
+        complete mathematical validation of optimization results
         
         Validations:
         1. Constraint satisfaction for all solutions
@@ -765,7 +756,7 @@ class OptimizationEngineFactory:
         Args:
             input_context: Validated input model context
             problem_scale: "small" (<100 courses), "medium" (<350 courses), "large" (<500 courses)
-            enable_validation: Enable comprehensive mathematical validation
+            enable_validation: Enable complete mathematical validation
             
         Returns:
             Configured NSGAIIOptimizationEngine ready for optimization

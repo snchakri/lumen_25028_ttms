@@ -2,8 +2,8 @@
 """
 PuLP Solver Family - Stage 6 Input Modeling Layer: Metadata Generation Module
 
-This module implements the enterprise-grade metadata generation functionality for Stage 6.1,
-creating comprehensive JSON metadata files that capture the complete mathematical structure
+This module implements the complete metadata generation functionality for Stage 6.1,
+creating complete JSON metadata files that capture the complete mathematical structure
 of the optimization problem. Essential component ensuring full traceability, auditability, 
 and seamless data handover between input modeling, processing, and output modeling layers.
 
@@ -13,17 +13,17 @@ Theoretical Foundation:
     - Ensures 100% lossless information transfer between pipeline stages
     - Captures stride arrays, offsets, constraint matrices, and objective vectors
     - Maintains EAV dynamic parameter mappings with full mathematical rigor
-    - Provides comprehensive audit trail for theoretical framework compliance
+    - Provides complete audit trail for theoretical framework compliance
 
 Architecture Compliance:
     - Implements metadata generation per Stage 6 foundational design rules
     - Ensures seamless integration with processing layer data requirements
-    - Maintains fail-fast philosophy with comprehensive error handling
+    - Maintains fail-fast philosophy with complete error handling
     - Supports full mathematical reconstruction of optimization problem
-    - Provides JSON-based auditability for production deployment
+    - Provides JSON-based auditability for production usage
 
 Dependencies: json, numpy, pandas, scipy.sparse, logging, datetime, pathlib
-Authors: Team LUMEN (SIH 2025)
+Author: Student Team
 Version: 1.0.0 (Production)
 """
 
@@ -50,7 +50,6 @@ except ImportError:
 
 # Configure structured logging for metadata operations
 logger = logging.getLogger(__name__)
-
 
 @dataclass
 class ConstraintMatrixMetadata:
@@ -87,7 +86,6 @@ class ConstraintMatrixMetadata:
         """Convert to dictionary for JSON serialization."""
         return asdict(self)
 
-
 @dataclass  
 class ObjectiveVectorMetadata:
     """
@@ -120,7 +118,6 @@ class ObjectiveVectorMetadata:
     def to_dict(self) -> Dict[str, Any]:
         """Convert to dictionary for JSON serialization.""" 
         return asdict(self)
-
 
 @dataclass
 class ParameterMapping:
@@ -155,14 +152,13 @@ class ParameterMapping:
         """Convert to dictionary for JSON serialization."""
         return asdict(self)
 
-
 class InputModelMetadataGenerator:
     """
-    Enterprise-grade metadata generator with mathematical rigor and theoretical compliance.
+    complete metadata generator with mathematical rigor and theoretical compliance.
 
-    Implements comprehensive metadata generation following Stage 6 foundational framework,
+    Implements complete metadata generation following Stage 6 foundational framework,
     capturing complete mathematical structure of optimization problem for seamless pipeline
-    integration. Designed for production deployment with fail-fast error handling and
+    integration. Designed for production usage with fail-fast error handling and
     extensive mathematical validation.
 
     Mathematical Foundation:
@@ -198,7 +194,7 @@ class InputModelMetadataGenerator:
                                  objective_vectors: Optional[Dict[str, np.ndarray]] = None,
                                  parameter_mappings: Optional[Dict[str, ParameterMapping]] = None) -> Dict[str, Any]:
         """
-        Generate comprehensive input model metadata with mathematical rigor.
+        Generate complete input model metadata with mathematical rigor.
 
         Creates complete JSON metadata structure capturing all mathematical components
         required for processing layer integration and output model reconstruction.
@@ -394,7 +390,7 @@ class InputModelMetadataGenerator:
         }
 
     def _generate_entity_metadata(self, entity_collections: Dict[str, EntityCollection]) -> Dict[str, Any]:
-        """Generate comprehensive entity metadata."""
+        """Generate complete entity metadata."""
 
         entity_metadata = {}
 
@@ -516,7 +512,7 @@ class InputModelMetadataGenerator:
         }
 
     def _generate_bijection_metadata(self, bijection_mapping: BijectiveMapping) -> Dict[str, Any]:
-        """Generate comprehensive bijection metadata."""
+        """Generate complete bijection metadata."""
 
         # Calculate bijection statistics
         course_variable_distribution = list(bijection_mapping.course_blocks.values())
@@ -844,7 +840,7 @@ class InputModelMetadataGenerator:
 
     def save_metadata(self, metadata: Dict[str, Any], output_path: Union[str, Path]) -> Path:
         """
-        Save generated metadata to JSON file with comprehensive formatting.
+        Save generated metadata to JSON file with complete formatting.
 
         Args:
             metadata: Complete metadata dictionary
@@ -912,7 +908,6 @@ class InputModelMetadataGenerator:
             }
         }
 
-
 def generate_input_metadata(entity_collections: Dict[str, EntityCollection],
                           relationship_graph: RelationshipGraph,
                           index_structure: IndexStructure,
@@ -926,7 +921,7 @@ def generate_input_metadata(entity_collections: Dict[str, EntityCollection],
     """
     High-level function to generate complete input model metadata.
 
-    Provides simplified interface for metadata generation with comprehensive validation
+    Provides simplified interface for metadata generation with complete validation
     and optional file output for processing layer integration.
 
     Args:
@@ -974,7 +969,6 @@ def generate_input_metadata(entity_collections: Dict[str, EntityCollection],
     logger.info(f"Successfully generated input model metadata for execution {execution_id}")
 
     return metadata, metadata_path
-
 
 if __name__ == "__main__":
     # Example usage and testing

@@ -22,7 +22,7 @@ Integration Points:
 - Supports dynamic parameters EAV model relationship inference
 - Compatible with HEI data model foreign key relationships
 
-Author: Stage 3 Data Compilation Team  
+Author: Student Team
 Compliance: Stage-3-DATA-COMPILATION-Theoretical-Foundations-Mathematical-Framework.pdf
 Dependencies: networkx, pandas, numpy, scipy, typing, dataclasses, abc
 """
@@ -41,7 +41,7 @@ import math
 from collections import defaultdict, Counter
 import structlog
 
-# Configure structured logging for production deployment
+# Configure structured logging for production usage
 logger = structlog.get_logger(__name__)
 
 class RelationshipType(str, Enum):
@@ -113,7 +113,7 @@ class DetectionMethod(str, Enum):
 @dataclass
 class RelationshipScore:
     """
-    Comprehensive scoring for relationship detection with confidence metrics.
+    complete scoring for relationship detection with confidence metrics.
     
     Implements mathematical scoring model from Theorem 3.6 ensuring
     relationship completeness probability ≥ 0.994 for well-structured data.
@@ -1461,7 +1461,7 @@ class RelationshipEngine:
         """
         Materialize relationships into NetworkX directed graph.
         
-        Creates graph structure with comprehensive node and edge attributes
+        Creates graph structure with complete node and edge attributes
         for Stage 3 index construction and optimization.
         
         Args:
@@ -1617,7 +1617,7 @@ class RelationshipEngine:
     
     def get_processing_statistics(self) -> Dict[str, Any]:
         """
-        Get comprehensive processing statistics for performance monitoring.
+        Get complete processing statistics for performance monitoring.
         
         Returns:
             Dictionary containing processing metrics and performance indicators

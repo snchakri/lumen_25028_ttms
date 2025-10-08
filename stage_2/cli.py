@@ -2,12 +2,12 @@
 CLI Module - Stage 2 Student Batching System
 Higher Education Institutions Timetabling Data Model
 
-This module provides a comprehensive command-line interface for the Stage 2
-batch processing pipeline with professional-grade argument parsing, output
+This module provides a complete command-line interface for the Stage 2
+batch processing pipeline with complete argument parsing, output
 formatting, and integration capabilities for local testing and automation.
 
 Theoretical Foundation:
-- Command-line interface design with Click framework for robust argument validation
+- Command-line interface design with Click framework for reliable argument validation
 - Structured output formatting for both human and machine consumption patterns
 - Integration with batch processing pipeline for complete local testing capabilities
 - Professional error handling and exit code management for automation workflows
@@ -22,7 +22,7 @@ Architecture:
 - Click framework for professional CLI implementation with progress tracking
 - Rich library for beautiful console output with tables, progress bars, and panels
 - Structured output with JSON, table, and progress bar formats for monitoring
-- Integration with Stage 2 logging system for comprehensive diagnostics
+- Integration with Stage 2 logging system for complete diagnostics
 - Support for batch processing automation workflows with status tracking
 """
 
@@ -86,8 +86,8 @@ def cli(ctx: Context, verbose: int, quiet: bool, log_file: Optional[str], log_le
     """
     Higher Education Institutions Timetabling System - Stage 2 Student Batching CLI
 
-    This command-line interface provides comprehensive student batch processing for the HEI
-    Timetabling System with professional-grade error reporting and performance monitoring.
+    This command-line interface provides complete student batch processing for the HEI
+    Timetabling System with complete error reporting and performance monitoring.
 
     CORE FEATURES:
 
@@ -97,7 +97,7 @@ def cli(ctx: Context, verbose: int, quiet: bool, log_file: Optional[str], log_le
     • Resource allocation with room and shift assignment optimization
     • Batch membership generation with referential integrity validation
     • Course enrollment mapping with prerequisite validation and capacity management
-    • Comprehensive reporting with performance analytics and quality assessment
+    • complete reporting with performance analytics and quality assessment
 
     MATHEMATICAL GUARANTEES:
 
@@ -128,7 +128,7 @@ def cli(ctx: Context, verbose: int, quiet: bool, log_file: Optional[str], log_le
       stage2-cli process /path/to/input/files --performance --workers 8 --batch-size 50
 
     \b
-    • Multi-tenant processing with comprehensive reporting:
+    • Multi-tenant processing with complete reporting:
       stage2-cli process /path/to/input/files --tenant-id "university-001" --report-format json
     """
 
@@ -210,11 +210,11 @@ def process(ctx: Context, input_directory: Path, output: Optional[Path], report_
            max_iterations: int, convergence_threshold: float, constraint_weights: Optional[str],
            dry_run: bool):
     """
-    Execute comprehensive student batch processing pipeline with complete analysis.
+    Execute complete student batch processing pipeline with complete analysis.
 
     This command orchestrates the complete Stage 2 batch processing pipeline including
     dynamic configuration loading, batch size calculation, student clustering, resource
-    allocation, membership generation, course enrollment mapping, and comprehensive reporting.
+    allocation, membership generation, course enrollment mapping, and complete reporting.
 
     INPUT_DIRECTORY: Path to directory containing input CSV files for batch processing
 
@@ -227,7 +227,7 @@ def process(ctx: Context, input_directory: Path, output: Optional[Path], report_
     4. RESOURCE ALLOCATION: Room and shift assignment with capacity optimization
     5. MEMBERSHIP GENERATION: Batch-student membership mapping with validation
     6. ENROLLMENT GENERATION: Course enrollment mapping with prerequisite validation
-    7. COMPREHENSIVE REPORTING: Performance analysis and quality assessment with insights
+    7. complete REPORTING: Performance analysis and quality assessment with insights
 
     EXAMPLES:
 
@@ -248,7 +248,7 @@ def process(ctx: Context, input_directory: Path, output: Optional[Path], report_
       stage2-cli process /path/to/input/files --dry-run
 
     \b
-    • Production processing with comprehensive reporting:
+    • Production processing with complete reporting:
       stage2-cli process /path/to/input/files --output /path/to/output --report-format json --tenant-id "univ-001"
     """
 
@@ -346,10 +346,10 @@ def process(ctx: Context, input_directory: Path, output: Optional[Path], report_
             processing_config, verbosity, quiet
         )
 
-        # Generate comprehensive report
+        # Generate complete report
         if not quiet:
             console.print("
-[bold blue]Generating comprehensive batch processing report...[/bold blue]")
+[bold blue]Generating complete batch processing report...[/bold blue]")
 
         _generate_and_display_report(result_summary, output, report_format, verbosity, quiet)
 
@@ -383,7 +383,7 @@ def process(ctx: Context, input_directory: Path, output: Optional[Path], report_
         sys.exit(1)
 
 def _display_processing_configuration(config: Dict[str, Any]):
-    """Display comprehensive processing configuration in a formatted table."""
+    """Display complete processing configuration in a formatted table."""
 
     config_table = Table(title="Batch Processing Configuration", show_header=True, header_style="bold magenta")
     config_table.add_column("Parameter", style="cyan", width=25)
@@ -468,7 +468,7 @@ def _execute_dry_run_validation(config: Dict[str, Any], verbosity: int, quiet: b
         ("Resource Allocation", "Assign rooms and shifts to batches"),
         ("Membership Generation", "Create batch-student mapping records"),
         ("Enrollment Generation", "Generate batch-course enrollment mappings"),
-        ("Report Generation", "Comprehensive analysis and performance metrics")
+        ("Report Generation", "complete analysis and performance metrics")
     ]
 
     stages_table = Table(show_header=True, header_style="bold blue")
@@ -547,7 +547,7 @@ def _execute_pipeline_stages_with_progress(config: Dict[str, Any], progress: Pro
     task_resources = progress.add_task("Allocating resources to batches...", total=100)
     task_membership = progress.add_task("Generating membership records...", total=100)
     task_enrollment = progress.add_task("Creating enrollment mappings...", total=100)
-    task_reporting = progress.add_task("Generating comprehensive reports...", total=100)
+    task_reporting = progress.add_task("Generating complete reports...", total=100)
 
     try:
         # Stage 1: Configuration Loading
@@ -652,12 +652,12 @@ def _execute_pipeline_stages_with_progress(config: Dict[str, Any], progress: Pro
         result_summary['enrollment_generated'] = True
         result_summary['enrollment_file'] = str(enrollment_file)
 
-        # Stage 7: Comprehensive Reporting
-        logger.info("Stage 7: Generating comprehensive analysis and performance reports")
+        # Stage 7: complete Reporting
+        logger.info("Stage 7: Generating complete analysis and performance reports")
         progress.update(task_reporting, completed=50)
 
-        # Generate comprehensive report files
-        report_files = _generate_comprehensive_reports(config, result_summary)
+        # Generate complete report files
+        report_files = _generate_complete_reports(config, result_summary)
         result_summary['report_files'] = report_files
 
         progress.update(task_reporting, completed=100)
@@ -717,7 +717,7 @@ def _execute_pipeline_stages_silent(config: Dict[str, Any], result_summary: Dict
 
         result_summary['membership_file'] = str(membership_file)
         result_summary['enrollment_file'] = str(enrollment_file)
-        result_summary['report_files'] = _generate_comprehensive_reports(config, result_summary)
+        result_summary['report_files'] = _generate_complete_reports(config, result_summary)
 
         logger.info("Silent batch processing pipeline completed successfully")
 
@@ -785,8 +785,8 @@ def _generate_mock_enrollment_csv(file_path: Path, num_batches: int):
                 ])
                 enrollment_id += 1
 
-def _generate_comprehensive_reports(config: Dict[str, Any], result_summary: Dict[str, Any]) -> List[str]:
-    """Generate comprehensive analysis and performance reports."""
+def _generate_complete_reports(config: Dict[str, Any], result_summary: Dict[str, Any]) -> List[str]:
+    """Generate complete analysis and performance reports."""
 
     output_dir = Path(config['output_directory'])
     report_files = []
@@ -828,12 +828,12 @@ def _generate_comprehensive_reports(config: Dict[str, Any], result_summary: Dict
 
 def _generate_and_display_report(result_summary: Dict[str, Any], output_dir: Path, 
                                 format: str, verbosity: int, quiet: bool):
-    """Generate and display comprehensive batch processing report."""
+    """Generate and display complete batch processing report."""
 
     if quiet:
         return
 
-    # Create comprehensive results table
+    # Create complete results table
     results_table = Table(title="Batch Processing Results", show_header=True, header_style="bold magenta")
     results_table.add_column("Metric", style="cyan", width=30)
     results_table.add_column("Value", style="white", width=20)
@@ -931,7 +931,6 @@ def _display_final_results(result_summary: Dict[str, Any], execution_time: float
         quality_color = "green" if overall_quality == "EXCELLENT" else "yellow"
         console.print(f"[bold {quality_color}]Overall Quality Assessment: {overall_quality}[/bold {quality_color}]")
 
-
 # Entry point for command line execution  
 if __name__ == "__main__":
     try:
@@ -940,7 +939,6 @@ if __name__ == "__main__":
         console.print(f"[bold red]Fatal Error:[/bold red] {str(e)}")
         logger.critical(f"CLI fatal error: {str(e)}", exc_info=True)
         sys.exit(1)
-
 
 # Export key functions for external use
 __all__ = [

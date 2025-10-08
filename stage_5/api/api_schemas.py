@@ -2,20 +2,20 @@
 api/schemas.py
 Stage 5 REST API Pydantic Models and Schema Definitions
 
-This module defines comprehensive Pydantic models for all Stage 5 API endpoints,
-providing enterprise-grade request/response validation, serialization, and
+This module defines complete Pydantic models for all Stage 5 API endpoints,
+providing request/response validation, serialization, and
 documentation generation. All models align exactly with the foundational design
 specifications and JSON schema requirements.
 
 Model Architecture:
 - Request models: Input validation for Stage 5.1 and 5.2 API endpoints
-- Response models: Structured output with comprehensive metadata and results
+- Response models: Structured output with complete metadata and results
 - Error models: Detailed error responses with context for debugging
 - Health models: System monitoring and readiness verification
 - Info models: API capabilities and version information
 
 The models follow enterprise patterns with:
-- Comprehensive field validation using Pydantic validators
+- complete field validation using Pydantic validators
 - Detailed field documentation for API documentation generation
 - JSON schema compliance with foundational design specifications
 - Type safety with full IDE support and IntelliSense integration
@@ -25,7 +25,7 @@ The models follow enterprise patterns with:
 Schema Compliance:
 - Exact match with Stage5-FOUNDATIONAL-DESIGN-IMPLEMENTATION-PLAN.md
 - Version 1.0.0 schema validation for all JSON documents
-- Comprehensive metadata preservation for audit trails
+- complete metadata preservation for audit trails
 - Integration compatibility with Stage 5.1 and 5.2 module schemas
 
 Validation Features:
@@ -59,7 +59,6 @@ MIN_CONFIDENCE_SCORE = 0.0  # Minimum confidence for valid selection
 MAX_CONFIDENCE_SCORE = 1.0  # Maximum confidence score
 MIN_SOLVER_COUNT = 1  # Minimum solvers for meaningful selection
 
-
 class BaseAPIModel(BaseModel):
     """
     Base model for all API schemas with common configuration.
@@ -88,7 +87,6 @@ class BaseAPIModel(BaseModel):
         schema_extra = {
             "examples": {}  # Will be overridden in specific models
         }
-
 
 class Stage51AnalysisRequest(BaseAPIModel):
     """
@@ -206,7 +204,6 @@ class Stage51AnalysisRequest(BaseAPIModel):
             }
         }
 
-
 class Stage51AnalysisResponse(BaseAPIModel):
     """
     Response model for Stage 5.1 complexity parameter analysis results.
@@ -226,7 +223,7 @@ class Stage51AnalysisResponse(BaseAPIModel):
         - Exact match with complexity_metrics.json format
         - Version 1.0.0 schema validation
         - Complete parameter coverage P1-P16
-        - Comprehensive metadata preservation
+        - complete metadata preservation
     """
     
     success: bool = Field(
@@ -334,7 +331,6 @@ class Stage51AnalysisResponse(BaseAPIModel):
             }
         }
 
-
 class Stage52SelectionRequest(BaseAPIModel):
     """
     Request model for Stage 5.2 solver selection optimization.
@@ -438,7 +434,6 @@ class Stage52SelectionRequest(BaseAPIModel):
             }
         }
 
-
 class Stage52SelectionResponse(BaseAPIModel):
     """
     Response model for Stage 5.2 solver selection optimization results.
@@ -458,7 +453,7 @@ class Stage52SelectionResponse(BaseAPIModel):
         - Exact match with selection_decision.json format
         - Version 1.0.0 schema validation
         - Complete solver ranking with margins
-        - Comprehensive optimization details
+        - complete optimization details
     """
     
     success: bool = Field(
@@ -589,12 +584,11 @@ class Stage52SelectionResponse(BaseAPIModel):
             }
         }
 
-
 class HealthResponse(BaseAPIModel):
     """
     Response model for system health check endpoint.
     
-    Provides comprehensive system status information including
+    Provides complete system status information including
     uptime, performance metrics, and component readiness status.
     """
     
@@ -648,7 +642,6 @@ class HealthResponse(BaseAPIModel):
         description="Health check timestamp in ISO format"
     )
 
-
 class Stage5InfoResponse(BaseAPIModel):
     """
     Response model for Stage 5 system information endpoint.
@@ -697,7 +690,6 @@ class Stage5InfoResponse(BaseAPIModel):
         description="Information generation timestamp in ISO format"
     )
 
-
 class ErrorResponse(BaseAPIModel):
     """
     Response model for API error conditions.
@@ -731,7 +723,6 @@ class ErrorResponse(BaseAPIModel):
         description="Error occurrence timestamp in ISO format"
     )
 
-
 class ValidationErrorResponse(BaseAPIModel):
     """
     Response model for input validation errors.
@@ -759,7 +750,6 @@ class ValidationErrorResponse(BaseAPIModel):
         ...,
         description="Validation error timestamp in ISO format"
     )
-
 
 # Export all models for API integration
 __all__ = [

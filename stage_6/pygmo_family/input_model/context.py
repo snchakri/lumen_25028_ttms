@@ -11,19 +11,12 @@ integrates Stage 3 compiled data, dynamic parameters, and constraint rules into 
 mathematically consistent structure that maintains bijection mapping properties
 and supports PyGMO multi-objective optimization requirements.
 
-CURSOR IDE & JetBrains Intelligence:
-- Implements InputModelContext structure from foundational design specification
-- Integrates Dynamic Parametric System (EAV model) with type-safe parameter resolution
-- Maintains Bijection Mapping properties for course-centric representation
-- Ensures PyGMO Problem Interface compatibility for downstream processing
-- Provides Mathematical Correctness guarantees through rigorous constraint validation
-
-ENTERPRISE GRADE ROBUSTNESS:
+Complete reliableNESS:
 - Immutable data structures for thread-safety and mathematical consistency
 - Memory-efficient context building with deterministic resource patterns
-- Comprehensive parameter resolution with hierarchical inheritance
+- complete parameter resolution with hierarchical inheritance
 - Fail-fast validation ensuring mathematical correctness throughout process
-- Enterprise-grade logging for production debugging and performance monitoring
+- complete logging for debugging and performance monitoring
 """
 
 import logging
@@ -57,17 +50,6 @@ class CourseAssignmentTuple:
     Immutable representation of a single course assignment tuple following
     the PyGMO course-centric encoding: (faculty_id, room_id, timeslot_id, batch_id).
 
-    CURSOR/JETBRAINS NOTES:
-    - Corresponds to Individual Representation from PyGMO foundational framework
-    - Maintains bijection properties for PyGMO vector conversion (Section 5.1)
-    - Immutable design ensures mathematical consistency throughout optimization
-    - Type annotations enable IDE intelligent code completion and validation
-    """
-    faculty_id: int = Field(description="Faculty member assigned to teach this course")
-    room_id: int = Field(description="Room allocated for this course")  
-    timeslot_id: int = Field(description="Time slot when course is scheduled")
-    batch_id: int = Field(description="Student batch attending this course")
-
     def __post_init__(self):
         """Validate assignment tuple mathematical constraints"""
         if any(val < 0 for val in [self.faculty_id, self.room_id, self.timeslot_id, self.batch_id]):
@@ -91,18 +73,6 @@ class ConstraintRule:
     Immutable representation of constraint rules with mathematical properties
     for PyGMO optimization. Integrates dynamic parameters and penalty weights.
 
-    CURSOR/JETBRAINS INTEGRATION:
-    - Implements Constraint Rule structure from theoretical framework
-    - Maintains Adaptive Penalty Function properties (Definition 4.1)
-    - Supports Dynamic Parameter integration for runtime adaptability
-    - Provides Mathematical Validation for constraint consistency
-    """
-    constraint_type: str = Field(description="Type of constraint (hard/soft/preference)")
-    penalty_weight: float = Field(description="Penalty weight for constraint violations")
-    constraint_function: Optional[Callable] = Field(default=None, description="Constraint evaluation function")
-    parameters: Dict[str, Any] = field(default_factory=dict, description="Constraint-specific parameters")
-    is_hard_constraint: bool = Field(default=True, description="Whether constraint is hard or soft")
-
     def __post_init__(self):
         """Validate constraint rule mathematical properties"""
         if self.penalty_weight < 0:
@@ -120,13 +90,6 @@ class BijectionMapping:
 
     Implements bijective mapping between course-centric dictionary representation
     and PyGMO normalized vector representation with mathematical guarantees.
-
-    CURSOR/JETBRAINS INTEGRATION:
-    - Implements Bijective Transformation from PyGMO foundational framework
-    - Maintains Mathematical Guarantee of zero information loss (Section 5.1)
-    - Provides Course-Dict ↔ PyGMO vector conversion with validation
-    - Ensures PyGMO Problem Interface compatibility for optimization algorithms
-    """
 
     def __init__(self, course_order: List[str], max_values: Dict[str, int]):
         """
@@ -299,17 +262,9 @@ class InputModelContext(BaseModel):
     THEORETICAL BASIS: Input Model Context Definition (Section 3.1)
     MATHEMATICAL FOUNDATION: Data Structures and Validation Framework
 
-    Comprehensive input model context integrating all Stage 3 compiled data,
+    complete input model context integrating all Stage 3 compiled data,
     dynamic parameters, and mathematical structures required for PyGMO optimization.
     This class serves as the unified interface between data loading and optimization.
-
-    CURSOR/JETBRAINS INTEGRATION:
-    - Implements complete Input Model Context per foundational design specification  
-    - Integrates Course Eligibility mappings with mathematical validation
-    - Maintains Constraint Rules with Dynamic Parameter resolution
-    - Provides Bijection Mapping for PyGMO optimization compatibility
-    - Ensures Mathematical Correctness through comprehensive validation
-    """
 
     # Core data structures from Stage 3
     course_eligibility: Dict[str, List[CourseAssignmentTuple]] = Field(
@@ -372,7 +327,7 @@ class InputModelContext(BaseModel):
 
     @root_validator
     def validate_mathematical_consistency(cls, values):
-        """Comprehensive mathematical consistency validation"""
+        """complete mathematical consistency validation"""
         try:
             course_eligibility = values.get('course_eligibility', {})
             bijection_data = values.get('bijection_data')
@@ -484,7 +439,7 @@ class InputModelContext(BaseModel):
 
     def export_context_summary(self) -> Dict[str, Any]:
         """
-        CONTEXT SUMMARY: Export comprehensive context summary for debugging
+        CONTEXT SUMMARY: Export complete context summary for debugging
 
         Returns detailed summary of input model context for logging and debugging.
         """
@@ -513,16 +468,8 @@ class InputModelContextBuilder:
     THEORETICAL BASIS: Input Model Context Construction (Section 3.1)
 
     Builder class for constructing InputModelContext from Stage 3 loaded data
-    with mathematical rigor and enterprise-grade validation. Orchestrates the
+    with mathematical rigor and complete validation. Orchestrates the
     complete input model construction pipeline with fail-fast error handling.
-
-    CURSOR/JETBRAINS INTEGRATION:
-    - Implements Builder pattern for complex InputModelContext construction
-    - Orchestrates Course Eligibility mapping from Stage 3 entity relationships
-    - Integrates Dynamic Parameter resolution with hierarchical inheritance  
-    - Constructs Bijection Mapping with mathematical correctness guarantees
-    - Provides Enterprise-grade error handling and comprehensive logging
-    """
 
     def __init__(self, memory_limit_mb: int = 200):
         """
@@ -544,10 +491,10 @@ class InputModelContextBuilder:
 
     def build_context(self, loaded_data: Dict[str, Any]) -> InputModelContext:
         """
-        COMPREHENSIVE CONSTRUCTION: Build complete InputModelContext from loaded data
+        complete CONSTRUCTION: Build complete InputModelContext from loaded data
 
         Orchestrates the complete input model context construction pipeline with
-        mathematical validation and enterprise-grade error handling.
+        mathematical validation and complete error handling.
 
         Args:
             loaded_data: Complete loaded data from Stage3DataLoader
@@ -559,8 +506,8 @@ class InputModelContextBuilder:
         construction_start = datetime.now()
 
         try:
-            # Phase 1: Comprehensive Input Validation
-            self.logger.info("phase_1_comprehensive_input_validation")
+            # Phase 1: complete Input Validation
+            self.logger.info("phase_1_complete_input_validation")
             validation_result = self.validator.validate_complete_input(loaded_data)
 
             if not validation_result.is_valid:
@@ -635,7 +582,7 @@ class InputModelContextBuilder:
         """
         COURSE ELIGIBILITY CONSTRUCTION: Build course eligibility mappings from Stage 3 data
 
-        Constructs comprehensive course eligibility mappings by analyzing entity relationships
+        Constructs complete course eligibility mappings by analyzing entity relationships
         and constraints from Stage 3 compiled data.
         """
         try:

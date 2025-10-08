@@ -8,12 +8,12 @@
 # - Definition 2.3: Phenotype Mapping ϕ : G → S_schedule  
 # - Theorem 10.1: DEAP Algorithm Complexity Bounds O(λ·T·n·m)
 #
-# ENTERPRISE-GRADE ORCHESTRATION:
+# complete ORCHESTRATION:
 # - Three-Layer Pipeline: Input Modeling → Processing → Output Modeling
 # - Memory Constraint Enforcement: ≤512MB with real-time monitoring
 # - Fail-Fast Error Handling: Immediate propagation with detailed context
 # - Execution Isolation: Unique timestamped execution directories
-# - Comprehensive Audit Logging: Complete execution traceability
+# - complete Audit Logging: Complete execution traceability
 #
 # ARCHITECTURAL DESIGN:
 # - Course-Centric Representation: Bijective mapping to flat binary encoding
@@ -21,24 +21,19 @@
 # - Layer-by-Layer Processing: Complete isolation with data hand-off validation
 # - Dynamic Parameter Integration: Full EAV model support from Stage 3
 #
-# IDE INTEGRATION NOTES:
-# @cursor-ide: Main orchestrator implementing complete DEAP pipeline per Stage 6.3
-#              framework. References input_model, processing, output_model modules.
-# @jetbrains: Full pipeline orchestration with comprehensive error handling and
-#             memory monitoring. IntelliSense support via detailed type annotations.
-# ===============================================================================
+# 
 
 """
 DEAP Solver Family Main Pipeline Orchestrator
 
 This module implements the master pipeline orchestrator for Stage 6.3 DEAP
-evolutionary solver family, providing enterprise-grade execution management
+evolutionary solver family, providing complete execution management
 with full theoretical compliance to DEAP Foundational Framework.
 
 Key Features:
 - Three-layer pipeline orchestration (Input → Processing → Output)
 - Real-time memory monitoring with constraint enforcement (≤512MB)
-- Comprehensive error handling with fail-fast behavior
+- complete error handling with fail-fast behavior
 - Execution isolation with unique timestamped directories
 - Complete audit logging for SIH evaluation and debugging
 - Command-line interface for direct execution and testing
@@ -60,9 +55,9 @@ Based on Algorithm 11.2 (Integrated Evolutionary Process) implementing:
 6. Termination: Stop based on convergence or resource limits
 7. Solution Extraction: Convert best individuals to schedule format
 
-Enterprise Compliance:
+Compliance:
 - Memory constraint enforcement per layer specifications
-- Comprehensive error handling with detailed audit trails  
+- complete error handling with detailed audit trails  
 - Execution isolation for concurrent processing support
 - Performance metrics collection for optimization analysis
 - Production-ready logging compatible with monitoring systems
@@ -97,10 +92,10 @@ from .deap_family_config import (
 # from .input_model import build_input_context, InputModelContext
 
 # ===============================================================================
-# LOGGING CONFIGURATION - Enterprise Grade Pipeline Monitoring
+# LOGGING CONFIGURATION - Complete Pipeline Monitoring
 # ===============================================================================
 
-# Configure comprehensive pipeline logging
+# Configure complete pipeline logging
 logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(name)s - %(levelname)s - [%(funcName)s:%(lineno)d] - %(message)s',
@@ -119,11 +114,11 @@ logger = logging.getLogger(__name__)
 @dataclass
 class PipelineContext:
     """
-    Comprehensive Pipeline Execution Context
+    complete Pipeline Execution Context
     
     Manages complete execution state for DEAP solver family pipeline including
     configuration, timing, memory usage, and execution metadata. Provides
-    enterprise-grade execution tracking with detailed audit capabilities.
+    complete execution tracking with detailed audit capabilities.
     
     Attributes:
         execution_id: Unique identifier for execution isolation and tracking
@@ -132,7 +127,7 @@ class PipelineContext:
         execution_directories: Isolated directory structure for current execution
         memory_snapshots: Real-time memory usage tracking across pipeline layers
         performance_metrics: Detailed timing and resource utilization metrics
-        error_context: Comprehensive error tracking with diagnostic information
+        error_context: complete error tracking with diagnostic information
     
     Mathematical Context:
     Based on Algorithm 11.2 execution context requirements with full compliance
@@ -175,7 +170,6 @@ class PipelineContext:
                 'warnings_count': 0
             }
 
-
 # ===============================================================================
 # MEMORY MONITORING SYSTEM - Real-Time Resource Tracking
 # ===============================================================================
@@ -184,7 +178,7 @@ class MemoryMonitor:
     """
     Real-Time Memory Monitoring and Constraint Enforcement
     
-    Provides enterprise-grade memory monitoring with automatic constraint
+    Provides complete memory monitoring with automatic constraint
     enforcement per Stage 6.3 specifications. Implements real-time tracking
     with fail-fast behavior on constraint violations.
     
@@ -222,10 +216,10 @@ class MemoryMonitor:
     
     def get_current_memory_usage(self) -> Dict[str, float]:
         """
-        Get Comprehensive Current Memory Usage
+        Get complete Current Memory Usage
         
         Returns detailed memory usage information including RSS, VMS, and
-        memory percentage for comprehensive monitoring and analysis.
+        memory percentage for complete monitoring and analysis.
         
         Returns:
             Dict[str, float]: Memory usage metrics in MB and percentages
@@ -258,7 +252,7 @@ class MemoryMonitor:
         Check Memory Constraint for Specific Layer
         
         Validates current memory usage against layer-specific constraints with
-        comprehensive error reporting and automatic remediation attempts.
+        complete error reporting and automatic remediation attempts.
         
         Args:
             layer_name: Layer identifier ('input', 'processing', 'output')
@@ -358,13 +352,13 @@ class MemoryMonitor:
     
     def get_memory_statistics(self) -> Dict[str, Any]:
         """
-        Get Comprehensive Memory Usage Statistics
+        Get complete Memory Usage Statistics
         
         Provides detailed memory usage analysis including peak usage, trends,
         constraint compliance, and performance recommendations.
         
         Returns:
-            Dict[str, Any]: Comprehensive memory usage statistics
+            Dict[str, Any]: complete memory usage statistics
         """
         if not self.context.memory_snapshots:
             return {'error': 'No memory snapshots available'}
@@ -460,9 +454,8 @@ class MemoryMonitor:
         
         return layer_peaks
 
-
 # ===============================================================================
-# ERROR HANDLING SYSTEM - Comprehensive Exception Management
+# ERROR HANDLING SYSTEM - complete Exception Management
 # ===============================================================================
 
 class DEAPPipelineError(Exception):
@@ -474,26 +467,21 @@ class DEAPPipelineError(Exception):
         self.context = context or {}
         self.timestamp = datetime.now()
 
-
 class InputModelingError(DEAPPipelineError):
     """Exception raised during input modeling phase"""
     pass
-
 
 class ProcessingError(DEAPPipelineError):
     """Exception raised during evolutionary processing phase"""
     pass
 
-
 class OutputModelingError(DEAPPipelineError):
     """Exception raised during output modeling phase"""
     pass
 
-
 class MemoryConstraintError(DEAPPipelineError):
     """Exception raised when memory constraints are violated"""
     pass
-
 
 # ===============================================================================
 # PIPELINE LAYER INTERFACES - Standardized Component Integration
@@ -504,7 +492,7 @@ class LayerResult(NamedTuple):
     Standardized Layer Result Container
     
     Provides consistent interface for data hand-off between pipeline layers
-    with comprehensive metadata and error handling support.
+    with complete metadata and error handling support.
     """
     success: bool
     data: Any
@@ -513,7 +501,6 @@ class LayerResult(NamedTuple):
     memory_usage: Dict[str, float]
     warnings: List[str]
     errors: List[str]
-
 
 # ===============================================================================
 # MAIN PIPELINE ORCHESTRATOR - Master Execution Controller
@@ -524,13 +511,13 @@ class DEAPFamilyPipelineOrchestrator:
     DEAP Solver Family Master Pipeline Orchestrator
     
     Implements complete Stage 6.3 pipeline orchestration per Algorithm 11.2
-    (Integrated Evolutionary Process) with enterprise-grade execution management
-    and comprehensive error handling.
+    (Integrated Evolutionary Process) with complete execution management
+    and complete error handling.
     
     Features:
     - Three-layer pipeline orchestration with data validation
     - Real-time memory monitoring and constraint enforcement
-    - Comprehensive error handling with detailed audit trails
+    - complete error handling with detailed audit trails
     - Execution isolation with unique timestamped directories
     - Performance metrics collection and analysis
     - Production-ready logging for monitoring system integration
@@ -580,7 +567,7 @@ class DEAPFamilyPipelineOrchestrator:
         """
         Layer Execution Context Manager
         
-        Provides comprehensive execution context management for each pipeline layer
+        Provides complete execution context management for each pipeline layer
         including timing, memory monitoring, and error handling.
         
         Args:
@@ -668,7 +655,7 @@ class DEAPFamilyPipelineOrchestrator:
         
         Transforms Stage 3 compilation artifacts into evolutionary representation
         suitable for DEAP algorithms. Implements course-centric genotype encoding
-        per Definition 2.2 with comprehensive validation.
+        per Definition 2.2 with complete validation.
         
         Phase 2 Implementation Note:
         This method currently provides a placeholder implementation. Full implementation
@@ -875,7 +862,7 @@ class DEAPFamilyPipelineOrchestrator:
         Execute Output Modeling Layer
         
         Converts optimal evolutionary solutions to final schedule format with
-        comprehensive validation per Definition 2.3 (Phenotype Mapping).
+        complete validation per Definition 2.3 (Phenotype Mapping).
         Implements bijective transformation from genotype to schedule.
         
         Phase 6 Implementation Note:
@@ -961,7 +948,7 @@ class DEAPFamilyPipelineOrchestrator:
                     metadata={
                         'layer': 'output_modeling',
                         'transformation': 'genotype_to_phenotype',
-                        'validation': 'comprehensive',
+                        'validation': 'complete',
                         'export_format': 'csv'
                     },
                     timing={
@@ -990,9 +977,9 @@ class DEAPFamilyPipelineOrchestrator:
         """
         Execute Complete DEAP Pipeline
         
-        Orchestrates complete three-layer pipeline execution with comprehensive
+        Orchestrates complete three-layer pipeline execution with complete
         error handling, memory monitoring, and performance analysis. Implements
-        Algorithm 11.2 (Integrated Evolutionary Process) with enterprise-grade
+        Algorithm 11.2 (Integrated Evolutionary Process) with complete
         execution management.
         
         Pipeline Flow:
@@ -1001,11 +988,11 @@ class DEAPFamilyPipelineOrchestrator:
         Each layer is executed with:
         - Memory constraint enforcement
         - Performance metrics collection  
-        - Comprehensive error handling
+        - complete error handling
         - Execution isolation and cleanup
         
         Returns:
-            Dict[str, Any]: Complete pipeline results with comprehensive metadata
+            Dict[str, Any]: Complete pipeline results with complete metadata
             
         Raises:
             DEAPPipelineError: If any pipeline stage fails critically
@@ -1131,7 +1118,7 @@ class DEAPFamilyPipelineOrchestrator:
     
     def _save_error_report(self, pipeline_results: Dict[str, Any]):
         """
-        Save Comprehensive Error Report
+        Save complete Error Report
         
         Generates detailed error report with complete execution context, memory
         usage patterns, and diagnostic information for debugging and analysis.
@@ -1164,7 +1151,6 @@ class DEAPFamilyPipelineOrchestrator:
         except Exception as save_error:
             logger.error(f"Failed to save error report: {str(save_error)}")
 
-
 # ===============================================================================
 # COMMAND-LINE INTERFACE - Direct Pipeline Execution
 # ===============================================================================
@@ -1174,7 +1160,7 @@ def main():
     Main Command-Line Interface
     
     Provides direct command-line execution of DEAP pipeline with configurable
-    parameters and comprehensive error reporting. Supports production deployment
+    parameters and complete error reporting. Supports production usage
     and testing scenarios.
     """
     import argparse
@@ -1299,7 +1285,6 @@ Examples:
         print(f"\nERROR: {str(e)}")
         sys.exit(1)
 
-
 # ===============================================================================
 # MODULE TESTING - Development and Validation Support
 # ===============================================================================
@@ -1309,7 +1294,7 @@ if __name__ == "__main__":
     Main Module Entry Point
     
     Supports both command-line execution and direct testing scenarios.
-    Provides comprehensive validation of pipeline orchestration functionality.
+    Provides complete validation of pipeline orchestration functionality.
     """
     
     # Check if running as direct test vs command-line

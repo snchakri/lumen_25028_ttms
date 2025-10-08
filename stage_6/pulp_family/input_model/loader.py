@@ -2,7 +2,7 @@
 """
 PuLP Solver Family - Stage 6 Input Modeling Layer: Data Loader Module
 
-This module implements the enterprise-grade data ingestion and loading functionality for Stage 6.1,
+This module implements the complete data ingestion and loading functionality for Stage 6.1,
 specifically designed to consume Stage 3 compilation artifacts (L_raw.parquet, L_rel.graphml, L_idx.*)
 and transform them into memory-optimized data structures required by the PuLP solver family.
 
@@ -16,11 +16,11 @@ Theoretical Foundation:
 Architecture Compliance:
     - Implements input modeling layer per Stage 6 foundational design rules
     - Follows stride-based bijection preparation per Section 3.1.3
-    - Maintains fail-fast philosophy with comprehensive error handling
+    - Maintains fail-fast philosophy with complete error handling
     - Supports dynamic parametric system integration per EAV model
 
 Dependencies: pandas, numpy, scipy, networkx, pyarrow, logging, pathlib, json
-Authors: Team LUMEN (SIH 2025)
+Author: Student Team
 Version: 1.0.0 (Production)
 """
 
@@ -36,9 +36,8 @@ from typing import Dict, List, Tuple, Optional, Union, Any
 from dataclasses import dataclass, field
 from abc import ABC, abstractmethod
 
-# Configure module-level structured logging for enterprise deployment
+# Configure module-level structured logging for enterprise usage
 logger = logging.getLogger(__name__)
-
 
 @dataclass
 class EntityCollection:
@@ -80,7 +79,6 @@ class EntityCollection:
             'memory_usage_bytes': self.entities.memory_usage(deep=True).sum()
         })
 
-
 @dataclass  
 class RelationshipGraph:
     """
@@ -120,7 +118,6 @@ class RelationshipGraph:
             'is_connected': nx.is_connected(self.graph)
         })
 
-
 @dataclass
 class IndexStructure:
     """
@@ -142,14 +139,13 @@ class IndexStructure:
     bitmap_indices: Dict[str, Dict[str, np.ndarray]] = field(default_factory=dict)
     metadata: Dict[str, Any] = field(default_factory=dict)
 
-
 class StageDataLoader:
     """
-    Enterprise-grade data loader for Stage 3 compilation artifacts.
+    complete data loader for Stage 3 compilation artifacts.
 
     Implements rigorous mathematical foundations from Stage 3 Data Compilation Framework,
     providing lossless information preservation (Theorem 5.1) and optimal complexity bounds.
-    Designed for production deployment with comprehensive error handling and logging.
+    Designed for production usage with complete error handling and logging.
 
     Architecture:
         - Multi-layer data structure ingestion per Definition 3.1  
@@ -268,7 +264,7 @@ class StageDataLoader:
                 # Apply data quality validation and integrity constraints  
                 validated_entities = self._apply_integrity_constraints(row_group, entity_type)
 
-                # Create EntityCollection with comprehensive metadata
+                # Create EntityCollection with complete metadata
                 entity_collection = EntityCollection(
                     entities=validated_entities,
                     entity_type=entity_type,
@@ -506,7 +502,7 @@ class StageDataLoader:
             # Convert to sparse adjacency matrix for optimization algorithms
             adjacency_matrix = nx.adjacency_matrix(graph, dtype=np.float32)
 
-            # Create RelationshipGraph object with comprehensive metadata
+            # Create RelationshipGraph object with complete metadata
             self.relationship_graph = RelationshipGraph(
                 graph=graph,
                 relationship_matrix=adjacency_matrix,
@@ -650,7 +646,7 @@ class StageDataLoader:
 
     def get_loading_summary(self) -> Dict[str, Any]:
         """
-        Generate comprehensive summary of loaded data structures.
+        Generate complete summary of loaded data structures.
 
         Returns:
             Dictionary containing statistics, metadata, and quality metrics for all loaded components
@@ -714,7 +710,6 @@ class StageDataLoader:
 
         return summary
 
-
 def load_stage_data(input_path: Union[str, Path], 
                    execution_id: str,
                    output_path: Optional[Union[str, Path]] = None) -> Tuple[Dict[str, EntityCollection], 
@@ -749,7 +744,7 @@ def load_stage_data(input_path: Union[str, Path],
     loader = StageDataLoader(input_path=input_path, execution_id=execution_id)
 
     try:
-        # Load all data structures with comprehensive error handling
+        # Load all data structures with complete error handling
         entity_collections = loader.load_entity_collections()
         relationship_graph = loader.load_relationship_graph()  
         index_structure = loader.load_index_structure()
@@ -774,7 +769,6 @@ def load_stage_data(input_path: Union[str, Path],
     except Exception as e:
         logger.error(f"Critical failure in stage data loading: {str(e)}")
         raise
-
 
 if __name__ == "__main__":
     # Example usage and basic validation

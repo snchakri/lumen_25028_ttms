@@ -1,6 +1,5 @@
-<img src="https://r2cdn.perplexity.ai/pplx-full-logo-primary-dark%402x.png" style="height:64px;margin-right:32px"/>
 
-# Stage 6.3 DEAP Solver Family – Comprehensive Onboarding \& Technical Documentation
+# Stage 6.3 DEAP Solver Family – complete Onboarding \& Technical Documentation
 
 Main takeaway: This document fully explains the Stage 6.3 DEAP Solver Family design and implementation plan—covering every file, its purpose, interactions, theoretical foundations, data flow, configuration, error handling, memory discipline, and how it integrates into the broader Stage 6 pipeline and the system. It is written to be deployable, verifiable, and audit-ready, with zero mock components and strict adherence to mathematical and architectural requirements.
 
@@ -23,7 +22,7 @@ Contents
 
 1) Scope, goals, and principles
 
-- Scope: Build a rigorous, production-grade DEAP evolutionary solver family for Stage 6, supporting GA, GP, ES, DE, PSO, and NSGA-II on top of the Stage 3 compiled data, with strict memory ceilings (<512 MB per layer), single-threaded execution, fail-fast behavior, and zero-loss transformations.
+- Scope: Build a rigorous, complete DEAP evolutionary solver family for Stage 6, supporting GA, GP, ES, DE, PSO, and NSGA-II on top of the Stage 3 compiled data, with strict memory ceilings (<512 MB per layer), single-threaded execution, fail-fast behavior, and zero-loss transformations.
 - Goals:
     - Mathematical integrity and strict compliance with Stage 6.3 foundational frameworks[fa0e6b57].
     - Simplicity: Course-centric representation; no streaming or complex I/O staging for the 1–1.5k student scale.
@@ -176,7 +175,7 @@ processing/evaluator.py
     - f3: Preference Satisfaction — course/faculty/student preferences.
     - f4: Workload Balance — fairness across faculty and rooms measured via variance/Gini.
     - f5: Schedule Compactness — minimize idle gaps; course-day clustering.
-- Deterministic, pure functions; robust numeric guards (no NaN/Inf).
+- Deterministic, pure functions; reliable numeric guards (no NaN/Inf).
 
 processing/engine.py
 
@@ -324,5 +323,5 @@ deap_family/config.py
     - A: Enable deep logging in processing/logging.py, turn on per-gene validation traces, and inspect operator application points.
 
 Closing
-This documentation provides everything needed to onboard engineers and judges onto the Stage 6.3 DEAP Solver Family: clear structure, deep theoretical linkage, strict contracts, memory discipline, and verifiable, production-grade design. It is intentionally rigorous, auditable, and consistent with all Stage frameworks, ensuring the system is deployable on spot with confidence.
+This documentation provides everything needed to onboard engineers and judges onto the Stage 6.3 DEAP Solver Family: clear structure, deep theoretical linkage, strict contracts, memory discipline, and verifiable, complete design. It is intentionally rigorous, auditable, and consistent with all Stage frameworks, ensuring the system is deployable on spot with confidence.
 

@@ -2,7 +2,7 @@
 Schema Models Module - Stage 1 Input Validation System
 Higher Education Institutions Timetabling Data Model
 
-This module implements comprehensive Pydantic-based data models for all 23 tables
+This module implements complete Pydantic-based data models for all 23 tables
 in the HEI timetabling schema. It provides rigorous type validation, constraint
 checking, and educational domain compliance based on the theoretical framework.
 
@@ -172,7 +172,7 @@ class BaseSchemaValidator(ABC, BaseModel):
     - Educational domain constraint checking
     - Referential integrity validation hooks
     - Performance-optimized validation with caching
-    - Comprehensive error reporting with diagnostics
+    - complete error reporting with diagnostics
     - Production-ready logging and monitoring
     
     Mathematical Properties:
@@ -229,7 +229,7 @@ class BaseSchemaValidator(ABC, BaseModel):
         """
         Validate referential integrity constraints using graph analysis.
         
-        This method performs comprehensive foreign key validation using NetworkX
+        This method performs complete foreign key validation using NetworkX
         graph analysis to detect orphaned records, circular dependencies, and
         constraint violations with O(n log n) complexity.
         
@@ -284,7 +284,7 @@ class BaseSchemaValidator(ABC, BaseModel):
     
     def get_validation_summary(self) -> Dict[str, Any]:
         """
-        Generate comprehensive validation summary for monitoring.
+        Generate complete validation summary for monitoring.
         
         Returns:
             Dict[str, Any]: Validation metrics and diagnostics
@@ -981,7 +981,7 @@ def validate_csv_with_schema(df: pd.DataFrame, filename: str, reference_data: Op
     validation_errors = []
     reference_data = reference_data or {}
     
-    # Process each row with comprehensive validation
+    # Process each row with complete validation
     for index, row in df.iterrows():
         try:
             # Create validator instance with row data

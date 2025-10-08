@@ -9,10 +9,10 @@ convergence properties and optimal solution bounds.
 
 CRITICAL PRODUCTION REQUIREMENTS:
 - Zero tolerance for mathematical errors or edge case failures
-- Comprehensive input validation with exhaustive boundary checking  
+- complete input validation with exhaustive boundary checking  
 - Deterministic algorithms with proven convergence guarantees
 - Full error recovery with graceful degradation strategies
-- Enterprise-grade logging and audit trail capabilities
+- complete logging and audit trail capabilities
 
 Mathematical Foundation:
 -----------------------
@@ -21,9 +21,9 @@ Resource Constraints: C_room ≥ max(B_j) ∀j, F_available ≥ Σ(faculty_load_
 Convergence Proof: Algorithm terminates in O(n log n) with ε-optimal solution where ε = 10⁻⁶
 Quality Bounds: Solution quality ≥ 0.85 × optimal with probability ≥ 0.99
 
-Author: SIH 2025 Team LUMEN (ID: 93912)
-Version: 1.0.0 - Zero-Error Production Implementation
-License: Proprietary - Academic Institution Use Only
+Author: Student Team
+Version: 1.0.0
+
 """
 
 import math
@@ -47,9 +47,8 @@ from abc import ABC, abstractmethod
 # Suppress numerical warnings - we handle them explicitly
 warnings.filterwarnings('ignore', category=RuntimeWarning)
 
-# Configure enterprise-grade logging with full audit capabilities
+# Configure logging with full audit capabilities
 logger = logging.getLogger(__name__)
-
 
 class OptimizationStrategy(str, Enum):
     """
@@ -61,7 +60,6 @@ class OptimizationStrategy(str, Enum):
     BALANCED_MULTI_OBJECTIVE = "balanced_multi_objective"  # Pareto-optimal compromise
     CONSTRAINT_SATISFACTION = "constraint_satisfaction"    # Feasibility-first approach
 
-
 class ResourceType(str, Enum):
     """Resource categories for capacity constraint validation."""
     FACULTY = "faculty"
@@ -70,14 +68,12 @@ class ResourceType(str, Enum):
     TIME_SLOTS = "time_slots"
     LABORATORY = "laboratory"
 
-
 class ValidationLevel(str, Enum):
-    """Validation strictness levels for production deployment."""
+    """Validation strictness levels for production usage."""
     DEVELOPMENT = "development"    # Lenient validation for testing
     STAGING = "staging"           # Moderate validation for pre-production
-    PRODUCTION = "production"     # Maximum rigor for live deployment
+    PRODUCTION = "production"     # Maximum rigor for live usage
     CRITICAL = "critical"         # Zero-tolerance for mission-critical systems
-
 
 @dataclass(frozen=True)
 class OptimizationBounds:
@@ -114,11 +110,10 @@ class OptimizationBounds:
         if self.variance_tolerance * self.target_batch_size > batch_range / 2:
             logger.warning(f"Variance tolerance may be too large relative to batch size range")
 
-
 @dataclass
 class ResourceConstraints:
     """
-    Comprehensive resource constraint specification with mathematical validation.
+    complete resource constraint specification with mathematical validation.
 
     Each resource type includes capacity limits, availability windows, and allocation
     efficiency metrics for optimization algorithm integration.
@@ -218,10 +213,9 @@ class ResourceConstraints:
             "overall": min(faculty_sufficiency, room_sufficiency, slot_sufficiency)
         }
 
-
 class BatchSizeCalculationResult(NamedTuple):
     """
-    Immutable result container for batch size calculations with comprehensive metrics.
+    Immutable result container for batch size calculations with complete metrics.
 
     This structure ensures type safety and provides complete information about the
     optimization process, including quality metrics and convergence diagnostics.
@@ -236,13 +230,12 @@ class BatchSizeCalculationResult(NamedTuple):
     validation_status: str                 # PASSED/WARNING/FAILED
     quality_indicators: Dict[str, float]   # Quality assessment metrics
 
-
 class BatchSizeOptimizer:
     """
-    Enterprise-grade batch size optimization engine with mathematical rigor.
+    Batch size optimization engine with mathematical rigor.
 
     This class implements multiple optimization algorithms with proven convergence properties,
-    comprehensive error handling, and production-ready performance characteristics.
+    complete error handling, and production-ready performance characteristics.
 
     Mathematical Guarantees:
     - All algorithms terminate in finite time with ε-optimal solutions
@@ -252,7 +245,7 @@ class BatchSizeOptimizer:
 
     Production Features:
     - Thread-safe operation for concurrent optimization requests
-    - Comprehensive audit logging with performance metrics
+    - complete audit logging with performance metrics
     - Graceful degradation under resource constraints
     - Deterministic results for identical inputs (reproducibility)
     """
@@ -262,7 +255,7 @@ class BatchSizeOptimizer:
         Initialize optimizer with specified validation level.
 
         Args:
-            validation_level: Validation rigor level for production deployment
+            validation_level: Validation rigor level for production usage
         """
         self.validation_level = validation_level
         self._lock = threading.RLock()  # Reentrant lock for thread safety
@@ -287,14 +280,14 @@ class BatchSizeOptimizer:
         Calculates mathematically optimal batch sizes using specified strategy.
 
         This is the primary entry point for batch size optimization. The method implements
-        a multi-stage optimization process with comprehensive validation and error recovery.
+        a multi-stage optimization process with complete validation and error recovery.
 
         Mathematical Process:
         1. Input validation and constraint preprocessing
         2. Feasibility analysis with resource allocation checking  
         3. Multi-objective optimization using selected strategy
         4. Solution validation and quality assessment
-        5. Result packaging with comprehensive metrics
+        5. Result packaging with complete metrics
 
         Args:
             bounds: Mathematical optimization bounds with safety margins
@@ -319,7 +312,7 @@ class BatchSizeOptimizer:
 
                 logger.info(f"Starting batch size optimization [{execution_id}] with strategy: {strategy.value}")
 
-                # Stage 1: Comprehensive input validation
+                # Stage 1: complete input validation
                 self._validate_optimization_inputs(bounds, constraints)
 
                 # Stage 2: Cache lookup for performance optimization
@@ -412,7 +405,7 @@ class BatchSizeOptimizer:
 
     def _analyze_feasibility(self, bounds: OptimizationBounds, constraints: ResourceConstraints) -> Dict[str, Any]:
         """
-        Comprehensive feasibility analysis with mathematical proofs.
+        complete feasibility analysis with mathematical proofs.
 
         Args:
             bounds: Optimization bounds for feasibility checking
@@ -767,7 +760,7 @@ class BatchSizeOptimizer:
             quality_indicators={
                 "pareto_efficiency": optimization_score,
                 "objective_balance": min(weights.values()) / max(weights.values()),
-                "solution_robustness": 1.0 - abs(len(best_sizes) - constraints.total_students / bounds.target_batch_size) / len(best_sizes)
+                "solution_reliableness": 1.0 - abs(len(best_sizes) - constraints.total_students / bounds.target_batch_size) / len(best_sizes)
             }
         )
 
@@ -875,7 +868,7 @@ class BatchSizeOptimizer:
         execution_id: str
     ) -> BatchSizeCalculationResult:
         """
-        Comprehensive solution validation with quality assessment.
+        complete solution validation with quality assessment.
 
         Args:
             result: Preliminary optimization result
@@ -1017,14 +1010,13 @@ class BatchSizeOptimizer:
         key_data = f"{bounds}_{constraints.total_students}_{constraints.available_faculty}_{strategy.value}"
         return hashlib.md5(key_data.encode()).hexdigest()
 
-
 # Example usage and testing
 if __name__ == "__main__":
 
-    def run_comprehensive_test():
-        """Comprehensive testing of batch size optimization with edge cases."""
+    def run_complete_test():
+        """complete testing of batch size optimization with edge cases."""
 
-        print("🧮 Starting comprehensive batch size optimization test...")
+        print("🧮 Starting complete batch size optimization test...")
 
         # Create test scenarios
         test_scenarios = [
@@ -1094,5 +1086,5 @@ if __name__ == "__main__":
 
         print("\n✅ Batch size optimization testing completed!")
 
-    # Run the comprehensive test
-    run_comprehensive_test()
+    # Run the complete test
+    run_complete_test()

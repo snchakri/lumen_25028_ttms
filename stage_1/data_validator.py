@@ -2,7 +2,7 @@
 Data Validator Module - Stage 1 Input Validation System
 Higher Education Institutions Timetabling Data Model
 
-This module implements comprehensive CSV data validation with schema conformance,
+This module implements complete CSV data validation with schema conformance,
 type checking, and educational domain compliance. It orchestrates the complete
 data validation pipeline using Pydantic models and performance-optimized algorithms.
 
@@ -19,10 +19,10 @@ Mathematical Guarantees:
 - Referential Integrity: Graph-theoretic foreign key analysis
 
 Architecture:
-- Production-grade error handling with detailed diagnostics
+- complete error handling with detailed diagnostics
 - Performance-optimized batch validation with pandas integration
 - Memory-efficient processing for large datasets
-- Comprehensive logging with validation metrics
+- complete logging with validation metrics
 """
 
 import os
@@ -53,7 +53,7 @@ logger = logging.getLogger(__name__)
 @dataclass
 class ValidationMetrics:
     """
-    Comprehensive validation performance and accuracy metrics.
+    complete validation performance and accuracy metrics.
     
     This class tracks detailed statistics about the validation process
     for monitoring, optimization, and quality assurance purposes.
@@ -84,7 +84,7 @@ class ValidationMetrics:
 @dataclass
 class DataValidationResult:
     """
-    Comprehensive data validation result with detailed diagnostics.
+    complete data validation result with detailed diagnostics.
     
     This class aggregates all validation outcomes across files, providing
     structured error reporting, performance metrics, and remediation guidance.
@@ -114,14 +114,14 @@ class DataValidationResult:
 
 class DataValidator:
     """
-    Production-grade data validator with comprehensive validation capabilities.
+    complete data validator with complete validation capabilities.
     
     This class orchestrates the complete data validation pipeline, integrating
     file loading, schema validation, referential integrity checking, and
     EAV validation with performance optimization and detailed error reporting.
     
     Features:
-    - Comprehensive CSV data validation with schema conformance
+    - complete CSV data validation with schema conformance
     - Performance-optimized batch processing with pandas integration
     - Educational domain constraint validation with UGC/NEP compliance
     - Cross-table referential integrity checking with NetworkX graphs
@@ -168,11 +168,11 @@ class DataValidator:
 
     def validate_directory(self, directory_path: Union[str, Path], **kwargs) -> DataValidationResult:
         """
-        Execute comprehensive validation pipeline for complete directory.
+        Execute complete validation pipeline for complete directory.
         
         This method orchestrates the complete validation workflow including
         file discovery, integrity checking, schema validation, referential
-        analysis, and EAV validation with comprehensive error reporting.
+        analysis, and EAV validation with complete error reporting.
         
         Validation Pipeline:
         1. File Discovery & Integrity: Use FileLoader to discover and validate files
@@ -180,7 +180,7 @@ class DataValidator:
         3. Referential Integrity: Build NetworkX graphs for FK validation
         4. EAV Validation: Validate dynamic parameters with constraint checking
         5. Cross-File Analysis: Validate inter-table dependencies and constraints
-        6. Global Assessment: Aggregate results and generate comprehensive report
+        6. Global Assessment: Aggregate results and generate complete report
         
         Args:
             directory_path: Path to directory containing CSV files
@@ -191,7 +191,7 @@ class DataValidator:
                 - tenant_id: Multi-tenant isolation identifier
                 
         Returns:
-            DataValidationResult: Comprehensive validation results with diagnostics
+            DataValidationResult: complete validation results with diagnostics
             
         Raises:
             ValidationError: If critical validation pipeline errors occur
@@ -199,7 +199,7 @@ class DataValidator:
         self.validation_start_time = time.perf_counter()
         directory_path = Path(directory_path)
         
-        # Initialize result object with comprehensive tracking
+        # Initialize result object with complete tracking
         result = DataValidationResult()
         result.metrics = ValidationMetrics()
         
@@ -210,7 +210,7 @@ class DataValidator:
         tenant_id = kwargs.get('tenant_id', None)
         
         try:
-            logger.info(f"Starting comprehensive data validation for directory: {directory_path}")
+            logger.info(f"Starting complete data validation for directory: {directory_path}")
             
             # Stage 1: File Discovery and Integrity Validation
             stage_start = time.perf_counter()
@@ -275,8 +275,8 @@ class DataValidator:
             # Stage 6: Final Validation Assessment
             result.is_valid = self._assess_overall_validation_status(result, error_limit)
             
-            # Generate comprehensive validation metrics
-            result.metrics = self._calculate_comprehensive_metrics(result)
+            # Generate complete validation metrics
+            result.metrics = self._calculate_complete_metrics(result)
             
             # Log validation summary
             if result.is_valid:
@@ -359,7 +359,7 @@ class DataValidator:
             # Performance-optimized processing with larger batches
             batch_results = self._process_files_concurrent(valid_files, error_limit * 2)
         else:
-            # Standard processing with comprehensive validation
+            # Standard processing with complete validation
             batch_results = self._process_files_sequential(valid_files, error_limit)
         
         # Aggregate results from batch processing
@@ -385,7 +385,7 @@ class DataValidator:
         Process multiple files concurrently for performance optimization.
         
         Uses ThreadPoolExecutor to validate multiple CSV files simultaneously
-        while maintaining thread safety and comprehensive error tracking.
+        while maintaining thread safety and complete error tracking.
         
         Args:
             file_results: Valid file results for processing
@@ -427,7 +427,7 @@ class DataValidator:
     def _process_files_sequential(self, file_results: Dict[str, FileValidationResult], 
                                  error_limit: int) -> Dict[str, Dict[str, Any]]:
         """
-        Process files sequentially with comprehensive validation.
+        Process files sequentially with complete validation.
         
         Processes each CSV file individually with complete validation
         coverage and detailed error reporting for maximum accuracy.
@@ -463,7 +463,7 @@ class DataValidator:
     def _validate_single_file_schema(self, filename: str, file_result: FileValidationResult, 
                                    error_limit: int) -> Dict[str, Any]:
         """
-        Validate schema for a single CSV file with comprehensive checking.
+        Validate schema for a single CSV file with complete checking.
         
         This method implements complete schema validation for one CSV file
         including type checking, constraint validation, and educational
@@ -653,7 +653,7 @@ class DataValidator:
     def _validate_batch_records(self, batch_df: pd.DataFrame, filename: str, 
                                validator_class: type, batch_start: int) -> List[ValidationError]:
         """
-        Validate batch of records using Pydantic models with comprehensive checking.
+        Validate batch of records using Pydantic models with complete checking.
         
         This method processes a batch of CSV records with complete validation
         including type checking, constraint validation, and educational domain compliance.
@@ -774,7 +774,7 @@ class DataValidator:
         """
         Validate referential integrity using NetworkX graph analysis.
         
-        This method builds a comprehensive relationship graph from all
+        This method builds a complete relationship graph from all
         valid CSV data and performs foreign key validation with cycle
         detection and orphan record identification.
         
@@ -798,7 +798,7 @@ class DataValidator:
                 except Exception as e:
                     logger.warning(f"Failed to load {filename} for integrity checking: {str(e)}")
         
-        # Use ReferentialIntegrityChecker for comprehensive analysis
+        # Use ReferentialIntegrityChecker for complete analysis
         violations = self.integrity_checker.validate_referential_integrity(valid_data)
         
         logger.info(f"Referential integrity validation completed: {len(violations)} violations found")
@@ -1041,7 +1041,7 @@ class DataValidator:
 
     def _assess_overall_validation_status(self, result: DataValidationResult, error_limit: int) -> bool:
         """
-        Assess overall validation status based on comprehensive criteria.
+        Assess overall validation status based on complete criteria.
         
         Args:
             result: Data validation result to assess
@@ -1070,9 +1070,9 @@ class DataValidator:
         
         return not has_critical_errors and within_error_limit and student_data_ok
 
-    def _calculate_comprehensive_metrics(self, result: DataValidationResult) -> ValidationMetrics:
+    def _calculate_complete_metrics(self, result: DataValidationResult) -> ValidationMetrics:
         """
-        Calculate comprehensive validation performance and accuracy metrics.
+        Calculate complete validation performance and accuracy metrics.
         
         Args:
             result: Data validation result
@@ -1121,7 +1121,7 @@ class DataValidator:
 
     def _finalize_validation_result(self, result: DataValidationResult) -> DataValidationResult:
         """
-        Finalize validation result with comprehensive reporting preparation.
+        Finalize validation result with complete reporting preparation.
         
         Args:
             result: Data validation result to finalize

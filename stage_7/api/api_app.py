@@ -2,19 +2,19 @@
 """
 Stage 7 FastAPI Application - Main API Implementation for Schedule Validation System
 
-This module implements the comprehensive FastAPI application for the Stage 7 Output
+This module implements the complete FastAPI application for the Stage 7 Output
 Validation system, providing extensive REST API endpoints for timetable validation,
 human-readable format generation, and system configuration.
 
 CRITICAL DESIGN PHILOSOPHY: EXHAUSTIVE CONFIGURATION OPTIONS
 This application provides an extensive array of endpoints and configuration options
 to enable the development team to customize every aspect of the validation and 
-formatting process according to institutional requirements and deployment scenarios.
+formatting process according to institutional requirements and usage scenarios.
 
 Mathematical Foundation:
 - Based on Stage 7 Complete Framework (Algorithms 15.1, 3.2, 4.3)
 - Implements 12-parameter threshold validation per theoretical requirements
-- Supports fail-fast validation with comprehensive error analysis
+- Supports fail-fast validation with complete error analysis
 - Provides multi-format output generation with institutional compliance
 
 Theoretical Compliance:
@@ -37,18 +37,16 @@ Performance Requirements:
 - Request Size: Support up to 100MB input files
 
 Quality Assurance:
-- Comprehensive request/response validation using Pydantic models
+- complete request/response validation using Pydantic models
 - Detailed error handling with structured error responses
 - Complete audit logging for all operations and configurations
 - Performance monitoring with metrics collection
 
-IDE Integration:
-This module is optimized for Cursor IDE and JetBrains IDEs with comprehensive
 type hints, detailed docstrings, and intelligent code completion support.
 
-Authors: Perplexity Labs AI - SIH 2025 Implementation
+Author: Student Team
 Version: Stage 7 API - Phase 4 Implementation
-License: SIH 2025 Project - Educational Use Only
+
 """
 
 from typing import Dict, Any, List, Optional, Union, Tuple, AsyncGenerator
@@ -137,27 +135,26 @@ logger.setLevel(logging.INFO)
 # Security dependency
 security = HTTPBearer(auto_error=False)
 
-
 # Configuration classes
 @dataclass
 class Stage7APIConfig:
     """
-    Comprehensive configuration class for Stage 7 API application
+    complete configuration class for Stage 7 API application
     
     Encapsulates all configuration parameters for the FastAPI application
     including metadata, security, performance, and integration settings.
     """
     # Application metadata
     title: str = "Stage 7 Timetable Validation & Formatting API"
-    description: str = "Comprehensive REST API for educational timetable validation and human-readable format generation"
+    description: str = "complete REST API for educational timetable validation and human-readable format generation"
     version: str = "7.0.0"
     contact: Dict[str, str] = field(default_factory=lambda: {
-        "name": "SIH 2025 Team",
-        "email": "team@sih2025.edu",
+        "name": "Team LUMEN",
+        "email": "",
         "url": "https://sih2025.gov.in"
     })
     license_info: Dict[str, str] = field(default_factory=lambda: {
-        "name": "SIH 2025 Educational License",
+        "name": "Educational License",
         "url": "https://sih2025.gov.in/license"
     })
     
@@ -187,7 +184,6 @@ class Stage7APIConfig:
     enable_audit_logging: bool = True
     metrics_retention_hours: int = 168  # 7 days
 
-
 @dataclass 
 class APISecurityConfig:
     """Security configuration for API authentication and authorization"""
@@ -195,7 +191,6 @@ class APISecurityConfig:
     api_keys: List[str] = field(default_factory=list)
     header_name: str = "X-API-Key"
     allow_anonymous: bool = True
-
 
 @dataclass
 class CORSConfig:
@@ -205,7 +200,6 @@ class CORSConfig:
     allow_methods: List[str] = field(default_factory=lambda: ["GET", "POST", "PUT", "DELETE", "OPTIONS"])
     allow_headers: List[str] = field(default_factory=lambda: ["*"])
 
-
 @dataclass
 class RateLimitConfig:
     """Rate limiting configuration for API request throttling"""
@@ -213,7 +207,6 @@ class RateLimitConfig:
     requests_per_minute: int = 60
     requests_per_hour: int = 1000
     burst_limit: int = 10
-
 
 # Global state management
 class APIState:
@@ -278,10 +271,8 @@ class APIState:
         if len(self.audit_log) > 1000:
             self.audit_log = self.audit_log[-1000:]
 
-
 # Initialize global state
 api_state = APIState()
-
 
 # Dependency functions
 async def get_api_key(credentials: HTTPAuthorizationCredentials = Depends(security)) -> Optional[str]:
@@ -297,11 +288,9 @@ async def get_api_key(credentials: HTTPAuthorizationCredentials = Depends(securi
     # For development/demo, authentication is typically disabled
     return None  # Authentication disabled for prototype
 
-
 async def get_current_operation_id() -> str:
     """Generate unique operation ID for request tracking"""
     return str(uuid.uuid4())
-
 
 def validate_file_upload(file: UploadFile) -> Dict[str, Any]:
     """
@@ -339,7 +328,6 @@ def validate_file_upload(file: UploadFile) -> Dict[str, Any]:
         "size": getattr(file, 'size', None)
     }
 
-
 # Exception handlers
 async def validation_exception_handler(request: Request, exc: ValidationError):
     """Handle Pydantic validation errors"""
@@ -352,7 +340,6 @@ async def validation_exception_handler(request: Request, exc: ValidationError):
             "request_id": str(uuid.uuid4())
         }
     )
-
 
 async def http_exception_handler(request: Request, exc: HTTPException):
     """Handle HTTP exceptions with detailed error information"""
@@ -369,7 +356,6 @@ async def http_exception_handler(request: Request, exc: HTTPException):
         }
     )
 
-
 async def general_exception_handler(request: Request, exc: Exception):
     """Handle general exceptions with error logging"""
     logger.error(f"Unhandled exception in {request.url.path}: {exc}", exc_info=True)
@@ -384,7 +370,6 @@ async def general_exception_handler(request: Request, exc: Exception):
             "request_id": str(uuid.uuid4())
         }
     )
-
 
 # API Application Factory
 def create_stage7_app(config: Stage7APIConfig = None) -> FastAPI:
@@ -422,7 +407,7 @@ def create_stage7_app(config: Stage7APIConfig = None) -> FastAPI:
     app.add_middleware(GZipMiddleware, minimum_size=1000)
     app.add_middleware(
         CORSMiddleware,
-        allow_origins=["*"],  # Configure based on deployment
+        allow_origins=["*"],  # Configure based on usage
         allow_credentials=True,
         allow_methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"],
         allow_headers=["*"]
@@ -454,8 +439,7 @@ def create_stage7_app(config: Stage7APIConfig = None) -> FastAPI:
             processing_time = time.time() - start_time
             api_state.record_request(str(request.url.path), request.method, processing_time, False)
             raise
-    
-    
+
     # === VALIDATION ENDPOINTS ===
     
     @app.post("/validate/complete", response_model=ValidationResponse, tags=["Validation"])
@@ -467,14 +451,14 @@ def create_stage7_app(config: Stage7APIConfig = None) -> FastAPI:
         """
         Complete timetable validation using Stage 7.1 12-parameter framework
         
-        Performs comprehensive validation of a generated schedule using all 12 threshold
+        Performs complete validation of a generated schedule using all 12 threshold
         parameters defined in the Stage 7 theoretical framework. Implements fail-fast
         validation with immediate rejection on any threshold violation.
         
         **Mathematical Foundation:**
         - Implements Algorithm 15.1 (Complete Output Validation)
         - Uses 12-parameter threshold validation per Stage 7 framework
-        - Applies fail-fast philosophy with comprehensive error analysis
+        - Applies fail-fast philosophy with complete error analysis
         
         **Validation Parameters:**
         1. Course Coverage Ratio (≥0.95)
@@ -579,8 +563,7 @@ def create_stage7_app(config: Stage7APIConfig = None) -> FastAPI:
                 status_code=500,
                 detail=f"System error during validation: {e}"
             )
-    
-    
+
     @app.post("/validate/batch", response_model=BatchValidationResponse, tags=["Validation"])
     async def validate_batch_schedules(
         request: BatchValidationRequest,
@@ -591,7 +574,7 @@ def create_stage7_app(config: Stage7APIConfig = None) -> FastAPI:
         """
         Batch validation of multiple schedules with parallel processing
         
-        Processes multiple timetable validation requests in parallel with comprehensive
+        Processes multiple timetable validation requests in parallel with complete
         result aggregation and performance monitoring.
         """
         start_time = time.time()
@@ -643,8 +626,7 @@ def create_stage7_app(config: Stage7APIConfig = None) -> FastAPI:
         except Exception as e:
             logger.error(f"Batch validation error: {e}")
             raise HTTPException(status_code=500, detail=str(e))
-    
-    
+
     # === FORMAT CONVERSION ENDPOINTS ===
     
     @app.post("/format/convert", response_model=FormatConversionResponse, tags=["Format Conversion"])
@@ -750,8 +732,7 @@ def create_stage7_app(config: Stage7APIConfig = None) -> FastAPI:
                 status_code=500,
                 detail=f"System error during format conversion: {e}"
             )
-    
-    
+
     # === CONFIGURATION ENDPOINTS ===
     
     @app.get("/config/thresholds", response_model=ThresholdConfigurationResponse, tags=["Configuration"])
@@ -825,7 +806,7 @@ def create_stage7_app(config: Stage7APIConfig = None) -> FastAPI:
                     "lower_bound": 0.90,
                     "upper_bound": 1.0,
                     "description": "Solution stability under perturbations ≥ 90%",
-                    "mathematical_foundation": "Theorem 12.1: Solution Robustness"
+                    "mathematical_foundation": "Theorem 12.1: Solution reliableness"
                 },
                 "computational_quality_score": {
                     "lower_bound": 0.70,
@@ -851,8 +832,7 @@ def create_stage7_app(config: Stage7APIConfig = None) -> FastAPI:
         except Exception as e:
             logger.error(f"Error retrieving threshold configuration: {e}")
             raise HTTPException(status_code=500, detail=str(e))
-    
-    
+
     @app.post("/config/thresholds", response_model=ThresholdConfigurationResponse, tags=["Configuration"])
     async def update_threshold_configuration(
         request: ThresholdConfigurationRequest,
@@ -896,8 +876,7 @@ def create_stage7_app(config: Stage7APIConfig = None) -> FastAPI:
         except Exception as e:
             logger.error(f"Error updating threshold configuration: {e}")
             raise HTTPException(status_code=500, detail=str(e))
-    
-    
+
     @app.get("/config/departments", response_model=DepartmentOrderingResponse, tags=["Configuration"])
     async def get_department_ordering(
         api_key: Optional[str] = Depends(get_api_key)
@@ -927,8 +906,7 @@ def create_stage7_app(config: Stage7APIConfig = None) -> FastAPI:
         except Exception as e:
             logger.error(f"Error retrieving department ordering: {e}")
             raise HTTPException(status_code=500, detail=str(e))
-    
-    
+
     @app.post("/config/departments", response_model=DepartmentOrderingResponse, tags=["Configuration"])
     async def update_department_ordering(
         request: DepartmentOrderingRequest,
@@ -970,14 +948,13 @@ def create_stage7_app(config: Stage7APIConfig = None) -> FastAPI:
         except Exception as e:
             logger.error(f"Error updating department ordering: {e}")
             raise HTTPException(status_code=500, detail=str(e))
-    
-    
+
     # === MONITORING ENDPOINTS ===
     
     @app.get("/monitor/health", response_model=HealthCheckResponse, tags=["Monitoring"])
     async def health_check():
         """
-        Comprehensive system health check with component status
+        complete system health check with component status
         
         Provides detailed health information including component availability,
         performance metrics, and system diagnostics.
@@ -1023,8 +1000,7 @@ def create_stage7_app(config: Stage7APIConfig = None) -> FastAPI:
                 metrics={},
                 error=str(e)
             )
-    
-    
+
     @app.get("/monitor/metrics", response_model=APIMetricsResponse, tags=["Monitoring"])
     async def get_api_metrics(
         hours: int = 24,
@@ -1033,7 +1009,7 @@ def create_stage7_app(config: Stage7APIConfig = None) -> FastAPI:
         """
         Get detailed API performance metrics and statistics
         
-        Provides comprehensive performance analytics including request patterns,
+        Provides complete performance analytics including request patterns,
         response times, error rates, and resource utilization.
         """
         try:
@@ -1109,8 +1085,7 @@ def create_stage7_app(config: Stage7APIConfig = None) -> FastAPI:
         except Exception as e:
             logger.error(f"Error retrieving API metrics: {e}")
             raise HTTPException(status_code=500, detail=str(e))
-    
-    
+
     @app.get("/monitor/audit", response_model=AuditTrailResponse, tags=["Monitoring"])
     async def get_audit_trail(
         request: AuditTrailRequest = Depends(),
@@ -1119,7 +1094,7 @@ def create_stage7_app(config: Stage7APIConfig = None) -> FastAPI:
         """
         Get audit trail for operations and configuration changes
         
-        Provides comprehensive audit logging for compliance and debugging
+        Provides complete audit logging for compliance and debugging
         with filtering and pagination support.
         """
         try:
@@ -1161,8 +1136,7 @@ def create_stage7_app(config: Stage7APIConfig = None) -> FastAPI:
         except Exception as e:
             logger.error(f"Error retrieving audit trail: {e}")
             raise HTTPException(status_code=500, detail=str(e))
-    
-    
+
     # === UTILITY ENDPOINTS ===
     
     @app.post("/util/validate-schema", response_model=SchemaValidationResponse, tags=["Utilities"])
@@ -1243,8 +1217,7 @@ def create_stage7_app(config: Stage7APIConfig = None) -> FastAPI:
         except Exception as e:
             logger.error(f"Schema validation error: {e}")
             raise HTTPException(status_code=500, detail=str(e))
-    
-    
+
     @app.post("/util/upload", response_model=FileUploadResponse, tags=["Utilities"])
     async def upload_file(
         file: UploadFile = File(...),
@@ -1299,14 +1272,13 @@ def create_stage7_app(config: Stage7APIConfig = None) -> FastAPI:
         except Exception as e:
             logger.error(f"File upload error: {e}")
             raise HTTPException(status_code=500, detail=str(e))
-    
-    
+
     @app.get("/util/diagnostics", response_model=SystemDiagnosticsResponse, tags=["Utilities"])
     async def get_system_diagnostics(
         api_key: Optional[str] = Depends(get_api_key)
     ):
         """
-        Get comprehensive system diagnostics and configuration information
+        Get complete system diagnostics and configuration information
         
         Provides detailed system information for debugging and monitoring
         including component status, configuration, and performance data.
@@ -1375,8 +1347,7 @@ def create_stage7_app(config: Stage7APIConfig = None) -> FastAPI:
                 uptime_seconds=time.time() - api_state.startup_time,
                 error=str(e)
             )
-    
-    
+
     # Add startup event handler
     @app.on_event("startup")
     async def startup_event():
@@ -1398,8 +1369,7 @@ def create_stage7_app(config: Stage7APIConfig = None) -> FastAPI:
         )
         
         logger.info("Stage 7 API startup completed successfully")
-    
-    
+
     @app.on_event("shutdown")
     async def shutdown_event():
         """Application shutdown event handler"""
@@ -1418,7 +1388,6 @@ def create_stage7_app(config: Stage7APIConfig = None) -> FastAPI:
         logger.info("Stage 7 API shutdown completed")
     
     return app
-
 
 # Main application instance (for development/testing)
 if __name__ == "__main__":

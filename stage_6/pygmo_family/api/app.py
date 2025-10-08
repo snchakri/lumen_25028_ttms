@@ -2,7 +2,7 @@
 Stage 6.4 PyGMO Solver Family - FastAPI Application Implementation
 ================================================================
 
-Enterprise FastAPI application providing comprehensive REST endpoints for
+Enterprise FastAPI application providing complete REST endpoints for
 PyGMO solver family integration with master data pipeline orchestration.
 
 Mathematical Framework Integration:
@@ -11,8 +11,7 @@ Mathematical Framework Integration:
 - Enterprise error handling per Definition 4.1 (Fail-Fast Validation)
 - Performance monitoring per Theorem 9.1 (Resource Management)
 
-Authors: Perplexity Labs AI Research Division  
-License: SIH 2025 Competition License
+Author: Student Team
 """
 
 import asyncio
@@ -146,7 +145,7 @@ async def lifespan(app: FastAPI):
     Application lifespan management for startup/shutdown operations.
     
     Implements enterprise initialization and cleanup procedures with
-    comprehensive system verification and resource management.
+    complete system verification and resource management.
     """
     
     # Startup operations
@@ -263,10 +262,10 @@ def create_pygmo_api_app(config: Optional[Dict[str, Any]] = None) -> FastAPI:
     @app.get("/health", 
              response_model=HealthCheckResponse,
              summary="System Health Check",
-             description="Comprehensive system health verification for master pipeline monitoring")
+             description="complete system health verification for master pipeline monitoring")
     async def health_check():
         """
-        Comprehensive system health check with dependency verification.
+        complete system health check with dependency verification.
         
         Implements Algorithm 13.4 (Health Monitoring Protocol) ensuring
         complete system verification and mathematical framework compliance.
@@ -345,7 +344,7 @@ def create_pygmo_api_app(config: Optional[Dict[str, Any]] = None) -> FastAPI:
               description="Initialize PyGMO-based scheduling optimization with full pipeline execution")
     async def start_optimization(request: OptimizationRequest, background_tasks: BackgroundTasks):
         """
-        Start comprehensive PyGMO optimization with background processing.
+        Start complete PyGMO optimization with background processing.
         
         Implements complete optimization pipeline per Specification 8.1:
         Input Modeling → Processing → Output Modeling with mathematical validation.

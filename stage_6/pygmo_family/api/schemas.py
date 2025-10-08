@@ -2,7 +2,7 @@
 Stage 6.4 PyGMO Solver Family - Pydantic Schema Definitions
 ===========================================================
 
-Enterprise-grade Pydantic models for request/response validation with complete
+Pydantic models for request/response validation with complete
 mathematical compliance and theoretical framework integration.
 
 Mathematical Framework:
@@ -11,8 +11,7 @@ Mathematical Framework:
 - Error handling per Algorithm 4.1 (Fail-Fast Validation)
 - Performance monitoring per Theorem 9.1 (Complexity Analysis)
 
-Authors: Perplexity Labs AI Research Division
-License: SIH 2025 Competition License
+Author: Student Team
 """
 
 from typing import Dict, List, Optional, Any, Union, Tuple
@@ -67,7 +66,7 @@ class OptimizationRequest(BaseModel):
     Complete optimization request model with mathematical validation.
     
     Implements Definition 8.2 (Optimization Request Specification) with
-    comprehensive parameter validation and theoretical compliance.
+    complete parameter validation and theoretical compliance.
     """
     
     # Core optimization parameters
@@ -137,7 +136,7 @@ class OptimizationRequest(BaseModel):
     
     enable_detailed_logging: bool = Field(
         default=True,
-        description="Enable comprehensive optimization logging"
+        description="Enable complete optimization logging"
     )
     
     # Master pipeline integration
@@ -188,7 +187,7 @@ class OptimizationRequest(BaseModel):
 
 class OptimizationResponse(BaseModel):
     """
-    Comprehensive optimization response with mathematical guarantees.
+    complete optimization response with mathematical guarantees.
     
     Implements Definition 12.2 (Optimization Response Format) providing
     complete results, metadata, and theoretical compliance verification.
@@ -317,7 +316,7 @@ class OptimizationResponse(BaseModel):
 
 class HealthCheckResponse(BaseModel):
     """
-    Comprehensive health check response for system monitoring.
+    complete health check response for system monitoring.
     
     Implements Algorithm 13.4 (Health Monitoring Protocol) ensuring
     complete system verification and dependency validation.

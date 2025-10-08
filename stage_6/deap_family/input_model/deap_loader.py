@@ -2,7 +2,7 @@
 """
 Stage 6.3 DEAP Solver Family - Input Modeling Layer: Data Loading Module
 
-This module implements the comprehensive data loading infrastructure for the DEAP solver family,
+This module implements the complete data loading infrastructure for the DEAP solver family,
 transforming Stage 3 compiled artifacts (L_raw, L_rel, L_idx) into memory-optimized structures
 suitable for evolutionary algorithm processing. Following the DEAP Foundational Framework's
 mathematical specifications and ensuring full theoretical compliance with bijective genotype
@@ -24,11 +24,11 @@ Memory Management Compliance:
 Integration Architecture:
 - Consumes Stage 3 outputs: L_raw (entity tables), L_rel (relationship graphs), L_idx (bijection data)
 - Produces InputModelContext for seamless handoff to Processing Layer
-- Implements enterprise-grade error handling with comprehensive audit logging
+- Implements complete error handling with complete audit logging
 - Supports all DEAP algorithms (GA, GP, ES, DE, PSO, NSGA-II) through unified representation
 
-Author: Perplexity Labs AI - Lumen Team (ID: 93912)
-Created: October 2025 - SIH 2025 Prototype Implementation
+Author: Student Team
+Created: October 2025 - Prototype Implementation
 Compliance: Stage 6.3 Foundational Design Implementation Rules & Instructions
 """
 
@@ -50,20 +50,18 @@ import structlog
 from ..config import DEAPFamilyConfig, PathConfig
 from ..main import MemoryMonitor
 
-
 class DataLoadingError(Exception):
     """
     Specialized exception for critical data loading failures requiring immediate pipeline abort.
     
     Per Stage 6 Foundational Design Rules: fail-fast approach with detailed error context
-    for traceability and debugging during SIH evaluation and deployment.
+    for traceability and debugging during SIH evaluation and usage.
     """
     def __init__(self, message: str, error_code: str, context: Optional[Dict[str, Any]] = None):
         super().__init__(message)
         self.error_code = error_code
         self.context = context or {}
         self.timestamp = time.time()
-
 
 class CourseEligibilityBuilder:
     """
@@ -89,7 +87,7 @@ class CourseEligibilityBuilder:
                                relationship_graph: nx.Graph,
                                memory_limit_mb: int = 150) -> Dict[str, List[Tuple[str, str, str, str]]]:
         """
-        Constructs comprehensive course eligibility mapping from Stage 3 compiled data.
+        Constructs complete course eligibility mapping from Stage 3 compiled data.
         
         Implements Algorithm 3.2 Data Normalization extended for evolutionary representation:
         1. Extract course entities from L_raw normalized tables
@@ -413,7 +411,7 @@ class CourseEligibilityBuilder:
         to avoid infeasible assignments in genotype space construction.
         """
         
-        # TODO: Implement comprehensive feasibility checks
+        # TODO: Implement complete feasibility checks
         # For now, basic validation to ensure entities exist
         
         courses_df = raw_data['courses']
@@ -476,7 +474,6 @@ class CourseEligibilityBuilder:
                          total_assignments=total_assignments,
                          avg_assignments=total_assignments / len(eligibility_mapping))
 
-
 class ConstraintRulesBuilder:
     """
     Constructs constraint rules mapping from Stage 3 compiled data and Dynamic Parametric System,
@@ -504,7 +501,7 @@ class ConstraintRulesBuilder:
                              dynamic_params: Optional[Dict[str, Any]] = None,
                              memory_limit_mb: int = 50) -> Dict[str, Dict[str, Any]]:
         """
-        Constructs comprehensive constraint rules mapping for multi-objective fitness evaluation.
+        Constructs complete constraint rules mapping for multi-objective fitness evaluation.
         
         Implements DEAP Framework Definition 2.4 constraint rule materialization:
         1. Extract base constraint relationships from L_rel graph structure
@@ -972,7 +969,6 @@ class ConstraintRulesBuilder:
                     {"course_id": course_id, "missing_sections": missing_sections}
                 )
 
-
 class BijectionDataBuilder:
     """
     Constructs bijection mapping data from Stage 3 L_idx layer for genotype-phenotype
@@ -1140,7 +1136,6 @@ class BijectionDataBuilder:
                     {"entity_type": entity_type, "forward_size": len(forward_mapping), "reverse_size": len(reverse_mapping)}
                 )
 
-
 class DEAPInputModelLoader:
     """
     Primary data loading interface for DEAP Solver Family input modeling layer.
@@ -1153,7 +1148,7 @@ class DEAPInputModelLoader:
     - Single-threaded processing with deterministic memory usage
     - Layer-by-layer data transformation with immediate validation
     - Course-centric representation optimized for evolutionary algorithms
-    - Enterprise-grade error handling with comprehensive audit logging
+    - complete error handling with complete audit logging
     
     Theoretical Foundations:
     - Implements DEAP Framework universal evolutionary framework
@@ -1189,7 +1184,7 @@ class DEAPInputModelLoader:
         """
         Load and transform Stage 3 artifacts into DEAP input model context.
         
-        Implements comprehensive data loading pipeline:
+        Implements complete data loading pipeline:
         1. Load Stage 3 L_raw, L_rel, L_idx artifacts from specified paths
         2. Build course eligibility mapping for genotype construction
         3. Construct constraint rules for multi-objective fitness evaluation
@@ -1472,7 +1467,6 @@ class DEAPInputModelLoader:
                         courses_validated=len(context.course_eligibility),
                         eligibility_constraint_consistency=True,
                         bijection_structure_valid=True)
-
 
 # Pydantic model for input context data structure
 from pydantic import BaseModel, Field

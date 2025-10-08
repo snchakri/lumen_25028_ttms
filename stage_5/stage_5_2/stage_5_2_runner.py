@@ -9,10 +9,10 @@ specifications. It orchestrates the complete two-stage optimization process:
 Stage I: Parameter normalization using L2 scaling
 Stage II: Linear programming-based weight learning for optimal solver selection
 
-The runner provides enterprise-grade execution with:
+The runner provides complete execution with:
 1. Input validation and data loading from Stage 5.1 and solver capabilities
 2. Complete normalization and optimization pipeline execution
-3. Selection decision generation with comprehensive audit trail
+3. Selection decision generation with complete audit trail
 4. CLI interface with extensive configuration options
 5. Performance monitoring and error handling with detailed context
 
@@ -58,7 +58,6 @@ _logger = get_logger("stage5_2.runner")
 MAX_EXECUTION_TIME_SECONDS = 300  # 5 minute maximum for Stage 5.2
 MAX_MEMORY_USAGE_MB = 256  # Memory limit for Stage 5.2 processing
 MIN_SOLVERS_FOR_OPTIMIZATION = 2  # Minimum solvers needed for meaningful selection
-
 
 def create_stage_5_2_execution_context(
     complexity_metrics_path: Path,
@@ -145,7 +144,6 @@ def create_stage_5_2_execution_context(
         
         return context
 
-
 def execute_stage_5_2_solver_selection(context: ExecutionContext) -> SelectionDecision:
     """
     Execute complete Stage 5.2 solver selection pipeline.
@@ -167,7 +165,7 @@ def execute_stage_5_2_solver_selection(context: ExecutionContext) -> SelectionDe
         
     Mathematical Properties Guaranteed:
     - Optimality per Theorem 6.1 (mathematically optimal selection given information)
-    - Robustness per Theorem 6.2 (stable under parameter perturbations)
+    - reliableness per Theorem 6.2 (stable under parameter perturbations)
     - Bias-free selection per Theorem 6.3 (automated weight learning eliminates bias)
     - Linear scalability per Theorem 5.3 (O(n) complexity with solver count)
     """
@@ -291,7 +289,7 @@ def execute_stage_5_2_solver_selection(context: ExecutionContext) -> SelectionDe
             return selection_decision
             
         except Exception as e:
-            # Comprehensive error context for debugging
+            # complete error context for debugging
             execution_time = time.perf_counter() - start_time
             
             if isinstance(e, (Stage5ValidationError, Stage5ComputationError, Stage5PerformanceError)):
@@ -308,7 +306,6 @@ def execute_stage_5_2_solver_selection(context: ExecutionContext) -> SelectionDe
                         "execution_time": execution_time
                     }
                 ) from e
-
 
 def extract_solver_capability_matrix(solver_capabilities: List[SolverCapability]) -> np.ndarray:
     """
@@ -330,7 +327,6 @@ def extract_solver_capability_matrix(solver_capabilities: List[SolverCapability]
     
     return capability_matrix
 
-
 def run_stage_5_2_complete(
     complexity_metrics_path: Path,
     solver_capabilities_path: Path,
@@ -341,7 +337,7 @@ def run_stage_5_2_complete(
     Complete Stage 5.2 execution pipeline: context → selection → output.
     
     This is the main programmatic interface for Stage 5.2, providing end-to-end
-    execution with comprehensive error handling and output generation.
+    execution with complete error handling and output generation.
     
     Args:
         complexity_metrics_path: Path to Stage 5.1 complexity_metrics.json
@@ -406,13 +402,12 @@ def run_stage_5_2_complete(
             _logger.error(f"Stage 5.2 execution failed: {str(e)}", extra=error_context)
             raise
 
-
 def main():
     """
     CLI entrypoint for Stage 5.2 solver selection.
     
     Provides command-line interface following standard Unix conventions
-    with comprehensive help and error reporting.
+    with complete help and error reporting.
     """
     parser = argparse.ArgumentParser(
         description="Stage 5.2: Solver Selection via L2 Normalization + LP Optimization",
@@ -440,7 +435,7 @@ Mathematical Framework:
   Implements two-stage optimization from Stage-5.2 theoretical foundations:
   Stage I: L2 parameter normalization ensuring ri,j ∈ [0,1]
   Stage II: LP-based weight learning maximizing separation margins
-  Guarantees: Optimality, robustness, bias-free selection
+  Guarantees: Optimality, reliableness, bias-free selection
         """
     )
     
@@ -566,7 +561,6 @@ Mathematical Framework:
         traceback.print_exc(file=sys.stderr)
         
         sys.exit(2)
-
 
 if __name__ == "__main__":
     main()

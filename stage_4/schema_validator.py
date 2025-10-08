@@ -3,7 +3,7 @@
 Stage 4 Feasibility Check - Layer 1: Schema Validator
 =====================================================
 
-Production-grade BCNF compliance validator for HEI timetabling data structures.
+complete BCNF compliance validator for HEI timetabling data structures.
 
 This module implements Layer 1 of the seven-layer feasibility framework:
 - Verifies Boyce-Codd Normal Form (BCNF) compliance for all compiled data structures
@@ -34,7 +34,7 @@ Integration Points:
 - Output: Schema compliance validation with immediate failure on violations
 - Error Reporting: Detailed BCNF violation analysis with mathematical proofs
 
-Author: Perplexity AI (SIH 2025 - Team Lumen)
+Author: Student Team
 Theoretical Framework: Stage 4 Seven-Layer Feasibility Validation
 HEI Data Model Compliance: Full schema validation per hei_timetabling_datamodel.sql
 """
@@ -56,9 +56,8 @@ from datetime import datetime, timezone
 from pydantic import BaseModel, Field, validator
 import structlog
 
-# Configure structured logging for production environment
+# Configure structured logging for environment
 logger = structlog.get_logger("stage_4.schema_validator")
-
 
 class SchemaViolationType(Enum):
     """
@@ -75,7 +74,6 @@ class SchemaViolationType(Enum):
     MISSING_REQUIRED_COLUMN = "missing_required_column"      # Schema completeness failures
     INVALID_UUID_FORMAT = "invalid_uuid_format"             # UUID primary key violations
     CARDINALITY_CONSTRAINT = "cardinality_constraint"       # Entity count violations
-
 
 @dataclass
 class FunctionalDependency:
@@ -101,7 +99,6 @@ class FunctionalDependency:
             raise ValueError("Functional dependency requires non-empty determinant and dependent sets")
         if set(self.determinant) & set(self.dependent):
             raise ValueError("Determinant and dependent attributes cannot overlap (trivial FD)")
-
 
 @dataclass
 class SchemaViolation:
@@ -137,7 +134,6 @@ class SchemaViolation:
             "remediation_suggestion": self.remediation_suggestion,
             "sample_violations": self.sample_violations
         }
-
 
 @dataclass
 class SchemaValidationResult:
@@ -176,10 +172,9 @@ class SchemaValidationResult:
         proofs = [v.mathematical_proof for v in critical_violations]
         return f"Schema Infeasibility Proof: {'; '.join(proofs)}"
 
-
 class BCNFSchemaValidator:
     """
-    Production-grade BCNF schema validator for HEI timetabling data.
+    complete BCNF schema validator for HEI timetabling data.
     
     Implements Layer 1 of Stage 4 feasibility checking with mathematical rigor.
     Validates compiled Stage 3 data structures against HEI data model specifications.
@@ -200,7 +195,7 @@ class BCNFSchemaValidator:
                  memory_limit_mb: int = 128,
                  max_processing_time_ms: int = 300000):
         """
-        Initialize BCNF schema validator with production-grade configuration.
+        Initialize BCNF schema validator with complete configuration.
         
         Args:
             enable_performance_monitoring: Enable detailed performance tracking
@@ -218,7 +213,7 @@ class BCNFSchemaValidator:
         self._start_time: Optional[float] = None
         self._peak_memory_mb: float = 0.0
         
-        logger.info("BCNFSchemaValidator initialized with production-grade configuration",
+        logger.info("BCNFSchemaValidator initialized with complete configuration",
                    memory_limit_mb=memory_limit_mb,
                    max_processing_time_ms=max_processing_time_ms)
     
@@ -341,7 +336,7 @@ class BCNFSchemaValidator:
            b. Check uniqueness: |keys| = |unique(keys)|
            c. Verify functional dependencies: ∀FD X → Y
         3. Generate mathematical proofs for any violations
-        4. Return comprehensive BCNF compliance analysis
+        4. Return complete BCNF compliance analysis
         """
         self._start_performance_monitoring()
         
@@ -357,7 +352,7 @@ class BCNFSchemaValidator:
             parquet_files = self._discover_parquet_files(l_raw_path)
             table_data = self._load_parquet_tables(parquet_files)
             
-            # Perform comprehensive schema validation
+            # Perform complete schema validation
             violations = []
             total_records = 0
             
@@ -460,7 +455,7 @@ class BCNFSchemaValidator:
         Optimize DataFrame memory usage using pandas category types and downcasting.
         
         Critical for maintaining <128MB memory limit with 2k student datasets.
-        Implements production-grade memory optimization techniques.
+        Implements complete memory optimization techniques.
         """
         optimized_df = df.copy()
         
@@ -742,7 +737,7 @@ class BCNFSchemaValidator:
                                   violations: List[SchemaViolation],
                                   total_records: int) -> SchemaValidationResult:
         """
-        Generate comprehensive schema validation result with mathematical analysis.
+        Generate complete schema validation result with mathematical analysis.
         
         Computes BCNF compliance scores, violation severity distribution,
         and performance metrics for Stage 4 integration requirements.
@@ -818,7 +813,6 @@ class BCNFSchemaValidator:
                          current_time_ms=current_time_ms,
                          limit_ms=self.max_processing_time_ms)
 
-
 class SchemaValidationError(Exception):
     """
     Exception raised when critical BCNF schema violations are detected.
@@ -848,7 +842,6 @@ class SchemaValidationError(Exception):
             "failure_layer": 1,
             "failure_reason": "BCNF schema compliance violations detected"
         }
-
 
 def validate_schema_compliance(l_raw_directory: Union[str, Path],
                              enable_performance_monitoring: bool = True) -> SchemaValidationResult:
@@ -885,7 +878,6 @@ def validate_schema_compliance(l_raw_directory: Union[str, Path],
         )
     
     return result
-
 
 if __name__ == "__main__":
     """

@@ -2,8 +2,8 @@
 """
 PuLP Solver Family - Stage 6 Input Model Package
 
-This package implements the enterprise-grade input modeling functionality for Stage 6.1
-PuLP solver family, providing comprehensive data ingestion, validation, and mathematical
+This package implements the complete input modeling functionality for Stage 6.1
+PuLP solver family, providing complete data ingestion, validation, and mathematical
 transformation with theoretical rigor and compliance. Complete input model layer
 implementing Stage 6 foundational framework with guaranteed correctness and performance.
 
@@ -11,26 +11,26 @@ Theoretical Foundation:
     Based on Stage 6.1 PuLP Framework (Section 1-2: Input Model Formalization):
     - Implements complete input model pipeline per Definition 1.1-1.4
     - Maintains mathematical consistency across all input model components
-    - Ensures comprehensive data transformation and validation
+    - Ensures complete data transformation and validation
     - Provides bijective mapping with stride-based indexing guarantees
     - Supports EAV parameter integration and dynamic constraint modeling
 
 Architecture Compliance:
     - Implements complete Input Model Layer per foundational design rules
     - Maintains optimal performance characteristics across all components
-    - Provides fail-safe error handling with comprehensive diagnostic capabilities
+    - Provides fail-safe error handling with complete diagnostic capabilities
     - Supports distributed data processing and centralized quality management
     - Ensures memory-efficient operations through optimized algorithms
 
 Package Structure:
-    loader.py - Stage 3 artifact ingestion with comprehensive data loading
+    loader.py - Stage 3 artifact ingestion with complete data loading
     validator.py - Multi-layer validation with domain compliance checking
     bijection.py - Stride-based bijective mapping with mathematical guarantees
-    metadata.py - Comprehensive metadata generation and schema validation
+    metadata.py - complete metadata generation and schema validation
     __init__.py - Package initialization and public API definition
 
 Dependencies: pandas, numpy, networkx, pydantic, pathlib, datetime, typing
-Authors: Team LUMEN (SIH 2025)
+Author: Student Team
 Version: 1.0.0 (Production)
 """
 
@@ -38,7 +38,7 @@ import logging
 from typing import Dict, List, Tuple, Optional, Any, Union
 from pathlib import Path
 
-# Import core input model components with comprehensive error handling
+# Import core input model components with complete error handling
 try:
     # Data loading components
     from .loader import (
@@ -127,14 +127,13 @@ INPUT_MODEL_CONFIG = {
     'max_constraint_count': 100000,
     'validation_strict': True,
     'bijection_verification': True,
-    'metadata_comprehensive': True,
+    'metadata_complete': True,
     'memory_monitoring': True
 }
 
-
 def get_package_info() -> Dict[str, Any]:
     """
-    Get comprehensive package information with import status.
+    Get complete package information with import status.
 
     Returns:
         Dictionary containing complete package information and status
@@ -151,7 +150,6 @@ def get_package_info() -> Dict[str, Any]:
         'configuration': PACKAGE_CONFIG,
         'input_model_config': INPUT_MODEL_CONFIG
     }
-
 
 def get_available_modules() -> List[str]:
     """
@@ -188,12 +186,11 @@ def get_available_modules() -> List[str]:
 
     return available_modules
 
-
 def verify_package_integrity() -> Dict[str, bool]:
     """
     Verify integrity of input model package components.
 
-    Performs comprehensive verification of package components ensuring
+    Performs complete verification of package components ensuring
     mathematical correctness and theoretical compliance per framework requirements.
 
     Returns:
@@ -290,7 +287,6 @@ def verify_package_integrity() -> Dict[str, bool]:
 
     return integrity_results
 
-
 class InputModelPipeline:
     """
     Complete input model pipeline for PuLP solver family Stage 6.1.
@@ -302,7 +298,7 @@ class InputModelPipeline:
     Mathematical Foundation:
         - Implements complete input model pipeline per Section 1-2 (Input Model Formalization)
         - Maintains O(n log n) pipeline complexity where n is number of entities
-        - Ensures data integrity through comprehensive validation and consistency checks
+        - Ensures data integrity through complete validation and consistency checks
         - Provides fault-tolerant processing with detailed error diagnostics
         - Supports distributed execution with centralized quality management
     """
@@ -340,7 +336,7 @@ class InputModelPipeline:
                                 l_idx_path: Union[str, Path],
                                 output_directory: Union[str, Path]) -> Dict[str, Any]:
         """
-        Execute complete input model pipeline with comprehensive result generation.
+        Execute complete input model pipeline with complete result generation.
 
         Performs end-to-end input model processing following Stage 6.1 theoretical
         framework ensuring mathematical correctness and optimal performance characteristics.
@@ -416,7 +412,7 @@ class InputModelPipeline:
 
             self.metadata_generator = InputModelMetadataGenerator()
 
-            self.input_metadata = self.metadata_generator.generate_comprehensive_metadata(
+            self.input_metadata = self.metadata_generator.generate_complete_metadata(
                 loaded_data=self.loaded_data,
                 validation_result=self.validation_result,
                 bijection_mapping=self.bijection_mapping,
@@ -507,7 +503,7 @@ class InputModelPipeline:
             return "Unknown"
 
     def get_pipeline_status(self) -> Dict[str, Any]:
-        """Get comprehensive pipeline status."""
+        """Get complete pipeline status."""
         return {
             'pipeline_results': self.pipeline_results,
             'components_initialized': {
@@ -524,13 +520,12 @@ class InputModelPipeline:
             }
         }
 
-
 # High-level convenience functions for package users
 def create_input_model_pipeline() -> InputModelPipeline:
     """
     Create input model pipeline instance for complete processing.
 
-    Provides simplified interface for pipeline creation with comprehensive
+    Provides simplified interface for pipeline creation with complete
     configuration and error handling for input model processing.
 
     Returns:
@@ -545,7 +540,6 @@ def create_input_model_pipeline() -> InputModelPipeline:
 
     return InputModelPipeline()
 
-
 def process_stage3_artifacts(l_raw_path: Union[str, Path],
                            l_rel_path: Union[str, Path], 
                            l_idx_path: Union[str, Path],
@@ -553,7 +547,7 @@ def process_stage3_artifacts(l_raw_path: Union[str, Path],
     """
     High-level function to process Stage 3 artifacts through complete pipeline.
 
-    Performs end-to-end input model processing with comprehensive result generation
+    Performs end-to-end input model processing with complete result generation
     following Stage 6.1 theoretical framework with mathematical guarantees.
 
     Args:
@@ -578,15 +572,14 @@ def process_stage3_artifacts(l_raw_path: Union[str, Path],
         output_directory=output_directory
     )
 
-
 def load_and_validate_input_data(l_raw_path: Union[str, Path],
                                 l_rel_path: Union[str, Path],
                                 l_idx_path: Union[str, Path]) -> Tuple[Any, ValidationResult]:
     """
-    Load and validate input data with comprehensive error handling.
+    Load and validate input data with complete error handling.
 
     Provides simplified interface for data loading and validation ensuring
-    comprehensive quality control and error reporting.
+    complete quality control and error reporting.
 
     Args:
         l_raw_path: Path to L_raw.parquet file from Stage 3
@@ -623,10 +616,9 @@ def load_and_validate_input_data(l_raw_path: Union[str, Path],
         logger.error(f"Failed to load and validate input data: {str(e)}")
         raise RuntimeError(f"Data loading and validation failed: {str(e)}") from e
 
-
 def create_bijection_mapping_from_data(loaded_data: Any) -> BijectiveMapping:
     """
-    Create bijection mapping from loaded data with comprehensive validation.
+    Create bijection mapping from loaded data with complete validation.
 
     Provides simplified interface for bijection mapping creation ensuring
     mathematical correctness and consistency verification.
@@ -658,13 +650,12 @@ def create_bijection_mapping_from_data(loaded_data: Any) -> BijectiveMapping:
         logger.error(f"Failed to create bijection mapping: {str(e)}")
         raise RuntimeError(f"Bijection mapping creation failed: {str(e)}") from e
 
-
 # Package initialization and verification
 def initialize_package() -> bool:
     """
     Initialize input model package with integrity verification.
 
-    Performs comprehensive package initialization and verification ensuring
+    Performs complete package initialization and verification ensuring
     all components are available and mathematically compliant per framework requirements.
 
     Returns:
@@ -687,7 +678,6 @@ def initialize_package() -> bool:
     except Exception as e:
         logger.error(f"Input model package initialization failed: {str(e)}")
         return False
-
 
 # Automatic package initialization on import
 _INITIALIZATION_SUCCESS = initialize_package()

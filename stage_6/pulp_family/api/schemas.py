@@ -2,8 +2,8 @@
 """
 PuLP Solver Family - Stage 6 API Layer: Pydantic Schemas & Data Models
 
-This module implements the enterprise-grade Pydantic schemas and data models for
-Stage 6.1 PuLP solver family API layer, providing comprehensive type validation
+This module implements the complete Pydantic schemas and data models for
+Stage 6.1 PuLP solver family API layer, providing complete type validation
 and serialization with mathematical rigor and theoretical compliance. Critical
 component implementing complete API data model per Stage 6 foundational framework.
 
@@ -11,19 +11,19 @@ Theoretical Foundation:
     Based on Stage 6.1 PuLP Framework API schema requirements:
     - Implements complete data model per API integration specifications
     - Maintains mathematical consistency across all schema definitions
-    - Ensures comprehensive input validation and type safety
+    - Ensures complete input validation and type safety
     - Provides serialization compatibility with JSON and other formats
     - Supports extensible schema evolution with backward compatibility
 
 Architecture Compliance:
     - Implements API Schema Layer per foundational design rules
-    - Maintains strict type validation with comprehensive error handling
+    - Maintains strict type validation with complete error handling
     - Provides modular schema organization with clear separation of concerns
     - Ensures optimal serialization performance with memory efficiency
-    - Supports production-ready validation with enterprise-grade reliability
+    - Supports production-ready validation with complete reliability
 
 Dependencies: pydantic, typing, datetime, enum, pathlib, json
-Authors: Team LUMEN (SIH 2025)
+Author: Student Team
 Version: 1.0.0 (Production)
 """
 
@@ -33,7 +33,7 @@ from pathlib import Path
 from typing import Dict, List, Tuple, Optional, Any, Union
 from enum import Enum
 
-# Pydantic imports with comprehensive error handling
+# Pydantic imports with complete error handling
 try:
     from pydantic import BaseModel, Field, validator, root_validator, ValidationError
     from pydantic.dataclasses import dataclass as pydantic_dataclass
@@ -52,13 +52,12 @@ except ImportError:
 import logging
 logger = logging.getLogger(__name__)
 
-
 class SolverBackendEnum(str, Enum):
     """
     Enumeration of supported PuLP solver backends.
 
     Mathematical Foundation: Defines complete solver backend coverage per
-    PuLP framework specifications ensuring comprehensive optimization support.
+    PuLP framework specifications ensuring complete optimization support.
     """
     CBC = "CBC"                         # COIN-OR CBC (default)
     GLPK = "GLPK"                      # GNU Linear Programming Kit
@@ -66,12 +65,11 @@ class SolverBackendEnum(str, Enum):
     CLP = "CLP"                        # COIN-OR CLP
     SYMPHONY = "SYMPHONY"              # COIN-OR SYMPHONY
 
-
 class ExecutionStatus(str, Enum):
     """
     Enumeration of execution status states.
 
-    Defines complete execution lifecycle states ensuring comprehensive
+    Defines complete execution lifecycle states ensuring complete
     status tracking and monitoring capabilities.
     """
     CREATED = "created"                 # Execution created, not started
@@ -80,20 +78,18 @@ class ExecutionStatus(str, Enum):
     ERROR = "error"                     # Execution failed with error
     CANCELLED = "cancelled"             # Execution cancelled by user
 
-
 class CSVFormatEnum(str, Enum):
     """
     Enumeration of supported CSV output formats.
 
     Defines complete CSV format coverage per output model requirements
-    ensuring comprehensive output generation capabilities.
+    ensuring complete output generation capabilities.
     """
     STANDARD = "standard"               # Standard scheduling CSV format
     EXTENDED = "extended"               # Extended format with metadata
     MINIMAL = "minimal"                 # Minimal format with core fields
     COMPLIANCE = "compliance"           # Compliance reporting format
     ANALYTICS = "analytics"             # Analytics-optimized format
-
 
 class ValidationLevel(str, Enum):
     """
@@ -105,8 +101,7 @@ class ValidationLevel(str, Enum):
     NONE = "none"                       # No validation
     BASIC = "basic"                     # Basic field validation
     STRICT = "strict"                   # Strict data type validation
-    COMPREHENSIVE = "comprehensive"     # Comprehensive domain validation
-
+    complete = "complete"     # complete domain validation
 
 if PYDANTIC_AVAILABLE:
     class BaseAPIModel(BaseModel):
@@ -137,7 +132,6 @@ else:
     class BaseAPIModel:
         """Fallback base model when Pydantic not available."""
         pass
-
 
 class InputPaths(BaseAPIModel):
     """
@@ -186,10 +180,9 @@ class InputPaths(BaseAPIModel):
 
         return v.strip()
 
-
 class SolverConfiguration(BaseAPIModel):
     """
-    Comprehensive solver configuration specification.
+    complete solver configuration specification.
 
     Mathematical Foundation: Defines complete solver configuration per
     PuLP framework requirements ensuring optimal solving performance.
@@ -278,13 +271,12 @@ class SolverConfiguration(BaseAPIModel):
             raise ValueError(f"Optimization focus must be one of: {valid_focuses}")
         return v.lower()
 
-
 class OutputConfiguration(BaseAPIModel):
     """
     Output generation configuration specification.
 
     Mathematical Foundation: Defines complete output configuration per
-    output model requirements ensuring comprehensive result generation.
+    output model requirements ensuring complete result generation.
 
     Attributes:
         csv_format: CSV output format type
@@ -301,7 +293,7 @@ class OutputConfiguration(BaseAPIModel):
 
     include_metadata: bool = Field(
         default=True,
-        description="Include comprehensive metadata in output"
+        description="Include complete metadata in output"
     )
 
     include_solver_info: bool = Field(
@@ -310,7 +302,7 @@ class OutputConfiguration(BaseAPIModel):
     )
 
     validation_level: ValidationLevel = Field(
-        default=ValidationLevel.COMPREHENSIVE,
+        default=ValidationLevel.complete,
         description="Level of output validation to perform"
     )
 
@@ -324,13 +316,12 @@ class OutputConfiguration(BaseAPIModel):
         description="Additional custom fields to include in output"
     )
 
-
 class SchedulingRequest(BaseAPIModel):
     """
     Primary scheduling optimization request schema.
 
     Mathematical Foundation: Implements complete request specification per
-    API integration requirements ensuring comprehensive scheduling configuration.
+    API integration requirements ensuring complete scheduling configuration.
 
     Attributes:
         request_id: Optional unique request identifier
@@ -353,7 +344,7 @@ class SchedulingRequest(BaseAPIModel):
 
     solver_config: SolverConfiguration = Field(
         default_factory=SolverConfiguration,
-        description="Comprehensive solver configuration parameters"
+        description="complete solver configuration parameters"
     )
 
     output_config: OutputConfiguration = Field(
@@ -386,13 +377,12 @@ class SchedulingRequest(BaseAPIModel):
                 raise ValueError("Callback URL must start with http:// or https://")
         return v
 
-
 class SchedulingResponse(BaseAPIModel):
     """
     Scheduling optimization response schema.
 
     Mathematical Foundation: Defines complete response specification per
-    API integration standards ensuring comprehensive execution information.
+    API integration standards ensuring complete execution information.
 
     Attributes:
         execution_id: Unique execution identifier
@@ -446,13 +436,12 @@ class SchedulingResponse(BaseAPIModel):
         description="Whether callback notification is scheduled"
     )
 
-
 class PipelineStatus(BaseAPIModel):
     """
-    Comprehensive pipeline execution status schema.
+    complete pipeline execution status schema.
 
     Mathematical Foundation: Implements complete status specification per
-    execution monitoring requirements ensuring comprehensive progress tracking.
+    execution monitoring requirements ensuring complete progress tracking.
 
     Attributes:
         execution_id: Unique execution identifier
@@ -531,13 +520,12 @@ class PipelineStatus(BaseAPIModel):
         description="Execution performance metrics and statistics"
     )
 
-
 class ExecutionResults(BaseAPIModel):
     """
-    Comprehensive execution results schema.
+    complete execution results schema.
 
     Mathematical Foundation: Defines complete results specification per
-    output model requirements ensuring comprehensive result information.
+    output model requirements ensuring complete result information.
 
     Attributes:
         execution_id: Unique execution identifier
@@ -572,7 +560,7 @@ class ExecutionResults(BaseAPIModel):
 
     performance_metrics: Dict[str, float] = Field(
         ...,
-        description="Comprehensive performance metrics"
+        description="complete performance metrics"
     )
 
     quality_assessment: Dict[str, Any] = Field(
@@ -590,13 +578,12 @@ class ExecutionResults(BaseAPIModel):
         description="Additional execution result metadata"
     )
 
-
 class HealthCheckResponse(BaseAPIModel):
     """
     System health check response schema.
 
     Mathematical Foundation: Defines complete health specification per
-    monitoring requirements ensuring comprehensive system status reporting.
+    monitoring requirements ensuring complete system status reporting.
 
     Attributes:
         status: Overall system health status
@@ -663,13 +650,12 @@ class HealthCheckResponse(BaseAPIModel):
         description="Additional system configuration and status information"
     )
 
-
 class ErrorResponse(BaseAPIModel):
     """
-    Comprehensive error response schema.
+    complete error response schema.
 
     Mathematical Foundation: Defines complete error specification per
-    error handling requirements ensuring comprehensive error information.
+    error handling requirements ensuring complete error information.
 
     Attributes:
         error_type: Classification of error type
@@ -709,13 +695,12 @@ class ErrorResponse(BaseAPIModel):
         description="Suggested corrective actions for error resolution"
     )
 
-
 class FileUploadResponse(BaseAPIModel):
     """
     File upload response schema.
 
     Mathematical Foundation: Defines complete upload response per
-    file handling requirements ensuring comprehensive upload information.
+    file handling requirements ensuring complete upload information.
 
     Attributes:
         upload_id: Unique upload session identifier
@@ -762,13 +747,12 @@ class FileUploadResponse(BaseAPIModel):
         description="Generated input paths mapping for scheduling request"
     )
 
-
 class SolverPerformanceMetrics(BaseAPIModel):
     """
-    Comprehensive solver performance metrics schema.
+    complete solver performance metrics schema.
 
     Mathematical Foundation: Defines complete performance specification per
-    solver monitoring requirements ensuring comprehensive performance analysis.
+    solver monitoring requirements ensuring complete performance analysis.
 
     Attributes:
         solving_time_seconds: Total solving time in seconds
@@ -828,13 +812,12 @@ class SolverPerformanceMetrics(BaseAPIModel):
         description="Rate of convergence to solution"
     )
 
-
 class QualityAssessment(BaseAPIModel):
     """
     Solution quality assessment schema.
 
     Mathematical Foundation: Defines complete quality specification per
-    quality assessment requirements ensuring comprehensive solution evaluation.
+    quality assessment requirements ensuring complete solution evaluation.
 
     Attributes:
         overall_score: Overall solution quality score (0.0 to 1.0)
@@ -907,7 +890,6 @@ class QualityAssessment(BaseAPIModel):
             raise ValueError(f"Quality grade must be one of: {valid_grades}")
         return v
 
-
 class APIConfiguration(BaseAPIModel):
     """
     API configuration schema for runtime settings.
@@ -971,13 +953,12 @@ class APIConfiguration(BaseAPIModel):
         description="Require authentication for API access"
     )
 
-
 # Utility functions for schema validation and conversion
 def validate_scheduling_request(data: Dict[str, Any]) -> SchedulingRequest:
     """
     Validate and convert dictionary to SchedulingRequest.
 
-    Provides comprehensive validation of scheduling request data with detailed
+    Provides complete validation of scheduling request data with detailed
     error reporting ensuring request correctness and compliance.
 
     Args:
@@ -995,13 +976,12 @@ def validate_scheduling_request(data: Dict[str, Any]) -> SchedulingRequest:
         logger.error(f"Scheduling request validation failed: {str(e)}")
         raise
 
-
 def create_error_response(error_type: str, message: str, details: Optional[str] = None,
                          execution_id: Optional[str] = None) -> ErrorResponse:
     """
-    Create standardized error response with comprehensive error information.
+    Create standardized error response with complete error information.
 
-    Provides consistent error response generation ensuring comprehensive
+    Provides consistent error response generation ensuring complete
     error reporting and debugging capabilities.
 
     Args:
@@ -1022,13 +1002,12 @@ def create_error_response(error_type: str, message: str, details: Optional[str] 
         suggested_actions=get_suggested_actions(error_type)
     )
 
-
 def get_suggested_actions(error_type: str) -> List[str]:
     """
     Get suggested corrective actions based on error type.
 
     Provides context-aware suggestions for error resolution ensuring
-    comprehensive user guidance and debugging support.
+    complete user guidance and debugging support.
 
     Args:
         error_type: Classification of error type
@@ -1074,12 +1053,11 @@ def get_suggested_actions(error_type: str) -> List[str]:
         "Check system logs for additional information"
     ])
 
-
 def create_success_response(execution_id: str, message: str = "Request processed successfully") -> SchedulingResponse:
     """
-    Create standardized success response with comprehensive information.
+    Create standardized success response with complete information.
 
-    Provides consistent success response generation ensuring comprehensive
+    Provides consistent success response generation ensuring complete
     execution information and status reporting.
 
     Args:
@@ -1098,7 +1076,6 @@ def create_success_response(execution_id: str, message: str = "Request processed
         current_stage="initialization"
     )
 
-
 # Schema registry for dynamic validation
 SCHEMA_REGISTRY = {
     "SchedulingRequest": SchedulingRequest,
@@ -1112,7 +1089,6 @@ SCHEMA_REGISTRY = {
     "QualityAssessment": QualityAssessment,
     "APIConfiguration": APIConfiguration
 }
-
 
 def get_schema_by_name(schema_name: str) -> Optional[BaseAPIModel]:
     """
@@ -1129,13 +1105,12 @@ def get_schema_by_name(schema_name: str) -> Optional[BaseAPIModel]:
     """
     return SCHEMA_REGISTRY.get(schema_name)
 
-
 def validate_data_against_schema(data: Dict[str, Any], schema_name: str) -> Any:
     """
-    Validate data against specified schema with comprehensive error handling.
+    Validate data against specified schema with complete error handling.
 
     Provides dynamic data validation against registered schemas ensuring
-    comprehensive type checking and error reporting.
+    complete type checking and error reporting.
 
     Args:
         data: Data to validate
@@ -1158,7 +1133,6 @@ def validate_data_against_schema(data: Dict[str, Any], schema_name: str) -> Any:
     except ValidationError as e:
         logger.error(f"Schema validation failed for {schema_name}: {str(e)}")
         raise
-
 
 # Export all schemas for external use
 __all__ = [
@@ -1197,7 +1171,6 @@ __all__ = [
     # Schema registry
     'SCHEMA_REGISTRY'
 ]
-
 
 if __name__ == "__main__":
     # Example usage and testing

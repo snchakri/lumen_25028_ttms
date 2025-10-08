@@ -1,6 +1,6 @@
 # Stage 4 Feasibility Check - Phase 4.1: Cross-Layer Metrics Calculator
-# Team Lumen [Team ID: 93912] - SIH 2025
-# Enterprise-Grade Mathematical Metrics Computation Engine
+# Team Lumen
+# complete Mathematical Metrics Computation Engine
 
 """
 METRICS CALCULATOR: CROSS-LAYER AGGREGATE METRICS COMPUTATION
@@ -115,7 +115,7 @@ class ConflictMetrics:
 @dataclass
 class FeasibilityMetrics:
     """
-    Comprehensive feasibility metrics spanning all seven validation layers.
+    complete feasibility metrics spanning all seven validation layers.
     
     Aggregates mathematical measurements from individual layers into
     cross-layer metrics for Stage 5 complexity analysis and reporting.
@@ -261,7 +261,7 @@ class MetricsCalculator:
                                     indices: Dict[str, Any],
                                     layer_results: List[Any]) -> FeasibilityMetrics:
         """
-        Calculate comprehensive feasibility metrics from all validation layers.
+        Calculate complete feasibility metrics from all validation layers.
         
         Integrates results from seven validation layers to compute cross-layer
         aggregate metrics according to the mathematical framework.
@@ -273,7 +273,7 @@ class MetricsCalculator:
             layer_results: Results from executed validation layers
             
         Returns:
-            FeasibilityMetrics: Comprehensive metrics for Stage 5 complexity analysis
+            FeasibilityMetrics: complete metrics for Stage 5 complexity analysis
         """
         
         computation_start = time.time()
@@ -852,7 +852,7 @@ class MetricsCalculator:
             graphs: Relationship graphs including temporal conflicts
             
         Returns:
-            ConflictMetrics: Comprehensive conflict analysis results
+            ConflictMetrics: complete conflict analysis results
         """
         
         logger.info("Calculating conflict graph metrics")

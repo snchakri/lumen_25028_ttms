@@ -326,7 +326,7 @@ class SolverArsenalConfiguration(BaseModel):
     Arsenal Requirements:
     - Minimum 1 solver: Must have at least one available solver
     - Unique solver IDs: No duplicate solver identifiers within arsenal
-    - Paradigm diversity: Should cover multiple solver paradigms for robustness
+    - Paradigm diversity: Should cover multiple solver paradigms for reliableness
 
     CRITICAL USAGE NOTE:
     This file is pre-loaded and shared across all Stage 5.2 executions.
@@ -393,7 +393,7 @@ class SolverArsenalConfiguration(BaseModel):
     @classmethod
     def validate_paradigm_diversity(cls, v: List[SolverCapabilityProfile]) -> List[SolverCapabilityProfile]:
         """
-        Validate arsenal contains diverse solver paradigms for robustness.
+        Validate arsenal contains diverse solver paradigms for reliableness.
 
         Diversity Requirements:
         - At least 2 different paradigms: Ensures algorithm diversity
@@ -414,7 +414,7 @@ class SolverArsenalConfiguration(BaseModel):
         if len(paradigms) < 2:
             available_paradigms = [solver.paradigm.value for solver in v]
             raise ValueError(
-                f"Arsenal must contain at least 2 different solver paradigms for robustness, "
+                f"Arsenal must contain at least 2 different solver paradigms for reliableness, "
                 f"found paradigms: {available_paradigms}. "
                 f"Consider adding solvers from different paradigm families."
             )
@@ -565,5 +565,5 @@ class LPConvergenceInformation(BaseModel):
 
 print("✅ STAGE 5 COMMON/SCHEMA.PY - Part 2/4 Complete")
 print("   - Complete Stage 5.1 ComplexityMetricsSchema with full validation")
-print("   - Comprehensive Stage 5.2 solver selection schemas")
+print("   - complete Stage 5.2 solver selection schemas")
 print("   - LP convergence tracking with mathematical bounds checking")

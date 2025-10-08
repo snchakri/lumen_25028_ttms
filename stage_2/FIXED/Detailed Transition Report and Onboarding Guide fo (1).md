@@ -1,10 +1,9 @@
-<img src="https://r2cdn.perplexity.ai/pplx-full-logo-primary-dark%402x.png" style="height:64px;margin-right:32px"/>
 
-# Detailed Transition Report and Onboarding Guide for “Cursor” on Stage 2
+# Detailed Transition Report and Onboarding Guide for Stage 2
 
 ## 1. Overview
 
-This document provides a comprehensive summary of **all changes** made from the initial mock-based prototype to the final production-ready modules, and offers a structured onboarding guide for “Cursor” to operate, maintain, and extend the Stage 2 Student Batching System.
+This document provides a complete summary of **all changes** made from the initial mock-based prototype to the final production-ready modules, and offers a structured onboarding guide for development teams to operate, maintain, and extend the Stage 2 Student Batching System.
 
 ***
 
@@ -29,10 +28,9 @@ This document provides a comprehensive summary of **all changes** made from the 
 | Metadata Fields | Partial or mismatch to tests | Metadata fields misaligned | Corrected `FileMetadata` with precise fields |
 | Loading Results Structure | Simple DataFrame returned | Custom `DataLoadingResult` with mismatched fields | `DataLoadingResult` aligned with tests, fields `rows_loaded`, `errors`, etc. |
 
-
 ***
 
-## 3. Onboarding Guide for “Cursor”
+## 3. Onboarding Guide
 
 ### 3.1. Repository Structure
 
@@ -44,7 +42,6 @@ This document provides a comprehensive summary of **all changes** made from the 
 - **api_interface_real.py**: FastAPI endpoints for upload, process, status, result, report.
 - **logger_config_real.py**: Structured logging and performance monitoring.
 - **__init___real.py**: Exposes main classes and factory functions.
-
 
 ### 3.2. Environment Setup
 
@@ -82,7 +79,6 @@ python cli_real.py process \
   --resource-strategy minimize_conflicts
 ```
 
-
 ### 3.4. API Usage
 
 ```bash
@@ -105,7 +101,6 @@ uvicorn api_interface_real:app --host 0.0.0.0 --port 8000
 - **Get Result**: `GET /process/result/{job_id}`
 - **Download Report**: `GET /process/report/{job_id}`
 
-
 ### 3.5. Extending Functionality
 
 - **Add Clustering Algorithms**:
@@ -117,7 +112,6 @@ uvicorn api_interface_real:app --host 0.0.0.0 --port 8000
 - **New Membership Rules**:
     - Extend `BatchDefinition.composition_rules`
     - Enhance `_validate_membership()`
-
 
 ### 3.6. Testing \& CI
 
@@ -131,8 +125,7 @@ uvicorn api_interface_real:app --host 0.0.0.0 --port 8000
     - Run lint, unit tests, and performance benchmarks
     - Ensure **100%** contract compatibility
 
-
-### 3.7. Deployment
+### 3.7. usage
 
 - **Docker** multi-stage build:
     - Stage 1: install build dependencies
@@ -145,5 +138,5 @@ uvicorn api_interface_real:app --host 0.0.0.0 --port 8000
 
 ## 4. Conclusion
 
-This detailed report outlines every change from the mock prototype to robust real modules. Follow the onboarding steps to seamlessly integrate, operate, and extend Stage 2. The system now meets mathematical rigor, production reliability, and is ready for immediate deployment and SIH 2025 evaluation. Good luck, Cursor!
+This detailed report outlines every change from the mock prototype to reliable real modules. Follow the onboarding steps to seamlessly integrate, operate, and extend Stage 2. The system now meets mathematical rigor, production reliability, and is ready for immediate usage and evaluation.
 

@@ -1,6 +1,6 @@
 # Stage 4 Feasibility Check - Phase 4.1: Core Orchestration Engine
-# Team Lumen [Team ID: 93912] - SIH 2025
-# Enterprise-Grade Mathematical Feasibility Validation System
+# Team Lumen
+# complete Mathematical Feasibility Validation System
 
 """
 FEASIBILITY ENGINE: SEQUENTIAL LAYER ORCHESTRATOR
@@ -322,7 +322,7 @@ class FeasibilityEngine:
             return self._generate_infeasibility_report(feasibility_input, state, e)
             
         except Exception as e:
-            # Unexpected system error - comprehensive error reporting for debugging
+            # Unexpected system error - complete error reporting for debugging
             logger.error(f"Unexpected error in feasibility engine: {str(e)}")
             logger.error(traceback.format_exc())
             raise RuntimeError(f"Feasibility engine execution failed: {str(e)}")
@@ -578,7 +578,7 @@ class FeasibilityEngine:
         Execute a single validation layer with performance monitoring.
         
         Wraps individual layer execution with timing, memory tracking, and error handling
-        for comprehensive performance analysis and debugging support.
+        for complete performance analysis and debugging support.
         
         Args:
             layer_num: Layer number (1-7)
@@ -1069,7 +1069,7 @@ class FeasibilityEngine:
         """
         Generate detailed infeasibility report with mathematical proof.
         
-        Creates comprehensive JSON report with formal mathematical proof of infeasibility,
+        Creates complete JSON report with formal mathematical proof of infeasibility,
         affected entities, and specific remediation suggestions.
         
         Args:
@@ -1087,7 +1087,7 @@ class FeasibilityEngine:
         output_dir = feasibility_input.output_directory
         output_dir.mkdir(parents=True, exist_ok=True)
         
-        # Generate comprehensive infeasibility report
+        # Generate complete infeasibility report
         report_data = {
             "status": "INFEASIBLE",
             "timestamp": datetime.now(timezone.utc).isoformat(),

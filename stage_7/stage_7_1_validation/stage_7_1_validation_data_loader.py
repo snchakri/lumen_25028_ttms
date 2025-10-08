@@ -3,7 +3,7 @@
 """
 Stage 7.1 Validation Engine - Data Loading Module
 
-This module implements the comprehensive data loading infrastructure for Stage 7.1 validation,
+This module implements the complete data loading infrastructure for Stage 7.1 validation,
 based on the Stage-7-OUTPUT-VALIDATION theoretical framework and rigorous mathematical foundations.
 It handles loading Stage 6 solver outputs (schedule.csv, output_model.json) and Stage 3 compiled 
 data (L_raw.parquet, L_rel.graphml, L_idx.*) for 12-parameter threshold validation calculations.
@@ -14,14 +14,14 @@ Theoretical Foundation:
 - Mathematical rigor per Algorithm 15.1 (Complete Output Validation)
 - O(n²) complexity bound for validation data structures per Section 17
 
-Enterprise Architecture:
-- Fail-fast data validation with comprehensive error reporting
+System Design:
+- Fail-fast data validation with complete error reporting
 - Memory-optimized in-memory data structures <100MB peak usage
 - Lossless information preservation with complete audit trails
 - Schema validation with mathematical consistency verification
 - Multi-format support for Stage 3 outputs (.parquet, .graphml, .bin, .idx, .feather, .pkl)
 
-Authors: Perplexity Labs AI - Stage 7 Implementation Team
+Author: Student Team
 Date: 2025-10-07
 Version: 1.0.0
 """
@@ -51,7 +51,7 @@ import networkx as nx
 from pydantic import BaseModel, Field, validator, ValidationError
 from typing_extensions import Literal
 
-# Configure comprehensive logging for IDE understanding
+# Configure complete logging for IDE understanding
 logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
@@ -61,7 +61,6 @@ logger = logging.getLogger(__name__)
 # Suppress non-critical warnings for cleaner execution
 warnings.filterwarnings('ignore', category=FutureWarning)
 warnings.filterwarnings('ignore', category=UserWarning)
-
 
 @dataclass
 class ValidationDataStructure:
@@ -106,12 +105,11 @@ class ValidationDataStructure:
     data_integrity_hash: str = ""
     memory_footprint_mb: float = 0.0
 
-
 class Stage6OutputSchema(BaseModel):
     """
     Pydantic schema for rigorous Stage 6 schedule.csv validation.
     
-    Enforces the exact Stage 6 output format specification with comprehensive
+    Enforces the exact Stage 6 output format specification with complete
     field validation, mathematical bounds checking, and data type verification.
     This prevents invalid data from entering the validation pipeline.
     
@@ -158,7 +156,6 @@ class Stage6OutputSchema(BaseModel):
             raise ValueError(f"Invalid assignment_type: {v}. Must be one of {valid_types}")
         return v.lower()
 
-
 class OutputModelSchema(BaseModel):
     """
     Pydantic schema for Stage 6 output_model.json validation.
@@ -178,10 +175,9 @@ class OutputModelSchema(BaseModel):
     mathematical_structure: Dict[str, Any] = Field(default_factory=dict, description="Bijection and constraint metadata")
     performance_metrics: Dict[str, Any] = Field(default_factory=dict, description="Detailed performance data")
 
-
 class DataLoaderError(Exception):
     """
-    Custom exception for data loading failures with comprehensive error context.
+    Custom exception for data loading failures with complete error context.
     
     Provides detailed error information for debugging and audit trail generation,
     supporting the fail-fast philosophy with clear error categorization.
@@ -202,7 +198,6 @@ class DataLoaderError(Exception):
             'timestamp': self.timestamp,
             'traceback': traceback.format_exc()
         }
-
 
 class AbstractDataLoader(ABC):
     """
@@ -237,19 +232,18 @@ class AbstractDataLoader(ABC):
         """Return performance metrics for monitoring and optimization."""
         return self._performance_metrics.copy()
 
-
 class Stage6OutputLoader(AbstractDataLoader):
     """
     Specialized loader for Stage 6 solver outputs (schedule.csv, output_model.json).
     
-    Implements comprehensive CSV parsing, schema validation, and mathematical
+    Implements complete CSV parsing, schema validation, and mathematical
     consistency checking for solver outputs. Ensures data integrity and
     mathematical correctness before threshold calculation processing.
     
     Performance Characteristics:
     - O(n) CSV parsing where n = number of assignments
     - Memory-optimized pandas DataFrame construction
-    - Comprehensive validation with detailed error reporting
+    - complete validation with detailed error reporting
     """
     
     def __init__(self, config: Dict[str, Any] = None):
@@ -262,7 +256,7 @@ class Stage6OutputLoader(AbstractDataLoader):
     
     def load_schedule_csv(self, csv_path: Union[str, Path]) -> pd.DataFrame:
         """
-        Load and validate Stage 6 schedule.csv with comprehensive error checking.
+        Load and validate Stage 6 schedule.csv with complete error checking.
         
         Args:
             csv_path: Path to schedule.csv file
@@ -402,7 +396,7 @@ class Stage6OutputLoader(AbstractDataLoader):
     
     def load_output_model_json(self, json_path: Union[str, Path]) -> Dict[str, Any]:
         """
-        Load and validate Stage 6 output_model.json with comprehensive metadata extraction.
+        Load and validate Stage 6 output_model.json with complete metadata extraction.
         
         Args:
             json_path: Path to output_model.json file
@@ -625,13 +619,12 @@ class Stage6OutputLoader(AbstractDataLoader):
         """Implement abstract method - validation performed during load."""
         return True  # Validation is performed during load operations
 
-
 class Stage3ReferenceLoader(AbstractDataLoader):
     """
     Specialized loader for Stage 3 compiled reference data (L_raw, L_rel, L_idx).
     
     Handles multi-format loading (.parquet, .graphml, .bin, .idx, .feather, .pkl)
-    with comprehensive format detection, schema validation, and relationship
+    with complete format detection, schema validation, and relationship
     graph construction for threshold validation calculations.
     
     Performance Characteristics:
@@ -756,7 +749,7 @@ class Stage3ReferenceLoader(AbstractDataLoader):
         Load data from file with automatic format detection.
         
         Supports multiple formats used in Stage 3 compilation with
-        comprehensive error handling and validation.
+        complete error handling and validation.
         """
         file_path = Path(file_path)
         file_extension = file_path.suffix.lower()
@@ -779,7 +772,7 @@ class Stage3ReferenceLoader(AbstractDataLoader):
             )
     
     def _load_parquet(self, file_path: Path) -> pd.DataFrame:
-        """Load Parquet file with comprehensive error handling."""
+        """Load Parquet file with complete error handling."""
         try:
             # Use PyArrow for optimal performance and memory usage
             table = pq.read_table(file_path)
@@ -1218,14 +1211,13 @@ class Stage3ReferenceLoader(AbstractDataLoader):
         # Validation is performed during load operations
         return True
 
-
 class ValidationDataLoader:
     """
     Master data loading coordinator for Stage 7.1 validation engine.
     
     Orchestrates loading of Stage 6 outputs and Stage 3 reference data,
     constructs unified ValidationDataStructure for threshold calculations,
-    and provides comprehensive error handling and performance monitoring.
+    and provides complete error handling and performance monitoring.
     
     This is the primary interface used by Stage 7.1 validation components.
     """
@@ -1253,7 +1245,7 @@ class ValidationDataLoader:
         Load complete validation data from Stage 6 outputs and Stage 3 reference data.
         
         This is the primary entry point for Stage 7.1 validation data loading.
-        Performs comprehensive loading, validation, and data structure construction
+        Performs complete loading, validation, and data structure construction
         required for 12-parameter threshold calculations.
         
         Args:
@@ -1271,7 +1263,7 @@ class ValidationDataLoader:
         overall_start_time = datetime.now()
         
         try:
-            self.logger.info("Starting comprehensive validation data loading")
+            self.logger.info("Starting complete validation data loading")
             
             # Initialize result structure
             validation_data = ValidationDataStructure()
@@ -1453,7 +1445,7 @@ class ValidationDataLoader:
             raise
     
     def _write_audit_log(self, validation_data: ValidationDataStructure, output_dir: Union[str, Path], load_time_ms: float) -> None:
-        """Write comprehensive audit log for data loading process."""
+        """Write complete audit log for data loading process."""
         try:
             output_dir = Path(output_dir)
             output_dir.mkdir(parents=True, exist_ok=True)
@@ -1498,7 +1490,6 @@ class ValidationDataLoader:
         errors.extend(self._all_validation_errors)
         return errors
 
-
 # Module-level convenience functions for easy integration
 def load_validation_data(
     schedule_csv_path: Union[str, Path],
@@ -1511,7 +1502,7 @@ def load_validation_data(
     Convenience function for loading complete validation data.
     
     This is the recommended entry point for Stage 7.1 validation components.
-    Handles all aspects of data loading with comprehensive error handling.
+    Handles all aspects of data loading with complete error handling.
     
     Args:
         schedule_csv_path: Path to Stage 6 schedule.csv
@@ -1534,12 +1525,11 @@ def load_validation_data(
         output_dir=output_dir
     )
 
-
 def validate_data_integrity(validation_data: ValidationDataStructure) -> bool:
     """
     Validate the integrity of loaded validation data structure.
     
-    Performs comprehensive checks to ensure data is mathematically
+    Performs complete checks to ensure data is mathematically
     consistent and suitable for threshold validation calculations.
     
     Args:
@@ -1572,7 +1562,6 @@ def validate_data_integrity(validation_data: ValidationDataStructure) -> bool:
     except Exception as e:
         logger.error(f"Data integrity validation failed: {str(e)}")
         return False
-
 
 if __name__ == "__main__":
     # Example usage and testing

@@ -19,7 +19,7 @@ Mathematical Guarantees:
 - Conflict Resolution: Graph coloring-based assignment with minimal conflicts
 
 Architecture:
-- Production-grade resource allocation with comprehensive error handling
+- complete resource allocation with complete error handling
 - Multi-criteria decision analysis for room-batch optimization
 - Dynamic constraint evaluation with educational compliance checking
 - Integration-ready interfaces for Stage 3 data compilation pipeline
@@ -145,7 +145,7 @@ class ResourceAllocationError(Exception):
 
 class ResourceAllocator:
     """
-    Production-grade resource allocator for student batches.
+    complete resource allocator for student batches.
 
     This class implements sophisticated resource allocation algorithms that
     optimize room, shift, and equipment assignments while satisfying hard
@@ -156,7 +156,7 @@ class ResourceAllocator:
     - Graph-theoretic conflict resolution with backtracking search
     - Educational domain constraint enforcement (UGC/NEP compliance)
     - Dynamic load balancing with real-time capacity monitoring
-    - Comprehensive allocation reporting with quality metrics
+    - complete allocation reporting with quality metrics
     - Integration-ready outputs for Stage 3 data compilation
 
     Mathematical Properties:
@@ -282,7 +282,7 @@ class ResourceAllocator:
     def allocate_resources_to_batches(self, 
                                     batch_requirements: List[ResourceRequirement]) -> Dict[str, ResourceAllocation]:
         """
-        Perform comprehensive resource allocation for all batches.
+        Perform complete resource allocation for all batches.
 
         Implements multi-objective optimization algorithm that considers:
         - Room capacity constraints with safety margins
@@ -385,7 +385,7 @@ class ResourceAllocator:
                             room_id: str, 
                             room_data: Dict[str, Any], 
                             requirement: ResourceRequirement) -> float:
-        """Calculate comprehensive room matching score."""
+        """Calculate complete room matching score."""
         score = 0.0
 
         # Capacity efficiency score (prefer minimal waste)
@@ -574,7 +574,7 @@ class ResourceAllocator:
 
     def generate_allocation_report(self) -> Dict[str, Any]:
         """
-        Generate comprehensive allocation report with statistics and insights.
+        Generate complete allocation report with statistics and insights.
 
         Returns:
             Dict[str, Any]: Detailed allocation report with metrics and analysis
@@ -689,7 +689,6 @@ class ResourceAllocator:
 
         return room_assignments_path, shift_assignments_path
 
-
 # Module-level utility functions for external integration
 def create_resource_allocator(config: Optional[Dict[str, Any]] = None) -> ResourceAllocator:
     """
@@ -737,7 +736,6 @@ def validate_resource_requirements(requirements: List[ResourceRequirement]) -> T
 
     return len(errors) == 0, errors
 
-
 # Production-ready logging configuration
 def setup_module_logging(log_level: str = "INFO") -> None:
     """Configure module-specific logging for resource allocation."""
@@ -750,7 +748,6 @@ def setup_module_logging(log_level: str = "INFO") -> None:
         )
         handler.setFormatter(formatter)
         logger.addHandler(handler)
-
 
 # Initialize module logging
 setup_module_logging()

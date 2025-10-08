@@ -2,7 +2,7 @@
 """
 PuLP Solver Family - Stage 6 Output Model: Solution Decoder Module
 
-This module implements the enterprise-grade solution decoding functionality for Stage 6.1 output
+This module implements the complete solution decoding functionality for Stage 6.1 output
 modeling, transforming binary solution vectors into real-world scheduling assignments with 
 mathematical rigor and theoretical compliance. Critical component implementing the inverse bijection 
 mapping per Stage 6 foundational framework with guaranteed lossless transformation properties.
@@ -12,18 +12,18 @@ Theoretical Foundation:
     - Implements inverse bijection mapping: idx → (c,f,r,t,b) per Definition 4.1-4.2
     - Maintains lossless transformation from solution vector to scheduling assignments  
     - Ensures mathematical correctness for schedule construction per Algorithm 4.3
-    - Provides comprehensive assignment validation and quality assessment
+    - Provides complete assignment validation and quality assessment
     - Supports EAV dynamic parameter reconstruction and metadata preservation
 
 Architecture Compliance:
     - Implements Output Model Layer Stage 1 per foundational design rules
     - Maintains O(k) decoding complexity where k is number of active assignments
-    - Provides fail-fast error handling with comprehensive assignment validation
+    - Provides fail-fast error handling with complete assignment validation
     - Supports all assignment types with real-world identifier mapping
     - Ensures memory efficiency through batch processing and streaming decoding
 
 Dependencies: numpy, pandas, bisect, logging, json, datetime, typing, dataclasses
-Authors: Team LUMEN (SIH 2025)
+Author: Student Team
 Version: 1.0.0 (Production)
 """
 
@@ -61,7 +61,6 @@ except ImportError:
 # Configure structured logging for solution decoding operations
 logger = logging.getLogger(__name__)
 
-
 class AssignmentType(Enum):
     """
     Enumeration of assignment types per scheduling domain requirements.
@@ -78,7 +77,6 @@ class AssignmentType(Enum):
     PROJECT = "project"                # Project/thesis session
     CONSULTATION = "consultation"       # Faculty consultation hours
 
-
 class AssignmentStatus(Enum):
     """Assignment status classification for quality tracking."""
     OPTIMAL = "optimal"                 # Optimal assignment per solver
@@ -87,11 +85,10 @@ class AssignmentStatus(Enum):
     PREFERENCE_VIOLATED = "preference_violated"  # Soft preference violations
     VALIDATED = "validated"            # Post-validation confirmed assignment
 
-
 @dataclass
 class SchedulingAssignment:
     """
-    Comprehensive scheduling assignment structure with mathematical validation.
+    complete scheduling assignment structure with mathematical validation.
 
     Mathematical Foundation: Represents decoded assignment (c,f,r,t,b) → real-world
     identifiers per Definition 4.2 (Schedule Construction Function) from Stage 6.1
@@ -133,7 +130,7 @@ class SchedulingAssignment:
     validation_results: Dict[str, bool] = field(default_factory=dict)
 
     def get_summary(self) -> Dict[str, Any]:
-        """Generate comprehensive assignment summary for logging."""
+        """Generate complete assignment summary for logging."""
         return {
             'assignment_id': self.assignment_id,
             'course_id': self.course_id,
@@ -167,11 +164,10 @@ class SchedulingAssignment:
             'solver_metadata': json.dumps(self.solver_metadata, default=str)
         }
 
-
 @dataclass
 class DecodingMetrics:
     """
-    Comprehensive metrics for solution decoding performance and quality analysis.
+    complete metrics for solution decoding performance and quality analysis.
 
     Mathematical Foundation: Captures decoding operation statistics for performance
     analysis and theoretical validation compliance per output model requirements.
@@ -183,7 +179,7 @@ class DecodingMetrics:
         memory_usage_bytes: Memory consumption during decoding
         assignment_types: Distribution of assignment types
         constraint_violations: Detected constraint violation count
-        validation_results: Comprehensive validation results
+        validation_results: complete validation results
         bijection_consistency: Bijection mapping consistency verification
     """
     total_variables: int
@@ -197,7 +193,7 @@ class DecodingMetrics:
     metadata: Dict[str, Any] = field(default_factory=dict)
 
     def get_summary(self) -> Dict[str, Any]:
-        """Generate comprehensive summary for logging and validation."""
+        """Generate complete summary for logging and validation."""
         return {
             'total_variables': self.total_variables,
             'active_assignments': self.active_assignments,
@@ -210,7 +206,6 @@ class DecodingMetrics:
             'bijection_consistent': self.bijection_consistency
         }
 
-
 @dataclass
 class DecodingConfiguration:
     """
@@ -220,7 +215,7 @@ class DecodingConfiguration:
     mathematical correctness and theoretical framework compliance.
 
     Attributes:
-        validate_assignments: Enable comprehensive assignment validation
+        validate_assignments: Enable complete assignment validation
         compute_constraint_scores: Calculate constraint satisfaction scores
         compute_objective_contributions: Calculate objective contributions per assignment
         include_solver_metadata: Include solver-specific metadata in assignments
@@ -250,7 +245,6 @@ class DecodingConfiguration:
         if not self.assignment_id_prefix:
             raise ValueError("Assignment ID prefix cannot be empty")
 
-
 class AssignmentDecoder(ABC):
     """
     Abstract base class for assignment decoding strategies.
@@ -271,7 +265,6 @@ class AssignmentDecoder(ABC):
                            entity_collections: Dict) -> Dict[str, bool]:
         """Validate decoded assignments for mathematical correctness."""
         pass
-
 
 class StandardAssignmentDecoder(AssignmentDecoder):
     """
@@ -518,7 +511,7 @@ class StandardAssignmentDecoder(AssignmentDecoder):
             # Generate unique assignment ID
             assignment_id = f"{self.config.assignment_id_prefix}_{self.execution_id}_{original_idx:06d}"
 
-            # Create assignment with comprehensive information
+            # Create assignment with complete information
             assignment = SchedulingAssignment(
                 assignment_id=assignment_id,
                 course_id=course_id,
@@ -700,7 +693,7 @@ class StandardAssignmentDecoder(AssignmentDecoder):
         """
         Validate decoded assignments for mathematical correctness and domain compliance.
 
-        Performs comprehensive validation to ensure assignment correctness:
+        Performs complete validation to ensure assignment correctness:
         - Assignment completeness and validity
         - Constraint satisfaction verification  
         - Temporal consistency checking
@@ -912,7 +905,7 @@ class StandardAssignmentDecoder(AssignmentDecoder):
         return invalid_ids
 
     def get_decoding_statistics(self) -> Dict[str, Any]:
-        """Get comprehensive decoding statistics."""
+        """Get complete decoding statistics."""
         return {
             'assignments_decoded': self.decoding_stats['assignments_decoded'],
             'bijection_calls': self.decoding_stats['bijection_calls'],
@@ -921,10 +914,9 @@ class StandardAssignmentDecoder(AssignmentDecoder):
             'decoder_type': 'StandardAssignmentDecoder'
         }
 
-
 class PuLPSolutionDecoder:
     """
-    Enterprise-grade PuLP solution decoder with comprehensive assignment generation.
+    complete PuLP solution decoder with complete assignment generation.
 
     Implements complete solution decoding pipeline following Stage 6.1 theoretical
     framework. Provides mathematical guarantees for bijection consistency and
@@ -934,7 +926,7 @@ class PuLPSolutionDecoder:
         - Implements inverse bijection per Section 4 (Output Model Formalization)
         - Maintains O(k) decoding complexity where k is number of active assignments
         - Ensures lossless transformation from solution vector to assignments
-        - Provides comprehensive validation and quality assessment
+        - Provides complete validation and quality assessment
         - Supports dynamic parameter reconstruction and metadata preservation
     """
 
@@ -959,7 +951,7 @@ class PuLPSolutionDecoder:
                              entity_collections: Dict,
                              parameter_mappings: Optional[Dict[str, ParameterMapping]] = None) -> Tuple[List[SchedulingAssignment], DecodingMetrics]:
         """
-        Decode complete solver solution with comprehensive quality analysis.
+        Decode complete solver solution with complete quality analysis.
 
         Creates complete scheduling assignment list from solver solution per
         Stage 6.1 output model formalization with guaranteed mathematical correctness.
@@ -1006,7 +998,7 @@ class PuLPSolutionDecoder:
             if self.config.validate_assignments and assignments:
                 validation_results = self.decoder.validate_assignments(assignments, processed_collections)
 
-            # Phase 5: Calculate comprehensive metrics
+            # Phase 5: Calculate complete metrics
             end_time = datetime.now()
             decoding_time = (end_time - start_time).total_seconds()
 
@@ -1171,7 +1163,7 @@ class PuLPSolutionDecoder:
         return self.decoding_metrics
 
     def get_decoder_summary(self) -> Dict[str, Any]:
-        """Get comprehensive decoder summary."""
+        """Get complete decoder summary."""
         return {
             'execution_id': self.execution_id,
             'is_decoded': self.is_decoded,
@@ -1180,7 +1172,6 @@ class PuLPSolutionDecoder:
             'metrics_summary': self.decoding_metrics.get_summary() if self.decoding_metrics else None,
             'decoder_statistics': self.decoder.get_decoding_statistics() if hasattr(self.decoder, 'get_decoding_statistics') else {}
         }
-
 
 def decode_pulp_solution(solver_result: SolverResult,
                         bijection_mapping: BijectiveMapping,
@@ -1191,7 +1182,7 @@ def decode_pulp_solution(solver_result: SolverResult,
     """
     High-level function to decode PuLP solver solution to scheduling assignments.
 
-    Provides simplified interface for solution decoding with comprehensive validation
+    Provides simplified interface for solution decoding with complete validation
     and performance analysis for output modeling pipeline integration.
 
     Args:
@@ -1227,7 +1218,6 @@ def decode_pulp_solution(solver_result: SolverResult,
     logger.info(f"Successfully decoded PuLP solution to {len(assignments)} assignments for execution {execution_id}")
 
     return assignments, metrics
-
 
 if __name__ == "__main__":
     # Example usage and testing

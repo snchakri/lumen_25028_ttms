@@ -1,4 +1,3 @@
-<img src="https://r2cdn.perplexity.ai/pplx-full-logo-primary-dark%402x.png" style="height:64px;margin-right:32px"/>
 
 # Stage 7 Output Validation — Full Technical Documentation
 
@@ -24,7 +23,7 @@ Scope and goals
 - Purpose: Validate the optimization output (Stage 6) against education-domain, institutional, and computational quality thresholds; ensure only acceptable schedules proceed; convert accepted schedules into a human-readable format.
 - Strict guarantees:
     - Rigor: Exact formulas from the Stage 7 theoretical framework; no heuristics that compromise correctness.
-    - Fail-fast: First threshold failure terminates; comprehensive diagnosis emitted.
+    - Fail-fast: First threshold failure terminates; complete diagnosis emitted.
     - Deterministic: Given the same inputs and config, results are identical.
     - Separation of concerns: 7.1 validates; 7.2 formats. No double validation.
 
@@ -237,7 +236,7 @@ stage_7_2_finalformat/formatter.py
 api/__init__.py
 
 - Purpose: Package surface for REST integration; minimal exports to avoid import bloat.
-- Exposes create_app() if required by deployment.
+- Exposes create_app() if required by usage.
 
 api/schemas.py
 

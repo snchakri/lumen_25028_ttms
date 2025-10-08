@@ -2,14 +2,14 @@
 stage_5_2/io.py
 Stage 5.2 Input/Output Operations with Schema Validation
 
-This module provides enterprise-grade I/O operations for Stage 5.2 solver selection:
+This module provides complete I/O operations for Stage 5.2 solver selection:
 1. Load complexity metrics from Stage 5.1 JSON output with schema validation
 2. Load solver capabilities from static JSON configuration
 3. Write selection decision JSON with complete audit trail
 
 All file operations use atomic writes with temporary files to ensure data integrity.
 JSON schema validation ensures exact compliance with foundational design specifications.
-Error handling provides comprehensive context for debugging and recovery.
+Error handling provides complete context for debugging and recovery.
 
 Integration Points:
 - Input: complexity_metrics.json from Stage 5.1 (16 parameters + composite index)
@@ -19,12 +19,12 @@ Integration Points:
 Schema Compliance:
 - Exact match with Stage5-FOUNDATIONAL-DESIGN-IMPLEMENTATION-PLAN.md specifications
 - Version 1.0.0 schema validation for all JSON documents  
-- Comprehensive metadata preservation for audit trails
+- complete metadata preservation for audit trails
 - Error recovery with detailed validation context
 
 Performance Characteristics:
 - Atomic file operations with rollback on failure
-- JSON validation with comprehensive error reporting
+- JSON validation with complete error reporting
 - Memory efficient streaming for large solver arsenals
 - Structured logging for operation tracking and debugging
 """
@@ -58,10 +58,9 @@ MAX_JSON_SIZE_MB = 100  # Maximum JSON file size for safety
 MAX_SOLVER_COUNT = 1000  # Maximum number of solvers to prevent memory issues
 MIN_SOLVER_COUNT = 1    # Minimum solvers required for meaningful selection
 
-
 class ComplexityMetricsLoader:
     """
-    Enterprise-grade loader for Stage 5.1 complexity metrics with rigorous validation.
+    complete loader for Stage 5.1 complexity metrics with rigorous validation.
     
     Loads and validates complexity_metrics.json from Stage 5.1 output, ensuring:
     - Schema version compatibility (1.0.0)
@@ -87,7 +86,7 @@ class ComplexityMetricsLoader:
         """
         Load and validate complexity metrics from Stage 5.1 JSON output.
         
-        Performs comprehensive validation of the complexity_metrics.json file:
+        Performs complete validation of the complexity_metrics.json file:
         1. File existence and readability verification
         2. JSON parsing with error context
         3. Schema version compatibility checking
@@ -124,7 +123,7 @@ class ComplexityMetricsLoader:
             )
             
             try:
-                # Load and parse JSON with comprehensive error handling
+                # Load and parse JSON with complete error handling
                 with validated_path.open("r", encoding="utf-8") as f:
                     raw_data = json.load(f)
                 
@@ -335,10 +334,9 @@ class ComplexityMetricsLoader:
         
         return metadata
 
-
 class SolverCapabilitiesLoader:
     """
-    Enterprise-grade loader for solver capabilities configuration with validation.
+    complete loader for solver capabilities configuration with validation.
     
     Loads solver_capabilities.json containing the complete solver arsenal with:
     - Solver identification and display information
@@ -362,7 +360,7 @@ class SolverCapabilitiesLoader:
         """
         Load and validate solver capabilities from JSON configuration.
         
-        Performs comprehensive validation of solver_capabilities.json:
+        Performs complete validation of solver_capabilities.json:
         1. File accessibility and size validation
         2. JSON schema and version compatibility
         3. Solver completeness and uniqueness validation
@@ -679,7 +677,6 @@ class SolverCapabilitiesLoader:
         
         return limits_data.copy()
 
-
 def write_selection_decision(selection_result: SelectionDecision,
                            output_path: Path,
                            logger: Optional[logging.Logger] = None) -> Path:
@@ -688,7 +685,7 @@ def write_selection_decision(selection_result: SelectionDecision,
     
     Serializes the complete solver selection results to JSON format matching
     the foundational design specification exactly. Uses atomic write operations
-    to ensure data integrity and provides comprehensive audit trail.
+    to ensure data integrity and provides complete audit trail.
     
     Args:
         selection_result: Complete selection decision with ranking and optimization details
@@ -767,7 +764,6 @@ def write_selection_decision(selection_result: SelectionDecision,
                 context={"original_error": str(e)}
             )
 
-
 # Module-level convenience functions
 def load_stage_5_1_output(metrics_path: Path, 
                           logger: Optional[logging.Logger] = None) -> ComplexityParameterVector:
@@ -784,7 +780,6 @@ def load_stage_5_1_output(metrics_path: Path,
     loader = ComplexityMetricsLoader(logger=logger)
     return loader.load_complexity_metrics(metrics_path)
 
-
 def load_solver_arsenal(capabilities_path: Path,
                        logger: Optional[logging.Logger] = None) -> List[SolverCapability]:
     """
@@ -799,7 +794,6 @@ def load_solver_arsenal(capabilities_path: Path,
     """
     loader = SolverCapabilitiesLoader(logger=logger)
     return loader.load_solver_capabilities(capabilities_path)
-
 
 # Export key classes and functions
 __all__ = [

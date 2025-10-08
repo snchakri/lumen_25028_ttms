@@ -1,10 +1,10 @@
 """
 STAGE 5 - COMMON/EXCEPTIONS.PY
-Enterprise-Grade Exception Handling & Error Management
+complete Exception Handling & Error Management
 
-This module defines comprehensive exception hierarchy for Stage 5 operations with
+This module defines complete exception hierarchy for Stage 5 operations with
 detailed error context, recovery guidance, and integration with logging and monitoring
-systems. All exceptions follow enterprise standards for error handling and provide
+systems. All exceptions follow Standards for error handling and provide
 actionable information for debugging and system recovery.
 
 CRITICAL IMPLEMENTATION NOTES:
@@ -25,12 +25,6 @@ Cross-Module Dependencies:
 - common.utils: File operation error handling and validation failures
 - common.schema: Data validation error context and schema violations
 
-IDE Integration Notes:
-- Exception hierarchy enables intelligent error handling in try/except blocks
-- Comprehensive docstrings provide context for error handling strategies
-- Type hints support static analysis of exception handling code paths
-"""
-
 from typing import Dict, List, Optional, Union, Any, Type
 from datetime import datetime
 from pathlib import Path
@@ -42,7 +36,7 @@ import sys
 # =============================================================================
 
 __version__ = "1.0.0"
-__author__ = "LUMEN Team (Team ID: 93912)"
+__author__ = "Student Team"
 __description__ = "Stage 5 Exception Hierarchy & Error Management"
 
 # Error severity levels for monitoring and alerting
@@ -67,7 +61,7 @@ class Stage5BaseException(Exception):
     """
     Base exception class for all Stage 5 operations.
     
-    Provides comprehensive error context and metadata for all Stage 5 exceptions:
+    Provides complete error context and metadata for all Stage 5 exceptions:
     - Error categorization and severity classification
     - Structured error context for debugging and monitoring
     - Recovery guidance and suggested resolution steps
@@ -98,7 +92,7 @@ class Stage5BaseException(Exception):
                  correlation_id: Optional[str] = None,
                  inner_exception: Optional[Exception] = None):
         """
-        Initialize Stage 5 base exception with comprehensive error context.
+        Initialize Stage 5 base exception with complete error context.
         
         Args:
             message: Primary error message describing the failure
@@ -726,7 +720,7 @@ def handle_exception_with_context(exception: Exception,
                                  context: Optional[Dict[str, Any]] = None,
                                  reraise: bool = True) -> Dict[str, Any]:
     """
-    Handle exception with comprehensive logging and context preservation.
+    Handle exception with complete logging and context preservation.
     
     Provides standardized exception handling with:
     - Structured exception logging with context
@@ -872,8 +866,8 @@ __all__ = [
 ]
 
 print("✅ STAGE 5 COMMON/EXCEPTIONS.PY - Enterprise exception hierarchy complete")
-print("   - Comprehensive exception hierarchy with structured error context")
-print("   - Enterprise-grade error handling with recovery guidance")
+print("   - complete exception hierarchy with structured error context")
+print("   - complete error handling with recovery guidance")
 print("   - Integration with logging and monitoring systems")
 print("   - Fail-fast philosophy with actionable error messages")
 print("   - Audit trail correlation and distributed tracing support")

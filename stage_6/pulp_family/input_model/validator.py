@@ -2,9 +2,9 @@
 """
 PuLP Solver Family - Stage 6 Input Modeling Layer: Data Validation Module
 
-This module implements enterprise-grade validation functionality for loaded Stage 3 data structures,
+This module implements complete validation functionality for loaded Stage 3 data structures,
 ensuring mathematical correctness, scheduling feasibility, and compliance with theoretical frameworks
-before proceeding to optimization processing. Provides fail-fast validation with comprehensive
+before proceeding to optimization processing. Provides fail-fast validation with complete
 error reporting and eligibility verification per formal models.
 
 Theoretical Foundation:
@@ -16,12 +16,12 @@ Theoretical Foundation:
 
 Architecture Compliance:
     - Fail-fast philosophy: immediate termination on critical validation failures  
-    - Comprehensive logging: structured error reporting with JSON metadata
+    - complete logging: structured error reporting with JSON metadata
     - Mathematical rigor: formal constraint verification and feasibility checking
-    - Production readiness: robust error handling with detailed diagnostics
+    - Production readiness: reliable error handling with detailed diagnostics
 
 Dependencies: pandas, numpy, scipy, networkx, logging, json, datetime
-Authors: Team LUMEN (SIH 2025)
+Author: Student Team
 Version: 1.0.0 (Production)
 """
 
@@ -47,7 +47,6 @@ except ImportError:
 # Configure structured logging for validation operations
 logger = logging.getLogger(__name__)
 
-
 class ValidationSeverity(Enum):
     """Enumeration of validation error severity levels for structured error handling."""
     CRITICAL = "CRITICAL"    # Violations that prevent optimization (empty eligibility sets)
@@ -55,14 +54,13 @@ class ValidationSeverity(Enum):
     WARNING = "WARNING"      # Quality issues that may impact solution quality
     INFO = "INFO"           # Informational messages about data characteristics
 
-
 @dataclass
 class ValidationResult:
     """
     Encapsulates validation results with structured error reporting.
 
     Mathematical Foundation: Supports fail-fast validation per Stage 6 rules
-    while maintaining comprehensive diagnostics for debugging and audit trails.
+    while maintaining complete diagnostics for debugging and audit trails.
 
     Attributes:
         is_valid: Boolean indicating overall validation success/failure
@@ -100,7 +98,7 @@ class ValidationResult:
             self.warnings.append(error)
 
     def get_summary(self) -> Dict[str, Any]:
-        """Generate comprehensive validation summary for logging and reporting."""
+        """Generate complete validation summary for logging and reporting."""
         return {
             'validation_status': 'PASSED' if self.is_valid else 'FAILED',
             'overall_severity': self.severity.value,
@@ -110,12 +108,11 @@ class ValidationResult:
             'metadata': self.metadata
         }
 
-
 class SchedulingDataValidator:
     """
-    Enterprise-grade validator for scheduling data structures with mathematical rigor.
+    complete validator for scheduling data structures with mathematical rigor.
 
-    Implements comprehensive validation based on formal frameworks:
+    Implements complete validation based on formal frameworks:
     - Entity completeness and integrity verification
     - Relationship consistency and transitivity validation  
     - Eligibility set non-emptiness checking (critical for feasibility)
@@ -158,7 +155,7 @@ class SchedulingDataValidator:
                     relationship_graph: RelationshipGraph,
                     index_structure: IndexStructure) -> ValidationResult:
         """
-        Comprehensive validation of all loaded data structures.
+        complete validation of all loaded data structures.
 
         Implements fail-fast validation strategy: terminates on first CRITICAL error
         to prevent downstream failures and resource waste.
@@ -169,12 +166,12 @@ class SchedulingDataValidator:
             index_structure: Loaded index structure
 
         Returns:
-            ValidationResult object with comprehensive diagnostics
+            ValidationResult object with complete diagnostics
 
         Raises:
             ValueError: If critical validation failures occur in strict mode
         """
-        logger.info(f"Starting comprehensive validation for execution {self.execution_id}")
+        logger.info(f"Starting complete validation for execution {self.execution_id}")
 
         try:
             # Phase 1: Entity collection validation
@@ -262,7 +259,7 @@ class SchedulingDataValidator:
         """
         Validate individual entity collection for data integrity and business rules.
 
-        Implements comprehensive checks for:
+        Implements complete checks for:
         - Primary key uniqueness and completeness
         - Data type consistency and validity
         - Business rule compliance (positive capacities, valid time ranges, etc.)
@@ -949,7 +946,7 @@ class SchedulingDataValidator:
     def _compute_validation_statistics(self, entity_collections: Dict[str, EntityCollection],
                                      relationship_graph: RelationshipGraph,
                                      index_structure: IndexStructure) -> None:
-        """Compute comprehensive validation statistics for reporting."""
+        """Compute complete validation statistics for reporting."""
 
         statistics = {}
 
@@ -994,7 +991,7 @@ class SchedulingDataValidator:
 
     def save_validation_report(self, output_path: Union[str, Path]) -> Path:
         """
-        Save comprehensive validation report to JSON file.
+        Save complete validation report to JSON file.
 
         Args:
             output_path: Path to directory where validation report should be saved
@@ -1008,7 +1005,7 @@ class SchedulingDataValidator:
         report_filename = f"validation_report_{self.execution_id}.json"
         report_path = output_path / report_filename
 
-        # Generate comprehensive report
+        # Generate complete report
         report = {
             'validation_summary': self.validation_result.get_summary(),
             'errors': self.validation_result.errors,
@@ -1024,7 +1021,6 @@ class SchedulingDataValidator:
         logger.info(f"Validation report saved to {report_path}")
         return report_path
 
-
 def validate_scheduling_data(entity_collections: Dict[str, EntityCollection],
                            relationship_graph: RelationshipGraph,
                            index_structure: IndexStructure,
@@ -1032,7 +1028,7 @@ def validate_scheduling_data(entity_collections: Dict[str, EntityCollection],
                            output_path: Optional[Union[str, Path]] = None,
                            strict_mode: bool = True) -> ValidationResult:
     """
-    High-level function to validate all scheduling data structures with comprehensive reporting.
+    High-level function to validate all scheduling data structures with complete reporting.
 
     Args:
         entity_collections: Dictionary of loaded entity collections
@@ -1043,7 +1039,7 @@ def validate_scheduling_data(entity_collections: Dict[str, EntityCollection],
         strict_mode: If True, treat warnings as errors for maximum rigor
 
     Returns:
-        ValidationResult object with comprehensive diagnostics
+        ValidationResult object with complete diagnostics
 
     Raises:
         ValueError: If critical validation failures occur in strict mode
@@ -1068,7 +1064,6 @@ def validate_scheduling_data(entity_collections: Dict[str, EntityCollection],
         raise ValueError(error_summary)
 
     return validation_result
-
 
 if __name__ == "__main__":
     # Example usage and testing

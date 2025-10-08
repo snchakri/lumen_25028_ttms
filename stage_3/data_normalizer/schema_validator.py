@@ -1,7 +1,7 @@
 """
 Schema Validator Module - Stage 3, Layer 1: Raw Data Normalization
 
-This module implements comprehensive schema validation for the HEI scheduling data model.
+This module implements complete schema validation for the HEI scheduling data model.
 It enforces strict type safety, referential integrity, and business rules validation
 using Pydantic models derived from hei_timetabling_datamodel.sql.
 
@@ -16,7 +16,7 @@ Integration Points:
 - Supports dynamic parameters via EAV model with full type conversion
 - Enforces HEI data model constraints and business rules
 
-Author: Stage 3 Data Compilation Team
+Author: Student Team
 Compliance: Stage-3-DATA-COMPILATION-Theoretical-Foundations-Mathematical-Framework.pdf
 Dependencies: pandas, numpy, pydantic, typing, uuid, datetime, decimal
 """
@@ -34,7 +34,7 @@ from decimal import Decimal
 import re
 import structlog
 
-# Configure structured logging for production deployment
+# Configure structured logging for production usage
 logger = structlog.get_logger(__name__)
 
 # HEI Data Model Enumerations (derived from hei_timetabling_datamodel.sql)
@@ -140,7 +140,7 @@ class StudentModel(BaseModel):
 
 class ProgramModel(BaseModel):
     """
-    Academic program validation model with comprehensive business rules.
+    Academic program validation model with complete business rules.
     
     Enforces:
     - Program code uniqueness and format consistency
@@ -674,10 +674,10 @@ def create_hei_pydantic_models():
 
 class ValidationResult:
     """
-    Comprehensive validation result with detailed metrics and error reporting.
+    complete validation result with detailed metrics and error reporting.
     
     Contains validation status, quality metrics, error details, and performance data
-    for comprehensive validation reporting to downstream Stage 3 components.
+    for complete validation reporting to downstream Stage 3 components.
     """
     entity_type: str
     total_records: int
@@ -690,16 +690,16 @@ class ValidationResult:
 
 class SchemaValidator:
     """
-    Production-grade schema validation system implementing Normalization Theorem (3.3).
+    complete schema validation system implementing Normalization Theorem (3.3).
     
-    Provides comprehensive type-safe validation for all HEI data model entities
+    Provides complete type-safe validation for all HEI data model entities
     with advanced error handling, quality scoring, and performance monitoring.
     
     Features:
     - Multi-entity validation with Pydantic model enforcement
     - Dynamic parameter EAV model support with type conversion
     - Business rule validation and constraint checking
-    - Comprehensive error reporting with row-level detail
+    - complete error reporting with row-level detail
     - Quality metrics calculation and scoring
     - Memory-efficient batch processing
     
@@ -724,7 +724,7 @@ class SchemaValidator:
     }
     
     def __init__(self):
-        """Initialize schema validator with production-grade configuration."""
+        """Initialize schema validator with complete configuration."""
         self._validation_stats = {
             'entities_processed': 0,
             'total_records_validated': 0,
@@ -734,7 +734,7 @@ class SchemaValidator:
     
     def validate_entity_dataframe(self, entity_type: str, dataframe: pd.DataFrame) -> ValidationResult:
         """
-        Validate complete DataFrame for specific entity type with comprehensive error handling.
+        Validate complete DataFrame for specific entity type with complete error handling.
         
         Implements Normalization Theorem (3.3) validation ensuring all functional dependencies
         are preserved and data quality meets Stage 3 compilation requirements.
@@ -838,7 +838,7 @@ class SchemaValidator:
         """
         Validate multiple entity DataFrames with cross-entity consistency checking.
         
-        Performs comprehensive validation across all HEI entities ensuring referential
+        Performs complete validation across all HEI entities ensuring referential
         integrity and business rule compliance for Stage 3 compilation requirements.
         
         Args:
@@ -1052,7 +1052,7 @@ class SchemaValidator:
     
     def get_validation_statistics(self) -> Dict[str, Any]:
         """
-        Get comprehensive validation statistics for performance monitoring.
+        Get complete validation statistics for performance monitoring.
         
         Returns:
             Dictionary containing validation metrics and performance indicators
@@ -1102,7 +1102,7 @@ if __name__ == "__main__":
         'student_id': ['STU001', 'STU002', 'STU003'],
         'first_name': ['John', 'Jane', 'Bob'],
         'last_name': ['Doe', 'Smith', 'Johnson'],
-        'email': ['john.doe@university.edu', 'jane.smith@university.edu', 'bob.johnson@university.edu'],
+        'email': ['', '', ''],
         'program_id': ['CS001', 'EE002', 'CS001'],
         'enrollment_year': [2023, 2022, 2024],
         'status': ['active', 'active', 'active']

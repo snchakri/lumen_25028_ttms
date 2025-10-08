@@ -3,7 +3,7 @@ Course Enrollment Generator - Real Academic Processing Implementation
 
 This module implements GENUINE batch-course enrollment mapping with validation.
 Uses real academic constraint checking and prerequisite validation.
-NO mock functions - only actual enrollment record generation and academic integrity checking.
+NO placeholder functions - only actual enrollment record generation and academic integrity checking.
 
 Mathematical Foundation:
 - Directed acyclic graph for prerequisite validation

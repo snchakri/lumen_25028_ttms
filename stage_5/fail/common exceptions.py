@@ -1,20 +1,19 @@
 # STAGE 5 - COMMON/EXCEPTIONS.PY  
-# Enterprise-Grade Exception Hierarchy for Rigorous Error Handling
+# complete Exception Hierarchy for Rigorous Error Handling
 
 """
 STAGE 5 COMMON EXCEPTION DEFINITIONS
-Enterprise-Grade Exception Hierarchy for Fail-Fast Error Handling
+complete Exception Hierarchy for Fail-Fast Error Handling
 
-This module defines comprehensive exception classes for Stage 5's rigorous error handling
+This module defines complete exception classes for Stage 5's rigorous error handling
 framework. Every exception provides detailed context for debugging and maintains the
-fail-fast discipline required for enterprise-grade reliability.
+fail-fast discipline required for complete reliability.
 
 Critical Implementation Notes:
 - NO MOCK EXCEPTIONS: All exceptions represent real failure conditions  
 - DETAILED CONTEXT: Every exception includes specific error details and remedy guidance
 - FAIL-FAST PHILOSOPHY: Exceptions halt execution immediately to prevent error propagation
-- CURSOR/PyCharm IDE INTEGRATION: Full docstrings for intelligent error handling
-- AUDIT TRAIL SUPPORT: All exceptions log context for debugging and analysis
+- CURSOR/PyCharm 
 
 Design Principles:
 1. GRANULAR CLASSIFICATION: Specific exception types for precise error identification
@@ -73,7 +72,7 @@ class Stage5BaseException(Exception):
         remediation_hint: Optional[str] = None
     ):
         """
-        Initialize Stage 5 base exception with comprehensive error context.
+        Initialize Stage 5 base exception with complete error context.
         
         Args:
             message: Human-readable error description for developers
@@ -660,7 +659,7 @@ __all__ = [
 ]
 
 print("✅ STAGE 5 COMMON/EXCEPTIONS.PY - COMPLETE")
-print("   - Comprehensive exception hierarchy with base classes and specializations")
+print("   - complete exception hierarchy with base classes and specializations")
 print("   - Stage 5.1 and Stage 5.2 specific exception types for precise error handling")
 print("   - Integration and system-level exceptions for pipeline coordination")
 print("   - Rich error context and debugging support for all exception types")

@@ -1,10 +1,10 @@
 """
 STAGE 5 - COMMON/LOGGING.PY
-Enterprise-Grade Structured Logging System
+complete Structured Logging System
 
-This module provides comprehensive structured logging for Stage 5 operations with
+This module provides complete structured logging for Stage 5 operations with
 JSON-formatted output, performance monitoring, audit trail tracking, and integration
-with downstream log aggregation systems. All logging follows enterprise standards
+with downstream log aggregation systems. All logging follows Standards
 with detailed context and correlation IDs for debugging and monitoring.
 
 CRITICAL IMPLEMENTATION NOTES:
@@ -12,7 +12,7 @@ CRITICAL IMPLEMENTATION NOTES:
 - JSON STRUCTURED OUTPUT: Machine-readable logs for aggregation and analysis
 - CORRELATION TRACKING: Execution IDs and context correlation across log entries
 - PERFORMANCE MONITORING: Automatic timing and resource utilization tracking
-- ENTERPRISE COMPLIANCE: Audit trails with full execution context and provenance
+- Compliance: Audit trails with full execution context and provenance
 
 References:
 - Stage5-FOUNDATIONAL-DESIGN-IMPLEMENTATION-PLAN.md: Logging requirements and JSON format
@@ -24,12 +24,6 @@ Cross-Module Dependencies:
 - common.exceptions: Error logging with exception context
 - common.utils: File operations logging and validation events
 - common.schema: Schema validation events and data contract violations
-
-IDE Integration Notes:
-- Logger instances provide IntelliSense for log levels and formatting
-- Context managers enable automatic performance timing and resource tracking
-- Type hints support static analysis of logging calls and parameters
-"""
 
 import logging
 import logging.handlers
@@ -52,7 +46,7 @@ import uuid
 # =============================================================================
 
 __version__ = "1.0.0"
-__author__ = "LUMEN Team (Team ID: 93912)"
+__author__ = "Student Team"
 __description__ = "Stage 5 Structured Logging System"
 
 # Default logging configuration
@@ -740,5 +734,5 @@ print("✅ STAGE 5 COMMON/LOGGING.PY - Enterprise logging system initialized")
 print("   - JSON structured logging with ELK Stack compatibility")
 print("   - Performance monitoring with automatic timing and resource tracking")
 print("   - Context-aware logging with execution ID correlation")
-print("   - Audit trail compliance with comprehensive error reporting")
-print("   - File rotation and backup management for production deployment")
+print("   - Audit trail compliance with complete error reporting")
+print("   - File rotation and backup management for production usage")

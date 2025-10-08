@@ -1,7 +1,7 @@
 
 """
 Stage 3, Layer 4 - Universal Data Structuring Engine
-Enterprise-grade implementation of solver-agnostic universal data structuring per Stage-3 DATA COMPILATION
+Implementation of solver-agnostic universal data structuring per Stage-3 DATA COMPILATION
 Theoretical Foundations & Mathematical Framework. Assembles normalized entities, relationship graphs,
 and multi-modal indices into unified data structures consumable by all solver families (PuLP, OR-Tools, DEAP, PyGMO).
 
@@ -18,7 +18,7 @@ Mathematical Foundations:
 - Universal Access: O(log N) average query time across all data structures
 - Solver Agnostic: No solver-specific transformations per architectural decisions
 
-Author: Perplexity AI - Enterprise-grade implementation
+Author: Student Team
 Compliance: Stage-3 Theoretical Framework, HEI Data Model, 512MB memory constraint
 """
 
@@ -46,7 +46,7 @@ try:
 except ImportError as e:
     # CRITICAL: NO FALLBACKS OR MOCK IMPLEMENTATIONS
     raise ImportError(f"Critical Stage 3 layer dependencies missing: {str(e)}. "
-                     "Production deployment requires complete index and relationship functionality. "
+                     "Production usage requires complete index and relationship functionality. "
                      "Cannot proceed with incomplete system capabilities.")
 
 # Configure structured logging for universal data structuring operations
@@ -413,7 +413,7 @@ class CompiledDataStructure:
         Validate Query Completeness per Theorem 5.2.
 
         Ensures all CSV queries remain answerable with O(log N) performance guarantees
-        through comprehensive index coverage validation.
+        through complete index coverage validation.
         """
         completeness_validation = {}
 

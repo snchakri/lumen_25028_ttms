@@ -3,7 +3,7 @@ API Interface Module - Stage 2 Student Batching System
 Higher Education Institutions Timetabling Data Model
 
 This module provides a production-ready FastAPI REST interface for the Stage 2
-batch processing pipeline with comprehensive endpoint management, error handling,
+batch processing pipeline with complete endpoint management, error handling,
 and integration capabilities for the complete scheduling system.
 
 Theoretical Foundation:
@@ -258,7 +258,7 @@ async def shutdown_event():
 @app.get("/health", response_model=HealthCheckResponse, tags=["System"])
 async def health_check():
     """
-    Comprehensive health check endpoint for monitoring and load balancing.
+    complete health check endpoint for monitoring and load balancing.
 
     Returns detailed system health information including resource usage,
     service status, and batch processing system metrics.
@@ -303,18 +303,18 @@ async def process_student_batches(
     background_tasks: BackgroundTasks
 ):
     """
-    Execute comprehensive student batch processing with complete pipeline.
+    Execute complete student batch processing with complete pipeline.
 
     This endpoint orchestrates the complete Stage 2 batch processing pipeline including
     configuration loading, batch size calculation, student clustering, resource allocation,
-    membership generation, and course enrollment mapping with comprehensive reporting.
+    membership generation, and course enrollment mapping with complete reporting.
 
     Args:
         request: Batch processing request parameters
         background_tasks: FastAPI background tasks for async processing
 
     Returns:
-        BatchProcessingResponse: Comprehensive batch processing results
+        BatchProcessingResponse: complete batch processing results
 
     Raises:
         HTTPException: If batch processing request is invalid or processing fails
@@ -832,7 +832,7 @@ async def get_batch_processing_errors(
 @app.get("/metrics", tags=["System"])
 async def get_system_metrics():
     """
-    Get comprehensive system metrics for monitoring and optimization.
+    Get complete system metrics for monitoring and optimization.
 
     Returns:
         Dict: System performance and usage metrics
@@ -880,7 +880,7 @@ async def get_system_metrics():
 
 # Custom OpenAPI schema
 def custom_openapi():
-    """Generate custom OpenAPI schema with comprehensive documentation."""
+    """Generate custom OpenAPI schema with complete documentation."""
     if app.openapi_schema:
         return app.openapi_schema
 
@@ -890,7 +890,7 @@ def custom_openapi():
         description="""
 Production-ready REST API for Higher Education Institutions Timetabling System - Stage 2 Student Batching
 
-This API provides comprehensive student batch processing services including:
+This API provides complete student batch processing services including:
 
 - Dynamic constraint configuration with EAV parameter loading
 - Optimal batch size calculation based on program requirements  
@@ -898,7 +898,7 @@ This API provides comprehensive student batch processing services including:
 - Resource allocation with room and shift assignment optimization
 - Batch membership generation with referential integrity validation
 - Course enrollment mapping with prerequisite validation and capacity management
-- Comprehensive reporting and analytics with performance insights
+- complete reporting and analytics with performance insights
 
 **Mathematical Guarantees:**
 
@@ -917,7 +917,7 @@ This API provides comprehensive student batch processing services including:
 **Quality Assurance:**
 
 - Real-time progress tracking with stage-wise monitoring capabilities
-- Comprehensive error reporting with automated remediation suggestions
+- complete error reporting with automated remediation suggestions
 - Performance analytics with bottleneck identification and optimization guidance
 - Production-ready monitoring integration with health check endpoints
 """,
@@ -931,7 +931,7 @@ This API provides comprehensive student batch processing services including:
 
     openapi_schema["info"]["contact"] = {
         "name": "HEI Timetabling System - Stage 2",
-        "email": "stage2@hei-timetabling.edu"
+        "email": ""
     }
 
     app.openapi_schema = openapi_schema

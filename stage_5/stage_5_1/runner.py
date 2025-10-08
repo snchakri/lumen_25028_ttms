@@ -10,10 +10,10 @@ The runner handles:
 1. Input validation and Stage 3 data loading
 2. 16-parameter complexity computation execution
 3. Output serialization to JSON format
-4. Comprehensive error handling with fail-fast semantics
+4. complete error handling with fail-fast semantics
 5. Execution timing and performance monitoring
 
-All operations are performed with enterprise-grade error handling and 
+All operations are performed with complete error handling and 
 structured logging for debugging and audit purposes.
 """
 
@@ -31,10 +31,8 @@ from ..common.schema import ComplexityParameterVector, ExecutionContext, Stage5R
 from .io import load_stage3_inputs, write_complexity_metrics
 from .compute import ComplexityParameterComputer
 
-
 # Global logger for this module - initialized at module level for consistency
 _logger = get_logger("stage5_1.runner")
-
 
 def create_execution_context(
     l_raw_path: Path,
@@ -124,7 +122,6 @@ def create_execution_context(
         
         return context
 
-
 def execute_stage_5_1_complexity_analysis(context: ExecutionContext) -> ComplexityParameterVector:
     """
     Execute complete Stage 5.1 complexity analysis pipeline.
@@ -154,7 +151,7 @@ def execute_stage_5_1_complexity_analysis(context: ExecutionContext) -> Complexi
         max_execution_time = 600  # 10 minutes maximum per foundational design
         
         try:
-            # Step 1: Load Stage 3 input data with comprehensive validation
+            # Step 1: Load Stage 3 input data with complete validation
             _logger.info("Loading Stage 3 input data...")
             stage3_data = load_stage3_inputs(
                 context.l_raw_path,
@@ -200,7 +197,7 @@ def execute_stage_5_1_complexity_analysis(context: ExecutionContext) -> Complexi
             return parameter_vector
             
         except Exception as e:
-            # Comprehensive error context for debugging
+            # complete error context for debugging
             execution_time = time.perf_counter() - start_time
             
             if isinstance(e, (Stage5ValidationError, Stage5ComputationError, Stage5PerformanceError)):
@@ -219,7 +216,6 @@ def execute_stage_5_1_complexity_analysis(context: ExecutionContext) -> Complexi
                     }
                 ) from e
 
-
 def run_stage_5_1_complete(
     l_raw_path: Path,
     l_rel_path: Path,
@@ -231,7 +227,7 @@ def run_stage_5_1_complete(
     Complete Stage 5.1 execution pipeline: context creation → computation → output.
     
     This is the main programmatic interface for Stage 5.1, providing end-to-end
-    execution with comprehensive error handling and output generation.
+    execution with complete error handling and output generation.
     
     Args:
         l_raw_path: Path to Stage 3 L_raw.parquet file
@@ -318,13 +314,12 @@ def run_stage_5_1_complete(
             _logger.error(f"Stage 5.1 execution failed: {str(e)}", extra=error_context)
             raise
 
-
 def main():
     """
     CLI entrypoint for Stage 5.1 complexity analysis.
     
     Provides command-line interface following standard Unix conventions
-    with comprehensive help and error reporting.
+    with complete help and error reporting.
     """
     parser = argparse.ArgumentParser(
         description="Stage 5.1: Input Complexity Analysis",
@@ -474,7 +469,6 @@ Output:
         traceback.print_exc(file=sys.stderr)
         
         sys.exit(2)
-
 
 if __name__ == "__main__":
     main()

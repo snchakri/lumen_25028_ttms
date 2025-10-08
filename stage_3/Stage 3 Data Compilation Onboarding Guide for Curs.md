@@ -1,8 +1,7 @@
-<img src="https://r2cdn.perplexity.ai/pplx-full-logo-primary-dark%402x.png" style="height:64px;margin-right:32px"/>
 
-# Stage 3 Data Compilation Onboarding Guide for Cursor IDE
+# Stage 3 Data Compilation Onboarding Guide
 
-This document provides a comprehensive overview of Stage 3, detailing every module, implementation changes, theoretical foundations, and integration notes. It ensures you understand the codebase structure, design decisions, and mathematical guarantees.
+This document provides a complete overview of Stage 3, detailing every module, implementation changes, theoretical foundations, and integration notes. It ensures you understand the codebase structure, design decisions, and mathematical guarantees.
 
 ***
 
@@ -54,7 +53,6 @@ stage_3/
 └── api_interface.py          # Support: FastAPI endpoints & WebSocket
 ```
 
-
 ***
 
 ## 3. Module Descriptions
@@ -73,7 +71,6 @@ Detects exact and near-duplicates via hash grouping, Jaccard/Levenshtein measure
 Creates atomic checkpoints after each sub-step; stores checksums and row counts; rollback on failure; lightweight validation of state transitions.
 - **normalization_engine.py**
 Orchestrates Layer 1 end-to-end; records performance/memory metrics; integrates all above modules sequentially.
-
 
 ### Layer 2: relationship_engine.py
 
@@ -111,12 +108,12 @@ Assembles entities, relationships, and indices into a `CompiledDataStructure`; e
 
 ## 5. Recent Fixes \& Mock Removal
 
-- **All mock functions eliminated**: No placeholder returns, no `asyncio.sleep` simulations, no fake data.
+- **All placeholder functions eliminated**: No placeholder returns, no `asyncio.sleep` simulations, no fake data.
 - **Algorithms completed**: B-tree splits, Floyd-Warshall, BCNF join tests, Shannon entropy, statistical correlation.
 - **MockCompilationEngine** and fake memory managers removed.
-- **Production-grade error handling and structured logging** added across modules.
+- **complete error handling and structured logging** added across modules.
 
-Refer to **STAGE3_COMPREHENSIVE_ISSUES_REPORT.md** for prior inconsistencies and how each was addressed.
+Refer to **STAGE3_complete_ISSUES_REPORT.md** for prior inconsistencies and how each was addressed.
 
 ***
 
@@ -151,9 +148,9 @@ On failure, check `checkpoints/` to resume from last valid state.
 - Stage 3 PDF: **Stage-3 DATA COMPILATION – Theoretical Foundations \& Mathematical Framework**
 - Stage 1 \& 2 PDFs for validation and batching context
 - Theorems and algorithms cited inline within each module’s docstrings
-- **STAGE3_COMPREHENSIVE_ISSUES_REPORT.md** for historical bugs and fixes
+- **STAGE3_complete_ISSUES_REPORT.md** for historical bugs and fixes
 
 ***
 
-*Cursor IDE should use this document to navigate the Stage 3 codebase, understand design rationales, and ensure all modules align with the project’s rigorous mathematical and production requirements.*
+*Development teams should use this document to navigate the Stage 3 codebase, understand design rationales, and ensure all modules align with the project's rigorous mathematical and production requirements.*
 

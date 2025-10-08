@@ -45,7 +45,7 @@ class SolverArsenalSchema(BaseModel):
     @field_validator('solver_arsenal')
     @classmethod
     def validate_paradigm_coverage(cls, v: List[SolverCapability]) -> List[SolverCapability]:
-        """Ensure arsenal covers major solver paradigms for robustness."""
+        """Ensure arsenal covers major solver paradigms for reliableness."""
         paradigms = {solver.paradigm for solver in v}
         if len(paradigms) < 2:
             raise ValueError("Arsenal must contain at least 2 different solver paradigms")
@@ -407,6 +407,6 @@ print("✅ STAGE 5 COMMON/SCHEMA.PY - COMPLETE (Part 3/3)")
 print("   - SolverSelectionSchema with complete Stage 5.2 output specification")
 print("   - OptimizationDetails with L2 normalization and LP convergence tracking")
 print("   - Stage3OutputPaths and ExecutionContext for input/output management")
-print("   - All schemas validated with enterprise-grade mathematical bounds checking")
+print("   - All schemas validated with complete mathematical bounds checking")
 print("   - 100% Pydantic V2 compliance with field_validator and model_validator decorators")
 print(f"   - Total schema classes exported: {len(__all__)}")

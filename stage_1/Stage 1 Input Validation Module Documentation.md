@@ -1,4 +1,3 @@
-<img src="https://r2cdn.perplexity.ai/pplx-full-logo-primary-dark%402x.png" style="height:64px;margin-right:32px"/>
 
 # Stage 1 Input Validation Module Documentation
 
@@ -21,7 +20,6 @@ stage_1/
 ├── api_interface.py
 └── cli.py
 ```
-
 
 ***
 
@@ -129,7 +127,7 @@ stage_1/
 
 ## 7. `report_generator.py`
 
-- **Purpose**: Aggregate validation results into **professional-grade** reports.
+- **Purpose**: Aggregate validation results into **complete** reports.
 - **Key Classes**:
     - `ValidationRunSummary`: High-level run metadata, file/record stats, error counts, quality scores, readiness flags.
     - `ErrorCategoryReport`: Categorizes errors by severity, type, table; estimates remediation effort.
@@ -138,7 +136,7 @@ stage_1/
         - `_categorize_validation_errors()`: Uses `ERROR_CATEGORIES` mapping to group errors.
         - `_calculate_quality_metrics()`: Computes completeness, consistency, integrity, compliance scores; weighted overall.
         - Multi-format output:
-            - `generate_comprehensive_report()`: Orchestrates text, JSON, HTML, executive summary, technical details, remediation guides.
+            - `generate_complete_report()`: Orchestrates text, JSON, HTML, executive summary, technical details, remediation guides.
             - Templates under `REPORT_TEMPLATES`.
         - Utility serializers for `ValidationError`, `IntegrityViolation`, `EAVValidationError`.
 - **Features**: “What? When? Why? How? Where?” messaging, executive summaries, remediation plans.

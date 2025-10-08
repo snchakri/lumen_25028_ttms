@@ -3,7 +3,7 @@ API Interface Module - Stage 1 Input Validation System
 Higher Education Institutions Timetabling Data Model
 
 This module provides a production-ready FastAPI REST interface for the Stage 1
-validation pipeline with comprehensive endpoint management, error handling,
+validation pipeline with complete endpoint management, error handling,
 and integration capabilities for the complete scheduling system.
 
 Theoretical Foundation:
@@ -206,7 +206,7 @@ async def shutdown_event():
 @app.get("/health", response_model=HealthCheckResponse, tags=["System"])
 async def health_check():
     """
-    Comprehensive health check endpoint for monitoring and load balancing.
+    complete health check endpoint for monitoring and load balancing.
     
     Returns detailed system health information including resource usage,
     service status, and validation system metrics.
@@ -251,18 +251,18 @@ async def validate_directory(
     background_tasks: BackgroundTasks
 ):
     """
-    Execute comprehensive directory validation with complete pipeline processing.
+    Execute complete directory validation with complete pipeline processing.
     
     This endpoint orchestrates the complete Stage 1 validation pipeline including
     file discovery, integrity checking, schema validation, referential integrity
-    analysis, and EAV validation with comprehensive error reporting.
+    analysis, and EAV validation with complete error reporting.
     
     Args:
         request: Validation request parameters
         background_tasks: FastAPI background tasks for async processing
         
     Returns:
-        ValidationResponse: Comprehensive validation results
+        ValidationResponse: complete validation results
         
     Raises:
         HTTPException: If validation request is invalid or processing fails
@@ -301,7 +301,7 @@ async def validate_directory(
                 max_workers=4  # Configure based on system resources
             )
             
-            # Execute comprehensive validation
+            # Execute complete validation
             validation_result = validator.validate_directory(
                 directory_path=directory_path,
                 error_limit=request.error_limit,
@@ -310,8 +310,8 @@ async def validate_directory(
                 tenant_id=str(request.tenant_id) if request.tenant_id else None
             )
         
-        # Generate comprehensive report
-        report_summary = app_state.report_generator.generate_comprehensive_report(validation_result)
+        # Generate complete report
+        report_summary = app_state.report_generator.generate_complete_report(validation_result)
         
         # Mark validation as completed
         app_state.complete_validation_run(run_id, validation_result.is_valid)
@@ -401,7 +401,7 @@ async def get_validation_report(
     format: str = Query("json", description="Report format: text, json, or html")
 ):
     """
-    Retrieve comprehensive validation report for a completed run.
+    Retrieve complete validation report for a completed run.
     
     Args:
         run_id: Unique validation run identifier
@@ -545,7 +545,7 @@ async def get_validation_errors(
 @app.get("/metrics", tags=["System"])
 async def get_system_metrics():
     """
-    Get comprehensive system metrics for monitoring and optimization.
+    Get complete system metrics for monitoring and optimization.
     
     Returns:
         Dict: System performance and usage metrics
@@ -593,7 +593,7 @@ async def get_system_metrics():
 
 # Custom OpenAPI schema
 def custom_openapi():
-    """Generate custom OpenAPI schema with comprehensive documentation."""
+    """Generate custom OpenAPI schema with complete documentation."""
     if app.openapi_schema:
         return app.openapi_schema
     
@@ -603,12 +603,12 @@ def custom_openapi():
         description="""
         Production-ready REST API for Higher Education Institutions Timetabling System - Stage 1 Input Validation
         
-        This API provides comprehensive CSV file validation services including:
+        This API provides complete CSV file validation services including:
         - File discovery and integrity checking
         - Schema validation with educational domain constraints
         - Referential integrity analysis using graph algorithms
         - EAV parameter validation with constraint enforcement
-        - Comprehensive error reporting and remediation guidance
+        - complete error reporting and remediation guidance
         
         **Mathematical Guarantees:**
         - Complete validation coverage with zero false negatives
@@ -630,7 +630,7 @@ def custom_openapi():
     
     openapi_schema["info"]["contact"] = {
         "name": "HEI Timetabling System",
-        "email": "contact@hei-timetabling.edu"
+        "email": ""
     }
     
     app.openapi_schema = openapi_schema

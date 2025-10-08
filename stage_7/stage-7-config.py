@@ -2,15 +2,15 @@
 """
 Stage 7 Output Validation - Configuration Management Module
 
-This module implements the comprehensive configuration system for Stage 7 output validation,
+This module implements the complete configuration system for Stage 7 output validation,
 including all threshold bounds, department ordering, validation parameters, and system settings
 per the Stage 7 theoretical framework and implementation requirements.
 
 CRITICAL DESIGN PRINCIPLES:
 - Absolute mathematical rigor per Stage 7 theoretical framework (Sections 3-14)
 - Complete threshold bounds definition (τ₁ through τ₁₂) with educational domain compliance  
-- Fail-fast configuration validation with comprehensive error reporting
-- Reconfigurable paths for deployment flexibility (local/cloud environments)
+- Fail-fast configuration validation with complete error reporting
+- Reconfigurable paths for usage flexibility (local/cloud environments)
 - Educational domain optimization with institutional customization support
 
 THEORETICAL FOUNDATION:
@@ -24,10 +24,10 @@ INTEGRATION COMPLIANCE:
 - Master pipeline communication via downward configuration parameters
 - Stage 7.1 validation engine threshold bounds and validation settings
 - Stage 7.2 human format converter department ordering and formatting options
-- API endpoint configuration options for comprehensive team customization
+- API endpoint configuration options for complete team customization
 
-Author: Perplexity Labs AI - Stage 7 Implementation Team
-Created: 2025-10-07 (SIH 2025 Scheduling Engine Project)
+Author: Student Team
+Created: 2025-10-07 (Scheduling Engine Project)
 """
 
 import os
@@ -40,7 +40,6 @@ import json
 import logging
 from pydantic import BaseModel, Field, validator, root_validator
 import numpy as np
-
 
 # =================================================================================================
 # MATHEMATICAL THRESHOLD BOUNDS - STAGE 7 THEORETICAL FRAMEWORK COMPLIANCE
@@ -61,16 +60,14 @@ class ThresholdCategory(Enum):
     PREFERENCE = "preference"   # Stakeholder satisfaction issues
     COMPUTATIONAL = "computational"  # Optimization quality concerns
 
-
 class ValidationMode(Enum):
     """
-    Validation processing modes for different deployment scenarios
+    Validation processing modes for different usage scenarios
     """
     STRICT = "strict"           # All thresholds must pass (production)
     RELAXED = "relaxed"         # Minor violations allowed (testing)
     ADAPTIVE = "adaptive"       # Dynamic threshold adjustment (research)
     EMERGENCY = "emergency"     # Minimal thresholds for crisis scheduling
-
 
 class InstitutionType(Enum):
     """
@@ -81,9 +78,8 @@ class InstitutionType(Enum):
     SCHOOL = "school"                   # K-12 schools
     TRAINING_INSTITUTE = "institute"    # Professional training institutes
 
-
 # =================================================================================================
-# COMPREHENSIVE THRESHOLD CONFIGURATION SYSTEM
+# complete THRESHOLD CONFIGURATION SYSTEM
 # =================================================================================================
 
 @dataclass
@@ -134,7 +130,7 @@ class ThresholdBounds:
     # Maximum 20% soft constraint violation rate acceptable
     constraint_violation_penalty: Tuple[float, float] = (0.0, 0.20)
     
-    # θ₁₀: Solution Stability Index (Section 12 - Robustness analysis)
+    # θ₁₀: Solution Stability Index (Section 12 - reliableness analysis)
     # ≤10% assignment changes under perturbations
     solution_stability_index: Tuple[float, float] = (0.90, 1.0)
     
@@ -212,7 +208,6 @@ class ThresholdBounds:
             
             if i == 1 and lower < 0.95:  # θ₁: Course coverage minimum per Theorem 3.1
                 raise ValueError(f"Threshold 1 (course_coverage_ratio): Lower bound must be ≥ 0.95")
-
 
 # =================================================================================================
 # DEPARTMENT ORDERING AND EDUCATIONAL DOMAIN CONFIGURATION
@@ -336,21 +331,20 @@ class DepartmentConfiguration:
             if dept not in self.department_priority_order:
                 raise ValueError(f"Department {dept} in category but not in priority order")
 
-
 # =================================================================================================
-# SYSTEM PATHS AND DEPLOYMENT CONFIGURATION  
+# SYSTEM PATHS AND usage CONFIGURATION  
 # =================================================================================================
 
 @dataclass
 class PathConfiguration:
     """
-    Comprehensive path configuration for Stage 7 deployment flexibility
-    Supports local development and cloud deployment with environment-specific overrides
+    complete path configuration for Stage 7 usage flexibility
+    Supports local development and cloud usage with environment-specific overrides
     
-    DEPLOYMENT COMPLIANCE:
-    - Environment variable override support for containerized deployment
+    usage COMPLIANCE:
+    - Environment variable override support for containerized usage
     - Relative path resolution for development environments
-    - Absolute path validation for production environments
+    - Absolute path validation for environments
     - Cross-platform compatibility (Windows/Linux/MacOS)
     """
     
@@ -458,7 +452,6 @@ class PathConfiguration:
         for directory in directories:
             Path(directory).mkdir(parents=True, exist_ok=True)
 
-
 # =================================================================================================
 # VALIDATION PROCESSING CONFIGURATION
 # =================================================================================================
@@ -466,13 +459,13 @@ class PathConfiguration:
 @dataclass
 class ValidationConfiguration:
     """
-    Comprehensive validation processing configuration and performance parameters
+    complete validation processing configuration and performance parameters
     
     PERFORMANCE COMPLIANCE:
     - <5 second processing time per Stage 7 requirements (Section 17.2)
     - <100MB memory usage for typical institutional scales
     - O(n²) complexity validation with optimization for large datasets
-    - Fail-fast processing with comprehensive audit trail generation
+    - Fail-fast processing with complete audit trail generation
     """
     
     # Processing mode and performance limits
@@ -494,7 +487,7 @@ class ValidationConfiguration:
         0.08,   # θ₇: Faculty Preferences (preference - satisfaction)
         0.06,   # θ₈: Resource Diversity (preference - engagement)
         0.05,   # θ₉: Constraint Violations (computational - soft constraints)
-        0.04,   # θ₁₀: Solution Stability (computational - robustness)
+        0.04,   # θ₁₀: Solution Stability (computational - reliableness)
         0.05,   # θ₁₁: Computational Quality (computational - optimization)
         0.05    # θ₁₂: Multi-Objective Balance (computational - balance)
     ])
@@ -505,7 +498,7 @@ class ValidationConfiguration:
     
     # Error analysis and advisory configuration  
     enable_advisory_messages: bool = True
-    advisory_detail_level: str = "detailed"  # "basic", "detailed", "comprehensive"
+    advisory_detail_level: str = "detailed"  # "basic", "detailed", "complete"
     
     # Performance monitoring and optimization
     enable_performance_monitoring: bool = True
@@ -546,7 +539,6 @@ class ValidationConfiguration:
         # Validate correlation threshold
         if not (0.0 <= self.correlation_threshold <= 1.0):
             raise ValueError(f"Correlation threshold must be in [0,1], got {self.correlation_threshold}")
-
 
 # =================================================================================================
 # HUMAN-READABLE FORMAT CONFIGURATION
@@ -656,7 +648,6 @@ class HumanFormatConfiguration:
         if self.duration_format not in ["hours", "minutes", "mixed"]:
             raise ValueError(f"Invalid duration_format: {self.duration_format}")
 
-
 # =================================================================================================
 # MASTER CONFIGURATION CLASS
 # =================================================================================================
@@ -671,7 +662,7 @@ class Stage7Configuration:
     - Master pipeline communication interface
     - Sub-stage configuration coordination (7.1 validation, 7.2 formatting)
     - API endpoint configuration options
-    - Environment-specific deployment settings
+    - Environment-specific usage settings
     """
     
     # Core configuration components
@@ -796,7 +787,6 @@ class Stage7Configuration:
             12: ThresholdCategory.COMPUTATIONAL  # Multi-Objective Balance
         }
 
-
 # =================================================================================================
 # GLOBAL CONFIGURATION CONSTANTS AND UTILITIES
 # =================================================================================================
@@ -841,7 +831,6 @@ THRESHOLD_COMPLEXITIES = {
     12: "O(k)"             # Multi-Objective Balance (k = objectives)
 }
 
-
 def get_default_configuration() -> Stage7Configuration:
     """
     Get default Stage 7 configuration with standard educational institution settings
@@ -850,7 +839,6 @@ def get_default_configuration() -> Stage7Configuration:
         Stage7Configuration: Default configuration instance
     """
     return Stage7Configuration()
-
 
 def get_institutional_configuration(
     institution_type: InstitutionType,
@@ -895,11 +883,10 @@ def get_institutional_configuration(
         
     return config
 
-
 def create_configuration_from_environment() -> Stage7Configuration:
     """
     Create Stage 7 configuration from environment variables
-    Supports containerized deployment with environment-specific overrides
+    Supports containerized usage with environment-specific overrides
     
     Returns:
         Stage7Configuration: Configuration with environment overrides
@@ -960,7 +947,6 @@ def create_configuration_from_environment() -> Stage7Configuration:
     
     return config
 
-
 # =================================================================================================
 # MODULE INITIALIZATION AND EXPORT
 # =================================================================================================
@@ -994,7 +980,6 @@ __all__ = [
     'THRESHOLD_COMPLEXITIES',
     'DEFAULT_CONFIG'
 ]
-
 
 if __name__ == "__main__":
     """

@@ -19,8 +19,8 @@ References:
 - stage_3_building_instructions.txt validation specifications
 - Previous layer results for consistency validation
 
-Author: Perplexity Research Team for SIH 2025
-Organization: Team LUMEN (93912)
+Author: Student Team
+Organization: Team LUMEN
 """
 
 import logging
@@ -38,7 +38,6 @@ import numpy as np
 import networkx as nx
 from scipy import stats
 from scipy.spatial.distance import jaccard
-
 
 @dataclass(frozen=True)
 class ValidationThresholds:
@@ -70,14 +69,13 @@ class ValidationThresholds:
     range_query_base_complexity: int = 1  # O(log N) base complexity
     traversal_degree_factor: float = 1.0  # O(d) traversal complexity factor
 
-
 @dataclass
 class TheoremValidationResult:
     """
     Result from validating a specific mathematical theorem.
     
     Contains detailed validation metrics, proof verification,
-    and compliance assessment for production deployment.
+    and compliance assessment for production usage.
     """
     theorem_name: str
     theorem_satisfied: bool
@@ -98,7 +96,6 @@ class TheoremValidationResult:
     # Error details
     validation_errors: List[str] = field(default_factory=list)
     validation_warnings: List[str] = field(default_factory=list)
-
 
 @dataclass
 class TransitionalValidationResult:
@@ -128,7 +125,6 @@ class TransitionalValidationResult:
     integrity_violations: List[str] = field(default_factory=list)
     invariant_violations: List[str] = field(default_factory=list)
 
-
 class MathematicalValidator(ABC):
     """
     Abstract base class for mathematical theorem validators.
@@ -156,7 +152,6 @@ class MathematicalValidator(ABC):
     def get_theorem_name(self) -> str:
         """Return the name of the theorem being validated."""
         pass
-
 
 class InformationPreservationValidator(MathematicalValidator):
     """
@@ -404,7 +399,6 @@ class InformationPreservationValidator(MathematicalValidator):
         except Exception as e:
             self.logger.warning(f"Bijective mapping verification error: {e}")
             return False
-
 
 class QueryCompletenessValidator(MathematicalValidator):
     """
@@ -717,7 +711,6 @@ class QueryCompletenessValidator(MathematicalValidator):
         except Exception:
             return False
 
-
 class ValidationEngine:
     """
     Lightweight validation engine for Stage 3 data compilation.
@@ -737,7 +730,7 @@ class ValidationEngine:
         
         Args:
             logger: Structured logger for validation events
-            enable_detailed_validation: Enable comprehensive theorem validation
+            enable_detailed_validation: Enable complete theorem validation
         """
         self.logger = logger
         self.enable_detailed_validation = enable_detailed_validation
@@ -1122,7 +1115,7 @@ class ValidationEngine:
     
     def get_validation_summary(self) -> Dict[str, Any]:
         """
-        Get comprehensive validation summary.
+        Get complete validation summary.
         
         Returns:
             Dict[str, Any]: Summary of all validations performed
@@ -1153,7 +1146,6 @@ class ValidationEngine:
                               all(c.success for c in self.transitional_checks)
         }
 
-
 # Factory function for common usage
 def create_validation_engine(logger: logging.Logger, 
                            enable_detailed_validation: bool = True) -> ValidationEngine:
@@ -1162,13 +1154,12 @@ def create_validation_engine(logger: logging.Logger,
     
     Args:
         logger: Logger instance for validation events
-        enable_detailed_validation: Enable comprehensive mathematical validation
+        enable_detailed_validation: Enable complete mathematical validation
         
     Returns:
         ValidationEngine: Configured validation engine
     """
     return ValidationEngine(logger, enable_detailed_validation)
-
 
 # Export main classes and functions
 __all__ = [
@@ -1181,7 +1172,6 @@ __all__ = [
     'ValidationEngine',
     'create_validation_engine'
 ]
-
 
 if __name__ == "__main__":
     # Basic module validation

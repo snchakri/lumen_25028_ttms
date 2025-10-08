@@ -422,7 +422,7 @@ class Stage3OutputPathSpecification(BaseModel):
 class ExecutionContextConfiguration(BaseModel):
     """
     Execution context configuration for Stage 5.1 and 5.2 runner environments.
-    Provides comprehensive path management and configuration override capabilities.
+    Provides complete path management and configuration override capabilities.
 
     Context Configuration Components:
     - input_paths: Stage 3 output file location specifications
@@ -433,7 +433,7 @@ class ExecutionContextConfiguration(BaseModel):
     Environment Support:
     - Local development: File system path specifications
     - CI/CD pipelines: Configurable path overrides for testing
-    - Production deployment: Standardized directory structures
+    - Production usage: Standardized directory structures
     - Debugging scenarios: Parameter override capabilities
 
     Audit Trail Integration:
@@ -545,7 +545,7 @@ def validate_solver_id_reference(solver_id: str, available_solvers: List[str]) -
 
     Cross-Reference Validation:
     - Checks solver_id against loaded solver arsenal
-    - Case-insensitive matching for robustness
+    - Case-insensitive matching for reliableness
     - Returns boolean for conditional logic
 
     Args:
@@ -568,7 +568,7 @@ def validate_parameter_bounds(parameters: ComplexityParameterVector) -> List[str
     """
     Validate all complexity parameters are within expected theoretical bounds.
 
-    Comprehensive Parameter Validation:
+    complete Parameter Validation:
     - Checks each parameter against theoretical min/max values
     - Returns list of validation warnings/errors
     - Enables batch validation reporting
@@ -594,6 +594,6 @@ def validate_parameter_bounds(parameters: ComplexityParameterVector) -> List[str
 
 print("✅ STAGE 5 COMMON/SCHEMA.PY - Part 3/4 Complete")
 print("   - Complete Stage 5.2 optimization and selection result schemas")
-print("   - Shared I/O validation schemas with comprehensive path checking")
+print("   - Shared I/O validation schemas with complete path checking")
 print("   - Cross-reference validation utilities for solver arsenal integration")
 print("   - Model validators for complex consistency checking")

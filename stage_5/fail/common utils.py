@@ -1,18 +1,18 @@
 # STAGE 5 - COMMON/UTILS.PY (CORRECTED VERSION)
-# Enterprise-Grade Utility Functions - Standalone Implementation
+# complete Utility Functions - Standalone Implementation
 
 """
 STAGE 5 COMMON UTILITIES
-Enterprise-Grade Helper Functions for File I/O, Validation, and Configuration Management
+complete Helper Functions for File I/O, Validation, and Configuration Management
 
-This module provides comprehensive utility functions for Stage 5's rigorous file handling,
+This module provides complete utility functions for Stage 5's rigorous file handling,
 schema validation, and configuration management requirements. Every function implements
-enterprise-grade error handling with detailed logging and fail-fast behavior.
+complete error handling with detailed logging and fail-fast behavior.
 
 Critical Implementation Notes:
 - NO MOCK IMPLEMENTATIONS: All functions perform real operations with full validation
-- COMPREHENSIVE ERROR HANDLING: Every operation validates inputs and handles edge cases
-- ENTERPRISE FILE I/O: Robust file operations with atomic writes and validation
+- complete ERROR HANDLING: Every operation validates inputs and handles edge cases
+- ENTERPRISE FILE I/O: reliable file operations with atomic writes and validation
 - CURSOR/PyCharm IDE SUPPORT: Full type hints and docstrings for development assistance
 - THEORETICAL COMPLIANCE: File format handling aligns with Stage 3 output specifications
 """
@@ -70,20 +70,20 @@ class Stage5ConfigError(Stage5UtilsError):
 
 # =============================================================================
 # FILE I/O OPERATIONS
-# Robust file operations with validation and error handling
+# reliable file operations with validation and error handling
 # =============================================================================
 
 class Stage5FileHandler:
     """
-    Enterprise-grade file handler for Stage 5 input/output operations.
-    Provides atomic file operations, format validation, and comprehensive error handling.
+    complete file handler for Stage 5 input/output operations.
+    Provides atomic file operations, format validation, and complete error handling.
     
     This class handles:
     - Stage 3 input file loading (L_raw.parquet, L_rel.graphml, L_idx multi-format)
     - Stage 5 output file writing (complexity_metrics.json, selection_decision.json)
     - Atomic file operations to prevent corruption
     - File format validation and schema compliance
-    - Comprehensive error handling with detailed context
+    - complete error handling with detailed context
     
     Features:
     - Atomic writes: Temporary files with rename to prevent corruption
@@ -116,7 +116,7 @@ class Stage5FileHandler:
         l_idx_path: str
     ) -> Tuple[pd.DataFrame, nx.Graph, Any]:
         """
-        Load Stage 3 output files with comprehensive validation.
+        Load Stage 3 output files with complete validation.
         
         Args:
             l_raw_path: Path to L_raw normalized entities (Parquet format)
@@ -431,7 +431,7 @@ def validate_pydantic_model(
     context_name: str = "data"
 ) -> BaseModel:
     """
-    Validate data against Pydantic model with comprehensive error handling.
+    Validate data against Pydantic model with complete error handling.
     
     Args:
         data: Dictionary data to validate
@@ -798,7 +798,7 @@ def compute_entropy(probabilities: List[float], base: float = 2.0) -> float:
 
 # =============================================================================
 # PATH AND DIRECTORY UTILITIES
-# Robust path handling with validation and error checking
+# reliable path handling with validation and error checking
 # =============================================================================
 
 def ensure_directory_exists(directory_path: Union[str, Path]) -> Path:
@@ -899,10 +899,10 @@ __all__ = [
 ]
 
 print("✅ STAGE 5 COMMON/UTILS.PY - COMPLETE")
-print("   - Enterprise-grade file I/O handler with atomic operations and multi-format support")
-print("   - Comprehensive Stage 3 input loading (Parquet, GraphML, multi-format L_idx)")
+print("   - complete file I/O handler with atomic operations and multi-format support")
+print("   - complete Stage 3 input loading (Parquet, GraphML, multi-format L_idx)")
 print("   - Schema validation utilities with Pydantic V2 integration and detailed error handling")
 print("   - Configuration management with environment variable support and validation")
 print("   - Mathematical utilities for safe computation operations (division, log, entropy, CV)")
-print("   - Path and directory utilities with robust error handling and permission validation")
+print("   - Path and directory utilities with reliable error handling and permission validation")
 print(f"   - Total utility components exported: {len(__all__)}")

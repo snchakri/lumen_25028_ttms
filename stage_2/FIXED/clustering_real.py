@@ -541,7 +541,7 @@ class MultiObjectiveStudentClustering:
     def _calculate_quality_metrics(self, X: np.ndarray, labels: np.ndarray,
                                  students: List[StudentRecord], 
                                  clusters: List[BatchCluster]) -> Dict[str, float]:
-        """Calculate comprehensive quality metrics"""
+        """Calculate complete quality metrics"""
         metrics = {}
         
         # Silhouette score (requires at least 2 clusters)

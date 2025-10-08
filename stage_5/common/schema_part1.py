@@ -1,8 +1,8 @@
 """
 STAGE 5 - COMMON/SCHEMA.PY
-Enterprise-Grade JSON Schema Definitions & Pydantic Models
+complete JSON Schema Definitions & Pydantic Models
 
-This module defines comprehensive data contracts for Stage 5's input/output specifications
+This module defines complete data contracts for Stage 5's input/output specifications
 based on the rigorous theoretical frameworks and mathematical foundations. Every schema 
 is validated against the formal models defined in the Stage 5.1 and 5.2 theoretical papers.
 
@@ -25,12 +25,6 @@ Cross-Module Dependencies:
 - common.utils: validate_file_path, load_json_schema
 - common.logging: get_logger for schema validation events
 
-IDE Integration Notes:
-- All classes have comprehensive docstrings for IntelliSense/autocomplete
-- Type annotations provide full IDE support for method chaining
-- Field descriptions enable context-sensitive help in Cursor/PyCharm
-"""
-
 from typing import Dict, List, Optional, Union, Any, Literal
 from enum import Enum
 from datetime import datetime
@@ -39,7 +33,7 @@ from pathlib import Path
 import json
 import re
 
-# Pydantic V2 imports - enterprise-grade validation framework
+# Pydantic V2 imports - complete validation framework
 from pydantic import BaseModel, Field, field_validator, model_validator, ConfigDict
 from pydantic.types import PositiveInt, PositiveFloat
 
@@ -140,18 +134,6 @@ class ExecutionMetadata(BaseModel):
     - computation_time_ms: ≤600,000ms (10 minute prototype time limit)  
     - software_version: Must follow semantic versioning (major.minor.patch)
     - random_seed: Integer for NumPy/SciPy deterministic computations
-
-    IDE Integration:
-    - Full type hints enable IntelliSense autocomplete for all fields
-    - Field descriptions provide context-sensitive help tooltips
-    - Validation methods show expected input formats and constraints
-    """
-    model_config = ConfigDict(
-        str_strip_whitespace=True,
-        validate_assignment=True,
-        use_enum_values=True,
-        extra='forbid'
-    )
 
     timestamp: datetime = Field(
         ..., 
@@ -590,6 +572,6 @@ class ComplexityParameterVector(BaseModel):
 
 print("✅ STAGE 5 COMMON/SCHEMA.PY - Part 1/4 Complete")
 print("   - Pydantic V2 compliant with field_validator decorators")
-print("   - Enterprise-grade validation with mathematical bounds checking")
+print("   - complete validation with mathematical bounds checking")
 print("   - Complete enum definitions for solver paradigms and status codes")
-print("   - Full IDE integration with comprehensive docstrings and type hints")
+print("   - Full IDE integration with complete docstrings and type hints")

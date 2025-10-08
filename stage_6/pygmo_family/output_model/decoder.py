@@ -23,7 +23,6 @@ __all__ = [
     'ScheduleDecoder',
 ]
 
-
 class ScheduleDecoder:
     """Decode PyGMO optimisation results into tabular schedules.
 

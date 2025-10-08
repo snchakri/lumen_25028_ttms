@@ -2,33 +2,33 @@
 """
 Stage 7 API Package - FastAPI Integration Module for Schedule Validation System
 
-This package provides comprehensive REST API endpoints for the Stage 7 Output Validation
+This package provides complete REST API endpoints for the Stage 7 Output Validation
 system, enabling web-based integration and configuration of the timetable validation and
 human-readable format generation pipeline.
 
 Following the theoretical framework from Stage-7-OUTPUT-VALIDATION-Theoretical-Foundation-
 Mathematical-Framework.pdf, this API module exposes all critical Stage 7 functionality
-through well-defined RESTful endpoints with comprehensive configuration options.
+through well-defined RESTful endpoints with complete configuration options.
 
 CRITICAL DESIGN PHILOSOPHY: EXHAUSTIVE CONFIGURATION OPTIONS
 This API module provides an extensive array of configuration endpoints and options to
 enable the development team to customize every aspect of the validation and formatting
-process according to institutional requirements and deployment scenarios.
+process according to institutional requirements and usage scenarios.
 
 Mathematical Foundation:
 - Based on Stage 7 Complete Framework (Algorithms 15.1, 3.2, 4.3)
 - Implements 12-parameter threshold validation per theoretical requirements
 - Supports multi-format output generation with institutional compliance
-- Provides comprehensive audit logging and performance monitoring
+- Provides complete audit logging and performance monitoring
 
 Theoretical Compliance:
 - Stage 7.1 Validation Engine (12-parameter threshold validation)
 - Stage 7.2 Human-Readable Format Generation (educational domain optimization)
-- Fail-fast validation philosophy with comprehensive error reporting
+- Fail-fast validation philosophy with complete error reporting
 - Master pipeline integration with downward communication support
 
 API Architecture:
-1. app.py: Main FastAPI application with comprehensive endpoint definitions
+1. app.py: Main FastAPI application with complete endpoint definitions
 2. schemas.py: Pydantic models for request/response validation and documentation
 
 Endpoint Categories:
@@ -51,19 +51,17 @@ Performance Requirements:
 - Scalability: Horizontal scaling support with stateless operation design
 
 Quality Assurance:
-- Comprehensive request/response validation using Pydantic models
+- complete request/response validation using Pydantic models
 - Detailed API documentation with OpenAPI/Swagger integration
 - Extensive error handling with structured error responses
 - Complete audit logging for all API operations and configurations
 
-IDE Integration:
-This module is optimized for Cursor IDE and JetBrains IDEs with comprehensive
 type hints, detailed docstrings, and cross-file references for intelligent
 code completion and API development support.
 
-Authors: Perplexity Labs AI - SIH 2025 Implementation
+Author: Student Team
 Version: Stage 7 API - Phase 4 Implementation
-License: SIH 2025 Project - Educational Use Only
+
 """
 
 from typing import Dict, Any, List, Optional, Union, Tuple
@@ -183,13 +181,12 @@ except ImportError as e:
     logger.error(f"Failed to import main API application: {e}")
     _APP_AVAILABLE = False
 
-
 # API-level enums and constants
 class APIStatus(Enum):
     """
     API status enumeration for Stage 7 system status tracking
     
-    Provides comprehensive status tracking for all API operations
+    Provides complete status tracking for all API operations
     including validation, formatting, and system health monitoring.
     """
     HEALTHY = "healthy"
@@ -197,7 +194,6 @@ class APIStatus(Enum):
     MAINTENANCE = "maintenance"
     UNAVAILABLE = "unavailable"
     ERROR = "error"
-
 
 class EndpointCategory(Enum):
     """
@@ -213,7 +209,6 @@ class EndpointCategory(Enum):
     UTILITY = "utility"
     HEALTH = "health"
 
-
 class ResponseFormat(Enum):
     """
     Response format enumeration for API output customization
@@ -227,11 +222,10 @@ class ResponseFormat(Enum):
     EXCEL = "excel"
     BINARY = "binary"
 
-
 @dataclass
 class APIConfiguration:
     """
-    Comprehensive API configuration class for Stage 7 system
+    complete API configuration class for Stage 7 system
     
     Encapsulates all configuration parameters required for API operation
     including security, performance, monitoring, and integration settings.
@@ -249,10 +243,10 @@ class APIConfiguration:
     
     # API metadata
     title: str = "Stage 7 Timetable Validation API"
-    description: str = "Comprehensive timetable validation and formatting API"
+    description: str = "complete timetable validation and formatting API"
     version: str = "7.0.0"
-    contact_name: str = "SIH 2025 Team"
-    contact_email: str = "team@sih2025.edu"
+    contact_name: str = "Team LUMEN"
+    contact_email: str = ""
     
     # Security configuration
     enable_authentication: bool = False
@@ -318,7 +312,6 @@ class APIConfiguration:
         if self.request_timeout_seconds <= 0:
             raise ValueError("request_timeout_seconds must be positive")
 
-
 class Stage7API:
     """
     Main Stage 7 API orchestrator class
@@ -329,7 +322,7 @@ class Stage7API:
     
     Theoretical Foundation:
     Implements Stage 7 complete framework API integration requirements with
-    comprehensive configuration support and institutional customization.
+    complete configuration support and institutional customization.
     
     Integration Architecture:
     - Stage 7.1: 12-parameter validation engine integration
@@ -340,7 +333,7 @@ class Stage7API:
     
     def __init__(self, config: APIConfiguration = None):
         """
-        Initialize Stage 7 API with comprehensive configuration
+        Initialize Stage 7 API with complete configuration
         
         Args:
             config: APIConfiguration instance with system parameters
@@ -384,7 +377,7 @@ class Stage7API:
             raise RuntimeError(error_msg)
     
     def _initialize_application(self):
-        """Initialize FastAPI application with comprehensive configuration"""
+        """Initialize FastAPI application with complete configuration"""
         try:
             # Create Stage 7 API configuration
             api_config = Stage7APIConfig(
@@ -477,7 +470,7 @@ class Stage7API:
     
     def get_application(self) -> Optional['FastAPI']:
         """
-        Get the FastAPI application instance for external WSGI/ASGI deployment
+        Get the FastAPI application instance for external WSGI/ASGI usage
         
         Returns:
             FastAPI application instance or None if not initialized
@@ -503,7 +496,7 @@ class Stage7API:
     
     def health_check(self) -> Dict[str, Any]:
         """
-        Perform comprehensive API health check
+        Perform complete API health check
         
         Returns:
             Health status dictionary with system information and diagnostics
@@ -537,7 +530,6 @@ class Stage7API:
         
         return health_status
 
-
 # Package-level convenience functions
 def create_api_instance(config: APIConfiguration = None) -> Stage7API:
     """
@@ -547,10 +539,9 @@ def create_api_instance(config: APIConfiguration = None) -> Stage7API:
         config: Optional APIConfiguration for customization
     
     Returns:
-        Stage7API: Configured API instance ready for deployment
+        Stage7API: Configured API instance ready for usage
     """
     return Stage7API(config)
-
 
 def run_development_server(
     host: str = "127.0.0.1",
@@ -577,10 +568,9 @@ def run_development_server(
     api = Stage7API(config)
     api.run_server()
 
-
 # Package metadata and version information
 __version__ = "7.0.0"
-__author__ = "Perplexity Labs AI - SIH 2025 Team"
+__author__ = "Student Team"
 __description__ = "Stage 7 API Package - FastAPI Integration Module"
 __theoretical_foundation__ = "Stage 7 Complete Framework API Integration"
 

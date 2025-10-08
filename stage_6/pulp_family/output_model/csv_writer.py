@@ -2,7 +2,7 @@
 """
 PuLP Solver Family - Stage 6 Output Model: CSV Writer & Schedule Generation Module
 
-This module implements the enterprise-grade CSV generation functionality for Stage 6.1 output
+This module implements the complete CSV generation functionality for Stage 6.1 output
 modeling, transforming decoded scheduling assignments into structured CSV format with extended
 schema support and mathematical precision. Critical component implementing the complete output
 generation per Stage 6 foundational framework with guaranteed data integrity and compliance.
@@ -12,18 +12,18 @@ Theoretical Foundation:
     - Implements complete CSV generation per Definition 4.3 (Schedule Output Format)
     - Maintains mathematical consistency with decoded assignments per Algorithm 4.3
     - Ensures extended schema compliance for educational scheduling requirements
-    - Provides comprehensive data validation and quality assessment
+    - Provides complete data validation and quality assessment
     - Supports multi-format output generation with customizable field mapping
 
 Architecture Compliance:
     - Implements Output Model Layer Stage 2 per foundational design rules
     - Maintains O(n) CSV generation complexity where n is number of assignments
-    - Provides fail-fast error handling with comprehensive data validation
+    - Provides fail-fast error handling with complete data validation
     - Supports streaming CSV generation for memory efficiency
     - Ensures data integrity through multi-layer validation and checksums
 
 Dependencies: pandas, numpy, csv, pathlib, datetime, typing, dataclasses, io
-Authors: Team LUMEN (SIH 2025)
+Author: Student Team
 Version: 1.0.0 (Production)
 """
 
@@ -60,7 +60,6 @@ except ImportError:
 # Configure structured logging for CSV generation operations
 logger = logging.getLogger(__name__)
 
-
 class CSVFormat(Enum):
     """
     Enumeration of CSV output formats per scheduling domain requirements.
@@ -75,19 +74,17 @@ class CSVFormat(Enum):
     COMPLIANCE = "compliance"           # Compliance reporting format
     ANALYTICS = "analytics"             # Analytics-optimized format
 
-
 class ValidationLevel(Enum):
     """CSV data validation level enumeration."""
     NONE = "none"                      # No validation
     BASIC = "basic"                    # Basic field validation
     STRICT = "strict"                  # Strict data type and range validation
-    COMPREHENSIVE = "comprehensive"     # Comprehensive domain validation
-
+    complete = "complete"     # complete domain validation
 
 @dataclass
 class CSVSchema:
     """
-    Comprehensive CSV schema definition with field specifications.
+    complete CSV schema definition with field specifications.
 
     Mathematical Foundation: Defines complete CSV structure per Definition 4.3
     (Schedule Output Format) ensuring mathematical consistency and domain compliance.
@@ -135,11 +132,10 @@ class CSVSchema:
             overlap = required_set & optional_set
             raise ValueError(f"Fields cannot be both required and optional: {overlap}")
 
-
 @dataclass
 class CSVGenerationMetrics:
     """
-    Comprehensive metrics for CSV generation performance and quality analysis.
+    complete metrics for CSV generation performance and quality analysis.
 
     Mathematical Foundation: Captures CSV generation statistics for performance
     analysis and theoretical validation compliance per output model requirements.
@@ -169,7 +165,7 @@ class CSVGenerationMetrics:
     metadata: Dict[str, Any] = field(default_factory=dict)
 
     def get_summary(self) -> Dict[str, Any]:
-        """Generate comprehensive summary for logging and validation."""
+        """Generate complete summary for logging and validation."""
         return {
             'assignments_processed': self.assignments_processed,
             'rows_generated': self.rows_generated,
@@ -184,14 +180,13 @@ class CSVGenerationMetrics:
             'generation_success': self.error_count == 0
         }
 
-
 @dataclass
 class CSVWriterConfiguration:
     """
     Configuration structure for CSV generation process.
 
     Provides fine-grained control over CSV generation behavior while maintaining
-    data integrity and ensuring comprehensive output quality.
+    data integrity and ensuring complete output quality.
 
     Attributes:
         csv_format: Format type for CSV generation
@@ -206,7 +201,7 @@ class CSVWriterConfiguration:
         precision_digits: Decimal precision for numeric fields
     """
     csv_format: CSVFormat = CSVFormat.EXTENDED
-    validation_level: ValidationLevel = ValidationLevel.COMPREHENSIVE
+    validation_level: ValidationLevel = ValidationLevel.complete
     include_metadata: bool = True
     include_solver_info: bool = True
     include_quality_metrics: bool = True
@@ -224,7 +219,6 @@ class CSVWriterConfiguration:
 
         if not 0 <= self.precision_digits <= 10:
             raise ValueError("Precision digits must be between 0 and 10")
-
 
 class CSVSchemaFactory:
     """
@@ -397,12 +391,11 @@ class CSVSchemaFactory:
 
         return schema
 
-
 class AssignmentValidator:
     """
     Assignment data validator for CSV generation quality assurance.
 
-    Mathematical Foundation: Implements comprehensive validation per educational
+    Mathematical Foundation: Implements complete validation per educational
     scheduling domain requirements ensuring data integrity and compliance.
     """
 
@@ -450,7 +443,7 @@ class AssignmentValidator:
                         self.validation_errors.append(f"Missing required field: {field_name}")
 
             # Phase 2: Field type validation (if basic or higher)
-            if self.validation_level.value in ['basic', 'strict', 'comprehensive']:
+            if self.validation_level.value in ['basic', 'strict', 'complete']:
                 for field_attr, field_name in schema.field_mapping.items():
                     if field_attr in assignment_dict:
                         expected_type = schema.field_types.get(field_name)
@@ -468,14 +461,14 @@ class AssignmentValidator:
                                 validation_results['field_types_correct'] = False
                                 self.validation_errors.append(f"Type error in field {field_name}: expected {expected_type}, got {type(actual_value)}")
 
-            # Phase 3: Field constraints validation (if strict or comprehensive)
-            if self.validation_level.value in ['strict', 'comprehensive']:
+            # Phase 3: Field constraints validation (if strict or complete)
+            if self.validation_level.value in ['strict', 'complete']:
                 validation_results['field_constraints_satisfied'] = self._validate_field_constraints(
                     assignment_dict, schema
                 )
 
-            # Phase 4: Domain rules validation (if comprehensive)
-            if self.validation_level == ValidationLevel.COMPREHENSIVE:
+            # Phase 4: Domain rules validation (if complete)
+            if self.validation_level == ValidationLevel.complete:
                 validation_results['domain_rules_satisfied'] = self._validate_domain_rules(assignment)
 
         except Exception as e:
@@ -577,25 +570,24 @@ class AssignmentValidator:
         self.validation_errors.clear()
         self.validation_warnings.clear()
 
-
 class SchedulingCSVWriter:
     """
-    Enterprise-grade CSV writer for scheduling assignments with mathematical precision.
+    complete CSV writer for scheduling assignments with mathematical precision.
 
-    Implements comprehensive CSV generation pipeline following Stage 6.1 theoretical
+    Implements complete CSV generation pipeline following Stage 6.1 theoretical
     framework. Provides mathematical guarantees for data integrity and output
     correctness while maintaining optimal performance characteristics.
 
     Mathematical Foundation:
         - Implements complete CSV generation per Definition 4.3 (Schedule Output Format)
         - Maintains O(n) generation complexity where n is number of assignments
-        - Ensures data integrity through comprehensive validation and checksums
+        - Ensures data integrity through complete validation and checksums
         - Provides streaming generation for memory efficiency with large datasets
         - Supports multi-format output with customizable schema definitions
     """
 
     def __init__(self, execution_id: str, config: CSVWriterConfiguration = CSVWriterConfiguration()):
-        """Initialize scheduling CSV writer with comprehensive configuration."""
+        """Initialize scheduling CSV writer with complete configuration."""
         self.execution_id = execution_id
         self.config = config
         self.config.validate_config()
@@ -635,7 +627,7 @@ class SchedulingCSVWriter:
                                 output_path: Union[str, Path],
                                 decoding_metrics: Optional[DecodingMetrics] = None) -> Tuple[Path, CSVGenerationMetrics]:
         """
-        Write scheduling assignments to CSV file with comprehensive quality control.
+        Write scheduling assignments to CSV file with complete quality control.
 
         Creates CSV output from decoded assignments per Stage 6.1 output model
         formalization with guaranteed data integrity and mathematical correctness.
@@ -947,7 +939,7 @@ class SchedulingCSVWriter:
         return self.generation_metrics
 
     def get_csv_writer_summary(self) -> Dict[str, Any]:
-        """Get comprehensive CSV writer summary."""
+        """Get complete CSV writer summary."""
         return {
             'execution_id': self.execution_id,
             'csv_format': self.config.csv_format.value,
@@ -956,7 +948,6 @@ class SchedulingCSVWriter:
             'generation_metrics': self.generation_metrics.get_summary() if self.generation_metrics else None,
             'validator_summary': self.validator.get_validation_summary()
         }
-
 
 def write_assignments_to_csv(assignments: List[SchedulingAssignment],
                             output_path: Union[str, Path],
@@ -967,7 +958,7 @@ def write_assignments_to_csv(assignments: List[SchedulingAssignment],
     """
     High-level function to write scheduling assignments to CSV file.
 
-    Provides simplified interface for CSV generation with comprehensive validation
+    Provides simplified interface for CSV generation with complete validation
     and performance analysis for output modeling pipeline integration.
 
     Args:
@@ -1004,7 +995,6 @@ def write_assignments_to_csv(assignments: List[SchedulingAssignment],
     logger.info(f"Successfully generated CSV for execution {execution_id}: {output_file_path}")
 
     return output_file_path, metrics
-
 
 if __name__ == "__main__":
     # Example usage and testing

@@ -3,7 +3,7 @@ Batch Size Calculator - Real Mathematical Optimization Implementation
 
 This module implements GENUINE mathematical optimization for batch size calculation.
 Uses scipy optimization algorithms and real constraint satisfaction.
-NO mock functions - only actual mathematical computation.
+NO placeholder functions - only actual mathematical computation.
 
 Mathematical Foundation:
 - Multi-objective optimization using scipy.optimize

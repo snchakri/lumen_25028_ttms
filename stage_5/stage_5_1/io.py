@@ -1,6 +1,6 @@
 """
 stage_5_1/io.py
-Robust I/O utilities for Stage 5.1 complexity analysis
+reliable I/O utilities for Stage 5.1 complexity analysis
 
 This module provides high-level helpers to:
 1. Load Stage 3 output files using Stage3DataLoader.
@@ -31,13 +31,11 @@ __all__ = [
     "write_complexity_metrics",
 ]
 
-
 # ---------------------------------------------------------------------------
 # Stage 3 loader import done lazily to avoid heavy deps when only serializing
 # ---------------------------------------------------------------------------
 
 _logger = get_logger("stage5_1.io")
-
 
 def load_stage3_inputs(l_raw: Path, l_rel: Path, l_idx: Path):
     """Load Stage 3 outputs and return ProcessedStage3Data.
@@ -56,7 +54,6 @@ def load_stage3_inputs(l_raw: Path, l_rel: Path, l_idx: Path):
     loader = Stage3DataLoader(logger=_logger)
     return loader.load_stage3_outputs(l_raw, l_rel, l_idx)
 
-
 def _safe_write_json(obj: Dict[str, Any], dest: Path) -> None:
     """Write JSON atomically with `.tmp` file then `replace`."""
     tmp_path = dest.with_suffix(".tmp")
@@ -64,10 +61,8 @@ def _safe_write_json(obj: Dict[str, Any], dest: Path) -> None:
         json.dump(obj, handle, indent=2, ensure_ascii=False)
     tmp_path.replace(dest)
 
-
 def _ensure_dir(path: Path) -> None:
     path.mkdir(parents=True, exist_ok=True)
-
 
 def write_complexity_metrics(
     vector: ComplexityParameterVector,

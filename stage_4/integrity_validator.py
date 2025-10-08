@@ -3,7 +3,7 @@
 Stage 4 Feasibility Check - Layer 2: Integrity Validator
 ========================================================
 
-Production-grade relational integrity and cardinality constraint validator for HEI timetabling systems.
+complete relational integrity and cardinality constraint validator for HEI timetabling systems.
 
 This module implements Layer 2 of the seven-layer feasibility framework:
 - Models schema as directed multigraph detecting mandatory FK cycles  
@@ -39,7 +39,7 @@ Integration Points:
 - Output: Referential integrity validation with cycle detection analysis
 - Error Reporting: Detailed FK violation proofs with topological analysis
 
-Author: Perplexity AI (SIH 2025 - Team Lumen)
+Author: Student Team
 Theoretical Framework: Stage 4 Seven-Layer Feasibility Validation
 HEI Data Model Compliance: Full FK relationship validation per hei_timetabling_datamodel.sql
 """
@@ -61,9 +61,8 @@ from datetime import datetime, timezone
 from pydantic import BaseModel, Field, validator
 import structlog
 
-# Configure structured logging for production environment
+# Configure structured logging for environment
 logger = structlog.get_logger("stage_4.integrity_validator")
-
 
 class IntegrityViolationType(Enum):
     """
@@ -78,7 +77,6 @@ class IntegrityViolationType(Enum):
     MISSING_FK_RELATIONSHIP = "missing_fk_relationship"      # Required relationship missing
     SELF_REFERENTIAL_CYCLE = "self_referential_cycle"       # Table references itself cyclically
     CIRCULAR_DEPENDENCY = "circular_dependency"              # Multi-table circular dependencies
-
 
 @dataclass 
 class ForeignKeyRelationship:
@@ -106,7 +104,6 @@ class ForeignKeyRelationship:
             raise ValueError("Minimum cardinality cannot be negative")
         if self.max_cardinality is not None and self.max_cardinality < self.min_cardinality:
             raise ValueError("Maximum cardinality cannot be less than minimum cardinality")
-
 
 @dataclass
 class IntegrityViolation:
@@ -144,7 +141,6 @@ class IntegrityViolation:
             "remediation_suggestion": self.remediation_suggestion,
             "cycle_analysis": self.cycle_analysis
         }
-
 
 @dataclass
 class IntegrityValidationResult:
@@ -185,10 +181,9 @@ class IntegrityValidationResult:
         proofs = [v.mathematical_proof for v in critical_violations]
         return f"Referential Integrity Infeasibility Proof: {'; '.join(proofs)}"
 
-
 class RelationalIntegrityValidator:
     """
-    Production-grade referential integrity validator for HEI timetabling data.
+    complete referential integrity validator for HEI timetabling data.
     
     Implements Layer 2 of Stage 4 feasibility checking with topological analysis.
     Validates compiled Stage 3 data structures against HEI relationship specifications.
@@ -209,7 +204,7 @@ class RelationalIntegrityValidator:
                  memory_limit_mb: int = 128,
                  max_processing_time_ms: int = 300000):
         """
-        Initialize referential integrity validator with production-grade configuration.
+        Initialize referential integrity validator with complete configuration.
         
         Args:
             enable_performance_monitoring: Enable detailed performance tracking
@@ -398,7 +393,7 @@ class RelationalIntegrityValidator:
         2. Perform topological sorting to detect mandatory FK cycles
         3. Validate cardinality constraints for all relationships
         4. Generate mathematical proofs for any violations
-        5. Return comprehensive integrity analysis
+        5. Return complete integrity analysis
         """
         self._start_performance_monitoring()
         
@@ -416,7 +411,7 @@ class RelationalIntegrityValidator:
             # Construct relationship graph for topological analysis
             relationship_graph = self._construct_relationship_graph(table_data)
             
-            # Perform comprehensive integrity validation
+            # Perform complete integrity validation
             violations = []
             total_records = sum(len(df) for df in table_data.values())
             
@@ -432,7 +427,7 @@ class RelationalIntegrityValidator:
             orphan_violations = self._detect_orphaned_records(table_data)
             violations.extend(orphan_violations)
             
-            # Generate comprehensive validation result
+            # Generate complete validation result
             result = self._generate_integrity_validation_result(
                 table_data, relationship_graph, violations, total_records
             )
@@ -813,7 +808,7 @@ class RelationalIntegrityValidator:
                                             violations: List[IntegrityViolation],
                                             total_records: int) -> IntegrityValidationResult:
         """
-        Generate comprehensive integrity validation result with topological analysis.
+        Generate complete integrity validation result with topological analysis.
         
         Includes detailed graph analysis, performance metrics, and mathematical proofs.
         """
@@ -866,7 +861,7 @@ class RelationalIntegrityValidator:
     
     def _perform_topological_analysis(self, relationship_graph: nx.DiGraph) -> Dict[str, Any]:
         """
-        Perform comprehensive topological analysis of relationship graph.
+        Perform complete topological analysis of relationship graph.
         
         Mathematical foundation: Graph theory analysis for dependency ordering.
         """
@@ -935,7 +930,6 @@ class RelationalIntegrityValidator:
         """Get peak memory usage in MB (simplified implementation)."""
         return self._peak_memory_mb
 
-
 class IntegrityValidationError(Exception):
     """
     Exception raised when critical referential integrity violations are detected.
@@ -965,7 +959,6 @@ class IntegrityValidationError(Exception):
             "failure_layer": 2,
             "failure_reason": "Referential integrity violations detected"
         }
-
 
 def validate_referential_integrity(l_raw_directory: Union[str, Path],
                                  enable_performance_monitoring: bool = True) -> IntegrityValidationResult:
@@ -1002,7 +995,6 @@ def validate_referential_integrity(l_raw_directory: Union[str, Path],
         )
     
     return result
-
 
 if __name__ == "__main__":
     """

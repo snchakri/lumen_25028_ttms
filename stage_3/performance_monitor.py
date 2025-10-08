@@ -1,8 +1,8 @@
 # stage_3/performance_monitor.py
 """
-Stage 3 Data Compilation Performance Monitor - Production Grade System
+Stage 3 Data Compilation Performance Monitor - Complete System
 
-This module implements a comprehensive real-time performance monitoring and analysis
+This module implements a complete real-time performance monitoring and analysis
 system for the Stage 3 data compilation pipeline. It provides mathematical complexity
 validation, memory constraint enforcement, bottleneck detection, and performance
 optimization recommendations aligned with the theoretical foundations.
@@ -19,7 +19,7 @@ INTEGRATION ARCHITECTURE:
 - Validates index_builder.py Layer 3 performance against Theorem 3.9 bounds
 - Integrates with optimization_views.py Layer 4 for universal data structure monitoring
 
-CURSOR IDE INTEGRATION:
+CURSOR 
 This module exposes performance metrics through structured APIs for development monitoring.
 Cross-references with compilation_engine.py for orchestration metrics and validation_engine.py
 for theorem compliance verification. Memory optimization hooks connect to memory_optimizer.py
@@ -34,9 +34,9 @@ Dependencies:
 - typing, abc, dataclasses: Type safety and abstract interfaces
 - psutil: System resource monitoring for memory and CPU tracking
 
-Author: Stage 3 Data Compilation Team
+Author: Student Team
 Version: 1.0.0 Production
-License: SIH 2025 Competition License
+
 """
 
 import time
@@ -83,11 +83,10 @@ TARGET_COMPILATION_TIME_MINUTES = 10  # Performance target
 MIN_QUERY_SPEEDUP_FACTOR = 100  # Minimum improvement over raw CSV
 RELATIONSHIP_COMPLETENESS_THRESHOLD = 0.994  # Theorem 3.6 guarantee
 
-
 @dataclass
 class PerformanceMetrics:
     """
-    Comprehensive performance metrics container for Stage 3 compilation operations.
+    complete performance metrics container for Stage 3 compilation operations.
     
     This class encapsulates all performance data required for mathematical validation
     of theoretical bounds and production monitoring. Each metric corresponds to specific
@@ -132,7 +131,6 @@ class PerformanceMetrics:
     constraint_violations: List[str] = field(default_factory=list)
     optimization_recommendations: List[str] = field(default_factory=list)
 
-
 class PerformanceMonitorProtocol(Protocol):
     """
     Protocol interface defining the contract for performance monitoring components.
@@ -147,13 +145,12 @@ class PerformanceMonitorProtocol(Protocol):
         ...
     
     def stop_monitoring(self, session_id: str) -> PerformanceMetrics:
-        """Complete monitoring session and return comprehensive metrics."""
+        """Complete monitoring session and return complete metrics."""
         ...
     
     def validate_complexity_bounds(self, metrics: PerformanceMetrics) -> bool:
         """Validate operation against theoretical complexity bounds."""
         ...
-
 
 class ComplexityValidator:
     """
@@ -336,7 +333,6 @@ class ComplexityValidator:
         
         return is_compliant, performance_ratio
 
-
 class MemoryMonitor:
     """
     Real-time memory usage monitor with 512MB constraint enforcement.
@@ -432,7 +428,7 @@ class MemoryMonitor:
     
     def stop_continuous_monitoring(self) -> Dict[str, Any]:
         """
-        Stop continuous monitoring and return comprehensive memory statistics.
+        Stop continuous monitoring and return complete memory statistics.
         
         Returns:
             Dictionary containing detailed memory usage analysis
@@ -446,7 +442,7 @@ class MemoryMonitor:
         timestamps, memory_values = zip(*self.memory_samples)
         memory_array = np.array(memory_values)
         
-        # Calculate comprehensive statistics
+        # Calculate complete statistics
         statistics = {
             "monitoring_duration_seconds": (timestamps[-1] - timestamps[0]).total_seconds(),
             "sample_count": len(memory_values),
@@ -517,15 +513,14 @@ class MemoryMonitor:
                 f"This violates the theoretical foundation memory guarantees."
             )
 
-
 class PerformanceMonitor:
     """
-    Comprehensive performance monitoring system for Stage 3 data compilation.
+    complete performance monitoring system for Stage 3 data compilation.
     
     This is the main performance monitoring class that orchestrates all performance
     validation, constraint enforcement, and optimization analysis. It provides
     real-time monitoring capabilities with mathematical theorem validation and
-    production-grade system health assessment.
+    complete system health assessment.
     
     INTEGRATION POINTS:
     - Layer 1 (data_normalizer/): Monitors all normalization operations
@@ -536,7 +531,7 @@ class PerformanceMonitor:
     
     CURSOR IDE USAGE:
     This class is designed for integration with Cursor IDE through structured APIs
-    and comprehensive logging. All methods provide detailed debugging information
+    and complete logging. All methods provide detailed debugging information
     and performance metrics suitable for development monitoring and optimization.
     """
     
@@ -551,7 +546,7 @@ class PerformanceMonitor:
     
     def start_monitoring(self, operation_name: str, layer_id: int, data_size: int = 0) -> str:
         """
-        Initialize comprehensive performance monitoring for a Stage 3 operation.
+        Initialize complete performance monitoring for a Stage 3 operation.
         
         This method starts monitoring for any Stage 3 operation with full
         mathematical validation and constraint enforcement. It provides
@@ -599,7 +594,7 @@ class PerformanceMonitor:
     
     def stop_monitoring(self, session_id: str) -> PerformanceMetrics:
         """
-        Complete monitoring session with comprehensive analysis and validation.
+        Complete monitoring session with complete analysis and validation.
         
         This method concludes the performance monitoring session and provides
         complete mathematical validation against all theoretical bounds,
@@ -626,7 +621,7 @@ class PerformanceMonitor:
         # Stop memory monitoring and get statistics
         memory_stats = self.memory_monitor.stop_continuous_monitoring()
         
-        # Create comprehensive metrics object
+        # Create complete metrics object
         metrics = session_info["metrics"]
         metrics.timestamp = end_time
         metrics.execution_time_seconds = execution_time
@@ -690,7 +685,7 @@ class PerformanceMonitor:
         """
         Validate query performance against Theorem 3.9 and speedup guarantees.
         
-        This method provides comprehensive validation of query operations
+        This method provides complete validation of query operations
         against the mathematical performance guarantees, including access
         complexity bounds and speedup factor verification.
         
@@ -747,7 +742,7 @@ class PerformanceMonitor:
     
     def get_performance_summary(self) -> Dict[str, Any]:
         """
-        Generate comprehensive performance summary across all monitoring sessions.
+        Generate complete performance summary across all monitoring sessions.
         
         Returns:
             Dictionary containing statistical analysis and recommendations
@@ -760,7 +755,7 @@ class PerformanceMonitor:
         memory_usage = [m.peak_memory_mb for m in self.performance_history]
         complexity_ratios = [m.theoretical_bound_ratio for m in self.performance_history]
         
-        # Calculate comprehensive statistics
+        # Calculate complete statistics
         summary = {
             "total_sessions": len(self.performance_history),
             "time_analysis": {
@@ -814,7 +809,6 @@ class PerformanceMonitor:
         
         return max(0.0, min(1.0, overall_score))
 
-
 class BottleneckDetector:
     """
     Advanced bottleneck detection and performance optimization recommendation engine.
@@ -835,7 +829,7 @@ class BottleneckDetector:
     
     def analyze_performance(self, metrics: PerformanceMetrics) -> Dict[str, Any]:
         """
-        Comprehensive bottleneck analysis with optimization recommendations.
+        complete bottleneck analysis with optimization recommendations.
         
         Args:
             metrics: Performance metrics to analyze
@@ -903,7 +897,6 @@ class BottleneckDetector:
             return "LOW"
         else:
             return "NONE"
-
 
 # Global performance monitor instance for Stage 3
 stage3_performance_monitor = PerformanceMonitor()

@@ -1,17 +1,17 @@
 """
 STAGE 5 - COMMON/UTILS.PY
-Enterprise-Grade Utility Functions & File I/O Operations
+complete Utility Functions & File I/O Operations
 
-This module provides comprehensive utility functions for Stage 5 operations including
+This module provides complete utility functions for Stage 5 operations including
 file validation, JSON schema loading, data format conversion, and path management.
 All functions implement rigorous error handling and validation according to theoretical
-frameworks and enterprise-grade reliability standards.
+frameworks and complete reliability standards.
 
 CRITICAL IMPLEMENTATION NOTES:
-- NO MOCK FUNCTIONS: All utilities perform real file operations and validations
+- NO placeholder functions: All utilities perform real file operations and validations
 - FAIL-FAST VALIDATION: Immediate error raising on invalid inputs or file states
 - CROSS-PLATFORM COMPATIBILITY: Path handling works on Windows/Unix/macOS
-- ENTERPRISE RELIABILITY: Comprehensive error handling with detailed error messages
+- ENTERPRISE RELIABILITY: complete error handling with detailed error messages
 - PERFORMANCE OPTIMIZED: Efficient file operations for 2k entity scale processing
 
 References:
@@ -24,12 +24,6 @@ Cross-Module Dependencies:
 - common.exceptions: Stage5ValidationError, Stage5FileError, Stage5ConfigurationError
 - common.schema: All Pydantic models for validation
 - common.logging: get_logger for operation logging
-
-IDE Integration Notes:
-- Full type hints enable IntelliSense autocomplete and static analysis
-- Comprehensive docstrings with Args/Returns/Raises sections
-- Example usage in docstrings for Cursor/PyCharm quick documentation
-"""
 
 from typing import Dict, List, Optional, Union, Any, Tuple, IO
 from pathlib import Path
@@ -72,7 +66,7 @@ except ImportError:
 # =============================================================================
 
 __version__ = "1.0.0"
-__author__ = "LUMEN Team (Team ID: 93912)"
+__author__ = "Student Team"
 __description__ = "Stage 5 Utility Functions & File I/O Operations"
 
 # File size limits for prototype scale (2k students)
@@ -131,7 +125,7 @@ class Stage5ConfigurationError(Exception):
         super().__init__(f"Stage 5 Configuration Error: {message}")
 
 # =============================================================================
-# FILE VALIDATION UTILITIES - Comprehensive File System Validation
+# FILE VALIDATION UTILITIES - complete File System Validation
 # =============================================================================
 
 def validate_file_path(file_path: Union[str, Path], 
@@ -140,7 +134,7 @@ def validate_file_path(file_path: Union[str, Path],
                       check_size: bool = True,
                       expected_extensions: Optional[List[str]] = None) -> Path:
     """
-    Comprehensive file path validation with existence, accessibility, and format checks.
+    complete file path validation with existence, accessibility, and format checks.
     
     Performs multi-level validation including:
     - Path format and syntax validation
@@ -265,7 +259,7 @@ def detect_file_format(file_path: Union[str, Path]) -> Tuple[str, str, Dict[str,
     """
     Advanced file format detection using multiple detection methods.
     
-    Performs comprehensive format detection through:
+    Performs complete format detection through:
     - File extension analysis
     - MIME type detection
     - File signature (magic bytes) analysis
@@ -413,7 +407,7 @@ def load_json_with_validation(file_path: Union[str, Path],
                              schema: Optional[Dict[str, Any]] = None,
                              max_size_mb: int = 50) -> Dict[str, Any]:
     """
-    Load and validate JSON file with comprehensive error handling and schema validation.
+    Load and validate JSON file with complete error handling and schema validation.
     
     Performs multi-stage JSON processing:
     - File existence and format validation
@@ -530,7 +524,7 @@ def save_json_with_validation(data: Dict[str, Any],
     """
     Save JSON data with validation, formatting, and atomic write operations.
     
-    Performs comprehensive JSON saving with:
+    Performs complete JSON saving with:
     - Pre-save data validation against optional schema
     - Atomic write operations for data consistency
     - Pretty-printing with configurable formatting
@@ -651,7 +645,7 @@ def ensure_directory_exists(dir_path: Union[str, Path],
                            create_parents: bool = True,
                            check_writable: bool = True) -> Path:
     """
-    Ensure directory exists with comprehensive validation and creation.
+    Ensure directory exists with complete validation and creation.
     
     Performs directory operations with validation:
     - Path format and syntax validation
@@ -1058,8 +1052,8 @@ __all__ = [
 
 # Module initialization message
 print("✅ STAGE 5 COMMON/UTILS.PY - Complete utility functions loaded")
-print("   - Comprehensive file validation and format detection")
+print("   - complete file validation and format detection")
 print("   - Advanced JSON processing with schema validation")
 print("   - Cross-platform path management and directory operations")
 print("   - Configuration merging with validation and type safety")
-print("   - Enterprise-grade error handling with detailed context")
+print("   - complete error handling with detailed context")

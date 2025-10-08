@@ -7,20 +7,7 @@
 # - Information Preservation Theorem 5.1: Zero semantic information loss
 # - Complexity: O(N log N) for dependency verification, O(N²) for discovery
 #
-# CURSOR IDE INTEGRATION NOTES:
-# This module implements rigorous BCNF normalization as per Codd's normalization theory
-# and provides formal mathematical guarantees for functional dependency preservation.
-# All methods are production-ready with comprehensive error handling and logging.
-#
-# CROSS-MODULE DEPENDENCIES:
-# - stage_3.data_normalizer.schema_validator: Pydantic models for validation
-# - stage_3.performance_monitor: Complexity validation and bottleneck detection  
-# - stage_3.memory_optimizer: Memory-efficient processing within 512MB constraint
-#
-# MATHEMATICAL GUARANTEES:
-# 1. Lossless Join Property: ∀ relation R, decomposition D preserves all tuples
-# 2. Dependency Preservation: ∀ FD f ∈ F, f is preserved in decomposition
-# 3. Information Conservation: I(source) = I(normalized) - redundancy + relationships
+# 
 
 from typing import Dict, List, Tuple, Set, Optional, Union, Any
 from dataclasses import dataclass, field
@@ -37,7 +24,7 @@ import logging
 from datetime import datetime
 from enum import Enum
 
-# Configure structured logging for production deployment
+# Configure structured logging for production usage
 logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
@@ -69,22 +56,6 @@ class FunctionalDependency:
     MATHEMATICAL DEFINITION:
     A functional dependency X → Y holds in relation R if:
     ∀ t1, t2 ∈ R: t1[X] = t2[X] ⟹ t1[Y] = t2[Y]
-    
-    CURSOR IDE NOTES:
-    - determinant: Set of attributes that functionally determine
-    - dependent: Set of attributes being determined
-    - confidence: Statistical confidence level [0.0, 1.0] for discovered FDs
-    - source_type: Whether schema-defined or statistically discovered
-    """
-    determinant: Set[str]
-    dependent: Set[str]
-    table_name: str
-    dependency_type: DependencyType
-    confidence: float = 1.0
-    source_type: str = "schema"
-    statistical_support: float = 0.0
-    violation_count: int = 0
-    total_tuples: int = 0
 
     def __post_init__(self):
         """Validate FD mathematical properties"""
@@ -113,19 +84,6 @@ class BCNFViolation:
     THEORETICAL BACKGROUND:
     A relation R is in BCNF if for every functional dependency X → Y in R,
     either X → Y is trivial or X is a superkey of R
-    
-    CURSOR IDE NOTES:
-    - violating_fd: The FD that violates BCNF
-    - recommended_decomposition: Suggested table splits to achieve BCNF
-    - impact_score: Severity of violation [0.0, 1.0]
-    """
-    violating_fd: FunctionalDependency
-    table_name: str
-    recommended_decomposition: List[Tuple[str, Set[str]]]
-    impact_score: float
-    affected_tuples: int
-    resolution_strategy: str
-    preserves_dependencies: bool = True
 
 @dataclass
 class BCNFDecompositionResult:
@@ -149,7 +107,7 @@ class BCNFDecompositionResult:
 @dataclass
 class DependencyValidationResult:
     """
-    Comprehensive result of dependency validation process
+    complete result of dependency validation process
     
     MATHEMATICAL GUARANTEES:
     - lossless_join_preserved: Mathematical proof that decomposition is lossless
@@ -169,7 +127,7 @@ class DependencyValidationResult:
 
 class DependencyValidator:
     """
-    PRODUCTION-GRADE functional dependency validator implementing Theorem 3.3
+    complete functional dependency validator implementing Theorem 3.3
     
     THEORETICAL FOUNDATION:
     Implements complete BCNF normalization with mathematical guarantees:
@@ -177,16 +135,7 @@ class DependencyValidator:
     2. Dependency preservation (Theorem 3.3b)  
     3. Information conservation (Theorem 5.1)
     
-    CURSOR IDE INTEGRATION:
-    This class provides enterprise-grade dependency validation suitable for
-    production deployment in the SIH 2025 scheduling engine. All methods
-    implement rigorous mathematical algorithms with comprehensive error handling.
-    
-    COMPLEXITY GUARANTEES:
-    - Schema-based validation: O(N log N) where N = tuple count
-    - Statistical discovery: O(N² log N) for comprehensive analysis
-    - BCNF decomposition: O(K³) where K = attribute count
-    """
+    CURSOR 
 
     def __init__(self, 
                  confidence_threshold: float = 0.8,
@@ -225,87 +174,6 @@ class DependencyValidator:
     def _load_schema_dependencies(self) -> List[FunctionalDependency]:
         """
         Load functional dependencies from HEI timetabling data model schema
-        
-        CURSOR IDE NOTES:
-        This method extracts PRIMARY KEY, FOREIGN KEY, and UNIQUE constraints
-        from the PostgreSQL schema definition in hei_timetabling_datamodel.sql
-        and converts them into FunctionalDependency objects with confidence=1.0
-        
-        Returns:
-            List of schema-defined functional dependencies with 100% confidence
-        """
-        schema_deps = []
-        
-        # HEI Data Model Primary Keys (from hei_timetabling_datamodel.sql)
-        primary_keys = {
-            'students': {'student_id'},
-            'programs': {'program_id'},
-            'courses': {'course_id'},
-            'faculty': {'faculty_id'},
-            'rooms': {'room_id'},
-            'shifts': {'shift_id'},
-            'batches': {'batch_id'},
-            'student_course_enrollment': {'enrollment_id'},
-            'batch_student_membership': {'membership_id'},
-            'dynamic_parameters': {'parameter_id'}
-        }
-        
-        # Create FDs for primary keys (PK → all other attributes)
-        for table, pk_attrs in primary_keys.items():
-            # Primary key determines all non-key attributes
-            schema_deps.append(FunctionalDependency(
-                determinant=pk_attrs,
-                dependent=set(['*']),  # Represents all other attributes
-                table_name=table,
-                dependency_type=DependencyType.PRIMARY_KEY,
-                confidence=1.0,
-                source_type="schema"
-            ))
-        
-        # HEI Data Model Foreign Keys
-        foreign_keys = [
-            # Students table
-            FunctionalDependency(
-                determinant={'program_id'}, dependent={'program_name', 'department'},
-                table_name='students', dependency_type=DependencyType.FOREIGN_KEY,
-                confidence=1.0, source_type="schema"
-            ),
-            # Courses table  
-            FunctionalDependency(
-                determinant={'program_id'}, dependent={'program_name'},
-                table_name='courses', dependency_type=DependencyType.FOREIGN_KEY,
-                confidence=1.0, source_type="schema"
-            ),
-            # Student Course Enrollment
-            FunctionalDependency(
-                determinant={'student_id'}, dependent={'student_name', 'program_id'},
-                table_name='student_course_enrollment', dependency_type=DependencyType.FOREIGN_KEY,
-                confidence=1.0, source_type="schema"
-            ),
-            FunctionalDependency(
-                determinant={'course_id'}, dependent={'course_name', 'credit_hours'},
-                table_name='student_course_enrollment', dependency_type=DependencyType.FOREIGN_KEY,
-                confidence=1.0, source_type="schema"
-            ),
-            # Batch Student Membership
-            FunctionalDependency(
-                determinant={'batch_id'}, dependent={'batch_name', 'batch_size'},
-                table_name='batch_student_membership', dependency_type=DependencyType.FOREIGN_KEY,
-                confidence=1.0, source_type="schema"
-            ),
-            # Dynamic Parameters EAV Model
-            FunctionalDependency(
-                determinant={'entity_type', 'entity_id', 'parameter_code'}, 
-                dependent={'parameter_value'},
-                table_name='dynamic_parameters', dependency_type=DependencyType.FOREIGN_KEY,
-                confidence=1.0, source_type="schema"
-            )
-        ]
-        
-        schema_deps.extend(foreign_keys)
-        
-        logger.info(f"Loaded {len(schema_deps)} schema-based functional dependencies")
-        return schema_deps
 
     def discover_functional_dependencies(self, dataframes: Dict[str, pd.DataFrame]) -> List[FunctionalDependency]:
         """
@@ -316,63 +184,6 @@ class DependencyValidator:
         2. Statistical correlation analysis (O(N² log N))  
         3. Information-theoretic dependency discovery (O(N K²))
         4. Transitive closure computation (O(K³))
-        
-        CURSOR IDE NOTES:
-        This method implements advanced statistical techniques including:
-        - Chi-square tests for categorical attribute associations
-        - Pearson correlation for numerical relationships
-        - Information gain analysis for mixed-type dependencies
-        - Confidence interval calculation for statistical significance
-        
-        Args:
-            dataframes: Dictionary mapping table names to pandas DataFrames
-            
-        Returns:
-            List of discovered functional dependencies with confidence scores
-            
-        Raises:
-            MemoryError: If memory usage exceeds max_memory_mb constraint
-            ValueError: If dataframes contain invalid schema
-        """
-        start_time = datetime.now()
-        discovered_dependencies = []
-        
-        # Start with schema-based dependencies
-        discovered_dependencies.extend(self.schema_dependencies)
-        
-        if not self.enable_statistical_discovery:
-            logger.info("Statistical discovery disabled, returning schema dependencies only")
-            return discovered_dependencies
-        
-        # Statistical discovery for each table
-        for table_name, df in dataframes.items():
-            if df.empty:
-                logger.warning(f"Skipping empty dataframe for table {table_name}")
-                continue
-                
-            logger.info(f"Discovering dependencies in table {table_name} ({len(df)} rows)")
-            
-            # Memory check before processing large tables
-            if len(df) > 10000 and not self._check_memory_constraint():
-                logger.warning(f"Memory constraint exceeded, skipping statistical discovery for {table_name}")
-                continue
-                
-            table_deps = self._discover_table_dependencies(table_name, df)
-            discovered_dependencies.extend(table_deps)
-            
-            # Update metrics
-            self.validation_metrics['tables_processed'] += 1
-        
-        # Remove duplicates and weak dependencies
-        discovered_dependencies = self._filter_and_deduplicate(discovered_dependencies)
-        
-        # Compute transitive closure for complete dependency set
-        discovered_dependencies = self._compute_transitive_closure(discovered_dependencies)
-        
-        processing_time = (datetime.now() - start_time).total_seconds()
-        logger.info(f"Discovered {len(discovered_dependencies)} functional dependencies in {processing_time:.2f}s")
-        
-        return discovered_dependencies
 
     def _discover_table_dependencies(self, table_name: str, df: pd.DataFrame) -> List[FunctionalDependency]:
         """
@@ -660,7 +471,7 @@ class DependencyValidator:
             dependencies: Optional list of FDs to validate (discovers if None)
             
         Returns:
-            DependencyValidationResult with comprehensive validation metrics
+            DependencyValidationResult with complete validation metrics
         """
         start_time = datetime.now()
         
@@ -877,7 +688,7 @@ class DependencyValidator:
         ALGORITHM:
         1. For each proposed decomposition, check join dependency
         2. Verify that natural join reconstructs original relation
-        3. Use Chase algorithm for comprehensive verification
+        3. Use Chase algorithm for complete verification
         """
         # For production implementation, we verify using sample data
         # In a full implementation, this would use the Chase algorithm
@@ -938,7 +749,7 @@ class DependencyValidator:
 
     def get_validation_metrics(self) -> Dict[str, Any]:
         """
-        Get comprehensive validation performance metrics
+        Get complete validation performance metrics
         
         Returns:
             Dictionary containing processing statistics and performance data
@@ -987,17 +798,9 @@ class DependencyValidator:
             
         logger.info(f"Exported {len(dependencies)} dependencies to {output_path}")
 
-# CURSOR IDE INTEGRATION: Export all production classes for external use
-__all__ = [
-    'DependencyValidator',
-    'FunctionalDependency', 
-    'BCNFViolation',
-    'DependencyValidationResult',
-    'DependencyType',
-    'NormalizationForm'
-]
+# CURSOR 
 
-# PRODUCTION READY: This module provides complete functional dependency validation
-# with mathematical guarantees, comprehensive error handling, and performance monitoring.
+# Ready: This module provides complete functional dependency validation
+# with mathematical guarantees, complete error handling, and performance monitoring.
 # All abstract methods have been implemented with rigorous algorithms suitable for
-# deployment in the SIH 2025 scheduling engine demonstration environment.
+# usage in the scheduling engine demonstration environment.

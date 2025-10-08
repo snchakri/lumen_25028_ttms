@@ -2,12 +2,12 @@
 CLI Module - Stage 1 Input Validation System
 Higher Education Institutions Timetabling Data Model
 
-This module provides a comprehensive command-line interface for the Stage 1
-validation pipeline with professional-grade argument parsing, output formatting,
+This module provides a complete command-line interface for the Stage 1
+validation pipeline with complete argument parsing, output formatting,
 and integration capabilities for local testing and automation.
 
 Theoretical Foundation:
-- Command-line interface design with argparse for robust argument validation
+- Command-line interface design with argparse for reliable argument validation
 - Structured output formatting for both human and machine consumption
 - Integration with validation pipeline for complete local testing capabilities
 - Professional error handling and exit code management
@@ -21,7 +21,7 @@ Mathematical Guarantees:
 Architecture:
 - Click framework for professional CLI implementation
 - Structured output with JSON, table, and progress bar formats
-- Integration with logging system for comprehensive diagnostics
+- Integration with logging system for complete diagnostics
 - Support for batch processing and automation workflows
 """
 
@@ -63,8 +63,8 @@ def cli(ctx: click.Context, verbose: int, quiet: bool, log_file: Optional[str]):
     """
     Higher Education Institutions Timetabling System - Stage 1 Input Validation CLI
     
-    This command-line interface provides comprehensive CSV file validation for the
-    HEI Timetabling System with professional-grade error reporting and diagnostics.
+    This command-line interface provides complete CSV file validation for the
+    HEI Timetabling System with complete error reporting and diagnostics.
     
     Features:
     • Complete schema validation with educational domain constraints
@@ -130,11 +130,11 @@ def validate(ctx: click.Context, directory_path: Path, output: Optional[Path], f
              strict: bool, performance: bool, error_limit: int, no_warnings: bool,
              tenant_id: Optional[str], batch_size: int, workers: int):
     """
-    Execute comprehensive validation pipeline for CSV files in directory.
+    Execute complete validation pipeline for CSV files in directory.
     
     Performs complete Stage 1 validation including file discovery, integrity
     checking, schema validation, referential integrity analysis, and EAV
-    validation with comprehensive error reporting.
+    validation with complete error reporting.
     
     DIRECTORY_PATH: Path to directory containing CSV files to validate
     
@@ -197,12 +197,12 @@ def validate(ctx: click.Context, directory_path: Path, output: Optional[Path], f
                     not no_warnings, tenant_id, batch_size, workers
                 )
         
-        # Generate comprehensive report
+        # Generate complete report
         if not quiet:
-            console.print("\n[bold blue]Generating comprehensive validation report...[/bold blue]")
+            console.print("\n[bold blue]Generating complete validation report...[/bold blue]")
         
         report_generator = ReportGenerator()
-        report_summary = report_generator.generate_comprehensive_report(validation_result)
+        report_summary = report_generator.generate_complete_report(validation_result)
         
         # Display results
         _display_validation_results(validation_result, report_summary, verbosity, quiet)
@@ -317,7 +317,7 @@ def _execute_validation_silent(directory_path: Path, strict: bool, performance: 
 def _display_validation_results(validation_result: DataValidationResult,
                                report_summary: ValidationRunSummary,
                                verbosity: int, quiet: bool):
-    """Display comprehensive validation results."""
+    """Display complete validation results."""
     
     if quiet:
         return

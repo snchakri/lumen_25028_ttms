@@ -1,6 +1,6 @@
 # Stage 4 Layer 7: Global Constraint Satisfaction & Propagation Validator
 # Mathematical Foundation: Arc-consistency (AC-3), constraint propagation, domain elimination
-# Part of the 7-layer feasibility validation framework for SIH 2025 scheduling engine
+# Part of the 7-layer feasibility validation framework for scheduling engine
 
 """
 Layer 7 Propagation Validator - Global Constraint Satisfaction Analysis
@@ -48,7 +48,6 @@ import structlog
 # Internal imports - Stage 4 framework components
 from .base_validator import BaseValidator, FeasibilityError, ValidationResult
 from .metrics_calculator import MetricsCalculator
-
 
 @dataclass
 class Variable:
@@ -99,7 +98,6 @@ class Variable:
         """Remove value from domain, return True if domain becomes empty."""
         self.domain.discard(value)
         return len(self.domain) == 0
-
 
 @dataclass  
 class Constraint:
@@ -186,7 +184,6 @@ class Constraint:
         # Simplified prerequisite checking
         return True  # Assume satisfied unless explicitly violated
 
-
 @dataclass
 class PropagationResult:
     """
@@ -210,7 +207,6 @@ class PropagationResult:
     def is_feasible(self) -> bool:
         """Problem is feasible if no empty domains detected."""
         return len(self.empty_domains_detected) == 0
-
 
 class PropagationValidationConfig(BaseModel):
     """Configuration for Layer 7 constraint propagation validation."""
@@ -250,7 +246,6 @@ class PropagationValidationConfig(BaseModel):
         default=256, ge=32, le=2048,
         description="Memory limit for propagation data structures"
     )
-
 
 class PropagationValidator(BaseValidator):
     """
@@ -998,7 +993,6 @@ class PropagationValidator(BaseValidator):
         """Get memory usage in MB."""
         return self._memory_usage
 
-
 # CLI interface for standalone testing
 def main():
     """Command-line interface for Layer 7 propagation validation testing."""
@@ -1057,7 +1051,6 @@ def main():
         print(f"Mathematical proof: {e.mathematical_proof}")
         print(f"Affected entities: {e.affected_entities}")
         print(f"Remediation: {e.remediation}")
-
 
 if __name__ == "__main__":
     main()

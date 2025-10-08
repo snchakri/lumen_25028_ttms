@@ -2,7 +2,7 @@
 """
 PuLP Solver Family - Stage 6 Input Modeling Layer: Bijection Engine Module
 
-This module implements the enterprise-grade stride-based bijection engine for Stage 6.1,
+This module implements the complete stride-based bijection engine for Stage 6.1,
 providing mathematically rigorous and computationally efficient mappings between 
 5-tuple course assignments (c,f,r,t,b) and flat integer indices for optimization solvers.
 Critical component ensuring lossless transformation and perfect reversibility.
@@ -19,11 +19,11 @@ Architecture Compliance:
     - Implements stride-based bijection per Definition 3.1.3 (Foundational Framework)
     - Ensures 100% lossless transformation per Theorem 5.1 (Information Preservation)
     - Provides O(1) encoding/decoding complexity per Algorithm 3.8
-    - Maintains fail-fast validation with comprehensive error handling
+    - Maintains fail-fast validation with complete error handling
     - Supports dynamic parametric system integration per EAV model
 
 Dependencies: numpy, pandas, logging, json, bisect
-Authors: Team LUMEN (SIH 2025)  
+Author: Student Team
 Version: 1.0.0 (Production)
 """
 
@@ -48,7 +48,6 @@ except ImportError:
 
 # Configure structured logging for bijection operations
 logger = logging.getLogger(__name__)
-
 
 @dataclass
 class BijectiveMapping:
@@ -99,14 +98,13 @@ class BijectiveMapping:
             'num_courses': len(self.course_blocks)
         })
 
-
 class StrideBijectionEngine:
     """
-    Enterprise-grade bijection engine with mathematical rigor and industrial reliability.
+    complete bijection engine with mathematical rigor and industrial reliability.
 
     Implements stride-based bijection algorithm from Stage 6 theoretical framework,
     providing guaranteed O(1) encoding/decoding with complete reversibility and
-    comprehensive validation. Designed for production deployment with fail-fast
+    complete validation. Designed for production usage with fail-fast
     error handling and extensive logging.
 
     Mathematical Foundation:
@@ -140,7 +138,7 @@ class StrideBijectionEngine:
 
         Implements stride-based bijection construction per Algorithm 3.8 from Stage 6 framework.
         Constructs per-course block sizes, stride arrays, offsets, and entity mappings with
-        comprehensive validation and error handling.
+        complete validation and error handling.
 
         Args:
             entity_collections: Dictionary of validated entity collections
@@ -406,7 +404,7 @@ class StrideBijectionEngine:
         """
         Validate mathematical consistency of bijection structure.
 
-        Performs comprehensive validation to ensure bijection correctness:
+        Performs complete validation to ensure bijection correctness:
         - Offsets alignment with course blocks
         - Stride calculation consistency
         - Entity mapping completeness
@@ -696,7 +694,7 @@ class StrideBijectionEngine:
 
     def save_bijection_metadata(self, output_path: Union[str, Path]) -> Path:
         """
-        Save comprehensive bijection metadata to JSON file.
+        Save complete bijection metadata to JSON file.
 
         Args:
             output_path: Directory path where metadata file should be saved
@@ -744,7 +742,7 @@ class StrideBijectionEngine:
 
     def get_bijection_summary(self) -> Dict[str, Any]:
         """
-        Get comprehensive summary of bijection structure and properties.
+        Get complete summary of bijection structure and properties.
 
         Returns:
             Dictionary containing bijection statistics and metadata
@@ -784,7 +782,6 @@ class StrideBijectionEngine:
 
         return summary
 
-
 def build_bijection_mapping(entity_collections: Dict[str, EntityCollection],
                           execution_id: str,
                           output_path: Optional[Union[str, Path]] = None,
@@ -792,7 +789,7 @@ def build_bijection_mapping(entity_collections: Dict[str, EntityCollection],
     """
     High-level function to build and optionally verify bijection mapping.
 
-    Provides simplified interface for bijection construction with comprehensive
+    Provides simplified interface for bijection construction with complete
     validation and optional verification testing.
 
     Args:
@@ -833,7 +830,6 @@ def build_bijection_mapping(entity_collections: Dict[str, EntityCollection],
         engine.save_bijection_metadata(output_path)
 
     return bijection_mapping
-
 
 if __name__ == "__main__":
     # Example usage and testing

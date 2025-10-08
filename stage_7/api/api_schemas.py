@@ -2,26 +2,26 @@
 """
 Stage 7 API Schemas - Pydantic Models for Request/Response Validation
 
-This module defines comprehensive Pydantic models for all Stage 7 API endpoints,
+This module defines complete Pydantic models for all Stage 7 API endpoints,
 providing strict request/response validation, automatic documentation generation,
 and type safety for the complete timetable validation and formatting system.
 
 CRITICAL DESIGN PHILOSOPHY: EXHAUSTIVE CONFIGURATION OPTIONS
 These schemas provide extensive configuration parameters and validation options
-to enable comprehensive customization of the validation and formatting process
-according to institutional requirements and deployment scenarios.
+to enable complete customization of the validation and formatting process
+according to institutional requirements and usage scenarios.
 
 Mathematical Foundation:
 - Based on Stage 7 Complete Framework schema requirements
 - Implements 12-parameter threshold validation data models
 - Supports multi-format output configuration with institutional standards
-- Provides comprehensive audit and monitoring data structures
+- Provides complete audit and monitoring data structures
 
 Theoretical Compliance:
 - Stage 7.1 Validation Engine request/response models
 - Stage 7.2 Human-Readable Format Generation configuration models
 - Complete API documentation with OpenAPI/Swagger integration
-- Comprehensive error handling with structured error responses
+- complete error handling with structured error responses
 
 Schema Categories:
 1. Validation Schemas: Request/response models for schedule validation
@@ -31,18 +31,16 @@ Schema Categories:
 5. Utility Schemas: File upload, schema validation, and diagnostic models
 
 Quality Assurance:
-- Comprehensive field validation using Pydantic validators
+- complete field validation using Pydantic validators
 - Detailed field documentation for API documentation generation
 - Type safety with strict validation and error reporting
 - Integration with FastAPI automatic documentation generation
 
-IDE Integration:
-This module is optimized for Cursor IDE and JetBrains IDEs with comprehensive
 type hints, detailed docstrings, and intelligent code completion support.
 
-Authors: Perplexity Labs AI - SIH 2025 Implementation
+Author: Student Team
 Version: Stage 7 API Schemas - Phase 4 Implementation
-License: SIH 2025 Project - Educational Use Only
+
 """
 
 from typing import Dict, Any, List, Optional, Union, Tuple
@@ -54,7 +52,6 @@ import time
 from pydantic import BaseModel, Field, validator, root_validator
 from pydantic.dataclasses import dataclass as pydantic_dataclass
 
-
 # === ENUMERATION CLASSES ===
 
 class ValidationStatus(str, Enum):
@@ -64,14 +61,12 @@ class ValidationStatus(str, Enum):
     PENDING = "pending"
     ERROR = "error"
 
-
 class ProcessingStatus(str, Enum):
     """Processing status enumeration for Stage 7.2 operations"""
     PENDING = "pending"
     PROCESSING = "processing"
     COMPLETED = "completed"
     FAILED = "failed"
-
 
 class OutputFormat(str, Enum):
     """Output format enumeration for format conversion"""
@@ -81,7 +76,6 @@ class OutputFormat(str, Enum):
     JSON = "json"
     HTML = "html"
 
-
 class InstitutionalStandard(str, Enum):
     """Institutional standard enumeration for format compliance"""
     UNIVERSITY = "university"
@@ -89,7 +83,6 @@ class InstitutionalStandard(str, Enum):
     SCHOOL = "school"
     INSTITUTE = "institute"
     CUSTOM = "custom"
-
 
 class SortingStrategy(str, Enum):
     """Sorting strategy enumeration for human-readable format generation"""
@@ -99,14 +92,12 @@ class SortingStrategy(str, Enum):
     DEPARTMENT_CENTRIC = "department_centric"
     TIME_OPTIMIZED = "time_optimized"
 
-
 class ErrorCategory(str, Enum):
     """Error category enumeration for 4-tier error classification"""
     CRITICAL = "critical"
     QUALITY = "quality"
     PREFERENCE = "preference"
     COMPUTATIONAL = "computational"
-
 
 class SystemHealthStatus(str, Enum):
     """System health status enumeration for monitoring"""
@@ -115,7 +106,6 @@ class SystemHealthStatus(str, Enum):
     MAINTENANCE = "maintenance"
     UNAVAILABLE = "unavailable"
     ERROR = "error"
-
 
 # === BASE CONFIGURATION MODELS ===
 
@@ -165,10 +155,9 @@ class ThresholdBoundsModel(BaseModel):
             }
         }
 
-
 class ValidationConfigModel(BaseModel):
     """
-    Comprehensive validation configuration model for Stage 7.1
+    complete validation configuration model for Stage 7.1
     
     Encapsulates all configuration parameters for the 12-parameter threshold
     validation system with customizable bounds and processing options.
@@ -201,7 +190,7 @@ class ValidationConfigModel(BaseModel):
     )
     enable_detailed_logging: bool = Field(
         True,
-        description="Enable comprehensive audit logging for validation process"
+        description="Enable complete audit logging for validation process"
     )
     
     class Config:
@@ -219,7 +208,6 @@ class ValidationConfigModel(BaseModel):
                 "global_quality_threshold": 0.75
             }
         }
-
 
 class FormatConfigModel(BaseModel):
     """
@@ -273,14 +261,13 @@ class FormatConfigModel(BaseModel):
             }
         }
 
-
 # === VALIDATION REQUEST/RESPONSE MODELS ===
 
 class ValidationRequest(BaseModel):
     """
     Complete schedule validation request model
     
-    Defines the request structure for comprehensive timetable validation
+    Defines the request structure for complete timetable validation
     using the Stage 7.1 12-parameter framework with configurable options.
     """
     schedule_csv_path: str = Field(
@@ -334,10 +321,9 @@ class ValidationRequest(BaseModel):
             }
         }
 
-
 class ValidationResultModel(BaseModel):
     """
-    Detailed validation result model with comprehensive metrics
+    Detailed validation result model with complete metrics
     
     Encapsulates the complete validation result including all 12 threshold
     values, violation details, and advisory messages for failed validations.
@@ -403,12 +389,11 @@ class ValidationResultModel(BaseModel):
             }
         }
 
-
 class ValidationResponse(BaseModel):
     """
     Complete validation response model with operation metadata
     
-    Provides comprehensive validation results with processing metadata,
+    Provides complete validation results with processing metadata,
     performance metrics, and audit trail information.
     """
     operation_id: str = Field(
@@ -464,7 +449,6 @@ class ValidationResponse(BaseModel):
                 "timestamp": 1699123456.789
             }
         }
-
 
 # === FORMAT CONVERSION REQUEST/RESPONSE MODELS ===
 
@@ -522,10 +506,9 @@ class FormatConversionRequest(BaseModel):
             }
         }
 
-
 class FormatConversionResponse(BaseModel):
     """
-    Format conversion response model with comprehensive metadata
+    Format conversion response model with complete metadata
     
     Provides complete format conversion results with processing metadata,
     quality metrics, and educational domain optimization details.
@@ -590,7 +573,6 @@ class FormatConversionResponse(BaseModel):
             }
         }
 
-
 # === BATCH PROCESSING MODELS ===
 
 class BatchValidationRequest(BaseModel):
@@ -598,7 +580,7 @@ class BatchValidationRequest(BaseModel):
     Batch validation request model for multiple schedule processing
     
     Enables processing of multiple timetable validation requests with
-    parallel processing support and comprehensive result aggregation.
+    parallel processing support and complete result aggregation.
     """
     schedule_requests: List[ValidationRequest] = Field(
         ...,
@@ -617,8 +599,8 @@ class BatchValidationRequest(BaseModel):
         description="Maximum number of concurrent validation operations"
     )
     aggregation_strategy: str = Field(
-        "comprehensive",
-        regex="^(comprehensive|summary|detailed)$",
+        "complete",
+        regex="^(complete|summary|detailed)$",
         description="Result aggregation strategy"
     )
     
@@ -642,12 +624,11 @@ class BatchValidationRequest(BaseModel):
             }
         }
 
-
 class BatchValidationResponse(BaseModel):
     """
     Batch validation response model with aggregated results
     
-    Provides comprehensive results for batch validation operations with
+    Provides complete results for batch validation operations with
     success/failure statistics and detailed individual results.
     """
     operation_id: str = Field(
@@ -700,7 +681,6 @@ class BatchValidationResponse(BaseModel):
             }
         }
 
-
 # === CONFIGURATION REQUEST/RESPONSE MODELS ===
 
 class ThresholdConfigurationRequest(BaseModel):
@@ -742,12 +722,11 @@ class ThresholdConfigurationRequest(BaseModel):
             }
         }
 
-
 class ThresholdConfigurationResponse(BaseModel):
     """
     Threshold configuration response model with current settings
     
-    Provides comprehensive threshold configuration information including
+    Provides complete threshold configuration information including
     mathematical foundations and institutional customizations.
     """
     thresholds: Dict[str, Dict[str, Any]] = Field(
@@ -788,7 +767,6 @@ class ThresholdConfigurationResponse(BaseModel):
             }
         }
 
-
 class DepartmentOrderingRequest(BaseModel):
     """
     Department ordering configuration request model
@@ -827,7 +805,6 @@ class DepartmentOrderingRequest(BaseModel):
                 "institutional_context": "Engineering-focused university with CSE as primary department"
             }
         }
-
 
 class DepartmentOrderingResponse(BaseModel):
     """
@@ -871,14 +848,13 @@ class DepartmentOrderingResponse(BaseModel):
             }
         }
 
-
 # === MONITORING AND SYSTEM STATUS MODELS ===
 
 class HealthCheckResponse(BaseModel):
     """
     System health check response model
     
-    Provides comprehensive system health information including component
+    Provides complete system health information including component
     status, performance metrics, and diagnostic information.
     """
     status: SystemHealthStatus = Field(
@@ -930,7 +906,6 @@ class HealthCheckResponse(BaseModel):
                 }
             }
         }
-
 
 class APIMetricsResponse(BaseModel):
     """
@@ -1010,7 +985,6 @@ class APIMetricsResponse(BaseModel):
             }
         }
 
-
 class AuditTrailRequest(BaseModel):
     """
     Audit trail request model for filtering and pagination
@@ -1061,12 +1035,11 @@ class AuditTrailRequest(BaseModel):
             }
         }
 
-
 class AuditTrailResponse(BaseModel):
     """
     Audit trail response model with paginated entries
     
-    Provides paginated audit log entries with comprehensive metadata
+    Provides paginated audit log entries with complete metadata
     for compliance monitoring and system debugging.
     """
     total_entries: int = Field(
@@ -1111,7 +1084,6 @@ class AuditTrailResponse(BaseModel):
                 "timestamp": 1699123456.789
             }
         }
-
 
 # === UTILITY AND DIAGNOSTIC MODELS ===
 
@@ -1160,7 +1132,6 @@ class FileUploadResponse(BaseModel):
             }
         }
 
-
 class SchemaValidationRequest(BaseModel):
     """
     Data schema validation request model
@@ -1197,12 +1168,11 @@ class SchemaValidationRequest(BaseModel):
             }
         }
 
-
 class SchemaValidationResponse(BaseModel):
     """
     Schema validation response model with detailed results
     
-    Provides comprehensive schema validation results with specific
+    Provides complete schema validation results with specific
     error details and compliance information for each validated file.
     """
     overall_valid: bool = Field(
@@ -1239,10 +1209,9 @@ class SchemaValidationResponse(BaseModel):
             }
         }
 
-
 class SystemDiagnosticsResponse(BaseModel):
     """
-    System diagnostics response model with comprehensive information
+    System diagnostics response model with complete information
     
     Provides detailed system diagnostics including platform information,
     component status, configuration, and performance data.
@@ -1306,7 +1275,6 @@ class SystemDiagnosticsResponse(BaseModel):
             }
         }
 
-
 # === ASYNC OPERATION MODELS ===
 
 class AsyncOperationResponse(BaseModel):
@@ -1364,7 +1332,6 @@ class AsyncOperationResponse(BaseModel):
                 "last_updated": 1699123500.123
             }
         }
-
 
 # === ERROR RESPONSE MODELS ===
 
@@ -1427,7 +1394,6 @@ class ErrorResponse(BaseModel):
                 "endpoint": "/validate/complete"
             }
         }
-
 
 # === CONVENIENCE TYPE ALIASES ===
 

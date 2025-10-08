@@ -2,14 +2,14 @@
 Advanced Scheduling Engine Stage 6.3 DEAP Solver Family - API Module
 =====================================================================
 
-API module initialization for the comprehensive DEAP evolutionary solver family.
-This module provides production-grade REST interface components for scheduling 
+API module initialization for the complete DEAP evolutionary solver family.
+This module provides complete REST interface components for scheduling 
 optimization with complete theoretical compliance to Stage 6.3 foundational 
 frameworks and rigorous fail-fast validation principles.
 
 Module Architecture:
 - schemas.py: Pydantic models for request/response validation and type safety
-- app.py: FastAPI application with comprehensive endpoint implementation  
+- app.py: FastAPI application with complete endpoint implementation  
 - __init__.py: Module initialization with dependency management and configuration
 
 Core Components:
@@ -26,16 +26,16 @@ Complete adherence to Stage 6.3 DEAP theoretical framework specifications:
 - Pareto Dominance: NSGA-II multi-objective optimization with crowding distance
 
 Design Philosophy:
-- Fail-Fast Validation: Immediate error detection and comprehensive reporting
+- Fail-Fast Validation: Immediate error detection and complete reporting
 - Memory Safety: Rigorous RAM constraint enforcement (≤512MB peak usage)
 - Theoretical Compliance: Complete mathematical model preservation
-- Production Ready: Enterprise-grade error handling and audit logging
+- Ready: complete error handling and audit logging
 
 Integration Notes:
 - Cursor IDE: Full IntelliSense support with mathematical formula references
 - JetBrains IDEs: PyCharm Professional compatibility with advanced analysis
 - Docker: Multi-stage containerization with slim runtime image
-- Kubernetes: Production deployment with resource monitoring and scaling
+- Kubernetes: Production usage with resource monitoring and scaling
 
 Usage Example:
 ```python
@@ -76,7 +76,7 @@ All components undergo rigorous validation against theoretical requirements:
 - Results verified for schedule feasibility and optimality
 
 Audit and Monitoring:
-Comprehensive logging and monitoring for production deployments:
+complete logging and monitoring for production usages:
 - Structured logging with JSON format for analysis
 - Performance metrics collection and trend analysis
 - Error reporting with complete execution context
@@ -93,17 +93,15 @@ from . import schemas
 
 # Module metadata
 __version__ = "1.0.0"
-__author__ = "LUMEN Team (Team ID: 93912)"
+__author__ = "Student Team"
 __description__ = "Advanced Scheduling Engine - DEAP Solver Family API"
-__license__ = "Academic Use - SIH 2025"
 
 # Configure module-level logger
 logger = logging.getLogger(__name__)
 
-
 def get_api_info() -> dict:
     """
-    Get comprehensive API module information.
+    Get complete API module information.
     
     Returns complete module metadata, version information, and
     supported algorithm specifications for client integration
@@ -122,7 +120,7 @@ def get_api_info() -> dict:
             "version": __version__,
             "description": __description__,
             "author": __author__,
-            "license": __license__
+            "license": 
         },
         "algorithms": {
             "supported": [alg.value for alg in schemas.SolverAlgorithm],
@@ -145,12 +143,11 @@ def get_api_info() -> dict:
         }
     }
 
-
 def validate_environment() -> tuple[bool, list[str]]:
     """
-    Validate API deployment environment and dependencies.
+    Validate API usage environment and dependencies.
     
-    Performs comprehensive environment validation including:
+    Performs complete environment validation including:
     - Required Python packages and versions
     - DEAP library installation and algorithm availability
     - System resource availability (memory, CPU)
@@ -238,14 +235,13 @@ def validate_environment() -> tuple[bool, list[str]]:
     
     return is_valid, issues
 
-
 def configure_logging(level: str = "INFO", format_json: bool = True) -> None:
     """
-    Configure comprehensive logging for the API module.
+    Configure complete logging for the API module.
     
     Sets up structured logging with appropriate handlers for different
-    deployment environments (development, staging, production) with
-    comprehensive audit trail capabilities.
+    usage environments (development, staging, production) with
+    complete audit trail capabilities.
     
     Args:
         level: Logging level ("DEBUG", "INFO", "WARNING", "ERROR")
@@ -315,7 +311,6 @@ def configure_logging(level: str = "INFO", format_json: bool = True) -> None:
                 level=level, 
                 format="JSON" if format_json else "console")
 
-
 # Export main API components for external use
 __all__ = [
     # Core application
@@ -335,7 +330,6 @@ __all__ = [
     "__author__",
     "__description__"
 ]
-
 
 # Initialize logging on module import
 configure_logging(level="INFO", format_json=True)

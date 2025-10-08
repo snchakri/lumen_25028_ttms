@@ -1,6 +1,6 @@
 # Stage 4 Layer 6: Conflict Graph Sparsity & Chromatic Feasibility Validator
 # Mathematical Foundation: Brooks' theorem, clique detection, graph coloring bounds
-# Part of the 7-layer feasibility validation framework for SIH 2025 scheduling engine
+# Part of the 7-layer feasibility validation framework for scheduling engine
 
 """
 Layer 6 Conflict Validator - Chromatic Feasibility Analysis
@@ -49,7 +49,6 @@ import structlog
 from .base_validator import BaseValidator, FeasibilityError, ValidationResult
 from .metrics_calculator import MetricsCalculator
 
-
 @dataclass
 class ConflictEdge:
     """
@@ -75,7 +74,6 @@ class ConflictEdge:
         if self.temporal_window_overlap < 0:
             raise ValueError(f"Temporal overlap must be ≥ 0, got {self.temporal_window_overlap}")
 
-
 @dataclass
 class CliqueAnalysis:
     """
@@ -96,7 +94,6 @@ class CliqueAnalysis:
     def is_feasible(self) -> bool:
         """Chromatic feasibility: ω(G) ≤ T."""
         return self.max_clique_size <= self.available_timeslots
-
 
 @dataclass
 class ChromaticAnalysis:
@@ -125,7 +122,6 @@ class ChromaticAnalysis:
     def brooks_bound_satisfied(self) -> bool:
         """Check if Brooks' theorem bound is satisfied."""
         return self.chromatic_number_estimate <= self.brooks_theorem_bound
-
 
 class ConflictValidationConfig(BaseModel):
     """Configuration for Layer 6 conflict validation."""
@@ -167,7 +163,6 @@ class ConflictValidationConfig(BaseModel):
         if v > 0.9:
             logging.warning(f"High conflict density threshold {v} may allow infeasible instances")
         return v
-
 
 class ConflictValidator(BaseValidator):
     """
@@ -784,7 +779,7 @@ class ConflictValidator(BaseValidator):
     
     def _compute_conflict_metrics(self) -> Dict[str, float]:
         """
-        Compute comprehensive conflict graph metrics for complexity analysis.
+        Compute complete conflict graph metrics for complexity analysis.
         
         Metrics:
         - Conflict density: δ = |E| / C(n, 2)
@@ -1018,7 +1013,6 @@ class ConflictValidator(BaseValidator):
         """Get memory usage in MB."""
         return self._memory_usage
 
-
 # CLI interface for standalone testing
 def main():
     """Command-line interface for Layer 6 conflict validation testing."""
@@ -1078,7 +1072,6 @@ def main():
         print(f"Mathematical proof: {e.mathematical_proof}")
         print(f"Affected entities: {e.affected_entities}")
         print(f"Remediation: {e.remediation}")
-
 
 if __name__ == "__main__":
     main()

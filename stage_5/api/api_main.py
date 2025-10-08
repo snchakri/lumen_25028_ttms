@@ -3,8 +3,8 @@ api/main.py
 Stage 5 FastAPI Integration Engine
 
 This module implements the complete REST API layer for Stage 5 processing,
-providing enterprise-grade HTTP endpoints for both Stage 5.1 (complexity analysis)
-and Stage 5.2 (solver selection) with comprehensive error handling, validation,
+providing HTTP endpoints for both Stage 5.1 (complexity analysis)
+and Stage 5.2 (solver selection) with complete error handling, validation,
 and structured logging.
 
 API Architecture:
@@ -14,9 +14,9 @@ API Architecture:
 - GET /stage5/info: Stage capabilities and version information
 
 The API follows enterprise patterns with:
-- Pydantic models for comprehensive request/response validation
+- Pydantic models for complete request/response validation
 - Structured JSON logging for production monitoring and debugging
-- Comprehensive error handling with detailed context for troubleshooting
+- complete error handling with detailed context for troubleshooting
 - Atomic operations with rollback capabilities on failure
 - Performance monitoring with execution time tracking
 - Schema validation ensuring compliance with foundational design specifications
@@ -76,15 +76,15 @@ logger = get_logger("stage5_api")
 API_VERSION = "1.0.0"
 API_TITLE = "Stage 5 Complexity Analysis & Solver Selection API"
 API_DESCRIPTION = """
-Enterprise-grade REST API for Stage 5 processing in the HEI Timetabling Engine.
+REST API for Stage 5 processing in the HEI Timetabling Engine.
 
 **Stage 5.1 - Complexity Analysis**: Computes 16-parameter complexity vector from Stage 3 outputs
 **Stage 5.2 - Solver Selection**: Performs L2 normalization + LP weight learning for optimal solver selection
 
 Features:
 - Mathematical rigor with exact theoretical framework implementation
-- Enterprise-grade error handling with structured validation
-- Comprehensive audit logging for production monitoring
+- Error handling with structured validation
+- complete audit logging for production monitoring
 - Performance tracking with execution time measurement
 - Schema-compliant JSON I/O matching foundational design specifications
 """
@@ -99,7 +99,6 @@ app_state = {
     "average_execution_time": 0.0,
     "last_execution_time": None
 }
-
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -147,7 +146,6 @@ async def lifespan(app: FastAPI):
         f"avg_execution_time={app_state['average_execution_time']:.3f}s"
     )
 
-
 # Initialize FastAPI application with enterprise configuration
 app = FastAPI(
     title=API_TITLE,
@@ -175,7 +173,6 @@ if config.allowed_hosts:
         allowed_hosts=config.allowed_hosts
     )
 
-
 async def update_performance_metrics(execution_time: float):
     """
     Update global performance metrics with new execution time.
@@ -194,7 +191,6 @@ async def update_performance_metrics(execution_time: float):
             alpha * execution_time + 
             (1 - alpha) * app_state["average_execution_time"]
         )
-
 
 async def log_request_info(request: Request, response_time: Optional[float] = None):
     """
@@ -220,10 +216,9 @@ async def log_request_info(request: Request, response_time: Optional[float] = No
     
     logger.info("API request processed", extra=log_data)
 
-
 async def handle_stage_error(error: Exception, stage: str, context: Dict[str, Any]) -> ErrorResponse:
     """
-    Handle Stage 5 errors with comprehensive logging and structured responses.
+    Handle Stage 5 errors with complete logging and structured responses.
     
     Args:
         error: Exception that occurred during processing
@@ -272,7 +267,6 @@ async def handle_stage_error(error: Exception, stage: str, context: Dict[str, An
         timestamp=datetime.now(timezone.utc).isoformat()
     )
 
-
 @app.get("/health", response_model=HealthResponse, tags=["System"])
 async def health_check():
     """
@@ -282,7 +276,7 @@ async def health_check():
     for monitoring systems and load balancers.
     
     Returns:
-        HealthResponse: Comprehensive system health information
+        HealthResponse: complete system health information
     """
     try:
         # Calculate uptime
@@ -334,11 +328,10 @@ async def health_check():
             detail="Health check system failure"
         )
 
-
 @app.get("/stage5/info", response_model=Stage5InfoResponse, tags=["Information"])
 async def get_stage5_info():
     """
-    Get comprehensive Stage 5 capabilities and version information.
+    Get complete Stage 5 capabilities and version information.
     
     Provides detailed information about supported operations, mathematical framework
     compliance, performance characteristics, and integration specifications.
@@ -394,7 +387,6 @@ async def get_stage5_info():
             detail="System information retrieval failure"
         )
 
-
 @app.post("/stage5/1/analyze", 
          response_model=Stage51AnalysisResponse, 
          responses={
@@ -409,7 +401,7 @@ async def execute_stage_5_1_analysis(request: Stage51AnalysisRequest, http_reque
     Execute Stage 5.1 complexity parameter analysis.
     
     Computes 16-parameter complexity vector from Stage 3 outputs using exact
-    mathematical definitions from the theoretical framework. Performs comprehensive
+    mathematical definitions from the theoretical framework. Performs complete
     analysis including dimensionality, constraint density, faculty specialization,
     and other complexity metrics.
     
@@ -517,7 +509,6 @@ async def execute_stage_5_1_analysis(request: Stage51AnalysisRequest, http_reque
             raise HTTPException(status_code=408, detail=error_response.dict())
         else:
             raise HTTPException(status_code=500, detail=error_response.dict())
-
 
 @app.post("/stage5/2/select",
          response_model=Stage52SelectionResponse,
@@ -637,8 +628,7 @@ async def execute_stage_5_2_selection(request: Stage52SelectionRequest, http_req
         else:
             raise HTTPException(status_code=500, detail=error_response.dict())
 
-
-# Custom exception handlers for comprehensive error management
+# Custom exception handlers for complete error management
 @app.exception_handler(Stage5ValidationError)
 async def validation_error_handler(request: Request, exc: Stage5ValidationError):
     """Handle Stage 5 validation errors with structured responses."""
@@ -647,7 +637,6 @@ async def validation_error_handler(request: Request, exc: Stage5ValidationError)
         status_code=400,
         content=error_response.dict()
     )
-
 
 @app.exception_handler(Stage5ComputationError)
 async def computation_error_handler(request: Request, exc: Stage5ComputationError):
@@ -658,7 +647,6 @@ async def computation_error_handler(request: Request, exc: Stage5ComputationErro
         content=error_response.dict()
     )
 
-
 @app.exception_handler(Stage5PerformanceError) 
 async def performance_error_handler(request: Request, exc: Stage5PerformanceError):
     """Handle Stage 5 performance errors with structured responses."""
@@ -668,7 +656,6 @@ async def performance_error_handler(request: Request, exc: Stage5PerformanceErro
         content=error_response.dict()
     )
 
-
 @app.exception_handler(500)
 async def internal_error_handler(request: Request, exc: Exception):
     """Handle internal server errors with structured responses."""
@@ -677,7 +664,6 @@ async def internal_error_handler(request: Request, exc: Exception):
         status_code=500,
         content=error_response.dict()
     )
-
 
 # Development server entry point
 def run_development_server():
@@ -699,14 +685,13 @@ def run_development_server():
         use_colors=not config.json_logs
     )
 
-
 # Production server entry point
 def run_production_server():
     """
     Run production server with optimized configuration.
     
     This function provides a production entry point with appropriate
-    configuration for deployment environments.
+    configuration for usage environments.
     """
     logger.info("Starting Stage 5 API production server...")
     
@@ -718,9 +703,8 @@ def run_production_server():
         access_log=True,
         use_colors=False,
         loop="asyncio",
-        workers=1  # Single worker for prototype deployment
+        workers=1  # Single worker for prototype usage
     )
-
 
 if __name__ == "__main__":
     # Auto-detect development vs production mode
