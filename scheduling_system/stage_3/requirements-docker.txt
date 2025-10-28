@@ -1,0 +1,40 @@
+# Simplified requirements for Docker testing
+# ==========================================
+# 
+# Core dependencies only for Docker testing and validation
+
+# Data Processing (Core)
+pandas>=1.5.0
+numpy>=1.21.0
+networkx>=2.8.0
+
+# Database and Storage
+pyarrow>=10.0.0
+
+# Serialization
+dill>=0.3.0
+
+# Scientific Computing
+scipy>=1.9.0
+
+# Memory Management
+psutil>=5.9.0
+
+# Logging and Monitoring
+structlog>=22.1.0
+colorama>=0.4.0
+
+# Configuration and Validation
+pydantic>=1.10.0
+
+# Testing
+pytest>=7.0.0
+
+# Utilities
+tqdm>=4.64.0
+click>=8.0.0
+
+# Advanced Relationship Discovery (for 99.4% completeness)
+rapidfuzz>=2.0.0
+scikit-learn>=1.0.0
+

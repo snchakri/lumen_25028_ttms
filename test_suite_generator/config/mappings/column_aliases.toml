@@ -1,0 +1,13 @@
+# Column Name Aliases
+# Organized by table name
+
+[timeslots]
+timeslot_id = "time_slot_id"
+# Other columns use identity mapping
+
+[studentcourseenrollment]
+enrollment_id = "enrollment_id"
+status = "enrollment_status"
+
+[courseprerequisites]
+prerequisite_id = "prereq_id"

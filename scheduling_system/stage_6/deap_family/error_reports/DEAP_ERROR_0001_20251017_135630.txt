@@ -1,0 +1,17 @@
+DEAP SOLVER ERROR REPORT - DEAP_ERROR_0001_20251017_135630
+================================================================================
+Timestamp: 2025-10-17T13:56:30.130871
+Error Type: InputError
+Phase: input_validation
+Severity: HIGH
+Message: Input validation failed
+
+Context:
+  validation_errors: ["Entity time_slots missing 'primary_key' or 'time_slot_id' column"]
+
+Advised Fixes:
+  1. Verify Stage 3 output files exist and are readable
+  2. Check file formats: LRAW/LOPT (Parquet), LREL (GraphML), LIDX (Pickle)
+  3. Validate data schema compliance with Stage 3 specifications
+  4. Ensure dynamic_parameters.parquet contains required solver parameters
+

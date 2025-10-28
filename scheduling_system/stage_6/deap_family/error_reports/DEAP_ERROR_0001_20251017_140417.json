@@ -1,0 +1,16 @@
+{
+  "error_id": "DEAP_ERROR_0001_20251017_140417",
+  "timestamp": "2025-10-17T14:04:17.621761",
+  "error_type": "ProcessingError",
+  "error_message": "attempted relative import with no known parent package",
+  "phase": "execution",
+  "severity": "HIGH",
+  "context": {
+    "stack_trace": "Traceback (most recent call last):\n  File \"/app/main.py\", line 197, in run_deap_solver_pipeline\n    output_files = _write_outputs(\n  File \"/app/main.py\", line 259, in _write_outputs\n    _write_schedule_csv(schedule, schedule_csv_path)\n  File \"/app/main.py\", line 280, in _write_schedule_csv\n    from .output_model.csv_writer import CSVWriter\nImportError: attempted relative import with no known parent package\n",
+    "solver_type": "nsga2"
+  },
+  "stack_trace": null,
+  "advised_fixes": [],
+  "recovery_suggestions": [],
+  "foundation_compliance": {}
+}

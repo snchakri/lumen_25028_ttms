@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lumen TimeTable System - History</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Main Application Container - Similar to React's App component -->
+    <div class="app-container">
+        <!-- Header Component - Reusable across pages -->
+        <header class="app-header">
+            <div class="container">
+                <h1 class="header-title">Lumen TimeTable System</h1>
+                <nav class="header-nav">
+                    <span class="nav-item active">History</span>
+                    <div class="user-info">
+                        <span id="userRole" class="user-role">Loading...</span>
+                        <button id="logoutBtn" class="btn-logout">Logout</button>
+                    </div>
+                </nav>
+            </div>
+        </header>
+
+        <!-- Main Content Area - Similar to React Router's main content -->
+        <main class="main-content">
+            <div class="container">
+                <!-- Page Title Section -->
+                <div class="page-header">
+                    <h2 class="page-title">Timetable History</h2>
+                    <p class="page-description">View and download current and past timetables</p>
+                </div>
+
+                <!-- Loading State - Similar to React's conditional rendering -->
+                <div id="loadingState" class="loading-container">
+                    <div class="loading-spinner"></div>
+                    <p>Loading timetables...</p>
+                </div>
+
+                <!-- Error State - Similar to React Error Boundaries -->
+                <div id="errorState" class="error-container hidden">
+                    <div class="error-icon">⚠️</div>
+                    <h3>Unable to Load Timetables</h3>
+                    <p id="errorMessage">An error occurred while loading timetables.</p>
+                    <button id="retryBtn" class="btn btn--primary">Retry</button>
+                </div>
+
+                <!-- Current Timetable Section - Conditional Component -->
+                <section id="currentSection" class="timetable-section hidden">
+                    <div class="section-header">
+                        <h3 class="section-title">Current Timetable</h3>
+                        <div class="section-badge current">Active</div>
+                    </div>
+                    
+                    <!-- Current Timetable Card - Material-UI Card component equivalent -->
+                    <div id="currentTimetableCard" class="timetable-card current-card">
+                        <!-- Card content will be populated by JavaScript -->
+                    </div>
+                </section>
+
+                <!-- Past Timetables Section - List Component -->
+                <section id="pastSection" class="timetable-section hidden">
+                    <div class="section-header">
+                        <h3 class="section-title">Past Timetables</h3>
+                        <div class="section-controls">
+                            <!-- Filter Controls - Material-UI Select equivalent -->
+                            <select id="statusFilter" class="form-control status-filter">
+                                <option value="all">All Statuses</option>
+                                <option value="finalized">Finalized</option>
+                                <option value="approved">Approved</option>
+                                <option value="disapproved">Disapproved</option>
+                                <option value="draft">Draft</option>
+                            </select>
+                            
+                            <select id="sortOrder" class="form-control sort-control">
+                                <option value="newest">Newest First</option>
+                                <option value="oldest">Oldest First</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <!-- Timetable Cards Container - Similar to React's map() rendering -->
+                    <div id="pastTimetablesList" class="timetables-list">
+                        <!-- Cards will be populated by JavaScript -->
+                    </div>
+                    
+                    <!-- Empty State for Past Timetables -->
+                    <div id="emptyPastState" class="empty-state hidden">
+                        <div class="empty-icon">📋</div>
+                        <h4>No Past Timetables Found</h4>
+                        <p>There are no timetables matching your current filters.</p>
+                    </div>
+                </section>
+
+                <!-- No Data State - When no timetables exist at all -->
+                <div id="noDataState" class="no-data-container hidden">
+                    <div class="no-data-icon">📅</div>
+                    <h3>No Timetables Available</h3>
+                    <p>No timetables have been created yet. Check back later or contact your administrator.</p>
+                </div>
+            </div>
+        </main>
+
+        <!-- Timetable View Modal - Material-UI Dialog component equivalent -->
+        <div id="timetableModal" class="modal hidden">
+            <div class="modal-overlay" id="modalOverlay"></div>
+            <div class="modal-content timetable-modal-content">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <div class="modal-title-section">
+                        <h2 id="modalTitle">Timetable View</h2>
+                        <div id="modalSubtitle" class="modal-subtitle"></div>
+                    </div>
+                    <button type="button" class="modal-close" id="closeModal">&times;</button>
+                </div>
+
+                <!-- Modal Body with Scrollable Content -->
+                <div class="modal-body">
+                    <div id="modalLoadingState" class="modal-loading">
+                        <div class="loading-spinner small"></div>
+                        <p>Loading timetable data...</p>
+                    </div>
+                    
+                    <div id="modalErrorState" class="modal-error hidden">
+                        <p>Failed to load timetable data. Please try again.</p>
+                        <button id="modalRetryBtn" class="btn btn--secondary btn--sm">Retry</button>
+                    </div>
+                    
+                    <!-- Timetable Data Container - Similar to Material-UI Table -->
+                    <div id="timetableDataContainer" class="timetable-data-container hidden">
+                        <div class="data-info">
+                            <span id="dataRowCount">0 rows</span>
+                            <span id="dataFileSize">0 KB</span>
+                        </div>
+                        
+                        <!-- Scrollable table container -->
+                        <div class="table-scroll-container">
+                            <table id="timetableTable" class="data-table">
+                                <thead id="tableHeader">
+                                    <!-- Headers will be populated dynamically -->
+                                </thead>
+                                <tbody id="tableBody">
+                                    <!-- Data rows will be populated dynamically -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Modal Footer -->
+                <div class="modal-footer">
+                    <button id="downloadFromModal" class="btn btn--primary">
+                        <span class="btn-icon">📥</span>
+                        Download CSV
+                    </button>
+                    <button id="closeModalFooter" class="btn btn--secondary">Close</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Success/Error Messages - Material-UI Snackbar equivalent -->
+        <div id="messageContainer" class="message-container hidden">
+            <div id="messageContent" class="message-content"></div>
+            <button id="messageClose" class="message-close">&times;</button>
+        </div>
+
+        <!-- Confirmation Dialog - Material-UI AlertDialog equivalent -->
+        <div id="confirmDialog" class="modal confirmation-modal hidden">
+            <div class="modal-overlay"></div>
+            <div class="modal-content confirm-content">
+                <div class="confirm-icon">❓</div>
+                <h3 id="confirmTitle">Confirm Action</h3>
+                <p id="confirmMessage">Are you sure you want to proceed?</p>
+                <div class="confirm-actions">
+                    <button id="confirmCancel" class="btn btn--secondary">Cancel</button>
+                    <button id="confirmOk" class="btn btn--primary">Confirm</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Include the JavaScript file for all functionality -->
+    <script src="app.js"></script>
+</body>
+</html>

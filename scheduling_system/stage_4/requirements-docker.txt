@@ -1,0 +1,32 @@
+# Stage 4 Feasibility Check - Docker Requirements
+# Python dependencies for Stage 4 feasibility checking
+
+# Core data processing
+pandas>=2.0.0
+numpy>=1.24.0
+
+# Graph processing
+networkx>=3.0
+
+# Optimization and constraint solving
+ortools>=9.8.0
+pulp>=2.7.0
+
+# Mathematical and scientific computing
+sympy>=1.12
+scipy>=1.11.0
+
+# Data serialization
+pyarrow>=13.0.0  # For parquet support
+
+# Logging and monitoring
+psutil>=5.9.0
+
+# Testing (if needed)
+pytest>=7.4.0
+pytest-cov>=4.1.0
+
+# Development tools
+black>=23.0.0
+flake8>=6.0.0
+mypy>=1.5.0

@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lumen TimeTable System - Login</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Top-right notification system -->
+    <div id="notificationContainer" class="notification-container"></div>
+
+    <!-- Main Login Container - Responsive and Centered -->
+    <div class="login-container">
+        <!-- Login Box with Custom Color Scheme -->
+        <div class="login-box">
+            <!-- Header Section -->
+            <div class="login-header">
+                <h1>Lumen TimeTable System</h1>
+                <p>Staff Login Portal</p>
+            </div>
+
+            <!-- Login Form -->
+            <form id="loginForm" class="login-form">
+                <!-- Institution Dropdown -->
+                <div class="form-field">
+                    <label for="institution" class="field-label">Institution *</label>
+                    <select id="institution" name="institution" class="form-control custom-select" required>
+                        <option value="">Loading institutions...</option>
+                    </select>
+                </div>
+
+                <!-- Staff ID Input Field -->
+                <div class="form-field">
+                    <label for="staffId" class="field-label">Staff ID *</label>
+                    <input 
+                        type="text" 
+                        id="staffId" 
+                        name="staffId" 
+                        class="form-control custom-input" 
+                        placeholder="Enter your staff ID"
+                        required
+                    >
+                </div>
+
+                <!-- Password Input Field -->
+                <div class="form-field">
+                    <label for="password" class="field-label">Password *</label>
+                    <input 
+                        type="password" 
+                        id="password" 
+                        name="password" 
+                        class="form-control custom-input" 
+                        placeholder="Enter your password"
+                        required
+                    >
+                </div>
+
+                <!-- Login Button -->
+                <button type="submit" class="login-btn" id="loginBtn">
+                    <span class="btn-text">Login</span>
+                    <span class="loading-spinner hidden">Logging in...</span>
+                </button>
+            </form>
+
+            <!-- Action Links Section -->
+            <div class="login-actions">
+                <a href="#" id="forgotPasswordLink" class="action-link">
+                    Forgot Password?
+                </a>
+                
+                <a href="#" id="complaintLink" class="action-link">
+                    Facing an issue? Complaint to admin
+                </a>
+            </div>
+        </div>
+
+        <!-- Prototype Notes Box -->
+        <div class="prototype-notes">
+            <h3>System Information</h3>
+            <p>Welcome to the Lumen TimeTable System. This platform provides comprehensive timetable management for educational institutions with role-based access control.</p>
+            <p>For technical support or access issues, please use the complaint form or contact your system administrator.</p>
+        </div>
+    </div>
+
+    <!-- Complaint Modal -->
+    <div id="complaintModal" class="modal hidden">
+        <div class="modal-overlay" id="modalOverlay"></div>
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h2>Submit Complaint</h2>
+                <button type="button" class="modal-close" id="closeModal">&times;</button>
+            </div>
+
+            <!-- Complaint Form -->
+            <form id="complaintForm" class="complaint-form">
+                <!-- Institution Dropdown -->
+                <div class="form-field">
+                    <label for="complaintInstitution" class="field-label">Institution *</label>
+                    <select id="complaintInstitution" name="institution" class="form-control custom-select" required>
+                        <option value="">Select Institution</option>
+                    </select>
+                </div>
+
+                <!-- Name Field -->
+                <div class="form-field">
+                    <label for="complaintName" class="field-label">Full Name *</label>
+                    <input 
+                        type="text" 
+                        id="complaintName" 
+                        name="name" 
+                        class="form-control custom-input" 
+                        placeholder="Enter your full name"
+                        required
+                    >
+                </div>
+
+                <!-- Email Field -->
+                <div class="form-field">
+                    <label for="complaintEmail" class="field-label">Email Address *</label>
+                    <input 
+                        type="email" 
+                        id="complaintEmail" 
+                        name="email" 
+                        class="form-control custom-input" 
+                        placeholder="your.email@example.com"
+                        required
+                    >
+                </div>
+
+                <!-- Subject Field -->
+                <div class="form-field">
+                    <label for="complaintSubject" class="field-label">Subject *</label>
+                    <input 
+                        type="text" 
+                        id="complaintSubject" 
+                        name="subject" 
+                        class="form-control custom-input" 
+                        placeholder="Brief description of your issue"
+                        required
+                    >
+                </div>
+
+                <!-- Message Textarea -->
+                <div class="form-field">
+                    <label for="complaintMessage" class="field-label">Message *</label>
+                    <textarea 
+                        id="complaintMessage" 
+                        name="message" 
+                        class="form-control custom-textarea" 
+                        placeholder="Describe your issue in detail"
+                        rows="4"
+                        required
+                    ></textarea>
+                </div>
+
+                <!-- Modal Action Buttons -->
+                <div class="modal-actions">
+                    <button type="button" class="btn-secondary" id="cancelComplaint">
+                        Cancel
+                    </button>
+                    <button type="submit" class="btn-primary" id="submitComplaint">
+                        <span class="btn-text">Submit Complaint</span>
+                        <span class="loading-spinner hidden">Submitting...</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="app.js"></script>
+</body>
+</html>

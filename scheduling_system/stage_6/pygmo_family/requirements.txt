@@ -1,0 +1,42 @@
+# PyGMO Solver Family (Stage 6.4) - Dependencies
+# Strict version pinning for reproducibility
+
+# Core Optimization Engine
+pygmo==2.19.5          # Core optimization (C++ bindings)
+
+# Data Manipulation
+pandas==2.1.4          # Data manipulation
+numpy==1.26.2          # Numerical operations
+
+# File I/O
+pyarrow==14.0.1        # Parquet I/O
+fastparquet==2023.10.1 # Parquet support
+
+# Graph Operations
+networkx==3.2.1        # Graph operations
+
+# Scientific Computing
+scipy==1.11.4          # Scientific computing
+
+# Symbolic Mathematics (Theorem Validation)
+sympy==1.12            # Symbolic mathematics for proofs
+
+# Visualization (Optional)
+matplotlib==3.8.2      # Visualization
+
+# System Monitoring
+psutil==5.9.6          # System monitoring
+
+# Console Enhancement
+colorama==0.4.6        # Console colors
+
+# Type Checking
+mypy==1.7.1            # Type checking
+
+# Testing
+pytest==7.4.3          # Testing framework
+pytest-cov==4.1.0      # Coverage reporting
+
+# Additional dependencies may be added as needed during implementation
+
+

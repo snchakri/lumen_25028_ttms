@@ -1,0 +1,69 @@
+version: '3.8'
+
+services:
+  pulp-solver-test:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: pulp_solver_test
+    volumes:
+      - .:/app
+      - ./logs:/app/logs
+      - ./test_results:/app/test_results
+      - ./error_reports:/app/error_reports
+    environment:
+      - PYTHONUNBUFFERED=1
+      - PYTEST_ADDOPTS=--color=yes
+    command: >
+      bash -c "
+        echo '=== Running Stage 6.1 PuLP Solver Family Tests ===' &&
+        echo 'Test Suite: Algorithm Validation, Mathematical Proofs, Docker Tests' &&
+        echo '' &&
+        python -m pytest tests/ -v --tb=short --color=yes --maxfail=5 2>&1 | tee /app/test_results/test_run_$(date +%Y%m%d_%H%M%S).log
+      "
+    networks:
+      - pulp-network
+
+  pulp-solver-integration:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: pulp_solver_integration
+    volumes:
+      - .:/app
+      - ../stage_3:/stage_3:ro
+      - ./integration_results:/app/integration_results
+    environment:
+      - PYTHONUNBUFFERED=1
+      - STAGE3_PATH=/stage_3
+    command: >
+      bash -c "
+        echo '=== Running Stage 3 Integration Tests ===' &&
+        python -m pytest tests/test_stage3_integration.py -v --tb=short --color=yes 2>&1 | tee /app/integration_results/integration_$(date +%Y%m%d_%H%M%S).log
+      "
+    networks:
+      - pulp-network
+
+  pulp-solver-benchmark:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: pulp_solver_benchmark
+    volumes:
+      - .:/app
+      - ./benchmark_results:/app/benchmark_results
+    environment:
+      - PYTHONUNBUFFERED=1
+    command: >
+      bash -c "
+        echo '=== Running Performance Benchmarks ===' &&
+        python -m pytest tests/test_performance_benchmarks.py -v --tb=short --benchmark-only --color=yes 2>&1 | tee /app/benchmark_results/benchmark_$(date +%Y%m%d_%H%M%S).log
+      "
+    networks:
+      - pulp-network
+
+networks:
+  pulp-network:
+    driver: bridge
+
+

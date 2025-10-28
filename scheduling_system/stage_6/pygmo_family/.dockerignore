@@ -1,0 +1,115 @@
+# Docker ignore file for PyGMO Solver Family
+# Excludes unnecessary files from Docker build context
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Virtual environments
+venv/
+env/
+ENV/
+.venv
+
+# Testing
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+.tox/
+.nox/
+tests/results/
+tests/coverage_html/
+tests/coverage.json
+tests/coverage.xml
+tests/test_run.log
+test_results/
+stress_test_results/
+
+# Development
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Logs
+*.log
+logs/
+test_logs/
+dev_logs/
+benchmark_logs/
+
+# Output directories
+test_output/
+dev_output/
+benchmark_output/
+outputs/
+outputs_docker/
+
+# Checkpoints
+checkpoints/
+test_checkpoints/
+
+# Data directories (should be mounted as volumes)
+test_data/
+dev_data/
+benchmark_data/
+high_quality_test_data/
+
+# Git
+.git/
+.gitignore
+.gitattributes
+
+# Documentation
+*.md
+docs/
+documentation/
+
+# CI/CD
+.github/
+.gitlab-ci.yml
+.travis.yml
+
+# Docker files (don't need to copy these into the image)
+Dockerfile
+docker-compose.yml
+.dockerignore
+
+# Build artifacts
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# Jupyter notebooks
+*.ipynb
+.ipynb_checkpoints/
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+*.bak
+*.backup
+
+# Archives
+*.zip
+*.tar.gz
+*.rar
+
+# Large data files
+*.parquet
+*.pkl
+*.pickle
+*.h5
+*.hdf5
+*.csv
+# Note: Actual input data should be mounted as volumes, not copied into image
+
+

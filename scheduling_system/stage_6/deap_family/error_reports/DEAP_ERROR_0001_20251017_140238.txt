@@ -1,0 +1,16 @@
+DEAP SOLVER ERROR REPORT - DEAP_ERROR_0001_20251017_140238
+================================================================================
+Timestamp: 2025-10-17T14:02:38.858169
+Error Type: ProcessingError
+Phase: execution
+Severity: HIGH
+Message: attempted relative import with no known parent package
+
+Context:
+  stack_trace: Traceback (most recent call last):
+  File "/app/main.py", line 191, in run_deap_solver_pipeline
+    from .processing.encoding import PhenotypeDecoder
+ImportError: attempted relative import with no known parent package
+
+  solver_type: nsga2
+

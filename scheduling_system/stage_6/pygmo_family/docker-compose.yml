@@ -1,0 +1,215 @@
+# Docker Compose configuration for PyGMO Solver Family
+# Provides orchestration for development, testing, and production environments
+
+version: '3.8'
+
+services:
+  # ============================================================================
+  # Main PyGMO Solver Service
+  # ============================================================================
+  pygmo-solver:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: pygmo-solver:latest
+    container_name: pygmo-solver-main
+    volumes:
+      - ./dev_data:/data/input:ro  # Mount input data (small dev Stage-3)
+      - ./test_output:/data/output  # Mount output directory (Stage 7 inputs)
+      - ./test_logs:/data/logs      # Mount logs directory
+      - ./test_checkpoints:/data/checkpoints  # Mount checkpoints directory for recovery
+    environment:
+      - SOLVER_NAME=NSGA-II
+      - POPULATION_SIZE=20
+      - NUM_ISLANDS=2
+      - GENERATIONS=50
+      - LOG_LEVEL=INFO
+      - ENABLE_CHECKPOINTS=false
+    command: >
+      python -m pygmo_family
+      --input-dir /data/input
+      --output-dir /data/output
+      --log-dir /data/logs
+      --solver ${SOLVER_NAME:-NSGA-II}
+      --population-size ${POPULATION_SIZE:-20}
+      --num-islands ${NUM_ISLANDS:-2}
+      --generations ${GENERATIONS:-50}
+    networks:
+      - pygmo-network
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          cpus: '8.0'
+          memory: 16G
+        reservations:
+          cpus: '4.0'
+          memory: 8G
+
+  # ============================================================================
+  # Test Runner Service
+  # ============================================================================
+  pygmo-test:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: pygmo-solver:latest
+    container_name: pygmo-solver-test
+    volumes:
+      - .:/app
+      - ./test_results:/app/tests/results
+    environment:
+      - PYTEST_ARGS=-v --tb=short
+    command: python run_tests.py standard
+    networks:
+      - pygmo-network
+    profiles:
+      - test
+
+  # ============================================================================
+  # Stress Test Service
+  # ============================================================================
+  pygmo-stress-test:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: pygmo-solver:latest
+    container_name: pygmo-solver-stress
+    volumes:
+      - .:/app
+      - ./stress_test_results:/app/tests/stress_results
+    environment:
+      - PYTEST_ARGS=-v --tb=short -m slow
+    command: python run_tests.py stress
+    networks:
+      - pygmo-network
+    deploy:
+      resources:
+        limits:
+          cpus: '12.0'
+          memory: 32G
+    profiles:
+      - stress
+
+  # ============================================================================
+  # Development Service (with hot reload)
+  # ============================================================================
+  pygmo-dev:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: pygmo-solver:latest
+    container_name: pygmo-solver-dev
+    volumes:
+      - .:/app
+      - ./dev_data:/data/input:ro
+      - ./dev_output:/data/output
+      - ./dev_logs:/data/logs
+    environment:
+      - PYTHONUNBUFFERED=1
+      - LOG_LEVEL=DEBUG
+    command: /bin/bash
+    stdin_open: true
+    tty: true
+    networks:
+      - pygmo-network
+    profiles:
+      - dev
+
+  # ============================================================================
+  # Dev data generator: produce a tiny Stage-3 dataset under ./dev_data
+  # ============================================================================
+  pygmo-devdata:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: pygmo-solver:latest
+    container_name: pygmo-solver-devdata
+    volumes:
+      - .:/app
+      - ./dev_data:/data/out
+    command: >
+      python tools/generate_small_stage3.py --out-dir /data/out
+    networks:
+      - pygmo-network
+    profiles:
+      - dev
+
+  # ============================================================================
+  # Benchmark Service (for performance testing)
+  # ============================================================================
+  pygmo-benchmark:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: pygmo-solver:latest
+    container_name: pygmo-solver-benchmark
+    volumes:
+      - ./benchmark_data:/data/input:ro
+      - ./benchmark_output:/data/output
+      - ./benchmark_logs:/data/logs
+    environment:
+      - SOLVER_NAME=NSGA-II
+      - POPULATION_SIZE=200
+      - NUM_ISLANDS=16
+      - GENERATIONS=2000
+      - ENABLE_CHECKPOINTS=true
+      - LOG_LEVEL=INFO
+    command: >
+      python main.py
+      --input-dir /data/input
+      --output-dir /data/output
+      --log-dir /data/logs
+      --solver NSGA-II
+      --population-size 200
+      --num-islands 16
+      --generations 2000
+    networks:
+      - pygmo-network
+    deploy:
+      resources:
+        limits:
+          cpus: '16.0'
+          memory: 64G
+    profiles:
+      - benchmark
+
+networks:
+  pygmo-network:
+    driver: bridge
+
+# ============================================================================
+# Usage Instructions:
+# ============================================================================
+#
+# 1. Build images:
+#    docker-compose build
+#
+# 2. Run main solver:
+#    docker-compose up pygmo-solver
+#
+# 3. Run tests:
+#    docker-compose --profile test up pygmo-test
+#
+# 4. Run stress tests:
+#    docker-compose --profile stress up pygmo-stress-test
+#
+# 5. Development mode:
+#    docker-compose --profile dev up pygmo-dev
+#
+# 6. Run benchmark:
+#    docker-compose --profile benchmark up pygmo-benchmark
+#
+# 7. Run all services:
+#    docker-compose --profile test --profile stress --profile dev up
+#
+# 8. Stop all services:
+#    docker-compose down
+#
+# 9. Clean up:
+#    docker-compose down -v --rmi all
+#
+# 10. View logs:
+#     docker-compose logs -f pygmo-solver
+#
+# ============================================================================

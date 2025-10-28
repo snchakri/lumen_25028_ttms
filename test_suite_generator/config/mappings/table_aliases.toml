@@ -1,0 +1,11 @@
+# Table Name Aliases
+# Maps SQL schema names to foundation/alternate names
+
+[aliases]
+# Timeslots mapping for Stage 1 compatibility
+timeslots = "time_slots"
+
+# Other mappings (examples - expand as needed)
+studentcourseenrollment = "student_enrollments"
+courseprerequisites = "course_prerequisites"
+facultycoursecompetency = "faculty_competencies"

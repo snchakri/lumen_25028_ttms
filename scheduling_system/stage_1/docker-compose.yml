@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  stage1-test:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./test_data:/app/test_data
+      - ./test_outputs:/app/test_outputs
+      - ./test_logs:/app/test_logs
+    environment:
+      - PYTHONUNBUFFERED=1
+    networks:
+      - stage1-network
+
+networks:
+  stage1-network:
+    driver: bridge
+
+
+

@@ -1,0 +1,94 @@
+# Production Configuration Profile
+# Optimized for realistic, large-scale data generation
+
+# Academic Configuration
+academic_year: "2025-2026"
+semester_duration_weeks: 16
+semesters:
+  - "Fall 2025"
+  - "Spring 2026"
+  - "Summer 2026"
+
+# Entity Counts (Large, realistic scale)
+tenants: 10
+departments: 50
+programs: 150
+courses: 2000
+faculty: 500
+students: 10000
+rooms: 250
+shifts: 3
+
+# Timeslot Configuration
+slot_length_minutes: 50
+workday_start: "07:00"
+workday_end: "22:00"
+days_active: 6  # Monday-Saturday
+breaks:
+  - start: "12:00"
+    end: "13:00"
+    description: "Lunch Break"
+  - start: "17:00"
+    end: "17:30"
+    description: "Evening Break"
+slot_policy: "flexible"
+slot_shift_alignment: true
+
+# Constraint Parameters (Production defaults from foundations)
+credits_soft: 18
+credits_hard: 21
+credits_absolute: 24
+
+courses_per_student_min: 4
+courses_per_student_max: 6
+
+batch_size_min: 20
+batch_size_max: 50
+
+prereq_depth_max: 4
+prereq_percentage: 0.4
+coreq_percentage: 0.15
+
+instructor_courses_min: 2
+instructor_courses_max: 4
+
+# Validation Options (Comprehensive)
+validate_level: "strict"
+mathematical_validation: true
+proof_certificates: true
+adversarial_percentage: 0.05
+
+# Optional Features (All enabled)
+equipment: true
+room_access: true
+dynamic_constraints: true
+
+# Output Configuration
+output_dir: "output/production"
+log_dir: "logs/production"
+error_dir: "logs/production/errors"
+output_formats:
+  - "csv"
+
+# Performance Tuning
+seed: null  # Random seed for production diversity
+no_progress_bars: false
+show_stats: true
+parallel: true  # Enable parallel processing
+
+# Production Options
+dry_run: false
+verbose: false
+quiet: false
+debug_entity_id: null
+
+# Production-specific settings
+# - Large entity counts for realistic scale
+# - Strict validation with mathematical proofs
+# - All optional features enabled
+# - 3 shifts for full day coverage
+# - 6 days of activity (Mon-Sat)
+# - Parallel processing for performance
+# - Comprehensive validation including adversarial testing
+# - Multiple semesters including summer
+# - Extended workday hours (7 AM - 10 PM)

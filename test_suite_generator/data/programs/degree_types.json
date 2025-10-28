@@ -1,0 +1,10 @@
+[
+  {"name": "Bachelor of Science", "code": "BSc", "duration_years": 3, "credits_min": 90, "credits_max": 120},
+  {"name": "Bachelor of Technology", "code": "BTech", "duration_years": 4, "credits_min": 120, "credits_max": 150},
+  {"name": "Bachelor of Arts", "code": "BA", "duration_years": 3, "credits_min": 90, "credits_max": 120},
+  {"name": "Bachelor of Commerce", "code": "BCom", "duration_years": 3, "credits_min": 90, "credits_max": 120},
+  {"name": "Master of Science", "code": "MSc", "duration_years": 2, "credits_min": 60, "credits_max": 80},
+  {"name": "Master of Technology", "code": "MTech", "duration_years": 2, "credits_min": 60, "credits_max": 80},
+  {"name": "Master of Business Administration", "code": "MBA", "duration_years": 2, "credits_min": 60, "credits_max": 80},
+  {"name": "Doctor of Philosophy", "code": "PhD", "duration_years": 4, "credits_min": 90, "credits_max": 120}
+]

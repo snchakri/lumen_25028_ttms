@@ -1,0 +1,16 @@
+{
+  "error_id": "DEAP_ERROR_0001_20251017_135723",
+  "timestamp": "2025-10-17T13:57:23.449344",
+  "error_type": "ProcessingError",
+  "error_message": "'PopulationManager' object has no attribute 'population_size'",
+  "phase": "execution",
+  "severity": "HIGH",
+  "context": {
+    "stack_trace": "Traceback (most recent call last):\n  File \"/app/main.py\", line 186, in run_deap_solver_pipeline\n    best_individual, evolution_stats = solver.solve(individual_initializer)\n  File \"/app/processing/nsga2.py\", line 61, in solve\n    population = self.population_manager.initialize(initializer)\n  File \"/app/processing/population.py\", line 216, in initialize\n    self.logger.info(f\"Initializing population with {self.population_size} individuals\")\nAttributeError: 'PopulationManager' object has no attribute 'population_size'\n",
+    "solver_type": "nsga2"
+  },
+  "stack_trace": null,
+  "advised_fixes": [],
+  "recovery_suggestions": [],
+  "foundation_compliance": {}
+}

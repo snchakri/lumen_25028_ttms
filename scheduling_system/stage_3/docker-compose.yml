@@ -1,0 +1,81 @@
+# Docker Compose for Stage 3 Data Compilation Testing
+# ==================================================
+# 
+# Complete testing environment for Stage 3 pipeline validation
+
+version: '3.8'
+
+services:
+  stage3-compilation:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: production
+    container_name: stage3-test
+    volumes:
+      - ./input_data:/app/input_data:ro
+      - ./output_data:/app/output_data
+      - ./temp:/app/temp
+      - ./logs:/app/logs
+    environment:
+      - PYTHONPATH=/app
+      - PYTHONUNBUFFERED=1
+      - LOG_LEVEL=DEBUG
+    working_dir: /app
+    command: >
+      python main.py 
+      --input-dir /app/input_data 
+      --output-dir /app/output_data 
+      --enable-parallel 
+      --max-workers 2 
+      --memory-limit 8 
+      --log-level DEBUG 
+      --strict-hei-compliance 
+      --validate-theorems
+    healthcheck:
+      test: ["CMD", "python", "-c", "import sys; sys.exit(0)"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    deploy:
+      resources:
+        limits:
+          memory: 8G
+          cpus: '2.0'
+        reservations:
+          memory: 4G
+          cpus: '1.0'
+
+  stage3-test:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: production
+    container_name: stage3-integration-test
+    volumes:
+      - .:/app
+    environment:
+      - PYTHONPATH=/app
+      - PYTHONUNBUFFERED=1
+    working_dir: /app
+    command: python test_integration.py
+    depends_on:
+      - stage3-compilation
+    profiles:
+      - testing
+
+networks:
+  default:
+    name: stage3-network
+
+
+
+
+
+
+
+
+
+
+

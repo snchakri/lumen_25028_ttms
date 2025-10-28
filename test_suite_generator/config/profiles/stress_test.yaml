@@ -1,0 +1,126 @@
+# Stress Test Configuration Profile
+# Designed to test system limits and performance under extreme load
+
+# Academic Configuration
+academic_year: "2025-2026"
+semester_duration_weeks: 16
+semesters:
+  - "Fall 2025"
+  - "Spring 2026"
+  - "Summer 2026"
+
+# Entity Counts (MAXIMUM for stress testing)
+tenants: 25  # Maximum complexity
+departments: 100  # Large institution count
+programs: 500  # Extensive program offerings
+courses: 10000  # Massive course catalog
+faculty: 2000  # Large faculty pool
+students: 50000  # Major university scale
+rooms: 500  # Large facility count
+shifts: 5  # Maximum shift complexity
+
+# Timeslot Configuration (Maximum granularity)
+slot_length_minutes: 30  # Shorter slots = more timeslots
+workday_start: "06:00"  # Extended day
+workday_end: "23:00"
+days_active: 7  # Full week including Sunday
+breaks:
+  - start: "10:00"
+    end: "10:15"
+    description: "Morning Break"
+  - start: "12:00"
+    end: "13:00"
+    description: "Lunch Break"
+  - start: "15:00"
+    end: "15:15"
+    description: "Afternoon Break"
+  - start: "18:00"
+    end: "18:30"
+    description: "Dinner Break"
+slot_policy: "flexible"
+slot_shift_alignment: true
+
+# Constraint Parameters (Maximum complexity)
+credits_soft: 18
+credits_hard: 21
+credits_absolute: 24
+
+courses_per_student_min: 5
+courses_per_student_max: 7  # High course load
+
+batch_size_min: 30
+batch_size_max: 60  # Large batches
+
+prereq_depth_max: 6  # Deep prerequisite chains
+prereq_percentage: 0.5  # High prerequisite density
+coreq_percentage: 0.2  # High corequisite density
+
+instructor_courses_min: 3
+instructor_courses_max: 5  # Heavy teaching load
+
+# Validation Options (MAXIMUM validation)
+validate_level: "paranoid"
+mathematical_validation: true
+proof_certificates: true
+adversarial_percentage: 0.15  # Aggressive adversarial testing
+
+# Optional Features (All enabled for maximum complexity)
+equipment: true
+room_access: true
+dynamic_constraints: true
+
+# Output Configuration
+output_dir: "output/stress_test"
+log_dir: "logs/stress_test"
+error_dir: "logs/stress_test/errors"
+output_formats:
+  - "csv"
+
+# Performance Tuning (Optimized for stress test)
+seed: 99999  # Fixed seed for reproducible stress tests
+no_progress_bars: false
+show_stats: true
+parallel: true  # REQUIRED for stress test performance
+
+# Stress Test Options
+dry_run: false
+verbose: true  # Detailed logging for stress test analysis
+quiet: false
+debug_entity_id: null
+
+# Stress Test Metrics to Monitor:
+# - Peak memory usage (expect 8-16 GB+)
+# - Generation time (expect 30-60 minutes+)
+# - CPU utilization (should hit 100% with parallel)
+# - Disk I/O throughput
+# - Validation time
+# - Constraint satisfaction rate
+# - Error rate and recovery
+
+# Stress Test Expectations:
+# - Total entities: ~62,625+ (sum of all entity types)
+# - Total timeslots: 357 (7 days × 17 hours × 3 slots/hour)
+# - Total relationships: 250,000+ (students × courses)
+# - Prerequisite chains: 5,000+ (50% of 10,000 courses)
+# - Memory usage: 8-16 GB expected
+# - Generation time: 30-60 minutes expected
+# - Output size: 5-10 GB CSV files
+
+# Performance Targets:
+# - Generation rate: 1000+ entities/second
+# - Validation rate: 500+ entities/second
+# - CSV write rate: 100+ MB/second
+# - No memory leaks over full run
+# - No deadlocks in parallel processing
+
+# This configuration pushes all system limits:
+# 1. Maximum entity counts
+# 2. Maximum timeslot granularity (30-min slots)
+# 3. Maximum shift count (5)
+# 4. Full week scheduling (7 days)
+# 5. Deep prerequisite chains (6 levels)
+# 6. High constraint density (50% prereqs, 20% coreqs)
+# 7. Maximum validation strictness (paranoid + mathematical + adversarial)
+# 8. All optional features enabled
+# 9. Parallel processing required
+# 10. Extensive logging for analysis

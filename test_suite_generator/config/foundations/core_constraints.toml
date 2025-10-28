@@ -1,0 +1,64 @@
+# Foundation Constraints (Phase 3)
+
+[constraints.credit_hours_range]
+name = "Course Credit Hours Range"
+expression = "(credit_hours >= 1) & (credit_hours <= 6)"
+type = "hard"
+table = "courses"
+fields = ["credit_hours"]
+source = "core_constraints.toml"
+description = "Course credit hours must be between 1 and 6"
+
+[constraints.student_credit_soft_limit]
+name = "Student Credit Soft Limit"
+expression = "total_credits <= 21"
+type = "soft"
+table = "enrollments"
+fields = ["total_credits"]
+source = "core_constraints.toml"
+description = "95% of students should have <= 21 credits per semester"
+
+[constraints.student_credit_hard_limit]
+name = "Student Credit Hard Limit"
+expression = "total_credits <= 24"
+type = "hard"
+table = "enrollments"
+fields = ["total_credits"]
+source = "core_constraints.toml"
+description = "98% of students must have <= 24 credits per semester"
+
+[constraints.student_credit_absolute_limit]
+name = "Student Credit Absolute Limit"
+expression = "total_credits <= 27"
+type = "hard"
+table = "enrollments"
+fields = ["total_credits"]
+source = "core_constraints.toml"
+description = "All students must have <= 27 credits per semester"
+
+[constraints.prerequisite_max_depth]
+name = "Prerequisite Maximum Depth"
+expression = "max_path_length <= 4"
+type = "hard"
+table = "prerequisites"
+fields = ["max_path_length"]
+source = "core_constraints.toml"
+description = "Maximum prerequisite chain depth is 4"
+
+[constraints.batch_size_range]
+name = "Batch Size Range"
+expression = "(batch_size >= 30) & (batch_size <= 60)"
+type = "soft"
+table = "programs"
+fields = ["batch_size"]
+source = "core_constraints.toml"
+description = "Batch size should be between 30 and 60 students"
+
+[constraints.room_capacity_buffer]
+name = "Room Capacity Buffer"
+expression = "enrollment_count <= room_capacity * 1.05"
+type = "hard"
+table = "course_schedules"
+fields = ["enrollment_count", "room_capacity"]
+source = "core_constraints.toml"
+description = "Enrollment must not exceed room capacity + 5% buffer"

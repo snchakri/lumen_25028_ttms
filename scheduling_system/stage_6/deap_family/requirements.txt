@@ -1,0 +1,152 @@
+# DEAP Solver Family - Dependencies
+# Stage 6.3 Implementation with Foundation Compliance
+
+# Core evolutionary algorithms framework
+deap>=1.3.3
+
+# Numerical computing and data manipulation
+numpy>=1.21.0
+pandas>=1.3.0
+scipy>=1.7.0
+
+# Symbolic mathematics for theorem validation
+sympy>=1.9
+
+# Graph operations for relationship handling
+networkx>=2.6
+
+# File format support
+pyarrow>=5.0.0  # Parquet files
+h5py>=3.3.0     # HDF5 files (optional)
+
+# Logging and configuration
+pyyaml>=5.4.0
+jsonschema>=3.2.0
+
+# Performance optimization
+numba>=0.54.0   # JIT compilation (optional)
+cython>=0.29.0  # C extensions (optional)
+
+# Multi-processing support
+joblib>=1.0.0
+multiprocessing-logging>=0.3.0
+
+# Visualization (optional, for analysis)
+matplotlib>=3.4.0
+seaborn>=0.11.0
+plotly>=5.0.0
+
+# Testing framework
+pytest>=6.2.0
+pytest-cov>=2.12.0
+pytest-xdist>=2.3.0  # Parallel testing
+pytest-benchmark>=3.4.0  # Performance testing
+
+# Code quality
+black>=21.0.0
+flake8>=3.9.0
+mypy>=0.910
+isort>=5.9.0
+
+# Documentation
+sphinx>=4.0.0
+sphinx-rtd-theme>=0.5.0
+
+# Development utilities
+ipython>=7.25.0
+jupyter>=1.0.0
+notebook>=6.4.0
+
+# Memory profiling
+memory-profiler>=0.58.0
+psutil>=5.8.0
+
+# Progress bars and CLI utilities
+tqdm>=4.61.0
+click>=8.0.0
+rich>=10.0.0  # Rich console output
+
+# Date/time handling
+python-dateutil>=2.8.0
+
+# Statistical analysis
+statsmodels>=0.12.0
+scikit-learn>=0.24.0  # For clustering and analysis
+
+# Constraint programming (optional integration)
+ortools>=9.0  # For hybrid approaches
+
+# Graph visualization
+pygraphviz>=1.7  # Requires Graphviz system installation
+pydot>=1.4.0
+
+# Parallel computing
+dask>=2021.6.0  # Optional for large-scale processing
+ray>=1.4.0      # Optional for distributed computing
+
+# Database connectivity (if needed)
+sqlalchemy>=1.4.0
+psycopg2-binary>=2.9.0  # PostgreSQL
+
+# Configuration management
+hydra-core>=1.1.0  # Advanced configuration
+omegaconf>=2.1.0
+
+# Monitoring and profiling
+py-spy>=0.3.0      # Sampling profiler
+line-profiler>=3.3.0
+
+# Mathematical optimization
+cvxpy>=1.1.0       # Convex optimization
+pulp>=2.4.0        # Linear programming
+
+# Time series analysis (for convergence analysis)
+tslearn>=0.5.0
+
+# Advanced data structures
+sortedcontainers>=2.4.0
+# blist>=1.3.6  # Removed due to Python 3.9+ compatibility issues, using sortedcontainers instead
+
+# Fuzzy logic (for constraint handling)
+scikit-fuzzy>=0.4.0
+
+# Genetic programming specific
+gplearn>=0.4.0     # Additional GP utilities
+
+# Multi-objective optimization
+pymoo>=0.5.0       # Additional multi-objective algorithms
+
+# Hyperparameter optimization
+optuna>=2.8.0      # For parameter tuning
+hyperopt>=0.2.5
+
+# Distributed computing
+celery>=5.1.0      # Task queue (optional)
+redis>=3.5.0       # Message broker (optional)
+
+# Cloud storage (optional)
+boto3>=1.17.0      # AWS S3
+google-cloud-storage>=1.38.0  # Google Cloud
+
+# Serialization
+pickle5>=0.0.11    # Enhanced pickle (Python < 3.8)
+cloudpickle>=1.6.0 # Cloud-compatible pickle
+dill>=0.3.4        # Extended pickle
+
+# Validation and schema
+cerberus>=1.3.0    # Data validation
+marshmallow>=3.12.0 # Serialization/validation
+
+# Caching
+diskcache>=5.2.0   # Disk-based caching
+joblib>=1.0.0      # Memory caching
+
+# Error tracking (optional)
+sentry-sdk>=1.3.0
+
+# Performance monitoring
+py-cpuinfo>=8.0.0
+gpustat>=1.0.0     # GPU monitoring (if applicable)
+
+# Mathematical constants and utilities
+mpmath>=1.2.0      # Arbitrary precision arithmetic

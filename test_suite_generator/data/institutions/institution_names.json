@@ -1,0 +1,22 @@
+[
+  {"name": "National Institute of Technology", "type": "PUBLIC", "state": "Karnataka"},
+  {"name": "Indian Institute of Technology", "type": "AUTONOMOUS", "state": "Maharashtra"},
+  {"name": "St. Xavier's College", "type": "AIDED", "state": "Tamil Nadu"},
+  {"name": "Christ University", "type": "DEEMED", "state": "Karnataka"},
+  {"name": "Manipal Institute of Technology", "type": "PRIVATE", "state": "Karnataka"},
+  {"name": "Birla Institute of Technology", "type": "PRIVATE", "state": "Jharkhand"},
+  {"name": "Anna University", "type": "PUBLIC", "state": "Tamil Nadu"},
+  {"name": "Delhi University", "type": "PUBLIC", "state": "Delhi"},
+  {"name": "Pune University", "type": "PUBLIC", "state": "Maharashtra"},
+  {"name": "Jadavpur University", "type": "PUBLIC", "state": "West Bengal"},
+  {"name": "Osmania University", "type": "PUBLIC", "state": "Telangana"},
+  {"name": "Bangalore University", "type": "PUBLIC", "state": "Karnataka"},
+  {"name": "Mumbai University", "type": "PUBLIC", "state": "Maharashtra"},
+  {"name": "Calcutta University", "type": "PUBLIC", "state": "West Bengal"},
+  {"name": "Madras University", "type": "PUBLIC", "state": "Tamil Nadu"},
+  {"name": "Vellore Institute of Technology", "type": "PRIVATE", "state": "Tamil Nadu"},
+  {"name": "SRM Institute of Science and Technology", "type": "PRIVATE", "state": "Tamil Nadu"},
+  {"name": "Amity University", "type": "PRIVATE", "state": "Uttar Pradesh"},
+  {"name": "Symbiosis International University", "type": "DEEMED", "state": "Maharashtra"},
+  {"name": "BITS Pilani", "type": "DEEMED", "state": "Rajasthan"}
+]

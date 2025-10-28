@@ -1,0 +1,42 @@
+# Foundation Defaults - Mathematical Constants and Constraints
+
+[constants]
+pi = 3.14159265359
+e = 2.71828182846
+golden_ratio = 1.61803398875
+
+[entity_counts]
+default_departments = 5
+default_programs_per_dept = 3
+default_courses = 100
+default_faculty = 50
+default_students = 1000
+default_rooms = 50
+default_shifts = 3
+
+[credit_limits]
+soft_limit = 21  # 95% of students
+hard_limit = 24  # 98% of students
+absolute_limit = 27  # 100% of students
+
+[course_constraints]
+min_courses_per_student = 4
+max_courses_per_student = 6
+typical_course_credits = 3
+
+[room_constraints]
+small_room_capacity = [20, 30]
+medium_room_capacity = [30, 50]
+large_room_capacity = [50, 100]
+lecture_hall_capacity = [100, 300]
+
+[timeslot_defaults]
+slot_length_minutes = 60
+workday_start = "08:00"
+workday_end = "18:00"
+days_active = "1-5"
+slot_policy = "fixed"
+
+[academic]
+default_semesters = ["Fall", "Spring"]
+semester_duration_weeks = 15

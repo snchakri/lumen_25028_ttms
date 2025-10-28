@@ -1,0 +1,33 @@
+FROM python:3.11-slim
+
+# Set working directory
+WORKDIR /stage5
+
+# Install system dependencies
+RUN apt-get update && apt-get install -y \
+    gcc \
+    g++ \
+    && rm -rf /var/lib/apt/lists/*
+
+# Copy requirements and install Python dependencies
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy Stage 5 source code
+COPY . .
+
+# Create test directories
+RUN mkdir -p /stage5/test_data/stage3_output/L_raw \
+             /stage5/test_data/stage3_output/L_rel \
+             /stage5/test_results \
+             /stage5/logs \
+             /stage5/reports
+
+# Set environment variables for testing
+ENV PYTHONPATH=/stage5
+ENV STAGE5_TEST_MODE=comprehensive
+ENV LOG_LEVEL=DEBUG
+
+# Default command runs basic validation
+CMD ["python", "-c", "from . import execute_stage5_complete; print('Stage 5 module loaded successfully')"]
+

@@ -1,0 +1,103 @@
+{
+  "version": "1.0",
+  "description": "Solver capabilities for Stage 5.2 LP framework - 16-parameter capability vectors",
+  "solvers": [
+    {
+      "solver_id": "pulp_cbc",
+      "name": "PuLP with CBC",
+      "capability_vector": [0.7, 0.8, 0.6, 0.5, 0.9, 0.7, 0.5, 0.8, 0.4, 0.3, 0.2, 0.6, 0.8, 0.7, 0.5, 0.4],
+      "limits": {
+        "max_variables": 1000000,
+        "max_constraints": 1000000,
+        "memory_mb": 4096
+      },
+      "performance_profile": {
+        "typical_solve_time_seconds": 120,
+        "convergence_rate": 0.95
+      },
+      "deployment_info": {
+        "module_path": "pulp",
+        "entry_function": "solve",
+        "backend_enum": "CBC"
+      }
+    },
+    {
+      "solver_id": "pulp_glpk",
+      "name": "PuLP with GLPK",
+      "capability_vector": [0.6, 0.7, 0.5, 0.4, 0.8, 0.6, 0.4, 0.7, 0.3, 0.2, 0.1, 0.5, 0.7, 0.6, 0.4, 0.3],
+      "limits": {
+        "max_variables": 500000,
+        "max_constraints": 500000,
+        "memory_mb": 2048
+      },
+      "performance_profile": {
+        "typical_solve_time_seconds": 180,
+        "convergence_rate": 0.90
+      },
+      "deployment_info": {
+        "module_path": "pulp",
+        "entry_function": "solve",
+        "backend_enum": "GLPK"
+      }
+    },
+    {
+      "solver_id": "ortools_cpsat",
+      "name": "OR-Tools CP-SAT",
+      "capability_vector": [0.9, 0.9, 0.5, 0.8, 0.8, 0.8, 0.9, 0.9, 0.7, 0.4, 0.3, 0.8, 0.7, 0.8, 0.6, 0.5],
+      "limits": {
+        "max_variables": 2000000,
+        "max_constraints": 2000000,
+        "memory_mb": 8192
+      },
+      "performance_profile": {
+        "typical_solve_time_seconds": 90,
+        "convergence_rate": 0.98
+      },
+      "deployment_info": {
+        "module_path": "ortools.sat.python.cp_model",
+        "entry_function": "solve",
+        "backend_enum": "CP_SAT"
+      }
+    },
+    {
+      "solver_id": "pygmo_nsga2",
+      "name": "PyGMO NSGA-II",
+      "capability_vector": [0.4, 0.5, 0.9, 0.7, 0.7, 0.6, 0.7, 0.5, 0.6, 0.6, 0.7, 0.6, 0.6, 0.7, 0.8, 0.9],
+      "limits": {
+        "max_variables": 10000,
+        "max_constraints": 10000,
+        "memory_mb": 2048
+      },
+      "performance_profile": {
+        "typical_solve_time_seconds": 300,
+        "convergence_rate": 0.85
+      },
+      "deployment_info": {
+        "module_path": "pygmo",
+        "entry_function": "evolve",
+        "backend_enum": "NSGA2"
+      }
+    },
+    {
+      "solver_id": "deap_ga",
+      "name": "DEAP Genetic Algorithm",
+      "capability_vector": [0.3, 0.4, 0.8, 0.5, 0.6, 0.5, 0.6, 0.4, 0.8, 0.7, 0.8, 0.5, 0.5, 0.6, 0.7, 0.8],
+      "limits": {
+        "max_variables": 5000,
+        "max_constraints": 5000,
+        "memory_mb": 1024
+      },
+      "performance_profile": {
+        "typical_solve_time_seconds": 240,
+        "convergence_rate": 0.80
+      },
+      "deployment_info": {
+        "module_path": "deap",
+        "entry_function": "evolve",
+        "backend_enum": "GA"
+      }
+    }
+  ]
+}
+
+

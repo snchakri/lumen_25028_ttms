@@ -1,0 +1,20 @@
+DEAP SOLVER ERROR REPORT - DEAP_ERROR_0001_20251017_135831
+================================================================================
+Timestamp: 2025-10-17T13:58:31.771798
+Error Type: ProcessingError
+Phase: execution
+Severity: HIGH
+Message: '<' not supported between instances of 'float' and 'NoneType'
+
+Context:
+  stack_trace: Traceback (most recent call last):
+  File "/app/main.py", line 186, in run_deap_solver_pipeline
+    best_individual, evolution_stats = solver.solve(individual_initializer)
+  File "/app/processing/nsga2.py", line 74, in solve
+    offspring = self._vary(selected)
+  File "/app/processing/nsga2.py", line 152, in _vary
+    if np.random.random() < self.mutation_rate:
+TypeError: '<' not supported between instances of 'float' and 'NoneType'
+
+  solver_type: nsga2
+

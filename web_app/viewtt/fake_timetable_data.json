@@ -1,0 +1,587 @@
+{
+  "metadata": {
+    "institution": "Demo Engineering College",
+    "department": "Computer Science & Engineering",
+    "semester": "5th Semester",
+    "academic_year": "2024-25",
+    "section": "A",
+    "generated_on": "2025-10-28 08:12:09",
+    "total_credits": 18,
+    "total_courses": 5
+  },
+  "schedule": [
+    {
+      "day": "Monday",
+      "classes": [
+        {
+          "period": 1,
+          "time": "8:00-9:00",
+          "course_code": "CS303",
+          "course_name": "Operating Systems",
+          "faculty_name": "Dr. Rajesh Kumar",
+          "faculty_id": "FAC101",
+          "room": "A102",
+          "type": "theory",
+          "credits": 4
+        },
+        {
+          "period": 2,
+          "time": "9:00-10:00",
+          "course_code": "CS302",
+          "course_name": "Database Management",
+          "faculty_name": "Dr. Rajesh Kumar",
+          "faculty_id": "FAC101",
+          "room": "B203",
+          "type": "theory",
+          "credits": 3
+        },
+        {
+          "period": 3,
+          "time": "10:00-11:00",
+          "course_code": "CS302",
+          "course_name": "Database Management",
+          "faculty_name": "Prof. Amit Singh",
+          "faculty_id": "FAC103",
+          "room": "C302",
+          "type": "theory",
+          "credits": 3
+        },
+        {
+          "period": 4,
+          "time": "11:00-12:00",
+          "course_code": "CS302",
+          "course_name": "Database Management",
+          "faculty_name": "Prof. Amit Singh",
+          "faculty_id": "FAC103",
+          "room": "C301",
+          "type": "theory",
+          "credits": 3
+        },
+        {
+          "period": "Lunch",
+          "time": "12:00-1:00",
+          "course": null,
+          "type": "break"
+        },
+        {
+          "period": 5,
+          "time": "1:00-2:00",
+          "course_code": "CS303",
+          "course_name": "Operating Systems",
+          "faculty_name": "Dr. Rajesh Kumar",
+          "faculty_id": "FAC101",
+          "room": "A101",
+          "type": "theory",
+          "credits": 4
+        },
+        {
+          "period": 6,
+          "time": "2:00-3:00",
+          "course_code": "CS303",
+          "course_name": "Operating Systems",
+          "faculty_name": "Prof. Amit Singh",
+          "faculty_id": "FAC103",
+          "room": "A101",
+          "type": "theory",
+          "credits": 4
+        },
+        {
+          "period": 7,
+          "time": "3:00-4:00",
+          "course_code": "CS305",
+          "course_name": "Web Technologies",
+          "faculty_name": "Dr. Priya Sharma",
+          "faculty_id": "FAC102",
+          "room": "C301",
+          "type": "theory",
+          "credits": 3
+        }
+      ]
+    },
+    {
+      "day": "Tuesday",
+      "classes": [
+        {
+          "period": 1,
+          "time": "8:00-9:00",
+          "course_code": "CS301",
+          "course_name": "Data Structures",
+          "faculty_name": "Prof. Amit Singh",
+          "faculty_id": "FAC103",
+          "room": "B202",
+          "type": "theory",
+          "credits": 4
+        },
+        {
+          "period": 2,
+          "time": "9:00-10:00",
+          "course_code": "CS302",
+          "course_name": "Database Management",
+          "faculty_name": "Prof. Amit Singh",
+          "faculty_id": "FAC103",
+          "room": "B202",
+          "type": "theory",
+          "credits": 3
+        },
+        {
+          "period": 3,
+          "time": "10:00-11:00",
+          "course_code": "CS303",
+          "course_name": "Operating Systems",
+          "faculty_name": "Dr. Priya Sharma",
+          "faculty_id": "FAC102",
+          "room": "A101",
+          "type": "theory",
+          "credits": 4
+        },
+        {
+          "period": 4,
+          "time": "11:00-12:00",
+          "course_code": "CS302",
+          "course_name": "Database Management",
+          "faculty_name": "Dr. Sneha Patel",
+          "faculty_id": "FAC104",
+          "room": "B202",
+          "type": "theory",
+          "credits": 3
+        },
+        {
+          "period": "Lunch",
+          "time": "12:00-1:00",
+          "course": null,
+          "type": "break"
+        },
+        {
+          "period": 5,
+          "time": "1:00-2:00",
+          "course_code": "CS304",
+          "course_name": "Computer Networks",
+          "faculty_name": "Dr. Rajesh Kumar",
+          "faculty_id": "FAC101",
+          "room": "C301",
+          "type": "theory",
+          "credits": 3
+        },
+        {
+          "period": 6,
+          "time": "2:00-3:00",
+          "course_code": "CS305",
+          "course_name": "Web Technologies",
+          "faculty_name": "Dr. Priya Sharma",
+          "faculty_id": "FAC102",
+          "room": "A103",
+          "type": "theory",
+          "credits": 3
+        },
+        {
+          "period": 7,
+          "time": "3:00-4:00",
+          "course_code": "CS301",
+          "course_name": "Data Structures",
+          "faculty_name": "Dr. Sneha Patel",
+          "faculty_id": "FAC104",
+          "room": "A102",
+          "type": "theory",
+          "credits": 4
+        }
+      ]
+    },
+    {
+      "day": "Wednesday",
+      "classes": [
+        {
+          "period": 1,
+          "time": "8:00-9:00",
+          "course_code": "CS303",
+          "course_name": "Operating Systems",
+          "faculty_name": "Dr. Priya Sharma",
+          "faculty_id": "FAC102",
+          "room": "B203",
+          "type": "theory",
+          "credits": 4
+        },
+        {
+          "period": 2,
+          "time": "9:00-10:00",
+          "course_code": "CS303",
+          "course_name": "Operating Systems",
+          "faculty_name": "Dr. Rajesh Kumar",
+          "faculty_id": "FAC101",
+          "room": "A101",
+          "type": "theory",
+          "credits": 4
+        },
+        {
+          "period": 3,
+          "time": "10:00-11:00",
+          "course_code": "CS302",
+          "course_name": "Database Management",
+          "faculty_name": "Dr. Priya Sharma",
+          "faculty_id": "FAC102",
+          "room": "B202",
+          "type": "theory",
+          "credits": 3
+        },
+        {
+          "period": 4,
+          "time": "11:00-12:00",
+          "course_code": "CS302",
+          "course_name": "Database Management",
+          "faculty_name": "Dr. Rajesh Kumar",
+          "faculty_id": "FAC101",
+          "room": "B202",
+          "type": "theory",
+          "credits": 3
+        },
+        {
+          "period": "Lunch",
+          "time": "12:00-1:00",
+          "course": null,
+          "type": "break"
+        },
+        {
+          "period": 5,
+          "time": "1:00-2:00",
+          "course_code": "CS304",
+          "course_name": "Computer Networks",
+          "faculty_name": "Dr. Rajesh Kumar",
+          "faculty_id": "FAC101",
+          "room": "B201",
+          "type": "theory",
+          "credits": 3
+        },
+        {
+          "period": 6,
+          "time": "2:00-3:00",
+          "course_code": "CS305",
+          "course_name": "Web Technologies",
+          "faculty_name": "Dr. Sneha Patel",
+          "faculty_id": "FAC104",
+          "room": "A101",
+          "type": "theory",
+          "credits": 3
+        },
+        {
+          "period": 7,
+          "time": "3:00-4:00",
+          "course_code": "CS304",
+          "course_name": "Computer Networks",
+          "faculty_name": "Dr. Priya Sharma",
+          "faculty_id": "FAC102",
+          "room": "A101",
+          "type": "theory",
+          "credits": 3
+        }
+      ]
+    },
+    {
+      "day": "Thursday",
+      "classes": [
+        {
+          "period": 1,
+          "time": "8:00-9:00",
+          "course_code": "CS303",
+          "course_name": "Operating Systems",
+          "faculty_name": "Dr. Rajesh Kumar",
+          "faculty_id": "FAC101",
+          "room": "C302",
+          "type": "theory",
+          "credits": 4
+        },
+        {
+          "period": 2,
+          "time": "9:00-10:00",
+          "course_code": "CS305",
+          "course_name": "Web Technologies",
+          "faculty_name": "Dr. Sneha Patel",
+          "faculty_id": "FAC104",
+          "room": "B203",
+          "type": "theory",
+          "credits": 3
+        },
+        {
+          "period": 3,
+          "time": "10:00-11:00",
+          "course_code": "CS305",
+          "course_name": "Web Technologies",
+          "faculty_name": "Dr. Rajesh Kumar",
+          "faculty_id": "FAC101",
+          "room": "B203",
+          "type": "theory",
+          "credits": 3
+        },
+        {
+          "period": 4,
+          "time": "11:00-12:00",
+          "course_code": "CS305",
+          "course_name": "Web Technologies",
+          "faculty_name": "Prof. Amit Singh",
+          "faculty_id": "FAC103",
+          "room": "A102",
+          "type": "theory",
+          "credits": 3
+        },
+        {
+          "period": "Lunch",
+          "time": "12:00-1:00",
+          "course": null,
+          "type": "break"
+        },
+        {
+          "period": 5,
+          "time": "1:00-2:00",
+          "course_code": "CS305",
+          "course_name": "Web Technologies",
+          "faculty_name": "Dr. Sneha Patel",
+          "faculty_id": "FAC104",
+          "room": "A103",
+          "type": "theory",
+          "credits": 3
+        },
+        {
+          "period": 6,
+          "time": "2:00-3:00",
+          "course_code": "CS303",
+          "course_name": "Operating Systems",
+          "faculty_name": "Prof. Amit Singh",
+          "faculty_id": "FAC103",
+          "room": "A102",
+          "type": "theory",
+          "credits": 4
+        },
+        {
+          "period": 7,
+          "time": "3:00-4:00",
+          "course_code": "CS304",
+          "course_name": "Computer Networks",
+          "faculty_name": "Dr. Rajesh Kumar",
+          "faculty_id": "FAC101",
+          "room": "A101",
+          "type": "theory",
+          "credits": 3
+        }
+      ]
+    },
+    {
+      "day": "Friday",
+      "classes": [
+        {
+          "period": 1,
+          "time": "8:00-9:00",
+          "course_code": "CS304",
+          "course_name": "Computer Networks",
+          "faculty_name": "Dr. Priya Sharma",
+          "faculty_id": "FAC102",
+          "room": "B201",
+          "type": "theory",
+          "credits": 3
+        },
+        {
+          "period": 2,
+          "time": "9:00-10:00",
+          "course_code": "CS304",
+          "course_name": "Computer Networks",
+          "faculty_name": "Dr. Sneha Patel",
+          "faculty_id": "FAC104",
+          "room": "A101",
+          "type": "theory",
+          "credits": 3
+        },
+        {
+          "period": 3,
+          "time": "10:00-11:00",
+          "course_code": "CS302",
+          "course_name": "Database Management",
+          "faculty_name": "Dr. Sneha Patel",
+          "faculty_id": "FAC104",
+          "room": "C302",
+          "type": "theory",
+          "credits": 3
+        },
+        {
+          "period": 4,
+          "time": "11:00-12:00",
+          "course_code": "CS303",
+          "course_name": "Operating Systems",
+          "faculty_name": "Dr. Sneha Patel",
+          "faculty_id": "FAC104",
+          "room": "A101",
+          "type": "theory",
+          "credits": 4
+        },
+        {
+          "period": "Lunch",
+          "time": "12:00-1:00",
+          "course": null,
+          "type": "break"
+        },
+        {
+          "period": 5,
+          "time": "1:00-2:00",
+          "course_code": "CS305",
+          "course_name": "Web Technologies",
+          "faculty_name": "Prof. Amit Singh",
+          "faculty_id": "FAC103",
+          "room": "B201",
+          "type": "theory",
+          "credits": 3
+        },
+        {
+          "period": 6,
+          "time": "2:00-3:00",
+          "course_code": "CS304",
+          "course_name": "Computer Networks",
+          "faculty_name": "Dr. Priya Sharma",
+          "faculty_id": "FAC102",
+          "room": "C302",
+          "type": "theory",
+          "credits": 3
+        },
+        {
+          "period": 7,
+          "time": "3:00-4:00",
+          "course_code": "CS304",
+          "course_name": "Computer Networks",
+          "faculty_name": "Dr. Sneha Patel",
+          "faculty_id": "FAC104",
+          "room": "B203",
+          "type": "theory",
+          "credits": 3
+        }
+      ]
+    },
+    {
+      "day": "Saturday",
+      "classes": [
+        {
+          "period": 1,
+          "time": "8:00-9:00",
+          "course_code": "CS302",
+          "course_name": "Database Management",
+          "faculty_name": "Prof. Amit Singh",
+          "faculty_id": "FAC103",
+          "room": "C301",
+          "type": "theory",
+          "credits": 3
+        },
+        {
+          "period": 2,
+          "time": "9:00-10:00",
+          "course_code": "CS302",
+          "course_name": "Database Management",
+          "faculty_name": "Dr. Sneha Patel",
+          "faculty_id": "FAC104",
+          "room": "C302",
+          "type": "theory",
+          "credits": 3
+        },
+        {
+          "period": 3,
+          "time": "10:00-11:00",
+          "course_code": "CS301",
+          "course_name": "Data Structures",
+          "faculty_name": "Dr. Rajesh Kumar",
+          "faculty_id": "FAC101",
+          "room": "A101",
+          "type": "theory",
+          "credits": 4
+        },
+        {
+          "period": 4,
+          "time": "11:00-12:00",
+          "course_code": "CS305",
+          "course_name": "Web Technologies",
+          "faculty_name": "Prof. Amit Singh",
+          "faculty_id": "FAC103",
+          "room": "C301",
+          "type": "theory",
+          "credits": 3
+        },
+        {
+          "period": "Lunch",
+          "time": "12:00-1:00",
+          "course": null,
+          "type": "break"
+        },
+        {
+          "period": 5,
+          "time": "1:00-2:00",
+          "course_code": "CS302",
+          "course_name": "Database Management",
+          "faculty_name": "Dr. Rajesh Kumar",
+          "faculty_id": "FAC101",
+          "room": "B203",
+          "type": "theory",
+          "credits": 3
+        },
+        {
+          "period": 6,
+          "time": "2:00-3:00",
+          "course_code": "CS304",
+          "course_name": "Computer Networks",
+          "faculty_name": "Prof. Amit Singh",
+          "faculty_id": "FAC103",
+          "room": "B203",
+          "type": "theory",
+          "credits": 3
+        },
+        {
+          "period": 7,
+          "time": "3:00-4:00",
+          "course_code": "CS304",
+          "course_name": "Computer Networks",
+          "faculty_name": "Dr. Priya Sharma",
+          "faculty_id": "FAC102",
+          "room": "C302",
+          "type": "theory",
+          "credits": 3
+        }
+      ]
+    }
+  ],
+  "faculty_load": [
+    {
+      "faculty_id": "FAC101",
+      "faculty_name": "Dr. Rajesh Kumar",
+      "total_hours": 12,
+      "courses": [
+        "CS301",
+        "CS303"
+      ]
+    },
+    {
+      "faculty_id": "FAC102",
+      "faculty_name": "Dr. Priya Sharma",
+      "total_hours": 10,
+      "courses": [
+        "CS302",
+        "CS305"
+      ]
+    },
+    {
+      "faculty_id": "FAC103",
+      "faculty_name": "Prof. Amit Singh",
+      "total_hours": 8,
+      "courses": [
+        "CS304"
+      ]
+    }
+  ],
+  "room_utilization": [
+    {
+      "room": "A101",
+      "utilization": "85%",
+      "total_hours": 34
+    },
+    {
+      "room": "A102",
+      "utilization": "78%",
+      "total_hours": 31
+    },
+    {
+      "room": "LAB-CS1",
+      "utilization": "92%",
+      "total_hours": 37
+    }
+  ]
+}

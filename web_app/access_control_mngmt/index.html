@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lumen TimeTable System - Access Control</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Top-right notification system -->
+    <div id="notificationContainer" class="notification-container"></div>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar" id="navbar">
+        <div class="navbar-container">
+            <!-- Logo and System Name -->
+            <div class="navbar-brand">
+                <h1>Lumen TimeTable System</h1>
+            </div>
+
+            <!-- Mobile Menu Toggle -->
+            <button class="navbar-toggle" id="navbarToggle">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+
+            <!-- Navigation Menu -->
+            <div class="navbar-menu" id="navbarMenu">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a href="#" class="nav-link active" data-page="access-control">Access Control</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link" data-page="workflow">Workflow</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link" data-page="create-tt">Create TT</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link" data-page="history">History</a>
+                    </li>
+                    <li class="nav-item logout-item">
+                        <a href="#" class="nav-link logout-link" id="logoutBtn">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content Container -->
+    <div class="main-container">
+        <!-- Page Header -->
+        <div class="page-header">
+            <h2>Access Control Management</h2>
+            <p>Manage user permissions and roles for the system</p>
+        </div>
+
+        <!-- Global Permissions Section -->
+        <div class="card permissions-card">
+            <div class="card-header">
+                <h3>Global Permissions</h3>
+                <p>Configure system-wide permission settings</p>
+            </div>
+            <div class="card-body">
+                <div class="permissions-grid" id="permissionsGrid">
+                    <!-- Permission toggles will be dynamically generated here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- User Management Section -->
+        <div class="card users-card">
+            <div class="card-header">
+                <div class="header-content">
+                    <div>
+                        <h3>User Management</h3>
+                        <p>Manage user roles and permissions</p>
+                    </div>
+                    <button class="btn-primary create-role-btn" id="createRoleBtn">
+                        <span class="btn-icon">+</span>
+                        Create Role
+                    </button>
+                </div>
+            </div>
+            <div class="card-body">
+                <!-- User Table - Desktop View -->
+                <div class="table-container desktop-table">
+                    <table class="users-table" id="usersTable">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Staff ID</th>
+                                <th>Email</th>
+                                <th>Role</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="usersTableBody">
+                            <!-- User rows will be dynamically generated here -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- User Cards - Mobile View -->
+                <div class="users-cards mobile-cards" id="usersCards">
+                    <!-- User cards will be dynamically generated here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Create Role Modal -->
+    <div id="createRoleModal" class="modal hidden">
+        <div class="modal-overlay" id="createRoleOverlay"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Create New Role</h2>
+                <button type="button" class="modal-close" id="closeCreateRoleModal">&times;</button>
+            </div>
+            <form id="createRoleForm" class="create-role-form">
+                <div class="form-field">
+                    <label for="roleName" class="field-label">Role Name *</label>
+                    <input 
+                        type="text" 
+                        id="roleName" 
+                        name="roleName" 
+                        class="form-control custom-input" 
+                        placeholder="Enter role name (e.g., Department Head)"
+                        required
+                    >
+                </div>
+                
+                <div class="form-field">
+                    <label for="roleDescription" class="field-label">Description</label>
+                    <textarea 
+                        id="roleDescription" 
+                        name="roleDescription" 
+                        class="form-control custom-textarea" 
+                        placeholder="Describe the role's responsibilities"
+                        rows="3"
+                    ></textarea>
+                </div>
+
+                <div class="form-field">
+                    <label class="field-label">Permissions</label>
+                    <div class="permissions-checkboxes" id="rolePermissions">
+                        <!-- Permission checkboxes will be dynamically generated here -->
+                    </div>
+                </div>
+
+                <div class="modal-actions">
+                    <button type="button" class="btn-secondary" id="cancelCreateRole">
+                        Cancel
+                    </button>
+                    <button type="submit" class="btn-primary" id="submitCreateRole">
+                        <span class="btn-text">Create Role</span>
+                        <span class="loading-spinner hidden">Creating...</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Edit User Role Modal -->
+    <div id="editUserModal" class="modal hidden">
+        <div class="modal-overlay" id="editUserOverlay"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Edit User Role</h2>
+                <button type="button" class="modal-close" id="closeEditUserModal">&times;</button>
+            </div>
+            <form id="editUserForm" class="edit-user-form">
+                <div class="user-info">
+                    <h4 id="editUserName">User Name</h4>
+                    <p id="editUserDetails">Staff ID • Email</p>
+                </div>
+
+                <div class="form-field">
+                    <label for="userRole" class="field-label">Role *</label>
+                    <select id="userRole" name="userRole" class="form-control custom-select" required>
+                        <!-- Role options will be dynamically generated here -->
+                    </select>
+                </div>
+
+                <div class="form-field">
+                    <label for="userStatus" class="field-label">Status *</label>
+                    <select id="userStatus" name="userStatus" class="form-control custom-select" required>
+                        <option value="active">Active</option>
+                        <option value="inactive">Inactive</option>
+                    </select>
+                </div>
+
+                <div class="modal-actions">
+                    <button type="button" class="btn-secondary" id="cancelEditUser">
+                        Cancel
+                    </button>
+                    <button type="submit" class="btn-primary" id="submitEditUser">
+                        <span class="btn-text">Update User</span>
+                        <span class="loading-spinner hidden">Updating...</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Confirmation Modal -->
+    <div id="confirmationModal" class="modal hidden">
+        <div class="modal-overlay" id="confirmationOverlay"></div>
+        <div class="modal-content confirmation-content">
+            <div class="modal-header">
+                <h2 id="confirmationTitle">Confirm Action</h2>
+                <button type="button" class="modal-close" id="closeConfirmationModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p id="confirmationMessage">Are you sure you want to perform this action?</p>
+            </div>
+            <div class="modal-actions">
+                <button type="button" class="btn-secondary" id="cancelConfirmation">
+                    Cancel
+                </button>
+                <button type="button" class="btn-primary" id="confirmAction">
+                    <span class="btn-text">Confirm</span>
+                    <span class="loading-spinner hidden">Processing...</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,16 @@
+{
+  "error_id": "DEAP_ERROR_0001_20251017_135423",
+  "timestamp": "2025-10-17T13:54:23.206613",
+  "error_type": "ProcessingError",
+  "error_message": "LRAW directory not found: /app/stage3_outputs/L_raw",
+  "phase": "execution",
+  "severity": "HIGH",
+  "context": {
+    "stack_trace": "Traceback (most recent call last):\n  File \"/app/main.py\", line 124, in run_deap_solver_pipeline\n    compiled_data = loader.load_all()\n  File \"/app/input_model/loader.py\", line 59, in load_all\n    self._load_l_raw()\n  File \"/app/input_model/loader.py\", line 92, in _load_l_raw\n    raise FileNotFoundError(f\"LRAW directory not found: {l_raw_path}\")\nFileNotFoundError: LRAW directory not found: /app/stage3_outputs/L_raw\n",
+    "solver_type": "nsga2"
+  },
+  "stack_trace": null,
+  "advised_fixes": [],
+  "recovery_suggestions": [],
+  "foundation_compliance": {}
+}

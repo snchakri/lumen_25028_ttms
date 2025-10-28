@@ -1,0 +1,22 @@
+[
+  {"name": "Computer Science", "code": "CS", "domain": "Engineering"},
+  {"name": "Electrical Engineering", "code": "EE", "domain": "Engineering"},
+  {"name": "Mechanical Engineering", "code": "ME", "domain": "Engineering"},
+  {"name": "Civil Engineering", "code": "CE", "domain": "Engineering"},
+  {"name": "Electronics and Communication", "code": "EC", "domain": "Engineering"},
+  {"name": "Information Technology", "code": "IT", "domain": "Engineering"},
+  {"name": "Mathematics", "code": "MATH", "domain": "Science"},
+  {"name": "Physics", "code": "PHY", "domain": "Science"},
+  {"name": "Chemistry", "code": "CHEM", "domain": "Science"},
+  {"name": "Biology", "code": "BIO", "domain": "Science"},
+  {"name": "English", "code": "ENG", "domain": "Humanities"},
+  {"name": "History", "code": "HIST", "domain": "Humanities"},
+  {"name": "Economics", "code": "ECON", "domain": "Social Science"},
+  {"name": "Business Administration", "code": "BA", "domain": "Management"},
+  {"name": "Commerce", "code": "COM", "domain": "Management"},
+  {"name": "Psychology", "code": "PSY", "domain": "Social Science"},
+  {"name": "Sociology", "code": "SOC", "domain": "Social Science"},
+  {"name": "Political Science", "code": "POLS", "domain": "Social Science"},
+  {"name": "Biotechnology", "code": "BT", "domain": "Science"},
+  {"name": "Chemical Engineering", "code": "CHE", "domain": "Engineering"}
+]

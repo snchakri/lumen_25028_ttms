@@ -1,0 +1,85 @@
+# Development Configuration Profile
+# Optimized for fast iteration and testing during development
+
+# Academic Configuration
+academic_year: "2025-2026"
+semester_duration_weeks: 16
+semesters:
+  - "Fall 2025"
+  - "Spring 2026"
+
+# Entity Counts (Small for fast development)
+tenants: 1
+departments: 2
+programs: 3
+courses: 10
+faculty: 8
+students: 25
+rooms: 5
+shifts: 1
+
+# Timeslot Configuration
+slot_length_minutes: 50
+workday_start: "08:00"
+workday_end: "18:00"
+days_active: 5
+breaks: []
+slot_policy: "strict"
+slot_shift_alignment: true
+
+# Constraint Parameters
+credits_soft: 18
+credits_hard: 21
+credits_absolute: 24
+
+courses_per_student_min: 3
+courses_per_student_max: 6
+
+batch_size_min: 10
+batch_size_max: 30
+
+prereq_depth_max: 2
+prereq_percentage: 0.3
+coreq_percentage: 0.1
+
+instructor_courses_min: 1
+instructor_courses_max: 3
+
+# Validation Options
+validate_level: "basic"
+mathematical_validation: false
+proof_certificates: false
+adversarial_percentage: 0.0
+
+# Optional Features (Disabled for speed)
+equipment: false
+room_access: false
+dynamic_constraints: false
+
+# Output Configuration
+output_dir: "output/dev"
+log_dir: "logs/dev"
+error_dir: "logs/dev/errors"
+output_formats:
+  - "csv"
+
+# Performance Tuning
+seed: 42  # Fixed seed for reproducible development
+no_progress_bars: false
+show_stats: true
+parallel: false
+
+# Debug Options
+dry_run: false
+verbose: true
+quiet: false
+debug_entity_id: null
+
+# Development-specific settings
+# - Small entity counts for fast generation
+# - Basic validation only
+# - Mathematical validation disabled
+# - Single shift for simplicity
+# - Fixed seed for reproducibility
+# - Verbose output for debugging
+# - No parallelization for easier debugging

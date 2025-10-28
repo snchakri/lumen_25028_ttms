@@ -1,0 +1,16 @@
+{
+  "error_id": "DEAP_ERROR_0001_20251017_140009",
+  "timestamp": "2025-10-17T14:00:09.755607",
+  "error_type": "ProcessingError",
+  "error_message": "'list' object has no attribute 'individuals'",
+  "phase": "execution",
+  "severity": "HIGH",
+  "context": {
+    "stack_trace": "Traceback (most recent call last):\n  File \"/app/main.py\", line 186, in run_deap_solver_pipeline\n    best_individual, evolution_stats = solver.solve(individual_initializer)\n  File \"/app/processing/nsga2.py\", line 81, in solve\n    self._evaluate_population(offspring)\n  File \"/app/processing/nsga2.py\", line 123, in _evaluate_population\n    for individual in population.individuals:\nAttributeError: 'list' object has no attribute 'individuals'\n",
+    "solver_type": "nsga2"
+  },
+  "stack_trace": null,
+  "advised_fixes": [],
+  "recovery_suggestions": [],
+  "foundation_compliance": {}
+}

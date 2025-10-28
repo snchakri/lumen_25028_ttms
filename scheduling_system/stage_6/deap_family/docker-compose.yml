@@ -1,0 +1,200 @@
+# DEAP Solver Family - Docker Compose Configuration
+# Stage 6.3 Implementation with Foundation Compliance
+
+version: '3.8'
+
+services:
+  deap-solver:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: deap_solver_main
+    environment:
+      - PYTHONPATH=/app
+      - OMP_NUM_THREADS=4
+      - NUMBA_CACHE_DIR=/tmp/numba_cache
+      - DEAP_LOG_LEVEL=INFO
+      - DEAP_ENABLE_PROFILING=false
+    volumes:
+      - ./test_data:/app/data:ro
+      - ./logs:/app/logs
+      - ./outputs:/app/outputs
+      - ./error_reports:/app/error_reports
+      - ../../stage_3/output_data:/app/stage3_outputs:ro
+      - numba_cache:/tmp/numba_cache
+    networks:
+      - deap_network
+    restart: unless-stopped
+    command: [
+      "python", "/app/__main__.py",
+      "/app/stage3_outputs",
+      "/app/outputs",
+      "/app/logs",
+      "/app/error_reports",
+      "nsga2"
+    ]
+    deploy:
+      resources:
+        limits:
+          cpus: '4.0'
+          memory: 8G
+        reservations:
+          cpus: '2.0'
+          memory: 4G
+
+  deap-stress-test:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: deap_stress_test
+    environment:
+      - PYTHONPATH=/app
+      - DEAP_LOG_LEVEL=DEBUG
+      - DEAP_ENABLE_PROFILING=true
+    volumes:
+      - ./test_data:/app/data:ro
+      - ./stress_test_logs:/app/logs
+      - ./stress_test_outputs:/app/outputs
+      - ./stress_test_errors:/app/error_reports
+    networks:
+      - deap_network
+    command: ["python", "-m", "pytest", "tests/stress/", "-v", "--tb=short"]
+    profiles:
+      - testing
+
+  deap-unit-test:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: deap_unit_test
+    environment:
+      - PYTHONPATH=/app
+      - DEAP_LOG_LEVEL=DEBUG
+    volumes:
+      - ./test_data:/app/data:ro
+      - ./unit_test_logs:/app/logs
+    networks:
+      - deap_network
+    command: ["python", "-m", "pytest", "tests/unit/", "-v", "--cov=.", "--cov-report=html"]
+    profiles:
+      - testing
+
+  deap-integration-test:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: deap_integration_test
+    environment:
+      - PYTHONPATH=/app
+      - DEAP_LOG_LEVEL=DEBUG
+    volumes:
+      - ./test_data:/app/data:ro
+      - ./integration_test_logs:/app/logs
+      - ./integration_test_outputs:/app/outputs
+    networks:
+      - deap_network
+    command: ["python", "-m", "pytest", "tests/integration/", "-v", "--tb=long"]
+    profiles:
+      - testing
+
+  deap-mathematical-test:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: deap_mathematical_test
+    environment:
+      - PYTHONPATH=/app
+      - DEAP_LOG_LEVEL=DEBUG
+      - SYMPY_USE_CACHE=1
+    volumes:
+      - ./test_data:/app/data:ro
+      - ./mathematical_test_logs:/app/logs
+    networks:
+      - deap_network
+    command: ["python", "-m", "pytest", "tests/mathematical/", "-v", "--tb=long"]
+    profiles:
+      - testing
+
+  deap-performance-monitor:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: deap_performance_monitor
+    environment:
+      - PYTHONPATH=/app
+      - DEAP_LOG_LEVEL=INFO
+    volumes:
+      - ./performance_logs:/app/logs
+      - ./performance_outputs:/app/outputs
+    networks:
+      - deap_network
+    command: ["python", "-c", "import time; time.sleep(3600)"]  # Keep alive for monitoring
+    profiles:
+      - monitoring
+
+  # Redis for caching (optional)
+  redis:
+    image: redis:6-alpine
+    container_name: deap_redis
+    networks:
+      - deap_network
+    volumes:
+      - redis_data:/data
+    profiles:
+      - caching
+
+  # PostgreSQL for result storage (optional)
+  postgres:
+    image: postgres:13-alpine
+    container_name: deap_postgres
+    environment:
+      POSTGRES_DB: deap_results
+      POSTGRES_USER: deap_user
+      POSTGRES_PASSWORD: deap_password
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - deap_network
+    profiles:
+      - database
+
+  # Monitoring with Prometheus (optional)
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: deap_prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./monitoring/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - prometheus_data:/prometheus
+    networks:
+      - deap_network
+    profiles:
+      - monitoring
+
+  # Grafana for visualization (optional)
+  grafana:
+    image: grafana/grafana:latest
+    container_name: deap_grafana
+    ports:
+      - "3000:3000"
+    environment:
+      GF_SECURITY_ADMIN_PASSWORD: admin
+    volumes:
+      - grafana_data:/var/lib/grafana
+    networks:
+      - deap_network
+    profiles:
+      - monitoring
+
+networks:
+  deap_network:
+    driver: bridge
+
+volumes:
+  numba_cache:
+  redis_data:
+  postgres_data:
+  prometheus_data:
+  grafana_data:
+

@@ -1,0 +1,22 @@
+{
+  "error_id": "DEAP_ERROR_0001_20251017_135456",
+  "timestamp": "2025-10-17T13:54:56.463545",
+  "error_type": "InputError",
+  "error_message": "Input validation failed",
+  "phase": "input_validation",
+  "severity": "HIGH",
+  "context": {
+    "validation_errors": [
+      "Entity time_slots missing 'primary_key' column"
+    ]
+  },
+  "stack_trace": null,
+  "advised_fixes": [
+    "Verify Stage 3 output files exist and are readable",
+    "Check file formats: LRAW/LOPT (Parquet), LREL (GraphML), LIDX (Pickle)",
+    "Validate data schema compliance with Stage 3 specifications",
+    "Ensure dynamic_parameters.parquet contains required solver parameters"
+  ],
+  "recovery_suggestions": [],
+  "foundation_compliance": {}
+}

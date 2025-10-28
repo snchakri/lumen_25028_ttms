@@ -1,0 +1,109 @@
+version: '3.8'
+
+services:
+  stage5_test:
+    build:
+      context: .
+      dockerfile: Dockerfile.test
+    volumes:
+      - ./test_results:/stage5/test_results
+      - ./logs:/stage5/logs
+      - ./reports:/stage5/reports
+      # Mount Stage 3 test data if available
+      - ../stage_3/output_data:/stage5/test_data/stage3_output:ro
+    environment:
+      - STAGE5_TEST_MODE=comprehensive
+      - LOG_LEVEL=DEBUG
+      - PYTHONPATH=/stage5
+    command: >
+      bash -c "
+        echo 'Starting Stage 5 comprehensive testing...';
+        python -c 'from . import Stage5Configuration; print(\"Configuration loaded:\", Stage5Configuration())';
+        python -c 'from .error_handling.error_reporter import Stage5ErrorReporter; print(\"Error reporter loaded successfully\")';
+        python -c 'from .substage_5_1.complexity_analyzer import ComplexityAnalyzer; print(\"Complexity analyzer loaded successfully\")';
+        python -c 'from .substage_5_2.solver_selection_engine import SolverSelectionEngine; print(\"Solver selection engine loaded successfully\")';
+        echo 'All Stage 5 modules loaded successfully!';
+      "
+
+  stage5_integration_test:
+    build:
+      context: .
+      dockerfile: Dockerfile.test
+    volumes:
+      - ./test_results:/stage5/test_results
+      - ./logs:/stage5/logs
+      - ./reports:/stage5/reports
+      - ../stage_3/output_data:/stage5/test_data/stage3_output:ro
+    environment:
+      - STAGE5_TEST_MODE=integration
+      - LOG_LEVEL=INFO
+      - PYTHONPATH=/stage5
+    command: >
+      bash -c "
+        echo 'Running Stage 5 integration test...';
+        if [ -d '/stage5/test_data/stage3_output/L_raw' ]; then
+          echo 'Stage 3 test data found, running full integration test';
+          python -c '
+            from . import execute_stage5_complete
+            from pathlib import Path
+            import json
+            
+            try:
+              result = execute_stage5_complete(
+                stage3_output_path=\"/stage5/test_data/stage3_output\",
+                solver_capabilities_path=\"/stage5/solver_capabilities.json\",
+                output_dir=\"/stage5/test_results\",
+                logs_output_path=\"/stage5/logs\",
+                reports_output_path=\"/stage5/reports\"
+              )
+              print(\"Integration test result:\", json.dumps(result, indent=2, default=str))
+            except Exception as e:
+              print(\"Integration test failed:\", str(e))
+              import traceback
+              traceback.print_exc()
+          ';
+        else
+          echo 'No Stage 3 test data available, skipping integration test';
+        fi
+      "
+
+  stage5_foundation_compliance:
+    build:
+      context: .
+      dockerfile: Dockerfile.test
+    volumes:
+      - ./test_results:/stage5/test_results
+      - ./logs:/stage5/logs
+      - ./reports:/stage5/reports
+    environment:
+      - STAGE5_TEST_MODE=foundation_compliance
+      - LOG_LEVEL=DEBUG
+      - PYTHONPATH=/stage5
+    command: >
+      bash -c "
+        echo 'Running Stage 5 foundation compliance checks...';
+        python -c '
+          import numpy as np
+          from .substage_5_1.parameter_computations import ParameterComputations
+          from .substage_5_2.normalization_engine import NormalizationEngine
+          from .substage_5_2.lp_optimizer import LPOptimizer
+          
+          print(\"✓ All foundation-compliant modules imported successfully\");
+          
+          # Test L2 normalization
+          norm_engine = NormalizationEngine()
+          test_matrix = np.random.rand(4, 16)  # 4 solvers, 16 parameters
+          test_vector = np.random.rand(16)
+          
+          R, c_norm = norm_engine.stage1_normalize_parameters(test_matrix, test_vector)
+          print(f\"✓ L2 normalization: R shape {R.shape}, bounds [{R.min():.3f}, {R.max():.3f}]\");
+          
+          # Test LP optimizer
+          lp_optimizer = LPOptimizer()
+          weights, margin, best_idx = lp_optimizer.stage2_optimize_weights(R, c_norm)
+          print(f\"✓ LP optimization: weights sum {weights.sum():.6f}, margin {margin:.6f}\");
+          
+          print(\"✓ All foundation compliance checks passed!\");
+        ';
+      "
+

@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Workflow Management - Lumen TimeTable System</title>
+    
+    <!-- Material Icons for Navigation and Workflow Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    
+    <!-- Custom Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- 
+    NAVIGATION BAR COMPONENT
+    Role-based responsive navigation with hamburger menu for mobile
+    Displays different navigation items based on user role (admin/scheduler/approver/viewer)
+    -->
+    <nav class="navbar" id="navbar">
+        <div class="navbar-container">
+            <!-- Logo/Brand Section -->
+            <div class="navbar-brand">
+                <span class="brand-icon material-icons">schedule</span>
+                <span class="brand-text">Lumen TT</span>
+            </div>
+
+            <!-- Mobile Hamburger Menu Button -->
+            <button class="navbar-toggle" id="navbarToggle" aria-label="Toggle navigation">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+
+            <!-- Navigation Menu - Role-based content populated by JavaScript -->
+            <div class="navbar-menu" id="navbarMenu">
+                <ul class="navbar-nav" id="navbarNav">
+                    <!-- Navigation items will be dynamically inserted based on user role -->
+                </ul>
+                
+                <!-- User Info and Logout Section -->
+                <div class="navbar-user">
+                    <div class="user-info" id="userInfo">
+                        <span class="user-name" id="userName">Loading...</span>
+                        <span class="user-role" id="userRole">Loading...</span>
+                    </div>
+                    <button class="logout-btn" id="logoutBtn">
+                        <span class="material-icons">logout</span>
+                        Logout
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 
+    MAIN CONTENT CONTAINER
+    Contains the workflow management page with workflow chains and status visualization
+    -->
+    <main class="main-content">
+        <div class="content-container">
+            <!-- 
+            PAGE HEADER SECTION
+            Title and description for the workflow management page
+            -->
+            <header class="page-header">
+                <h1 class="page-title">
+                    <span class="material-icons">account_tree</span>
+                    Workflow Management
+                </h1>
+                <p class="page-description">
+                    Monitor and manage timetable approval workflows. View approval chains, take actions, and track progress.
+                </p>
+            </header>
+
+            <!-- 
+            WORKFLOW FILTERS AND CONTROLS
+            Filter and search controls for workflow management
+            -->
+            <section class="workflow-controls">
+                <div class="controls-header">
+                    <h2 class="section-title">Active Workflows</h2>
+                    <div class="workflow-filters">
+                        <div class="filter-group">
+                            <label for="statusFilter" class="filter-label">Status:</label>
+                            <select id="statusFilter" class="filter-select">
+                                <option value="all">All Status</option>
+                                <option value="pending_approval">Pending Approval</option>
+                                <option value="approved">Approved</option>
+                                <option value="rejected">Rejected</option>
+                                <option value="completed">Completed</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label for="levelFilter" class="filter-label">Level:</label>
+                            <select id="levelFilter" class="filter-select">
+                                <option value="all">All Levels</option>
+                                <option value="1">Level 1</option>
+                                <option value="2">Level 2</option>
+                                <option value="3">Level 3</option>
+                            </select>
+                        </div>
+                        <button class="btn btn-secondary btn-refresh" id="refreshBtn">
+                            <span class="material-icons">refresh</span>
+                            Refresh
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 
+            ACTIVE WORKFLOWS SECTION
+            List of active workflow items with visual approval chains
+            Each workflow shows the approval sequence and parallel approvers
+            -->
+            <section class="workflows-section">
+                <div class="workflows-container" id="workflowsContainer">
+                    <!-- Loading placeholder -->
+                    <div class="loading-placeholder" id="workflowsLoading">
+                        <span class="material-icons loading-icon">hourglass_empty</span>
+                        Loading workflows...
+                    </div>
+                </div>
+                
+                <!-- Empty State for No Active Workflows -->
+                <div class="empty-state hidden" id="emptyState">
+                    <span class="material-icons empty-icon">assignment_turned_in</span>
+                    <h3 class="empty-title">No Active Workflows</h3>
+                    <p class="empty-message">
+                        There are currently no workflows requiring your attention. 
+                        New workflows will appear here when timetables are submitted for approval.
+                    </p>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- 
+    TIMETABLE VIEWER MODAL
+    Light background modal for viewing timetable details before approval/disapproval
+    -->
+    <div class="modal hidden" id="timetableModal">
+        <div class="modal-overlay" id="timetableModalOverlay"></div>
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <header class="modal-header">
+                <div class="modal-title-section">
+                    <h3 class="modal-title" id="timetableModalTitle">Timetable Preview</h3>
+                    <div class="modal-subtitle" id="timetableModalSubtitle">
+                        <!-- Timetable metadata will be inserted here -->
+                    </div>
+                </div>
+                <button class="modal-close-btn" id="timetableModalCloseBtn" aria-label="Close modal">
+                    <span class="material-icons">close</span>
+                </button>
+            </header>
+
+            <!-- Modal Body with Timetable Content -->
+            <div class="modal-body">
+                <div class="timetable-viewer" id="timetableViewer">
+                    <div class="timetable-grid" id="timetableGrid">
+                        <!-- Timetable data will be dynamically loaded here -->
+                        <div class="timetable-loading">
+                            <span class="material-icons">schedule</span>
+                            Loading timetable data...
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal Footer with Actions -->
+            <footer class="modal-footer">
+                <div class="modal-actions">
+                    <button class="btn btn-secondary" id="timetableModalCancelBtn">
+                        <span class="material-icons">close</span>
+                        Close
+                    </button>
+                    <button class="btn btn-primary" id="timetableModalDownloadBtn">
+                        <span class="material-icons">download</span>
+                        Download
+                    </button>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    <!-- 
+    APPROVAL ACTION MODAL
+    Modal for approve/disapprove actions with message input
+    Light background with dark borders following design principles
+    -->
+    <div class="modal hidden" id="approvalModal">
+        <div class="modal-overlay" id="approvalModalOverlay"></div>
+        <div class="modal-content approval-modal-content">
+            <!-- Modal Header -->
+            <header class="modal-header">
+                <div class="modal-title-section">
+                    <h3 class="modal-title" id="approvalModalTitle">Take Action</h3>
+                    <div class="modal-subtitle" id="approvalModalSubtitle">
+                        <!-- Workflow info will be inserted here -->
+                    </div>
+                </div>
+                <button class="modal-close-btn" id="approvalModalCloseBtn" aria-label="Close modal">
+                    <span class="material-icons">close</span>
+                </button>
+            </header>
+
+            <!-- Modal Body with Action Form -->
+            <div class="modal-body">
+                <div class="approval-form" id="approvalForm">
+                    <div class="form-group">
+                        <label class="form-label">Action</label>
+                        <div class="action-buttons">
+                            <button class="btn btn-success action-btn" data-action="approve" id="approveActionBtn">
+                                <span class="material-icons">check_circle</span>
+                                Approve
+                            </button>
+                            <button class="btn btn-error action-btn" data-action="reject" id="rejectActionBtn">
+                                <span class="material-icons">cancel</span>
+                                Reject
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="approvalMessage" class="form-label">
+                            Message <span class="optional-text">(optional)</span>
+                        </label>
+                        <textarea 
+                            id="approvalMessage" 
+                            class="form-control message-textarea" 
+                            rows="4" 
+                            placeholder="Add a message for your decision (optional)..."
+                        ></textarea>
+                        <div class="form-help">
+                            Provide context for your decision to help others understand your reasoning.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal Footer with Submit Actions -->
+            <footer class="modal-footer">
+                <div class="modal-actions">
+                    <button class="btn btn-secondary" id="approvalModalCancelBtn">
+                        <span class="material-icons">close</span>
+                        Cancel
+                    </button>
+                    <button class="btn btn-primary" id="approvalModalSubmitBtn">
+                        <span class="material-icons">send</span>
+                        Submit Decision
+                    </button>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    <!-- 
+    WORKFLOW DETAILS MODAL
+    Modal for viewing complete workflow details and history
+    -->
+    <div class="modal hidden" id="workflowDetailsModal">
+        <div class="modal-overlay" id="workflowDetailsModalOverlay"></div>
+        <div class="modal-content workflow-details-modal-content">
+            <!-- Modal Header -->
+            <header class="modal-header">
+                <div class="modal-title-section">
+                    <h3 class="modal-title" id="workflowDetailsModalTitle">Workflow Details</h3>
+                    <div class="modal-subtitle" id="workflowDetailsModalSubtitle">
+                        <!-- Workflow metadata will be inserted here -->
+                    </div>
+                </div>
+                <button class="modal-close-btn" id="workflowDetailsModalCloseBtn" aria-label="Close modal">
+                    <span class="material-icons">close</span>
+                </button>
+            </header>
+
+            <!-- Modal Body with Workflow Details -->
+            <div class="modal-body">
+                <div class="workflow-details-content" id="workflowDetailsContent">
+                    <!-- Workflow details will be populated by JavaScript -->
+                </div>
+            </div>
+
+            <!-- Modal Footer -->
+            <footer class="modal-footer">
+                <div class="modal-actions">
+                    <button class="btn btn-secondary" id="workflowDetailsModalCloseBtn2">
+                        <span class="material-icons">close</span>
+                        Close
+                    </button>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    <!-- 
+    SUCCESS/ERROR MESSAGE CONTAINER
+    Toast-style notifications for user feedback on actions
+    -->
+    <div class="message-container hidden" id="messageContainer">
+        <div class="message-content" id="messageContent"></div>
+    </div>
+
+    <!-- 
+    LOADING OVERLAY
+    Full-page loading indicator for API calls and actions
+    -->
+    <div class="loading-overlay hidden" id="loadingOverlay">
+        <div class="loading-spinner">
+            <span class="material-icons loading-icon">hourglass_empty</span>
+            <p class="loading-text">Processing...</p>
+        </div>
+    </div>
+
+    <!-- 
+    JAVASCRIPT APPLICATION
+    Main application logic with workflow management functionality
+    -->
+    <script src="app.js"></script>
+</body>
+</html>

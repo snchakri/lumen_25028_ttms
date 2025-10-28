@@ -1,0 +1,10 @@
+[
+  {"type": "Lecture Hall", "capacity_min": 50, "capacity_max": 200},
+  {"type": "Classroom", "capacity_min": 30, "capacity_max": 60},
+  {"type": "Lab", "capacity_min": 20, "capacity_max": 40},
+  {"type": "Seminar Room", "capacity_min": 15, "capacity_max": 30},
+  {"type": "Tutorial Room", "capacity_min": 10, "capacity_max": 25},
+  {"type": "Computer Lab", "capacity_min": 25, "capacity_max": 50},
+  {"type": "Auditorium", "capacity_min": 100, "capacity_max": 500},
+  {"type": "Conference Room", "capacity_min": 20, "capacity_max": 50}
+]

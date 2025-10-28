@@ -1,0 +1,12 @@
+[
+  {"name": "Main Building", "code": "MB"},
+  {"name": "Science Block", "code": "SB"},
+  {"name": "Engineering Block", "code": "EB"},
+  {"name": "Library Block", "code": "LB"},
+  {"name": "Admin Block", "code": "AB"},
+  {"name": "Technology Wing", "code": "TW"},
+  {"name": "Research Center", "code": "RC"},
+  {"name": "Auditorium Complex", "code": "AC"},
+  {"name": "Sports Complex", "code": "SC"},
+  {"name": "Hostel Block A", "code": "HA"}
+]
