@@ -515,6 +515,7 @@ python run_pipeline.py --save-intermediate --input-dir ./input
 Each stage is grounded in formal mathematical frameworks:
 
 - **Stage 1**: Formal grammar, set theory for validation
+- **Stage 2**: Constraint satisfaction programming, multi-objective optimization, group assignments & partitioning
 - **Stage 3**: Relational algebra, graph theory
 - **Stage 4**: Matching theory, network flows
 - **Stage 5**: Complexity theory, multi-criteria decision analysis
