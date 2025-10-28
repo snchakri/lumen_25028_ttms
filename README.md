@@ -6,7 +6,8 @@
 
 ## Team Information
 
-**Team Name:** LUMEN 
+**Team Name:** LUMEN
+
 **Team Lead:** S. N. Chakri M. (Shiva Naga Chakri M.) 
 **LinkedIn Profile:** [https://www.linkedin.com/in/snchakri/]
 
