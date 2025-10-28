@@ -2,6 +2,16 @@
 
 **A Mathematically rigorous, production-grade automated timetable scheduling system that integrates advanced optimization algorithms—constraint programming, meta-heuristics, and hybrid solvers — to deliver conflict-free, resource-optimal schedules at institutional scale within strict computational budgets, demonstrating measurable improvements in schedule quality, system reliability, and operational efficiency.**
 
+---
+
+## Team Information
+
+**Team Name:** LUMEN 
+**Team Lead:** S. N. Chakri M. (Shiva Naga Chakri M.) 
+**LinkedIn Profile:** [https://www.linkedin.com/in/snchakri/]
+
+---
+
 ## Overview
 
 **LUMEN TimeTable Management System** is a comprehensive system designed to solve complex institutional scheduling problems through advanced optimization algorithms, multi-objective constraint satisfaction, and an intuitive workflow-based management interface. The system ensures NEP-2020 policy compliance while delivering conflict-free timetables with optimal resource utilization.
