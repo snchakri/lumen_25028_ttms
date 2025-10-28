@@ -1,6 +1,6 @@
 # LUMEN TimeTable Management System
 
-**A mathematically rigorous, production-grade automated timetable scheduling system for higher education institutions**
+**A Mathematically rigorous, production-grade automated timetable scheduling system that integrates advanced optimization algorithms—constraint programming, meta-heuristics, and hybrid solvers — to deliver conflict-free, resource-optimal schedules at institutional scale within strict computational budgets, demonstrating measurable improvements in schedule quality, system reliability, and operational efficiency.**
 
 ## Overview
 
@@ -13,8 +13,8 @@
 - **Multi-Objective Optimization**: Balances faculty workload, student preferences, room utilization, and institutional constraints
 - **Workflow Management**: Role-based approval system with parallel workflow chains for institutional governance
 - **Real-time Validation**: Comprehensive input validation with detailed error reporting and feasibility checking
-- **Scalable Architecture**: Handles 100+ institution types with 2K+ students, 200+ courses, 300+ faculty workloads
-- **Performance**: Sub-5-minute processing for standard institutional workloads
+- **Scalable Architecture**: Handles all institutions of 100+ types, and deployable across entire nation of India
+- **Performance**: Sub-5-minute processing for standard institutional workloads (with 2K+ students, 200+ courses, 300+ faculty workloads)
 
 ### System Architecture
 
@@ -317,6 +317,22 @@ Currently, the repo is closed and the content is copyrighted by the LUMEN team.
 ## Contributors
 
 Developed by the LUMEN team for institutional scheduling automation.
+
+## References & Research Work
+
+This project is built upon extensive theoretical research and mathematical foundations. Complete documentation including data models, theoretical frameworks, algorithms with proofs, and research archives are available in external repositories:
+
+### 📚 Complete Research Documentation (Full Folder)
+- **[Google Drive - Research Repository](https://drive.google.com/drive/folders/1-bsQ5pmvYxxK6O8GlVj9Bq5UwCGlWUyz?usp=sharing)**
+- **[Dropbox - Alternative Access](https://www.dropbox.com/scl/fo/csfaehtfi0gi663p6j4h1/AKFGwq3D3kErLLvqMfq8LSg?rlkey=jgz82fmbas85nmgk7v6244lbr&st=rh6ky90&dl=0)**
+
+#### Contents Include:
+
+1. **Data Model** – Complete schema design as per the MVP features
+2. **Theoretical Foundations & Math Frameworks** – Algorithms with proofs, theoretically & mathematical frameworks designed making the implementation phase ready
+3. **Test-Suite Generator** – Algorithms & Math foundations to design a test-suite generator embedded with synthetic-data engineering principles to simulate real-world scenarios to fine-tune for real-deployment
+4. **Research Archive** – Complete set of documents compiled from various sources, which are the inspirational sources of system design
+5. **References** – List of all citations and references that contributed to the inspiration of idea/solution-design
 
 ## Support
 
