@@ -1,6 +1,6 @@
 # Stage 4: Feasibility Check
 
-**Team Lumen [Team ID: 93912] - SIH 2025**
+---
 
 ## Overview
 
@@ -11,7 +11,6 @@ Stage 4 implements a seven-layer mathematical feasibility validation pipeline th
 This implementation is based on:
 - **Stage-4 FEASIBILITY CHECK - Theoretical Foundation & Mathematical Framework**
 - **Dynamic Parametric System - Formal Analysis**
-- **Foundation Gaps Analysis**
 
 ## Architecture
 
@@ -337,11 +336,3 @@ python main.py --stage3-output ./stage3_output --output ./stage4_output --log-le
 2. Implement verification logic
 3. Add to theorem checker
 4. Update documentation
-
-## License
-
-Proprietary - Team Lumen [Team ID: 93912]
-
-## Contact
-
-For issues or questions, contact the LUMEN team.
