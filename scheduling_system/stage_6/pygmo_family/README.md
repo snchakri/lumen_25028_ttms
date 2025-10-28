@@ -4,11 +4,10 @@
 
 [![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/)
 [![PyGMO 2.19+](https://img.shields.io/badge/PyGMO-2.19+-green.svg)](https://esa.github.io/pygmo2/)
-[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
 ## Overview
 
-The PyGMO Solver Family is a rigorous, mathematically-compliant implementation of multi-objective optimization for educational timetabling. It implements the theoretical foundations specified in "Stage-6.4 PyGMO SOLVER FAMILY - Foundational Framework" with 101% compliance.
+The PyGMO Solver Family is a rigorous, mathematically-compliant implementation of multi-objective optimization for educational timetabling. It implements the theoretical foundations specified in "Stage-6.4 PyGMO SOLVER FAMILY - Foundational Framework".
 
 ### Key Features
 
@@ -343,34 +342,4 @@ This implementation strictly adheres to:
    docker system prune -a
    docker-compose build --no-cache
    ```
-
-## Contributing
-
-This module is part of the LUMEN TTMS project. For contributions:
-
-1. Ensure 101% compliance with theoretical foundations
-2. Add comprehensive tests (unit, integration, mathematical)
-3. Update documentation
-4. Run full test suite: `python run_tests.py full`
-5. Run Docker tests: `python docker_test.py --report`
-
-## License
-
-[Specify license here]
-
-## Authors
-
-LUMEN Team [TEAM-ID: 93912]
-
-## References
-
-1. "Stage-6.4 PyGMO SOLVER FAMILY - Foundational Framework"
-2. "Dynamic Parametric System - Formal Analysis"
-3. "Stage-7 OUTPUT VALIDATION - Theoretical Foundation & Mathematical Framework"
-4. PyGMO Documentation: https://esa.github.io/pygmo2/
-5. NSGA-II: Deb et al. (2002)
-6. MOEA/D: Zhang & Li (2007)
-
-## Support
-
-For issues, questions, or support, please contact the LUMEN team or refer to the project documentation.
+   ---
