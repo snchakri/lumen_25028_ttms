@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lumen Timetable System - Production Ready</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Main Dashboard -->
+    <div class="dashboard">
+        <header class="dashboard-header">
+            <div class="header-content">
+                <div class="logo-section">
+                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="32" height="32" rx="8" fill="#21808D"/>
+                        <path d="M8 16L14 10L20 16L14 22L8 16Z" fill="white"/>
+                        <path d="M20 16L24 12V20L20 16Z" fill="#32B8C6"/>
+                    </svg>
+                    <h1>Lumen Timetable System</h1>
+                </div>
+                <div class="header-actions">
+                    <nav class="header-nav">
+                        <button class="nav-btn active" data-page="dashboard">Dashboard</button>
+                        <button class="nav-btn" data-page="create">Create Timetable</button>
+                    </nav>
+                    <button class="btn btn--secondary" id="darkModeToggle">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <main class="dashboard-main">
+            <div class="dashboard-container">
+                <div class="welcome-section">
+                    <h2>Welcome to Timetable Management</h2>
+                    <p class="subtitle">View, manage, and export timetables with ease</p>
+                </div>
+
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: var(--color-bg-1);">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" stroke-width="2">
+                                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                                <line x1="16" y1="2" x2="16" y2="6"></line>
+                                <line x1="8" y1="2" x2="8" y2="6"></line>
+                                <line x1="3" y1="10" x2="21" y2="10"></line>
+                            </svg>
+                        </div>
+                        <div class="stat-content">
+                            <h3>5 Courses</h3>
+                            <p>Total courses this semester</p>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: var(--color-bg-2);">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--color-warning)" stroke-width="2">
+                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                <circle cx="9" cy="7" r="4"></circle>
+                                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                            </svg>
+                        </div>
+                        <div class="stat-content">
+                            <h3>3 Faculty</h3>
+                            <p>Teaching faculty members</p>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: var(--color-bg-3);">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#22C55E" stroke-width="2">
+                                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                                <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                            </svg>
+                        </div>
+                        <div class="stat-content">
+                            <h3>4 Rooms</h3>
+                            <p>Active classrooms &amp; labs</p>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: var(--color-bg-4);">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--color-error)" stroke-width="2">
+                                <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+                            </svg>
+                        </div>
+                        <div class="stat-content">
+                            <h3>86% Utilization</h3>
+                            <p>Average room utilization</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="action-section">
+                    <button class="btn btn--primary btn--large" id="viewTimetableBtn">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                            <line x1="16" y1="2" x2="16" y2="6"></line>
+                            <line x1="8" y1="2" x2="8" y2="6"></line>
+                            <line x1="3" y1="10" x2="21" y2="10"></line>
+                        </svg>
+                        View Timetable
+                    </button>
+                    <button class="btn btn--secondary btn--large" id="uploadCSVBtn">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                            <polyline points="17 8 12 3 7 8"></polyline>
+                            <line x1="12" y1="3" x2="12" y2="15"></line>
+                        </svg>
+                        Upload CSV
+                    </button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Timetable Modal -->
+    <div class="modal" id="timetableModal">
+        <div class="modal-overlay"></div>
+        <div class="modal-container">
+            <div class="modal-header">
+                <div class="modal-title-section">
+                    <h2>Timetable Viewer</h2>
+                    <div class="modal-subtitle">
+                        <span id="institutionName">Demo Engineering College</span>
+                        <span class="separator">•</span>
+                        <span id="departmentName">Computer Science &amp; Engineering</span>
+                        <span class="separator">•</span>
+                        <span id="semesterName">5th Semester</span>
+                    </div>
+                </div>
+                <button class="btn-icon" id="closeModalBtn" aria-label="Close modal">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+
+            <div class="modal-controls">
+                <div class="view-tabs">
+                    <button class="tab-btn active" data-view="grid">Grid View</button>
+                    <button class="tab-btn" data-view="list">List View</button>
+                    <button class="tab-btn" data-view="faculty">Faculty View</button>
+                    <button class="tab-btn" data-view="room">Room View</button>
+                </div>
+
+                <div class="control-actions">
+                    <div class="search-box">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <path d="m21 21-4.35-4.35"></path>
+                        </svg>
+                        <input type="text" placeholder="Search classes..." id="searchInput">
+                    </div>
+                    <select class="form-control" id="dayFilter">
+                        <option value="all">All Days</option>
+                        <option value="Monday">Monday</option>
+                        <option value="Tuesday">Tuesday</option>
+                        <option value="Wednesday">Wednesday</option>
+                        <option value="Thursday">Thursday</option>
+                        <option value="Friday">Friday</option>
+                        <option value="Saturday">Saturday</option>
+                    </select>
+                    <div class="export-dropdown">
+                        <button class="btn btn--secondary" id="exportBtn">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                <polyline points="7 10 12 15 17 10"></polyline>
+                                <line x1="12" y1="15" x2="12" y2="3"></line>
+                            </svg>
+                            Export
+                        </button>
+                        <div class="dropdown-menu" id="exportMenu">
+                            <button class="dropdown-item" data-export="csv">Export as CSV</button>
+                            <button class="dropdown-item" data-export="html">Export as HTML</button>
+                            <button class="dropdown-item" data-export="print">Print Timetable</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-body">
+                <!-- Grid View -->
+                <div class="view-content active" id="gridView">
+                    <div class="timetable-grid" id="timetableGrid"></div>
+                </div>
+
+                <!-- List View -->
+                <div class="view-content" id="listView">
+                    <div class="list-container" id="listContainer"></div>
+                </div>
+
+                <!-- Faculty View -->
+                <div class="view-content" id="facultyView">
+                    <div class="faculty-container" id="facultyContainer"></div>
+                </div>
+
+                <!-- Room View -->
+                <div class="view-content" id="roomView">
+                    <div class="room-container" id="roomContainer"></div>
+                </div>
+
+                <!-- Upload Zone -->
+                <div class="upload-zone" id="uploadZone" style="display: none;">
+                    <div class="upload-content">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                            <polyline points="17 8 12 3 7 8"></polyline>
+                            <line x1="12" y1="3" x2="12" y2="15"></line>
+                        </svg>
+                        <h3>Upload Timetable CSV</h3>
+                        <p>Drag and drop your CSV file here or click to browse</p>
+                        <input type="file" id="csvFileInput" accept=".csv" style="display: none;">
+                        <button class="btn btn--primary" id="browseBtn">Browse Files</button>
+                        <div class="csv-format-info">
+                            <p class="small-text">Expected format: Day, Time, Period, Course Code, Course Name, Faculty, Room, Type</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <div class="statistics-summary">
+                    <div class="stat-item">
+                        <span class="stat-label">Total Classes:</span>
+                        <span class="stat-value" id="totalClasses">0</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Total Hours:</span>
+                        <span class="stat-value" id="totalHours">0</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Credits:</span>
+                        <span class="stat-value" id="totalCredits">0</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Detail Tooltip -->
+    <div class="detail-tooltip" id="detailTooltip" style="display: none;">
+        <div class="tooltip-content"></div>
+    </div>
+
+    <!-- Create Timetable Page -->
+    <div class="create-page" id="createPage" style="display: none;">
+        <div class="create-header">
+            <h1>Create Timetable</h1>
+            <p class="subtitle">Generate optimized timetables using our AI-powered scheduling engine</p>
+        </div>
+
+        <div class="create-container">
+            <div class="input-options-section">
+                <div class="option-card" id="dbFetchCard">
+                    <div class="option-icon" style="background: var(--color-bg-1);">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" stroke-width="2">
+                            <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
+                            <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path>
+                            <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path>
+                        </svg>
+                    </div>
+                    <h3>Get from Database</h3>
+                    <p>Automatically fetch all required data from your institution's database</p>
+                    <button class="btn btn--primary btn--full-width" id="fetchDbBtn">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                            <polyline points="7 10 12 15 17 10"></polyline>
+                            <line x1="12" y1="15" x2="12" y2="3"></line>
+                        </svg>
+                        Fetch from Database
+                    </button>
+                </div>
+
+                <div class="option-card" id="uploadFilesCard">
+                    <div class="option-icon" style="background: var(--color-bg-2);">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--color-warning)" stroke-width="2">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                            <polyline points="17 8 12 3 7 8"></polyline>
+                            <line x1="12" y1="3" x2="12" y2="15"></line>
+                        </svg>
+                    </div>
+                    <h3>Upload Files</h3>
+                    <p>Manually upload CSV files containing your scheduling data</p>
+                    <button class="btn btn--primary btn--full-width" id="uploadFilesBtn">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                            <polyline points="17 8 12 3 7 8"></polyline>
+                            <line x1="12" y1="3" x2="12" y2="15"></line>
+                        </svg>
+                        Upload Files
+                    </button>
+                </div>
+            </div>
+
+            <!-- Generated Timetables Section -->
+            <div class="generated-section" id="generatedSection" style="display: none;">
+                <h2>Generated Timetables</h2>
+                <div id="timetablesContainer"></div>
+                <div class="action-buttons" id="actionButtons" style="display: none;">
+                    <button class="btn btn--primary" id="publishBtn" disabled>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="9 11 12 14 22 4"></polyline>
+                            <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path>
+                        </svg>
+                        Publish Selected
+                    </button>
+                    <button class="btn btn--secondary" id="discardAllBtn" style="background: var(--color-error); color: white;">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="3 6 5 6 21 6"></polyline>
+                            <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                        </svg>
+                        Discard All
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Upload Files Modal -->
+    <div class="modal" id="uploadModal">
+        <div class="modal-overlay"></div>
+        <div class="modal-container upload-modal-container">
+            <div class="modal-header">
+                <h2>Upload Required Files</h2>
+                <button class="btn-icon" id="closeUploadModalBtn" aria-label="Close modal">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+            <div class="upload-progress-bar">
+                <div class="progress-fill" id="uploadProgressFill"></div>
+                <span class="progress-text" id="uploadProgressText">0/20 files uploaded</span>
+            </div>
+            <div class="modal-body">
+                <div class="upload-files-list" id="uploadFilesList"></div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn--primary btn--full-width" id="createTimetableBtn" disabled>
+                    Create Timetable
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Status Modal -->
+    <div class="modal" id="statusModal">
+        <div class="modal-overlay"></div>
+        <div class="modal-container status-modal-container">
+            <div class="status-modal-content" id="statusModalContent"></div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

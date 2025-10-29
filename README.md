@@ -57,6 +57,7 @@ lumen_25028_ttms/
 ├── web_app/                    # Frontend management interface
 │   ├── login/                  # Authentication module
 │   ├── viewtt/                 # Timetable viewing & visualization
+│   ├── creatett/               # Timetable creation & pipeline management
 │   ├── workflow/               # Approval workflow interface
 │   ├── history/                # Timetable history & versioning
 │   └── access_control_mngmt/   # User & role management (RBAC)
@@ -175,6 +176,38 @@ Multiple view modes for comprehensive timetable analysis with real-time filterin
 ![Room View](archive/roomview_modal_viewtt.png)
 
 *Room-based view showing utilization and allocation*
+
+### Timetable Creation & Management
+
+Comprehensive interface for creating new timetables with dual data input modes and full pipeline integration.
+
+![Create Dashboard](archive/main_creatett.png)
+
+*Main creation dashboard with statistics and navigation*
+
+![Create Success](archive/main2_success_creatett.png)
+
+*Success confirmation after timetable creation*
+
+![Upload Modal - Initial](archive/upload_modal_creatett.png)
+
+*File upload modal for batch data input*
+
+![Upload Modal - With Files](archive/upload2_modal_creatett.png)
+
+*Upload modal showing selected files for processing*
+
+![Database Fetch Interface](archive/fetchdb_creatett.png)
+
+*Database fetch mode for direct data retrieval*
+
+![Database Fetch - With Data](archive/fetchdb2_creatett.png)
+
+*Database interface with fetched data preview*
+
+![Publish Success](archive/success_publish_modal_creaett.png)
+
+*Success modal after timetable publication*
 
 ## Scheduling System
 

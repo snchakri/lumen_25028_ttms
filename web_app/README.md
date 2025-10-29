@@ -18,10 +18,22 @@ The Lumen TTMS Web Application provides a comprehensive web-based interface for 
 web_app/
 ├── login/                     # Authentication & authorization module
 ├── viewtt/                    # Timetable visualization & display
+├── creatett/                  # Timetable creation & management
 ├── workflow/                  # Workflow management & approvals
 ├── access_control_mngmt/     # Role-based access control (RBAC)
 └── history/                  # Audit trail & version history
 ```
+
+## Screenshots
+
+Visual demonstrations of the application are available in the `archive/` directory:
+- `main_creatett.png` - Main dashboard interface
+- `main2_success_creatett.png` - Success state after creation
+- `upload_modal_creatett.png` - File upload modal (initial)
+- `upload2_modal_creatett.png` - File upload modal (with files)
+- `fetchdb_creatett.png` - Database fetch interface
+- `fetchdb2_creatett.png` - Database fetch with data
+- `success_publish_modal_creaett.png` - Publish success confirmation
 
 ## Application Modules
 
@@ -147,7 +159,121 @@ Load User Profile → Load Permissions → Redirect to Dashboard
 - **Room View**: Room-wise occupancy
 - **Student View**: Student group schedules
 
-### 3. Workflow Module (`workflow/`)
+### 3. Create Timetable Module (`creatett/`)
+
+**Purpose**: Comprehensive timetable creation and management interface
+
+**Files**:
+- `index.html`: Main creation dashboard with dual view
+- `app.js`: Complete timetable creation logic and state management
+- `style.css`: Responsive UI styling with modern design
+
+**Features**:
+- **Dual Interface Design**:
+  - Dashboard view with statistics and quick actions
+  - Create timetable view with full workflow integration
+  
+- **Data Input Methods**:
+  - **File Upload**: Upload CSV/Excel files for batch processing
+    - Faculty data (CSV format)
+    - Room data (CSV format)
+    - Course data (CSV format)
+    - Timeslot data (CSV format)
+    - Student enrollment data (CSV format)
+  - **Database Fetch**: Direct database integration
+    - Institution selection
+    - Semester/academic year selection
+    - Department/program filtering
+    - Real-time data validation
+
+- **Multi-Step Workflow**:
+  1. **Data Source Selection**: Choose upload or database fetch
+  2. **Data Upload/Fetch**: Input required data files or fetch from DB
+  3. **Data Validation**: Automatic validation of input data
+  4. **Pipeline Execution**: Run through Stages 1-7
+  5. **Review & Publish**: Final review and publication
+
+- **Pipeline Integration**:
+  - Full integration with 7-stage scheduling pipeline
+  - Real-time progress tracking
+  - Stage-by-stage validation
+  - Error handling and recovery
+  - Success/failure notifications
+
+- **Upload Modal Features**:
+  - Drag-and-drop file upload
+  - File type validation (CSV, Excel)
+  - Preview uploaded data
+  - Edit/remove uploaded files
+  - Bulk upload support
+  - File size validation
+
+- **Database Fetch Features**:
+  - Institution dropdown selection
+  - Semester/year picker
+  - Department filtering
+  - Real-time data preview
+  - Connection status indicator
+  - Data freshness timestamp
+
+- **Validation & Feedback**:
+  - Real-time input validation
+  - Error messages with suggested fixes
+  - Success confirmations
+  - Progress indicators
+  - Stage completion status
+
+- **Statistics Dashboard**:
+  - Total courses overview
+  - Faculty count and utilization
+  - Room availability
+  - Average room utilization percentage
+  - Visual stat cards with icons
+
+- **Navigation**:
+  - Seamless switch between Dashboard and Create views
+  - Breadcrumb navigation
+  - Context-aware action buttons
+
+**Data Upload Format**:
+
+*Faculty CSV*:
+```csv
+faculty_id,name,department,expertise,max_hours
+FAC101,Dr. Rajesh Kumar,CSE,Data Structures|Algorithms,20
+FAC102,Dr. Priya Sharma,CSE,Databases|Web Tech,18
+```
+
+*Room CSV*:
+```csv
+room_id,name,capacity,type,facilities
+A101,Room A101,60,Lecture Hall,Projector|AC|Whiteboard
+LAB-CS1,Computer Lab 1,30,Lab,Computers|Projector
+```
+
+*Course CSV*:
+```csv
+course_code,course_name,credits,type,department
+CS301,Data Structures,4,Theory,CSE
+CS302,Database Management,3,Theory,CSE
+```
+
+**Success Scenarios**:
+- Timetable successfully created and validated
+- Data uploaded and processed
+- Database connection established
+- Pipeline execution completed
+- Timetable published to system
+
+**Error Handling**:
+- Invalid file format detection
+- Missing required fields
+- Data validation failures
+- Database connection errors
+- Pipeline execution errors
+- Graceful error recovery with user guidance
+
+### 4. Workflow Module (`workflow/`)
 
 **Purpose**: Multi-stage workflow management and approvals
 
@@ -210,7 +336,7 @@ Review & Approval → Published
 - `published`: Final approved version
 - `archived`: Historical version
 
-### 4. Access Control Management Module (`access_control_mngmt/`)
+### 5. Access Control Management Module (`access_control_mngmt/`)
 
 **Purpose**: Role-Based Access Control (RBAC) administration
 
@@ -268,7 +394,7 @@ GET /api/permissions
 POST /api/users/:id/permissions
 ```
 
-### 5. History Module (`history/`)
+### 6. History Module (`history/`)
 
 **Purpose**: Complete audit trail and version history
 
